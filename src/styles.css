@@ -1,1 +1,92 @@
 /* You can add global styles to this file, and also import other style files */
+@import url("./assets/layout/layout.scss");
+@import url("./assets/demo/demo.scss");
+
+@import "tailwindcss";
+@plugin "tailwindcss-primeui";
+
+/* @source './index.html'; */
+@source './**/*.{html,ts,scss,css}';
+@custom-variant dark (&:where([class="app-dark"], [class="app-dark"] *));
+
+/* @import "./assets/tailwind-base-utilites/base-tailwind.css"; */
+
+@theme {
+  --breakpoint-*: initial;
+  --breakpoint-sm: 640px;
+  --breakpoint-md: 850px;
+  --breakpoint-lg: 1024px;
+  --breakpoint-xl: 1280px;
+  --breakpoint-2xl: 1536px;
+
+  --font-rubic: Rubik, serif;
+  --font-lato: "Lato", sans-serif;
+}
+
+@utility container {
+  margin-inline: auto;
+  padding-inline: 2rem;
+}
+
+:root {
+  --primary-color: #1f2a44;
+  --accent-gold: #ffd700;
+  --gradient-primary: linear-gradient(90deg, #1f2a44 0%, #2c3e50 100%);
+  --light-bg: #f8f9fa;
+  --text-primary: #1f2a44;
+  --text-secondary: #6c757d;
+  --surface-card: #ffffff;
+  --surface-border: #dee2e6;
+  --surface-100: #f1f3f5;
+  --surface-300: #dee2e6;
+  --surface-500: #adb5bd;
+  --surface-600: #6c757d;
+  --surface-700: #495057;
+  --surface-800: #343a40;
+  --surface-900: #212529;
+  --primary-500: #1f2a44;
+  --primary-600: #2c3e50;
+  --secondary-500: #6c757d;
+  --radius-sm: 4px;
+  --radius-md: 8px;
+  --radius-lg: 12px;
+  --radius-xl: 16px;
+  --radius-2xl: 20px;
+  --radius-full: 9999px;
+  --spacing-sm: 0.5rem;
+  --spacing-md: 1rem;
+  --spacing-lg: 1.5rem;
+  --spacing-xl: 2rem;
+  --spacing-2xl: 3rem;
+  --spacing-3xl: 4rem;
+  --spacing-4xl: 5rem;
+  --font-medium: 500;
+  --font-bold: 700;
+  --text-sm: 0.875rem;
+  --text-lg: 1.125rem;
+  --text-xl: 1.25rem;
+  --text-4xl: 2.25rem;
+  --leading-snug: 1.375;
+  --leading-relaxed: 1.625;
+  --shadow-base: 0 4px 6px -1px rgba(0, 0, 0, 0.1),
+    0 2px 4px -2px rgba(0, 0, 0, 0.1);
+  --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.1),
+    0 4px 6px -4px rgba(0, 0, 0, 0.1);
+  --transition-base: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  --transition-slow: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+  --success: #28a745;
+  --warning: #ffc107;
+  --danger: #dc3545;
+  --light-gray: #e9ecef;
+  --gray-text: #6c757d;
+  --dark-text: #343a40;
+  --component-padding: 2rem 1rem;
+}
+
+/* .site-footer__bottom-text a:hover {
+  @apply text-amber-600;
+} */
+
+.layout-sidebar {
+  @apply bg-gray-800;
+}
