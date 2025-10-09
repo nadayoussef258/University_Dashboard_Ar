@@ -1,8 +1,7 @@
 import { Directive, Injectable, OnInit, inject } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { LazyLoadEvent } from 'primeng/api';
-import { debounceTime, distinctUntilChanged, takeUntil } from 'rxjs';
-
+import { debounceTime, distinctUntilChanged, Subject, takeUntil } from 'rxjs';
 import { TableOptions } from '../../shared/interfaces';
 import { DataTableService } from '../../shared';
 import { BaseComponent } from './base-component';
@@ -17,17 +16,17 @@ export abstract class BaseListComponent
   extends BaseComponent
   implements OnInit
 {
-  data: any[] = [];
-  totalCount = 0;
+  // Initialize arrays and use proper typing
+  data: any[] = []; // Better initialization
+  totalCount = 0; // Simplified declaration
   language = 'ar';
   dialogRef: DynamicDialogRef | null = null;
-
-  private firstInit = false;
-
+  /* load data at first time */
+  private firstInit: boolean = false; // Better initialization
   abstract tableOptions: TableOptions;
   abstract get service(): HttpService;
-
-  // Injected services
+  protected override destroy$: Subject<boolean> = new Subject<boolean>();
+  // Use dependency injection with inject() function
   protected dataTableService = inject(DataTableService);
   protected dialogService = inject(DialogService);
 
@@ -37,12 +36,17 @@ export abstract class BaseListComponent
 
   override ngOnInit(): void {
     super.ngOnInit();
+    // Add initialization calls
     this.columnSearchInput();
     this.resetOpt();
     this.loadDataFromServer();
   }
 
-  /** Handle Data Table Event (Sort , Pagination , Filter , Delete , Print) */
+  /**
+   * Handle Data Table Event (Sort , Pagination , Filter , Delete , Print)
+   * @param dataTableEvent
+   */
+  // Improved event handling with switch statement
   handleEvent(dataTableEvent: any): void {
     switch (dataTableEvent.eventType) {
       case 'lazyLoad':
@@ -69,9 +73,8 @@ export abstract class BaseListComponent
         break;
     }
   }
-
-  /** Column Search with debounce */
-  private columnSearchInput(): void {
+  // this to be moved inside data table input filters and emit filter event inside the filter method
+  columnSearchInput(): void {
     this.dataTableService.searchNew$
       .pipe(
         debounceTime(1000),
@@ -90,16 +93,18 @@ export abstract class BaseListComponent
   }
 
   search(filterArray: any): void {
+    // debugger
     this.dataTableService.opt.filter = filterArray;
-    this.loadDataFromServer();
+    this.loadDataFromServer(); // Reload data based on the filter
   }
 
   openDialog(
     component: any,
-    pageTitle: string,
+    pageTitle: any,
     data: any,
     closable: boolean = true
   ): void {
+    // Add closable parameter with default value
     this.dialogRef = this.dialogService.open(component, {
       header: pageTitle,
       width: '65%',
@@ -113,55 +118,75 @@ export abstract class BaseListComponent
       autoZIndex: true,
       baseZIndex: 10000,
       dismissableMask: true,
-      closable,
+      closable, // Set the closable property
     });
-
-    this.dialogRef?.onDestroy.subscribe(() => this.loadDataFromServer());
+    this.dialogRef?.onDestroy.subscribe(() => {
+      this.loadDataFromServer();
+    });
   }
 
-  /** Load data from server */
+  // Improved error handling in loadDataFromServer
   loadDataFromServer(): void {
     this.dataTableService
       .loadData(this.tableOptions.inputUrl.getAll)
       .subscribe({
         next: (res) => {
           this.data = res.data;
-          console.log('res.data::', this.data);
-
-          this.totalCount = res.data.length ?? 0;
+          this.totalCount = res.totalCount;
         },
         error: () => {
-          this.alert.error(
-            // this.localize.translate.instant('VALIDATION.GET_ERROR')
-            'خطأ فى جلب البيانات من الخادم'
-          );
+          this.alert.error('خطأ فى جلب البيانات من الخادم');
         },
       });
   }
-
-  /** Lazy load data */
-  private loadLazyLoadedData(event?: LazyLoadEvent): void {
+  /* lazy load table data */
+  /* note:  gets called on entering component */
+  loadLazyLoadedData(event?: LazyLoadEvent): void {
     this.resetOpt();
     this.setSortColumn(event);
     this.setPaging(event);
     this.loadDataFromServer();
   }
 
-  private setSortColumn(event?: LazyLoadEvent | any): void {
-    this.dataTableService.opt.orderByValue = [
-      {
-        colId: event.sortField,
-        sort: event.sortOrder === 1 ? 'asc' : 'desc',
-      },
-    ];
+  /* set SortColumn */
+  setSortColumn(event?: LazyLoadEvent | any): void {
+    this.dataTableService.opt.orderByValue = [];
+    this.dataTableService.opt.orderByValue.push({
+      colId: event.sortField,
+      sort: event.sortOrder === 1 ? 'asc' : 'desc',
+    });
   }
-
-  private setPaging(event?: LazyLoadEvent | any): void {
+  /* set paging parameters*/
+  setPaging(event?: LazyLoadEvent | any): void {
     this.dataTableService.opt.pageSize = event.rows;
     this.dataTableService.opt.pageNumber = event.first / event.rows + 1;
   }
 
-  /** Filtering */
+  // Filter
+  // filter(
+  //   value?: any,
+  //   column?: any,
+  //   filterColumnName?: string,
+  //   dataType?: string
+  // ): void {
+  //   this.resetOpt();
+  //   value = this.checkDataType(value, dataType);
+  //   if (
+  //     filterColumnName !== undefined &&
+  //     filterColumnName !== '' &&
+  //     filterColumnName !== null
+  //   ) {
+  //     this.dataTableService.searchNew$.next(
+  //       (this.dataTableService.opt.filter[filterColumnName] = value)
+  //     );
+  //   } else {
+  //     this.dataTableService.searchNew$.next(
+  //       (this.dataTableService.opt.filter[column] = value)
+  //     );
+  //   }
+  // }
+
+  // Improved filter method with better typing
   filter(
     value?: any,
     column?: string,
@@ -179,36 +204,40 @@ export abstract class BaseListComponent
     }
   }
 
-  private checkDataType(value: any, dataType?: string): any {
-    return dataType === 'number' ? +value : value;
+  checkDataType(value: any, dataType?: string): any {
+    if (dataType === 'number') {
+      value = +value;
+    }
+    return value;
   }
 
   deleteData(id: string) {
     this.dataTableService
       .delete(this.tableOptions.inputUrl.delete, id)
-      .subscribe(() => this.loadDataFromServer());
+      .subscribe((res: any) => {
+        this.data = res.data;
+        this.totalCount = res.totalCount;
+        this.loadDataFromServer();
+      });
   }
 
-  deleteRange(ids: string[]) {
+  deleteRange(id: string[]) {
     this.dataTableService
-      .deleteRange(this.tableOptions.inputUrl.delete, ids)
+      .deleteRange(this.tableOptions.inputUrl.delete, id)
       .subscribe({
-        next: () => {
-          this.alert.success(
-            // this.localize.translate.instant('VALIDATION.DELETE_SUCCESS')
-            'تم الحذف بنجاح'
-          );
+        next: (res) => {
+          this.alert.success('VALIDATION.DELETE_SUCCESS');
+          this.data = res.data;
+          this.totalCount = res.totalCount;
           this.loadDataFromServer();
         },
-        error: () => {
-          this.alert.error(
-            // this.localize.translate.instant('VALIDATION.GET_ERROR')
-            'خطأ فى جلب البيانات من الخادم'
-          );
+        error: (err) => {
+          this.alert.error('VALIDATION.GET_ERROR');
         },
       });
   }
 
+  /* reset server options */
   resetOpt(): void {
     this.dataTableService.opt = {
       pageNumber: 1,
@@ -216,30 +245,38 @@ export abstract class BaseListComponent
       orderByValue: [{ colId: 'id', sort: 'asc' }],
       filter: {},
     };
-
-    if (this.tableOptions.bodyOptions?.filter) {
-      this.dataTableService.opt.filter = this.tableOptions.bodyOptions.filter;
-    }
-
-    this.dataTableService.opt.filter.appId = this.tableOptions.appId || 0;
+    this.dataTableService.opt.filter =
+      this.tableOptions.bodyOptions.filter !== null &&
+      this.tableOptions.bodyOptions.filter !== undefined
+        ? this.tableOptions.bodyOptions.filter
+        : this.dataTableService.opt.filter;
+    this.dataTableService.opt.filter.appId =
+      this.tableOptions.appId !== 0 ? this.tableOptions.appId : 0;
   }
 
+  // Improved export method with better typing
   export(sheetDetails: { [k: string]: string }, fileName: string) {
     const sheetColumnsValues = Object.keys(sheetDetails);
-
     const newArray = this.data.map((eachData, index) => {
-      let eachRow: any = { '#': index + 1 };
-
+      const eachRow: any = { '#': index + 1 };
       sheetColumnsValues.forEach((col) => {
         eachRow[sheetDetails[col]] = eachData[col];
       });
-
       return eachRow;
     });
-
     this.excel.exportAsCsvFile(newArray, fileName);
   }
 
+  // Add proper cleanup in ngOnDestroy
+  override ngOnDestroy() {
+    this.dataTableService.searchNew$.next({});
+    this.dataTableService.searchNew$.unsubscribe();
+    this.destroy$.next(true);
+    this.destroy$.complete();
+    if (this.dialogRef) {
+      this.dialogRef.close();
+    }
+  }
   Redirect() {
     const currentRoute = this.router.url;
     const index = currentRoute.lastIndexOf('/');
