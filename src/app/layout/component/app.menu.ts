@@ -9,17 +9,16 @@ import { AppMenuitem } from './app.menuitem';
   standalone: true,
   imports: [CommonModule, AppMenuitem, RouterModule],
   template: `<ul class="layout-menu">
-    <ng-container *ngFor="let item of model; let i = index">
-      <li
-        app-menuitem
-        *ngIf="!item.separator"
-        [item]="item"
-        [index]="i"
-        [root]="true"
-      ></li>
-      <li *ngIf="item.separator" class="menu-separator"></li>
-    </ng-container>
-  </ul> `,
+    @for (item of model; track $index) {
+    <!--  -->
+    @if (!item.separator) {
+    <li app-menuitem [item]="item" [index]="$index" [root]="true"></li>
+    } @else {
+    <li class="menu-separator"></li>
+    }
+    <!--  -->
+    }
+  </ul>`,
 })
 export class AppMenu {
   model: MenuItem[] = [];
@@ -43,12 +42,12 @@ export class AppMenu {
               {
                 label: 'معلومات التواصل',
                 icon: 'pi pi-briefcase',
-                routerLink: ['/pages/settings/contact'],
+                routerLink: ['/pages/settings/contacts'],
               },
               {
                 label: 'خدمات الجامعة',
                 icon: 'pi pi-briefcase',
-                routerLink: ['/pages/settings/service'],
+                routerLink: ['/pages/settings/services'],
               },
               {
                 label: 'شعار الجامعة',
@@ -73,26 +72,31 @@ export class AppMenu {
         label: 'الشاشات',
         icon: 'pi pi-fw pi-briefcase',
         items: [
+          // tabs
           {
             label: 'الادارات',
             icon: 'pi pi-tags',
             routerLink: ['/pages/mangment'],
           },
+          // tabs
           {
             label: 'الوحدات',
             icon: 'pi pi-user',
             routerLink: ['/pages/units'],
           },
+          // tabs
           {
             label: 'القطاعات',
             icon: 'pi pi-user',
             routerLink: ['/pages/sectors'],
           },
+          // tabs
           {
             label: 'الاخبار والاحدات',
             icon: 'pi pi-briefcase',
             routerLink: ['/pages/posts'],
           },
+          // tabs
           {
             label: 'اعضاء هيئة التدريس',
             icon: 'pi pi-briefcase',
@@ -113,6 +117,7 @@ export class AppMenu {
             icon: 'pi pi-building',
             routerLink: ['/pages/media'],
           },
+          // tabs
           {
             label: 'البرامج',
             icon: 'pi pi-building',

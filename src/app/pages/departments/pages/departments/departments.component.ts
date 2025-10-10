@@ -50,7 +50,7 @@ export class DepartmentsComponent extends BaseListComponent {
       inputCols: this.initializeTableColumns(),
       inputActions: this.initializeTableActions(),
       permissions: {
-        componentName: 'ADVISOR-SYSTEM-EXPERIENCES',
+        componentName: 'DEPARTMENTS',
         allowAll: true,
         listOfPermissions: [],
       },

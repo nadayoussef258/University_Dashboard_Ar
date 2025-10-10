@@ -9,3 +9,4 @@ export * from './primeng/p-radio-button/p-radio-button.component';
 export * from './primeng/p-datepicker/p-datepicker.component';
 export * from './primeng/p-title-toolbar/p-title-toolbar.component';
 export * from './submit-buttons/submit-buttons.component';
+export * from './primeng/p-file-upload/p-file-upload.component';

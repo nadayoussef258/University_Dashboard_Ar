@@ -50,14 +50,14 @@ export class ActionsComponent extends BaseListComponent {
       inputCols: this.initializeTableColumns(),
       inputActions: this.initializeTableActions(),
       permissions: {
-        componentName: 'ADVISOR-SYSTEM-EXPERIENCES',
+        componentName: 'ACTIONS',
         allowAll: true,
         listOfPermissions: [],
       },
       bodyOptions: {
         filter: {},
       },
-      responsiveDisplayedProperties: ['code', 'nameAr'],
+      responsiveDisplayedProperties: ['code', 'name'],
     };
   }
 
@@ -70,7 +70,7 @@ export class ActionsComponent extends BaseListComponent {
         filterMode: 'text',
       },
       {
-        field: 'nameAr',
+        field: 'name',
         header: 'الاســم',
         filter: true,
         filterMode: 'text',

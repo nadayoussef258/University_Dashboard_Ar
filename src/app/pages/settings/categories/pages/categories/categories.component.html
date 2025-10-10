@@ -3,13 +3,8 @@
 
   <div class="dataBox">
     <a class="addLink">
-      <button
-        class="border-radius-2 font-14 mt-2 mt-sm-0 py-1 px-2 main-btn align-self-center main"
-        (click)="openAdd()"
-        type="button"
-        pButton
-        pRipple
-      >
+      <button class="border-radius-2 font-14 mt-2 mt-sm-0 py-1 px-2 main-btn align-self-center main" (click)="openAdd()"
+        type="button" pButton pRipple>
         <div class="d-flex align-items-center">
           <i class="font-18 m-inline-end-1 bx bx-plus"></i>
           <span class="p-inline-end-1">اضافة</span>
@@ -19,50 +14,12 @@
 
     @if (tableOptions) {
     <div class="mt-4">
-      <app-prime-data-table
-        (event)="handleEvent($event)"
-        [tableOptions]="tableOptions"
-        [data]="data"
-        [totalCount]="totalCount"
-        [pageSize]="dataTableService.opt.pageSize"
-      >
+      <app-prime-data-table (event)="handleEvent($event)" [tableOptions]="tableOptions" [data]="data"
+        [totalCount]="totalCount" [pageSize]="dataTableService.opt.pageSize">
       </app-prime-data-table>
     </div>
     }
 
-    <div class="login-wrapper">
-      <div class="login-card">
-        <svg id="characters" viewBox="0 0 200 200">
-          <g id="char">
-            <!-- الوجه -->
-            <circle
-              cx="100"
-              cy="100"
-              r="50"
-              fill="#FFECB3"
-              stroke="#333"
-              stroke-width="2"
-            ></circle>
-            <!-- العينين -->
-            <circle id="eye-left" cx="80" cy="90" r="6" fill="#000"></circle>
-            <circle id="eye-right" cx="120" cy="90" r="6" fill="#000"></circle>
-            <!-- الفم -->
-            <path
-              id="mouth"
-              d="M80,115 Q100,125 120,115"
-              stroke="#000"
-              stroke-width="3"
-              fill="none"
-            ></path>
-          </g>
-        </svg>
 
-        <form>
-          <input id="email" type="email" placeholder="Email" />
-          <input id="password" type="password" placeholder="Password" />
-          <button type="button" id="login-btn">Login</button>
-        </form>
-      </div>
-    </div>
   </div>
 </div>

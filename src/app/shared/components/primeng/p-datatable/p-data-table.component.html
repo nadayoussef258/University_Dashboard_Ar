@@ -1,8 +1,8 @@
-<p-toolbar styleClass="mb-3">
+<!-- <p-toolbar class="mb-6">
   <ng-template #start>
     <p-button icon="pi pi-external-link" label="Export Excel Sheet" styleClass="w-full" (click)="table.exportCSV()" />
   </ng-template>
-</p-toolbar>
+</p-toolbar> -->
 
 @if (checkbox && selected && selected.length > 0) {
 <button class="font-14 px-4 main-btn cancel deleteSelected" type="button" (click)="deleteSelected()"
@@ -33,7 +33,8 @@
       }
 
       <!-- Show Action In Header Row-->
-      @if ((tableOptions.inputActions && permissions.listOfPermissions.indexOf('Permission.' + permissions.componentName
+      @if ((tableOptions.inputActions && permissions.listOfPermissions.indexOf('Permission.' +
+      permissions.componentName
       + '.View') > -1) || permissions.allowAll) {
       <th style="width: 10em">
         {{ 'الاجراءات' }}
@@ -89,7 +90,8 @@
       }
 
       <!-- Show Action In Filter Controls Row-->
-      @if ((tableOptions.inputActions && permissions.listOfPermissions.indexOf('Permission.' + permissions.componentName
+      @if ((tableOptions.inputActions && permissions.listOfPermissions.indexOf('Permission.' +
+      permissions.componentName
       + '.View') > -1) || permissions.allowAll) {
       <th></th>
       }
@@ -150,7 +152,8 @@
       }
 
       <!-- Display Actions-->
-      @if ((tableOptions.inputActions && permissions.listOfPermissions.indexOf('Permission.' + permissions.componentName
+      @if ((tableOptions.inputActions && permissions.listOfPermissions.indexOf('Permission.' +
+      permissions.componentName
       + '.View') > -1) || permissions.allowAll) {
       <td class="actions">
         @for (action of tableOptions.inputActions; track $index) {
@@ -182,7 +185,8 @@
             </a>
           </span>
           }
-          @if (action.isCallBack && (permissions.listOfPermissions.indexOf(action.permission) > -1 || action.allowAll))
+          @if (action.isCallBack && (permissions.listOfPermissions.indexOf(action.permission) > -1 ||
+          action.allowAll))
           {
           <span>
             <a class="icon-btn">

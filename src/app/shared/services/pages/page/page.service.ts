@@ -7,11 +7,7 @@ import { HttpService } from '../../../../core/services';
   providedIn: 'root',
 })
 export class PagesService extends HttpService {
-  protected get baseUrlV1(): string {
-    return 'v1/pages/';
-  }
-
-  protected get baseUrlV2(): string {
+  protected get baseUrl(): string {
     return 'v2/pages/';
   }
 

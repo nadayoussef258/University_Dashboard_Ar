@@ -52,7 +52,7 @@ export class AddEditCategoryComponent
   initFormGroup() {
     this.form = this.fb.group({
       code: ['', Validators.required],
-      nameAr: ['', Validators.required],
+      name: ['', Validators.required],
     });
   }
 

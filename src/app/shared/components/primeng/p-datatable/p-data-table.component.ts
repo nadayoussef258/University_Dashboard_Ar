@@ -17,6 +17,7 @@ import { DatePipe, NgClass } from '@angular/common';
 import { PrimeDeleteDialogComponent } from '../p-delete-dialog/p-delete-dialog.component';
 import { Toolbar } from 'primeng/toolbar';
 import { ButtonModule } from 'primeng/button';
+import { StyleClass } from 'primeng/styleclass';
 @Component({
   selector: 'app-prime-data-table',
   imports: [
@@ -27,6 +28,7 @@ import { ButtonModule } from 'primeng/button';
     DatePipe,
     Toolbar,
     ButtonModule,
+    StyleClass,
   ],
   templateUrl: './p-data-table.component.html',
   styleUrls: ['./p-data-table.component.scss'],

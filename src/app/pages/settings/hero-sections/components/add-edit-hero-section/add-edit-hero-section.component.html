@@ -1,0 +1,36 @@
+<p-card class="m-0 p-3" header="إعدادات الـ Hero Section">
+  @if (form) {
+  <form [formGroup]="form" class="row g-3">
+
+    <div class="col-lg-6">
+      <app-prime-input-text [formGroup]="form" controlName="title" [label]="'العنوان الرئيسي'"></app-prime-input-text>
+    </div>
+
+    <div class="col-lg-6">
+      <app-prime-input-text [formGroup]="form" controlName="subTitle" [label]="'العنوان الفرعي'"></app-prime-input-text>
+    </div>
+
+    <div class="col-lg-12">
+      <app-prime-input-text [formGroup]="form" controlName="description" [label]="'الوصف'" [inputType]="'textarea'">
+      </app-prime-input-text>
+    </div>
+
+    <div class="gap-2 col-lg-6 d-flex align-items-center">
+      <p-toggleswitch formControlName="isActive"></p-toggleswitch>
+      <label class="fw-bold">تفعيل القسم</label>
+    </div>
+
+    <div class="col-lg-12">
+      <app-prime-file-upload [formGroup]="form" controlName="heroAttachments" label="صور الـ Hero Section"
+        [multiple]="true" [uploadUrl]="'https://www.primefaces.org/cdn/api/upload.php'"></app-prime-file-upload>
+    </div>
+
+  </form>
+  }
+</p-card>
+
+@if (form) {
+<app-submit-buttons [isSubmitDisabled]="form.invalid" [submitButtonText]="pageType === 'add' ? 'إضافة' : 'حفظ'"
+  (submit)="submit()" (cancel)="closeDialog()">
+</app-submit-buttons>
+}

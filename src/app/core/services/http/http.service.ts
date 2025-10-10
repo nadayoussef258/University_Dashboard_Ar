@@ -23,7 +23,7 @@ export abstract class HttpService extends HttpServiceBaseService {
   get<T>(URL_Config: UrlConfig): Observable<T> {
     return this.http
       .get<ApResponse<T>>(
-        `${this.domainName}${this.baseUrlV1}${URL_Config.apiName}`,
+        `${this.domainName}${this.baseUrl}${URL_Config.apiName}`,
         { params: URL_Config.params }
       )
       .pipe(
@@ -36,7 +36,7 @@ export abstract class HttpService extends HttpServiceBaseService {
   getAll<T>(URL_Config: UrlConfig): Observable<T[]> {
     return this.http
       .get<ApResponse<T[]>>(
-        `${this.domainName}${this.baseUrlV1}${URL_Config.apiName}`,
+        `${this.domainName}${this.baseUrl}${URL_Config.apiName}`,
         { params: URL_Config.params }
       )
       .pipe(
@@ -49,7 +49,7 @@ export abstract class HttpService extends HttpServiceBaseService {
   postFilter<T, D>(URL_Config: UrlConfig, body: T): Observable<D> {
     return this.http
       .post<ApResponse<D>>(
-        `${this.domainName}${this.baseUrlV2}${URL_Config.apiName}`,
+        `${this.domainName}${this.baseUrl}${URL_Config.apiName}`,
         body,
         { params: URL_Config.params }
       )
@@ -64,7 +64,7 @@ export abstract class HttpService extends HttpServiceBaseService {
   post<T, D>(URL_Config: UrlConfig, body: T): Observable<D> {
     return this.http
       .post<ApResponse<D>>(
-        `${this.domainName}${this.baseUrlV2}${URL_Config.apiName}`,
+        `${this.domainName}${this.baseUrl}${URL_Config.apiName}`,
         body,
         { params: URL_Config.params }
       )
@@ -79,7 +79,7 @@ export abstract class HttpService extends HttpServiceBaseService {
   postRange<T, D>(URL_Config: UrlConfig, body: T): Observable<D> {
     return this.http
       .post<ApResponse<D>>(
-        `${this.domainName}${this.baseUrlV1}${URL_Config.apiName}`,
+        `${this.domainName}${this.baseUrl}${URL_Config.apiName}`,
         body,
         { params: URL_Config.params }
       )
@@ -94,7 +94,7 @@ export abstract class HttpService extends HttpServiceBaseService {
   put<T, D>(URL_Config: UrlConfig, body: T): Observable<T> {
     return this.http
       .put<ApResponse<D>>(
-        `${this.domainName}${this.baseUrlV2}${URL_Config.apiName}`,
+        `${this.domainName}${this.baseUrl}${URL_Config.apiName}`,
         body,
         { params: URL_Config.params }
       )
@@ -109,7 +109,7 @@ export abstract class HttpService extends HttpServiceBaseService {
   delete(URL_Config: UrlConfig, id: any): Observable<boolean> {
     return this.http
       .delete<ApResponse<boolean>>(
-        `${this.domainName}${this.baseUrlV2}${URL_Config.apiName}`,
+        `${this.domainName}${this.baseUrl}${URL_Config.apiName}`,
         { body: id, params: URL_Config.params }
       )
       .pipe(
@@ -123,7 +123,7 @@ export abstract class HttpService extends HttpServiceBaseService {
   dropdownPost<T, D>(URL_Config: UrlConfig, body: T): Observable<any> {
     return this.http
       .post<ApResponse<D>>(
-        `${this.domainName}${this.baseUrlV1}${URL_Config.apiName}`,
+        `${this.domainName}${this.baseUrl}${URL_Config.apiName}`,
         body,
         { params: URL_Config.params }
       )
@@ -137,7 +137,7 @@ export abstract class HttpService extends HttpServiceBaseService {
 
   dropdownExternalPost<T, D>(URL_Config: UrlConfig, body: T): Observable<any> {
     return this.http
-      .post<ApResponse<D>>(`${this.baseUrlV1}${URL_Config.apiName}`, body, {
+      .post<ApResponse<D>>(`${this.baseUrl}${URL_Config.apiName}`, body, {
         params: URL_Config.params,
       })
       .pipe(

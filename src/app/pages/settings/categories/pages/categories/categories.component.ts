@@ -1,16 +1,9 @@
-import {
-  AfterViewInit,
-  Component,
-  ElementRef,
-  inject,
-  Input,
-} from '@angular/core';
+import { Component, inject, Input } from '@angular/core';
 import { ActivatedRoute, RouterModule } from '@angular/router';
 import { CardModule } from 'primeng/card';
 import {
   PrimeDataTableComponent,
   PrimeTitleToolBarComponent,
-  PagesService,
   CategoriesService,
 } from '../../../../../shared';
 import { TableOptions } from '../../../../../shared/interfaces';
@@ -30,68 +23,14 @@ import { AddEditCategoryComponent } from '../../components/add-edit-category/add
   templateUrl: './categories.component.html',
   styleUrl: './categories.component.css',
 })
-export class CategoriesComponent
-  extends BaseListComponent
-  implements AfterViewInit
-{
+export class CategoriesComponent extends BaseListComponent {
   @Input() employeeId: string = '';
   isEnglish = false;
   tableOptions!: TableOptions;
   service = inject(CategoriesService);
 
-  constructor(activatedRoute: ActivatedRoute, private el: ElementRef) {
+  constructor(activatedRoute: ActivatedRoute) {
     super(activatedRoute);
-  }
-
-  ngAfterViewInit() {
-    const eyes = this.el.nativeElement.querySelectorAll(
-      '#eye-left, #eye-right'
-    );
-    const mouth = this.el.nativeElement.querySelector('#mouth');
-    const emailInput = this.el.nativeElement.querySelector(
-      '#email'
-    ) as HTMLInputElement;
-    const passwordInput = this.el.nativeElement.querySelector(
-      '#password'
-    ) as HTMLInputElement;
-    const loginBtn = this.el.nativeElement.querySelector(
-      '#login-btn'
-    ) as HTMLButtonElement;
-
-    // 👁️ تحريك العيون مع الماوس
-    document.addEventListener('mousemove', (e) => {
-      const x = (e.clientX / window.innerWidth - 0.5) * 10;
-      const y = (e.clientY / window.innerHeight - 0.5) * 10;
-      eyes.forEach((eye: any) => {
-        eye.setAttribute('transform', `translate(${x}, ${y})`);
-      });
-    });
-
-    // 😲 دهشة عند كتابة الإيميل
-    emailInput?.addEventListener('focus', () => {
-      mouth?.setAttribute('d', 'M80,115 Q100,135 120,115');
-    });
-    emailInput?.addEventListener('blur', () => {
-      mouth?.setAttribute('d', 'M80,115 Q100,125 120,115');
-    });
-
-    // 🙈 غلق العيون عند كتابة الباسورد
-    passwordInput?.addEventListener('focus', () => {
-      eyes.forEach((eye: any) => eye.setAttribute('r', '2'));
-    });
-    passwordInput?.addEventListener('blur', () => {
-      eyes.forEach((eye: any) => eye.setAttribute('r', '6'));
-      mouth?.setAttribute('d', 'M80,115 Q100,125 120,115');
-    });
-
-    // 😢 حزن لو باسورد غلط
-    loginBtn?.addEventListener('click', () => {
-      if (passwordInput.value !== '1234') {
-        mouth?.setAttribute('d', 'M80,120 Q100,105 120,120');
-      } else {
-        mouth?.setAttribute('d', 'M80,115 Q100,135 120,115');
-      }
-    });
   }
 
   override ngOnInit(): void {
@@ -118,7 +57,7 @@ export class CategoriesComponent
       bodyOptions: {
         filter: {},
       },
-      responsiveDisplayedProperties: ['code', 'nameAr'],
+      responsiveDisplayedProperties: ['code', 'name'],
     };
   }
 
@@ -131,7 +70,7 @@ export class CategoriesComponent
         filterMode: 'text',
       },
       {
-        field: 'nameAr',
+        field: 'name',
         header: 'اسم التصنيف',
         filter: true,
         filterMode: 'text',

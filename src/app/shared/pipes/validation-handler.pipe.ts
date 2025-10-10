@@ -1,5 +1,4 @@
 import { Pipe, PipeTransform } from '@angular/core';
-import { TranslateService } from '@ngx-translate/core';
 import { Subject, takeUntil } from 'rxjs';
 
 @Pipe({
@@ -9,7 +8,7 @@ import { Subject, takeUntil } from 'rxjs';
 export class ValidationHandlerPipe implements PipeTransform {
   private destroy$ = new Subject<any>();
 
-  constructor(private translate: TranslateService) {}
+  constructor() {}
 
   transform(value: any, customErrorMessage?: string): string {
     value = JSON.stringify(value);
@@ -35,13 +34,13 @@ export class ValidationHandlerPipe implements PipeTransform {
       customErrorMessage && matches === 'required'
         ? `${matches}_${customErrorMessage}`
         : matches;
-    this.translate
-      .get(`VALIDATION.${customTranslate.toUpperCase()}`)
-      .pipe(takeUntil(this.destroy$))
-      .subscribe((translationWord) => {
-        res =
-          translationWord + (customMessage ? '(' + customMessage + ')' : '');
-      });
+    // this.translate
+    //   .get(`VALIDATION.${customTranslate.toUpperCase()}`)
+    //   .pipe(takeUntil(this.destroy$))
+    //   .subscribe((translationWord) => {
+    //     res =
+    //       translationWord + (customMessage ? '(' + customMessage + ')' : '');
+    //   });
 
     return res;
   }

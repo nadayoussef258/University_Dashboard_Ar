@@ -42,7 +42,7 @@ export class SectorsComponent extends BaseListComponent {
       inputCols: this.initializeTableColumns(),
       inputActions: this.initializeTableActions(),
       permissions: {
-        componentName: 'ADVISOR-SYSTEM-EXPERIENCES',
+        componentName: 'SECTORS',
         allowAll: true,
         listOfPermissions: [],
       },

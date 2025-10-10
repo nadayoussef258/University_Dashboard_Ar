@@ -6,11 +6,7 @@ import { EnumDto } from '../../../interfaces';
   providedIn: 'root',
 })
 export class DealerTypesService extends HttpService {
-  protected get baseUrlV1(): string {
-    return 'v1/dealertypes/';
-  }
-
-  protected get baseUrlV2(): string {
+  protected get baseUrl(): string {
     return 'v2/dealertypes/';
   }
 

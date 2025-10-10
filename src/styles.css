@@ -11,6 +11,10 @@
 
 /* @import "./assets/tailwind-base-utilites/base-tailwind.css"; */
 
+::ng-deep .p-dialog-content {
+  padding: 1rem 0.5rem !important;
+}
+
 @theme {
   --breakpoint-*: initial;
   --breakpoint-sm: 640px;
