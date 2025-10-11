@@ -34,9 +34,6 @@ export class DepartmentsComponent extends BaseListComponent {
   }
 
   override ngOnInit(): void {
-    // this.localize.currentLanguage$.pipe(takeUntil(this.destroy$)).subscribe((lang) => {
-    //     this.language = lang;
-    // });
     this.initializeTableOptions();
   }
 
@@ -101,26 +98,16 @@ export class DepartmentsComponent extends BaseListComponent {
   }
 
   openAdd() {
-    this.openDialog(
-      AddEditDepartmentComponent,
-      // this.localize.translate.instant('اضافة قسم'),
-      'اضافة قسم',
-      {
-        pageType: 'add',
-      }
-    );
+    this.openDialog(AddEditDepartmentComponent, 'اضافة قسم', {
+      pageType: 'add',
+    });
   }
 
   openEdit(rowData: any) {
-    this.openDialog(
-      AddEditDepartmentComponent,
-      // this.localize.translate.instant('تعديل قسم'),
-      'تعديل قسم',
-      {
-        pageType: 'edit',
-        row: { rowData },
-      }
-    );
+    this.openDialog(AddEditDepartmentComponent, 'تعديل قسم', {
+      pageType: 'edit',
+      row: { rowData },
+    });
   }
 
   /* when leaving the component */

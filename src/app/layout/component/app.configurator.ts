@@ -100,10 +100,16 @@ declare type SurfacesType = {
           size="small"
         />
       </div>
-      <!-- <div *ngIf="showMenuModeButton()" class="flex flex-col gap-2">
-                <span class="font-semibold text-sm text-muted-color">Menu Mode</span>
-                <p-selectbutton [ngModel]="menuMode()" (ngModelChange)="onMenuModeChange($event)" [options]="menuModeOptions" [allowEmpty]="false" size="small" />
-            </div> -->
+      <div *ngIf="showMenuModeButton()" class="flex flex-col gap-2">
+        <span class="font-semibold text-sm text-muted-color">Menu Mode</span>
+        <p-selectbutton
+          [ngModel]="menuMode()"
+          (ngModelChange)="onMenuModeChange($event)"
+          [options]="menuModeOptions"
+          [allowEmpty]="false"
+          size="small"
+        />
+      </div>
     </div>
   `,
   host: {

@@ -52,7 +52,7 @@ export class AppMenu {
               {
                 label: 'شعار الجامعة',
                 icon: 'pi pi-briefcase',
-                routerLink: ['/pages/settings/logo'],
+                routerLink: ['/pages/settings/logos'],
               },
               {
                 label: 'صور رئيسية',

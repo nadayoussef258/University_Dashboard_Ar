@@ -35,9 +35,6 @@ export class HeroSectionsComponent extends BaseListComponent {
   }
 
   override ngOnInit(): void {
-    // this.localize.currentLanguage$.pipe(takeUntil(this.destroy$)).subscribe((lang) => {
-    //     this.language = lang;
-    // });
     this.initializeTableOptions();
   }
 
@@ -46,7 +43,7 @@ export class HeroSectionsComponent extends BaseListComponent {
       inputUrl: {
         getAll: 'v2/herosections/getPaged',
         getAllMethod: 'POST',
-        delete: 'v1/herosections/deletesoft',
+        delete: 'v2/herosections/deletesoft',
       },
       inputCols: this.initializeTableColumns(),
       inputActions: this.initializeTableActions(),
@@ -108,26 +105,16 @@ export class HeroSectionsComponent extends BaseListComponent {
   }
 
   openAdd() {
-    this.openDialog(
-      AddEditHeroSectionComponent,
-      // this.localize.translate.instant('اضافة قسم'),
-      'اضافة الواجهة الرئيسية',
-      {
-        pageType: 'add',
-      }
-    );
+    this.openDialog(AddEditHeroSectionComponent, 'اضافة الواجهة الرئيسية', {
+      pageType: 'add',
+    });
   }
 
   openEdit(rowData: any) {
-    this.openDialog(
-      AddEditHeroSectionComponent,
-      // this.localize.translate.instant('تعديل قسم'),
-      'تعديل الواجهة الرئيسية',
-      {
-        pageType: 'edit',
-        row: { rowData },
-      }
-    );
+    this.openDialog(AddEditHeroSectionComponent, 'تعديل الواجهة الرئيسية', {
+      pageType: 'edit',
+      row: { rowData },
+    });
   }
 
   /* when leaving the component */

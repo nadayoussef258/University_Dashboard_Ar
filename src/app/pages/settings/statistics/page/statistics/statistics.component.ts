@@ -34,9 +34,6 @@ export class StatisticsComponent extends BaseListComponent {
   }
 
   override ngOnInit(): void {
-    // this.localize.currentLanguage$.pipe(takeUntil(this.destroy$)).subscribe((lang) => {
-    //     this.language = lang;
-    // });
     this.initializeTableOptions();
   }
 
@@ -45,7 +42,7 @@ export class StatisticsComponent extends BaseListComponent {
       inputUrl: {
         getAll: 'v2/statistics/getPaged',
         getAllMethod: 'POST',
-        delete: 'v1/statistics/deletesoft',
+        delete: 'v2/statistics/deletesoft',
       },
       inputCols: this.initializeTableColumns(),
       inputActions: this.initializeTableActions(),
@@ -113,26 +110,16 @@ export class StatisticsComponent extends BaseListComponent {
   }
 
   openAdd() {
-    this.openDialog(
-      AddEditStatisticComponent,
-      // this.localize.translate.instant('اضافة قسم'),
-      'اضافة احصائية',
-      {
-        pageType: 'add',
-      }
-    );
+    this.openDialog(AddEditStatisticComponent, 'اضافة احصائية', {
+      pageType: 'add',
+    });
   }
 
   openEdit(rowData: any) {
-    this.openDialog(
-      AddEditStatisticComponent,
-      // this.localize.translate.instant('تعديل قسم'),
-      'تعديل احصائية',
-      {
-        pageType: 'edit',
-        row: { rowData },
-      }
-    );
+    this.openDialog(AddEditStatisticComponent, 'تعديل احصائية', {
+      pageType: 'edit',
+      row: { rowData },
+    });
   }
 
   /* when leaving the component */

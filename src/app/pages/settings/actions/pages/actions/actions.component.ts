@@ -34,9 +34,6 @@ export class ActionsComponent extends BaseListComponent {
   }
 
   override ngOnInit(): void {
-    // this.localize.currentLanguage$.pipe(takeUntil(this.destroy$)).subscribe((lang) => {
-    //     this.language = lang;
-    // });
     this.initializeTableOptions();
   }
 
@@ -101,26 +98,16 @@ export class ActionsComponent extends BaseListComponent {
   }
 
   openAdd() {
-    this.openDialog(
-      AddEditActionComponent,
-      // this.localize.translate.instant('اضافة قسم'),
-      'اضافة حدث',
-      {
-        pageType: 'add',
-      }
-    );
+    this.openDialog(AddEditActionComponent, 'اضافة حدث', {
+      pageType: 'add',
+    });
   }
 
   openEdit(rowData: any) {
-    this.openDialog(
-      AddEditActionComponent,
-      // this.localize.translate.instant('تعديل قسم'),
-      'تعديل حدث',
-      {
-        pageType: 'edit',
-        row: { rowData },
-      }
-    );
+    this.openDialog(AddEditActionComponent, 'تعديل حدث', {
+      pageType: 'edit',
+      row: { rowData },
+    });
   }
 
   /* when leaving the component */

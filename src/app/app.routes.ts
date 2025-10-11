@@ -12,12 +12,16 @@ export const routes: Routes = [
       { path: '', component: Dashboard },
       {
         path: 'pages',
-        loadChildren: () => import('../app/pages/pages.routes'),
+        loadChildren: () =>
+          import('../app/pages/pages.routes').then((m) => m.pagesRoutes),
       },
     ],
   },
   { path: 'landing', component: Landing },
-  { path: 'notfound', component: Notfound },
   { path: 'auth', loadChildren: () => import('../app/pages/auth/auth.routes') },
-  { path: '**', redirectTo: '/notfound' },
+  {
+    path: '**',
+    loadComponent: () =>
+      import('./pages/notfound/notfound').then((c) => c.Notfound),
+  },
 ];

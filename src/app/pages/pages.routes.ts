@@ -1,59 +1,12 @@
 import { Routes } from '@angular/router';
 import { Empty } from './empty/empty';
 
-export default [
+export const pagesRoutes: Routes = [
   {
     path: 'settings',
-    children: [
-      {
-        path: 'contacts',
-        loadChildren: () =>
-          import('./settings/contacts/contacts.routes').then(
-            (m) => m.contactsRoutes
-          ),
-      },
-      {
-        path: 'actions',
-        loadChildren: () =>
-          import('./settings/actions/actions.routes').then(
-            (m) => m.actionsRoutes
-          ),
-      },
-      {
-        path: 'categories',
-        loadChildren: () =>
-          import('./settings/categories/categories.routes').then(
-            (m) => m.categoriesRoutes
-          ),
-      },
-      {
-        path: 'hero-sections',
-        loadChildren: () =>
-          import('./settings/hero-sections/hero-sections.routes').then(
-            (m) => m.heroSectionsRoutes
-          ),
-      },
-      {
-        path: 'services',
-        loadChildren: () =>
-          import('./settings/services/services.routes').then(
-            (m) => m.servicesRoutes
-          ),
-      },
-      {
-        path: 'statistics',
-        loadChildren: () =>
-          import('./settings/statistics/statistics.routes').then(
-            (m) => m.statisticsRoutes
-          ),
-      },
-    ],
+    loadChildren: () =>
+      import('./settings/settings.routes').then((m) => m.settingsRoutes),
   },
-  // {
-  //     path: 'items',
-  //     loadChildren: () => import('./items/items.routes').then((m) => m.itemsRoutes)
-  // },
-
   {
     path: 'departments',
     loadChildren: () =>
@@ -61,6 +14,6 @@ export default [
         (m) => m.departmentsRoutes
       ),
   },
-  { path: 'empty', component: Empty },
-  { path: '**', redirectTo: '/notfound' },
+  { path: 'empty', redirectTo: '/empty', pathMatch: 'full' },
+  { path: '**', redirectTo: '/notfound', pathMatch: 'full' },
 ] as Routes;

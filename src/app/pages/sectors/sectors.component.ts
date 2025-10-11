@@ -37,7 +37,7 @@ export class SectorsComponent extends BaseListComponent {
       inputUrl: {
         getAll: 'v1/branchs/getPaged',
         getAllMethod: 'POST',
-        delete: 'v1/branchs/deletesoft',
+        delete: 'v2/branchs/deletesoft',
       },
       inputCols: this.initializeTableColumns(),
       inputActions: this.initializeTableActions(),

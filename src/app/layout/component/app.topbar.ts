@@ -10,7 +10,7 @@ import { LayoutService } from '../service/layout.service';
   selector: 'app-topbar',
   standalone: true,
   imports: [RouterModule, CommonModule, StyleClassModule],
-styleUrls: ['./topbar.css'],
+  styleUrls: ['./topbar.css'],
   template: `<div class="modern-topbar" dir="rtl">
     <div class="topbar-container">
       <!-- Left Section: Logo & Menu Toggle -->
@@ -38,12 +38,12 @@ styleUrls: ['./topbar.css'],
       </div>
 
       <!-- Center Section: Search (Optional) -->
-      <div class="topbar-center">
+      <!-- <div class="topbar-center">
         <div class="search-container">
           <i class="pi pi-search search-icon"></i>
           <input type="text" class="search-input" placeholder="البحث..." />
         </div>
-      </div>
+      </div> -->
 
       <!-- Right Section: Actions & User Menu -->
       <div class="topbar-right">

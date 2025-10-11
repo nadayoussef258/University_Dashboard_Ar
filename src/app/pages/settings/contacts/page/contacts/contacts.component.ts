@@ -34,9 +34,6 @@ export class ContactsComponent extends BaseListComponent {
   }
 
   override ngOnInit(): void {
-    // this.localize.currentLanguage$.pipe(takeUntil(this.destroy$)).subscribe((lang) => {
-    //     this.language = lang;
-    // });
     this.initializeTableOptions();
   }
 
@@ -45,7 +42,7 @@ export class ContactsComponent extends BaseListComponent {
       inputUrl: {
         getAll: 'v2/contacts/getPaged',
         getAllMethod: 'POST',
-        delete: 'v1/contacts/deletesoft',
+        delete: 'v2/contacts/deletesoft',
       },
       inputCols: this.initializeTableColumns(),
       inputActions: this.initializeTableActions(),
@@ -160,26 +157,16 @@ export class ContactsComponent extends BaseListComponent {
   }
 
   openAdd() {
-    this.openDialog(
-      AddEditContactComponent,
-      // this.localize.translate.instant('اضافة قسم'),
-      'اضافة تفاصيل الاتصال',
-      {
-        pageType: 'add',
-      }
-    );
+    this.openDialog(AddEditContactComponent, 'اضافة تفاصيل الاتصال', {
+      pageType: 'add',
+    });
   }
 
   openEdit(rowData: any) {
-    this.openDialog(
-      AddEditContactComponent,
-      // this.localize.translate.instant('تعديل قسم'),
-      'تعديل تفاصيل الاتصال',
-      {
-        pageType: 'edit',
-        row: { rowData },
-      }
-    );
+    this.openDialog(AddEditContactComponent, 'تعديل تفاصيل الاتصال', {
+      pageType: 'edit',
+      row: { rowData },
+    });
   }
 
   /* when leaving the component */

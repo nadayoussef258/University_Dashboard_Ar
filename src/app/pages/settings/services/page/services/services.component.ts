@@ -4,7 +4,6 @@ import { CardModule } from 'primeng/card';
 import {
   PrimeDataTableComponent,
   PrimeTitleToolBarComponent,
-  ContactsService,
   ServicesService,
 } from '../../../../../shared';
 import { TableOptions } from '../../../../../shared/interfaces';
@@ -35,9 +34,6 @@ export class ServicesComponent extends BaseListComponent {
   }
 
   override ngOnInit(): void {
-    // this.localize.currentLanguage$.pipe(takeUntil(this.destroy$)).subscribe((lang) => {
-    //     this.language = lang;
-    // });
     this.initializeTableOptions();
   }
 
@@ -46,7 +42,7 @@ export class ServicesComponent extends BaseListComponent {
       inputUrl: {
         getAll: 'v2/services/getPaged',
         getAllMethod: 'POST',
-        delete: 'v1/services/deletesoft',
+        delete: 'v2/services/deletesoft',
       },
       inputCols: this.initializeTableColumns(),
       inputActions: this.initializeTableActions(),
@@ -108,26 +104,16 @@ export class ServicesComponent extends BaseListComponent {
   }
 
   openAdd() {
-    this.openDialog(
-      AddEditServiceComponent,
-      // this.localize.translate.instant('اضافة قسم'),
-      'اضافة خدمة',
-      {
-        pageType: 'add',
-      }
-    );
+    this.openDialog(AddEditServiceComponent, 'اضافة خدمة', {
+      pageType: 'add',
+    });
   }
 
   openEdit(rowData: any) {
-    this.openDialog(
-      AddEditServiceComponent,
-      // this.localize.translate.instant('تعديل قسم'),
-      'تعديل خدمة',
-      {
-        pageType: 'edit',
-        row: { rowData },
-      }
-    );
+    this.openDialog(AddEditServiceComponent, 'تعديل خدمة', {
+      pageType: 'edit',
+      row: { rowData },
+    });
   }
 
   /* when leaving the component */
