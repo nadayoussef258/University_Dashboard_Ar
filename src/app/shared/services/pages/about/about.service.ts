@@ -6,20 +6,20 @@ import { HttpService } from '../../../../core/services';
 @Injectable({
   providedIn: 'root',
 })
-export class PagesService extends HttpService {
+export class AboutService extends HttpService {
   protected get baseUrl(): string {
-    return 'v2/pages/';
+    return 'v2/about/';
   }
 
-  getPages(id: string) {
+  getabout(id: string) {
     return this.get<any>({ apiName: `Get/${id}` });
   }
 
-  getEditPages(id: string) {
+  getEditabout(id: string) {
     return this.get<any>({ apiName: `getedit/${id}` });
   }
 
-  get pages() {
+  get abouts() {
     return this.get<any[]>({ apiName: 'getAll' });
   }
 

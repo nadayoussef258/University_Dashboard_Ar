@@ -8,12 +8,19 @@ export const pagesRoutes: Routes = [
       import('./settings/settings.routes').then((m) => m.settingsRoutes),
   },
   {
+    path: 'managements',
+    loadChildren: () =>
+      import('../pages/managements/managements.routes').then(
+        (m) => m.mainManagementsRoutes
+      ),
+  },
+  {
     path: 'departments',
     loadChildren: () =>
       import('./departments/departments.routes').then(
         (m) => m.departmentsRoutes
       ),
   },
-  { path: 'empty', redirectTo: '/empty', pathMatch: 'full' },
-  { path: '**', redirectTo: '/notfound', pathMatch: 'full' },
+  { path: 'empty', component: Empty },
+  { path: '**', redirectTo: 'notfound', pathMatch: 'full' },
 ] as Routes;

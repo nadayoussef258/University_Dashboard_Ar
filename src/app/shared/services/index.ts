@@ -3,6 +3,8 @@ export * from './table/datatable.service';
 export * from './validation/custom-validation.service';
 export * from './enums/dealer-types/dealer-types.service';
 
+export * from './pages/about/about.service';
+
 export * from './pages/page/page.service';
 export * from './pages/posts/posts.service';
 export * from './settings/actions/actions.service';

@@ -28,7 +28,11 @@ export class AppMenu {
       {
         label: 'الرئيسية',
         items: [
-          { label: 'لوحة التحكم', icon: 'pi pi-fw pi-home', routerLink: ['/'] },
+          {
+            label: 'لوحة التحكم',
+            icon: 'pi pi-home',
+            routerLink: ['/'],
+          },
         ],
       },
       {
@@ -36,32 +40,31 @@ export class AppMenu {
         items: [
           {
             label: 'الاعدادات',
-            icon: 'pi pi-fw pi-spin pi-cog',
-            // routerLink: ['/pages'],
+            icon: 'pi pi-cog',
             items: [
               {
                 label: 'معلومات التواصل',
-                icon: 'pi pi-briefcase',
+                icon: 'pi pi-envelope',
                 routerLink: ['/pages/settings/contacts'],
               },
               {
                 label: 'خدمات الجامعة',
-                icon: 'pi pi-briefcase',
+                icon: 'pi pi-globe',
                 routerLink: ['/pages/settings/services'],
               },
               {
                 label: 'شعار الجامعة',
-                icon: 'pi pi-briefcase',
+                icon: 'pi pi-image',
                 routerLink: ['/pages/settings/logos'],
               },
               {
                 label: 'صور رئيسية',
-                icon: 'pi pi-briefcase',
+                icon: 'pi pi-images',
                 routerLink: ['/pages/settings/sliderhero'],
               },
               {
-                label: 'الاحصائيات ',
-                icon: 'pi pi-briefcase',
+                label: 'الاحصائيات',
+                icon: 'pi pi-chart-bar',
                 routerLink: ['/pages/settings/statistics'],
               },
             ],
@@ -70,67 +73,73 @@ export class AppMenu {
       },
       {
         label: 'الشاشات',
-        icon: 'pi pi-fw pi-briefcase',
+        icon: 'pi pi-desktop',
         items: [
-          // tabs
           {
             label: 'الادارات',
-            icon: 'pi pi-tags',
-            routerLink: ['/pages/mangment'],
+            icon: 'pi pi-sitemap',
+            routerLink: ['/pages/managements'],
+            items: [
+              {
+                label: 'الإدارات الرئيسية',
+                icon: 'pi pi-briefcase',
+                routerLink: ['/pages/managements/main-managements'],
+              },
+              {
+                label: 'مرفقات الادارات',
+                icon: 'pi pi-paperclip',
+                routerLink: ['/pages/managements/management-attachments'],
+              },
+            ],
           },
-          // tabs
           {
             label: 'الوحدات',
-            icon: 'pi pi-user',
+            icon: 'pi pi-users',
             routerLink: ['/pages/units'],
           },
-          // tabs
           {
             label: 'القطاعات',
-            icon: 'pi pi-user',
+            icon: 'pi pi-th-large',
             routerLink: ['/pages/sectors'],
           },
-          // tabs
           {
             label: 'الاخبار والاحدات',
-            icon: 'pi pi-briefcase',
+            icon: 'pi pi-calendar',
             routerLink: ['/pages/posts'],
           },
-          // tabs
           {
             label: 'اعضاء هيئة التدريس',
-            icon: 'pi pi-briefcase',
+            icon: 'pi pi-user-edit',
             routerLink: ['/pages/members'],
           },
           {
             label: 'القوائم',
-            icon: 'pi pi-user',
+            icon: 'pi pi-bars',
             routerLink: ['/pages/menus'],
           },
           {
             label: 'عن الجامعة',
-            icon: 'pi pi-user',
+            icon: 'pi pi-info-circle',
             routerLink: ['/pages/overView'],
           },
           {
             label: 'الصور',
-            icon: 'pi pi-building',
+            icon: 'pi pi-camera',
             routerLink: ['/pages/media'],
           },
-          // tabs
           {
             label: 'البرامج',
-            icon: 'pi pi-building',
+            icon: 'pi pi-book',
             routerLink: ['/pages/programes'],
           },
           {
             label: 'الأحداث',
-            icon: 'pi pi-briefcase',
+            icon: 'pi pi-calendar-plus',
             routerLink: ['/pages/settings/actions'],
           },
           {
             label: 'التصنيفات',
-            icon: 'pi pi-briefcase',
+            icon: 'pi pi-tags',
             routerLink: ['/pages/settings/categories'],
           },
         ],

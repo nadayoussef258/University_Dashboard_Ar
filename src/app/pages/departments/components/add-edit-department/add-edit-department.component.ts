@@ -123,7 +123,7 @@ export class AddEditDepartmentComponent
   // }
 
   getEditpage = () => {
-    this.pagesService.getEditclient(this.id).subscribe((page: any) => {
+    this.pagesService.getEditPages(this.id).subscribe((page: any) => {
       this.initFormGroup();
       this.form.patchValue(page);
     });
