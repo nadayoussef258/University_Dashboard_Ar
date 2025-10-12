@@ -1,1 +1,1 @@
-export * from './pages/actions/actions.component';
+export * from './pages/main-mangments/main-mangments.component';

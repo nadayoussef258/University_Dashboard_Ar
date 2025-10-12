@@ -86,9 +86,19 @@ export class AppMenu {
                 routerLink: ['/pages/managements/main-managements'],
               },
               {
-                label: 'مرفقات الادارات',
+                label: 'مرفقات الإدارات',
                 icon: 'pi pi-paperclip',
                 routerLink: ['/pages/managements/management-attachments'],
+              },
+              {
+                label: 'تفاصيل الإدارات',
+                icon: 'pi pi-info-circle',
+                routerLink: ['/pages/managements/management-details'],
+              },
+              {
+                label: 'أعضاء الإدارات',
+                icon: 'pi pi-users',
+                routerLink: ['/pages/managements/management-members'],
               },
             ],
           },

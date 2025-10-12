@@ -14,20 +14,30 @@ import { filter } from 'rxjs';
   selector: 'app-actions',
   standalone: true,
   imports: [RouterModule, CardModule, CommonModule, TabsModule],
-  templateUrl: './actions.component.html',
-  styleUrl: './actions.component.css',
+  templateUrl: './main-mangments.component.html',
+  styleUrl: './main-mangments.component.css',
 })
-export class ActionsComponent implements OnInit {
+export class MainMangmentsComponent implements OnInit {
   tabs = [
     {
-      route: 'main-managements',
+      route: 'managements',
       label: 'الإدارات الرئيسية',
-      icon: 'pi pi-sitemap',
+      icon: 'pi pi-briefcase',
     },
     {
       route: 'management-attachments',
-      label: 'المرفقات',
+      label: 'مرفقات الإدارات',
       icon: 'pi pi-paperclip',
+    },
+    {
+      route: 'management-details',
+      label: 'تفاصيل الإدارات',
+      icon: 'pi pi-info-circle',
+    },
+    {
+      route: 'management-members',
+      label: 'أعضاء الإدارات',
+      icon: 'pi pi-users',
     },
   ];
 
@@ -38,7 +48,7 @@ export class ActionsComponent implements OnInit {
   ngOnInit() {
     // ✅ عند أول تحميل
     const current = this.router.url.split('/').pop();
-    this.activeTab = current ?? '/main-managements';
+    this.activeTab = current ?? '/managements';
 
     // ✅ أثناء أي تنقل لاحق
     // ✅ نحدث التاب النشطة بناءً على المسار الحالي فقط عند NavigationEnd (علشان الأداء)
@@ -50,7 +60,7 @@ export class ActionsComponent implements OnInit {
       )
       .subscribe((event) => {
         const current = event.urlAfterRedirects.split('/').pop();
-        this.activeTab = current ?? '/main-managements';
+        this.activeTab = current ?? '/managements';
       });
   }
 }

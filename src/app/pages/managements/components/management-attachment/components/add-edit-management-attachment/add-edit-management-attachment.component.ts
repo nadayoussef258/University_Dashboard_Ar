@@ -37,6 +37,13 @@ export class AddEditManagementAttachmentComponent
     super(activatedRoute);
   }
 
+  getAllManagementAttachments() {
+    this.managementAttachmentService.managementAttachments.subscribe(
+      (response: any) => {
+        console.log('managementAttachments ::', response);
+      }
+    );
+  }
   override ngOnInit(): void {
     super.ngOnInit();
     this.dialogService.dialogComponentRefMap.forEach((element) => {
@@ -57,6 +64,7 @@ export class AddEditManagementAttachmentComponent
       code: ['', Validators.required],
       nameAr: ['', Validators.required],
     });
+    this.getAllManagementAttachments();
   }
 
   getEditManagementAttachment = () => {

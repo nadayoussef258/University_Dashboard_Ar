@@ -5,11 +5,12 @@ import {
   PrimeDataTableComponent,
   PrimeTitleToolBarComponent,
   ActionsService,
+  ManagementMembersService,
 } from '../../../../../../shared';
 import { TableOptions } from '../../../../../../shared/interfaces';
 import { BaseListComponent } from '../../../../../../base/components/base-list-component';
 import { takeUntil } from 'rxjs';
-import { AddEditActionComponent } from '../../components/add-edit-action/add-edit-action.component';
+import { AddManagementMemberComponent } from '../../components/add-edit-action/add-edit-management-member.component';
 
 @Component({
   selector: 'app-actions',
@@ -20,14 +21,14 @@ import { AddEditActionComponent } from '../../components/add-edit-action/add-edi
     PrimeDataTableComponent,
     PrimeTitleToolBarComponent,
   ],
-  templateUrl: './actions.component.html',
-  styleUrl: './actions.component.css',
+  templateUrl: './management-members.component.html',
+  styleUrl: './management-members.component.css',
 })
-export class ActionsComponent extends BaseListComponent {
+export class ManagementMembersComponent extends BaseListComponent {
   @Input() employeeId: string = '';
   isEnglish = false;
   tableOptions!: TableOptions;
-  service = inject(ActionsService);
+  service = inject(ManagementMembersService);
 
   constructor(activatedRoute: ActivatedRoute) {
     super(activatedRoute);
@@ -40,14 +41,14 @@ export class ActionsComponent extends BaseListComponent {
   initializeTableOptions() {
     this.tableOptions = {
       inputUrl: {
-        getAll: 'v1/actions/getPaged',
+        getAll: 'v2/managementnember/getPaged',
         getAllMethod: 'POST',
-        delete: 'v2/actions/deletesoft',
+        delete: 'v2/managementnember/deletesoft',
       },
       inputCols: this.initializeTableColumns(),
       inputActions: this.initializeTableActions(),
       permissions: {
-        componentName: 'ACTIONS',
+        componentName: 'MANAGEMENT-MEMBERS',
         allowAll: true,
         listOfPermissions: [],
       },
@@ -98,13 +99,13 @@ export class ActionsComponent extends BaseListComponent {
   }
 
   openAdd() {
-    this.openDialog(AddEditActionComponent, 'اضافة حدث', {
+    this.openDialog(AddManagementMemberComponent, 'اضافة عضو للإدارة', {
       pageType: 'add',
     });
   }
 
   openEdit(rowData: any) {
-    this.openDialog(AddEditActionComponent, 'تعديل حدث', {
+    this.openDialog(AddManagementMemberComponent, 'تعديل عضو الإدارة', {
       pageType: 'edit',
       row: { rowData },
     });

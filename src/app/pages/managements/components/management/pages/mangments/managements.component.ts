@@ -41,7 +41,7 @@ export class ManagementsComponent extends BaseListComponent {
   initializeTableOptions() {
     this.tableOptions = {
       inputUrl: {
-        getAll: 'v1/management/getPaged',
+        getAll: 'v2/management/getPaged',
         getAllMethod: 'POST',
         delete: 'v2/management/deletesoft',
       },
@@ -55,14 +55,14 @@ export class ManagementsComponent extends BaseListComponent {
       bodyOptions: {
         filter: {},
       },
-      responsiveDisplayedProperties: ['page.title', 'about.content'],
+      responsiveDisplayedProperties: ['pageTitle', 'about.content'],
     };
   }
 
   initializeTableColumns(): TableOptions['inputCols'] {
     return [
       {
-        field: 'page.title',
+        field: 'pageTitle',
         header: 'اسم الصفحة',
         filter: true,
         filterMode: 'text',

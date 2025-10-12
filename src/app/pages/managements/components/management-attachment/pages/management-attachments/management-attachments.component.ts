@@ -5,6 +5,7 @@ import {
   PrimeDataTableComponent,
   PrimeTitleToolBarComponent,
   ActionsService,
+  ManagementAttachmentService,
 } from '../../../../../../shared';
 import { TableOptions } from '../../../../../../shared/interfaces';
 import { BaseListComponent } from '../../../../../../base/components/base-list-component';
@@ -27,7 +28,7 @@ export class ManagementAttachmentsComponent extends BaseListComponent {
   @Input() employeeId: string = '';
   isEnglish = false;
   tableOptions!: TableOptions;
-  service = inject(ActionsService);
+  service = inject(ManagementAttachmentService);
 
   constructor(activatedRoute: ActivatedRoute) {
     super(activatedRoute);
@@ -40,14 +41,14 @@ export class ManagementAttachmentsComponent extends BaseListComponent {
   initializeTableOptions() {
     this.tableOptions = {
       inputUrl: {
-        getAll: 'v1/actions/getPaged',
+        getAll: 'v2/managementattachment/getPaged',
         getAllMethod: 'POST',
-        delete: 'v2/actions/deletesoft',
+        delete: 'v2/managementattachment/deletesoft',
       },
       inputCols: this.initializeTableColumns(),
       inputActions: this.initializeTableActions(),
       permissions: {
-        componentName: 'ACTIONS',
+        componentName: 'MANAGEMENT-ATTACHMENTS',
         allowAll: true,
         listOfPermissions: [],
       },
@@ -98,16 +99,24 @@ export class ManagementAttachmentsComponent extends BaseListComponent {
   }
 
   openAdd() {
-    this.openDialog(AddEditManagementAttachmentComponent, 'اضافة حدث', {
-      pageType: 'add',
-    });
+    this.openDialog(
+      AddEditManagementAttachmentComponent,
+      'اضافة مرفق الادارة',
+      {
+        pageType: 'add',
+      }
+    );
   }
 
   openEdit(rowData: any) {
-    this.openDialog(AddEditManagementAttachmentComponent, 'تعديل حدث', {
-      pageType: 'edit',
-      row: { rowData },
-    });
+    this.openDialog(
+      AddEditManagementAttachmentComponent,
+      'تعديل مرفق الادارة',
+      {
+        pageType: 'edit',
+        row: { rowData },
+      }
+    );
   }
 
   /* when leaving the component */

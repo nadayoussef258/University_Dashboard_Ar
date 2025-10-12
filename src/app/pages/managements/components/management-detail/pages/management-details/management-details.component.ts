@@ -5,14 +5,15 @@ import {
   PrimeDataTableComponent,
   PrimeTitleToolBarComponent,
   ActionsService,
+  ManagementDetailsService,
 } from '../../../../../../shared';
 import { TableOptions } from '../../../../../../shared/interfaces';
 import { BaseListComponent } from '../../../../../../base/components/base-list-component';
 import { takeUntil } from 'rxjs';
-import { AddEditActionComponent } from '../../components/add-edit-action/add-edit-action.component';
+import { AddEditManagementDetailComponent } from '../../components/add-edit-management-detail/add-edit-management-detail.component';
 
 @Component({
-  selector: 'app-actions',
+  selector: 'app-management-details',
   standalone: true,
   imports: [
     RouterModule,
@@ -20,14 +21,14 @@ import { AddEditActionComponent } from '../../components/add-edit-action/add-edi
     PrimeDataTableComponent,
     PrimeTitleToolBarComponent,
   ],
-  templateUrl: './actions.component.html',
-  styleUrl: './actions.component.css',
+  templateUrl: './management-details.component.html',
+  styleUrl: './management-details.component.css',
 })
-export class ActionsComponent extends BaseListComponent {
+export class ManagementDetailsComponent extends BaseListComponent {
   @Input() employeeId: string = '';
   isEnglish = false;
   tableOptions!: TableOptions;
-  service = inject(ActionsService);
+  service = inject(ManagementDetailsService);
 
   constructor(activatedRoute: ActivatedRoute) {
     super(activatedRoute);
@@ -40,35 +41,41 @@ export class ActionsComponent extends BaseListComponent {
   initializeTableOptions() {
     this.tableOptions = {
       inputUrl: {
-        getAll: 'v1/actions/getPaged',
+        getAll: 'v1/managementdetail/getPaged',
         getAllMethod: 'POST',
-        delete: 'v2/actions/deletesoft',
+        delete: 'v2/managementdetail/deletesoft',
       },
       inputCols: this.initializeTableColumns(),
       inputActions: this.initializeTableActions(),
       permissions: {
-        componentName: 'ACTIONS',
+        componentName: 'MANAGEMENT-DETAILS',
         allowAll: true,
         listOfPermissions: [],
       },
       bodyOptions: {
         filter: {},
       },
-      responsiveDisplayedProperties: ['code', 'name'],
+      responsiveDisplayedProperties: ['title', 'description', 'content'],
     };
   }
 
   initializeTableColumns(): TableOptions['inputCols'] {
     return [
       {
-        field: 'code',
-        header: 'الكــود',
+        field: 'title',
+        header: 'العنوان',
         filter: true,
         filterMode: 'text',
       },
       {
-        field: 'name',
-        header: 'الاســم',
+        field: 'description',
+        header: 'الوصف',
+        filter: true,
+        filterMode: 'text',
+      },
+      {
+        field: 'content',
+        header: 'المحتوي',
         filter: true,
         filterMode: 'text',
       },
@@ -98,13 +105,13 @@ export class ActionsComponent extends BaseListComponent {
   }
 
   openAdd() {
-    this.openDialog(AddEditActionComponent, 'اضافة حدث', {
+    this.openDialog(AddEditManagementDetailComponent, 'اضافة التفاصيل', {
       pageType: 'add',
     });
   }
 
   openEdit(rowData: any) {
-    this.openDialog(AddEditActionComponent, 'تعديل حدث', {
+    this.openDialog(AddEditManagementDetailComponent, 'تعديل التفاصيل', {
       pageType: 'edit',
       row: { rowData },
     });

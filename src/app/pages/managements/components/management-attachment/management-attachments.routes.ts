@@ -1,13 +1,13 @@
 import { Routes } from '@angular/router';
 
-export const actionsRoutes: Routes = [
+export const managementAttachmentsRoutes: Routes = [
   {
     path: '',
     loadComponent: () =>
       import(
         './pages/management-attachments/management-attachments.component'
       ).then((c) => c.ManagementAttachmentsComponent),
-    data: { pageTitle: 'الأحداث', pageType: 'list' },
+    data: { pageTitle: 'مرفقات الادارة', pageType: 'list' },
   },
   {
     path: 'add',
@@ -15,7 +15,7 @@ export const actionsRoutes: Routes = [
       import(
         './components/add-edit-management-attachment/add-edit-management-attachment.component'
       ).then((c) => c.AddEditManagementAttachmentComponent),
-    data: { pageTitle: 'اضافة حدث', pageType: 'add' },
+    data: { pageTitle: 'اضافة مرفق الادارة', pageType: 'add' },
   },
   {
     path: 'edit/:id',
@@ -23,6 +23,6 @@ export const actionsRoutes: Routes = [
       import(
         './components/add-edit-management-attachment/add-edit-management-attachment.component'
       ).then((c) => c.AddEditManagementAttachmentComponent),
-    data: { pageTitle: 'تعديل حدث', pageType: 'edit' },
+    data: { pageTitle: 'تعديل مرفق الادارة', pageType: 'edit' },
   },
 ];
