@@ -10,6 +10,7 @@ import {
 import { DialogService } from 'primeng/dynamicdialog';
 import { ActivatedRoute } from '@angular/router';
 import { ToggleSwitchModule } from 'primeng/toggleswitch';
+import { NgClass } from '@angular/common';
 
 @Component({
   selector: 'app-add-edit-service',
@@ -20,6 +21,7 @@ import { ToggleSwitchModule } from 'primeng/toggleswitch';
     SubmitButtonsComponent,
     PrimeInputTextComponent,
     ToggleSwitchModule,
+    NgClass,
   ],
   templateUrl: './add-edit-service.component.html',
   styleUrl: './add-edit-service.component.css',

@@ -10,7 +10,7 @@ import {
 import { TableOptions } from '../../../../../../shared/interfaces';
 import { BaseListComponent } from '../../../../../../base/components/base-list-component';
 import { takeUntil } from 'rxjs';
-import { AddManagementMemberComponent } from '../../components/add-edit-action/add-edit-management-member.component';
+import { AddManagementMemberComponent } from '../../components/add-edit-member/add-edit-management-member.component';
 
 @Component({
   selector: 'app-actions',

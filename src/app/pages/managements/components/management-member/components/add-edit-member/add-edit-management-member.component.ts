@@ -12,6 +12,7 @@ import {
 import { DialogService } from 'primeng/dynamicdialog';
 import { ActivatedRoute } from '@angular/router';
 import { ToggleSwitch } from 'primeng/toggleswitch';
+import { JsonPipe, NgClass } from '@angular/common';
 
 @Component({
   selector: 'app-add-edit-action',
@@ -23,6 +24,8 @@ import { ToggleSwitch } from 'primeng/toggleswitch';
     PrimeInputTextComponent,
     PrimeAutoCompleteComponent,
     ToggleSwitch,
+    JsonPipe,
+    NgClass,
   ],
   templateUrl: './add-edit-management-member.component.html',
   styleUrl: './add-edit-management-member.component.css',
