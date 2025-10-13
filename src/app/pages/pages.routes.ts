@@ -15,6 +15,13 @@ export const pagesRoutes: Routes = [
       ),
   },
   {
+    path: 'centers',
+    loadChildren: () =>
+      import('../pages/centers/centers.routes').then(
+        (m) => m.mainCentersRoutes
+      ),
+  },
+  {
     path: 'departments',
     loadChildren: () =>
       import('./departments/departments.routes').then(

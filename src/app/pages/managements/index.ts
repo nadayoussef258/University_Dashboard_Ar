@@ -1,1 +1,1 @@
-export * from './pages/main-mangments/main-mangments.component';
+export * from './pages/mangment-tabs/mangment-tabs.component';

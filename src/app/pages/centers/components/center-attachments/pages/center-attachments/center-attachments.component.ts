@@ -2,18 +2,17 @@ import { Component, inject, Input } from '@angular/core';
 import { ActivatedRoute, RouterModule } from '@angular/router';
 import { CardModule } from 'primeng/card';
 import {
+  CenterAttachmentsService,
   PrimeDataTableComponent,
   PrimeTitleToolBarComponent,
-  ActionsService,
-  ManagementMembersService,
 } from '../../../../../../shared';
 import { TableOptions } from '../../../../../../shared/interfaces';
 import { BaseListComponent } from '../../../../../../base/components/base-list-component';
 import { takeUntil } from 'rxjs';
-import { AddManagementMemberComponent } from '../../components/add-edit-management-member/add-edit-management-member.component';
+import { AddEditCenterAttachmentComponent } from '../../components/add-edit-center-attachment/add-edit-center-attachment.component';
 
 @Component({
-  selector: 'app-management-member',
+  selector: 'app-center-attachments',
   standalone: true,
   imports: [
     RouterModule,
@@ -21,14 +20,14 @@ import { AddManagementMemberComponent } from '../../components/add-edit-manageme
     PrimeDataTableComponent,
     PrimeTitleToolBarComponent,
   ],
-  templateUrl: './management-members.component.html',
-  styleUrl: './management-members.component.css',
+  templateUrl: './center-attachments.component.html',
+  styleUrl: './center-attachments.component.css',
 })
-export class ManagementMembersComponent extends BaseListComponent {
+export class CenterAttachmentsComponent extends BaseListComponent {
   @Input() employeeId: string = '';
   isEnglish = false;
   tableOptions!: TableOptions;
-  service = inject(ManagementMembersService);
+  service = inject(CenterAttachmentsService);
 
   constructor(activatedRoute: ActivatedRoute) {
     super(activatedRoute);
@@ -41,14 +40,14 @@ export class ManagementMembersComponent extends BaseListComponent {
   initializeTableOptions() {
     this.tableOptions = {
       inputUrl: {
-        getAll: 'v2/managementnember/getPaged',
+        getAll: 'v2/centerattachment/getPaged',
         getAllMethod: 'POST',
-        delete: 'v2/managementnember/deletesoft',
+        delete: 'v2/centerattachment/deletesoft',
       },
       inputCols: this.initializeTableColumns(),
       inputActions: this.initializeTableActions(),
       permissions: {
-        componentName: 'MANAGEMENT-MEMBERS',
+        componentName: 'CENTER-ATTACHMENTS',
         allowAll: true,
         listOfPermissions: [],
       },
@@ -99,13 +98,13 @@ export class ManagementMembersComponent extends BaseListComponent {
   }
 
   openAdd() {
-    this.openDialog(AddManagementMemberComponent, 'اضافة عضو للإدارة', {
+    this.openDialog(AddEditCenterAttachmentComponent, 'اضافة مرفق للمركز', {
       pageType: 'add',
     });
   }
 
   openEdit(rowData: any) {
-    this.openDialog(AddManagementMemberComponent, 'تعديل عضو الإدارة', {
+    this.openDialog(AddEditCenterAttachmentComponent, 'تعديل مرفق المركز', {
       pageType: 'edit',
       row: { rowData },
     });

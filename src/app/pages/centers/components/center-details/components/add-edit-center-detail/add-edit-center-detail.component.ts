@@ -3,7 +3,9 @@ import { BaseEditComponent } from '../../../../../../base/components/base-edit-c
 import { CardModule } from 'primeng/card';
 import { FormsModule, ReactiveFormsModule, Validators } from '@angular/forms';
 import {
-  ManagementMembersService,
+  CenterDetailsService,
+  CentersService,
+  ManagementDetailsService as ManageDetailsService,
   ManagementsService,
   PrimeAutoCompleteComponent,
   PrimeInputTextComponent,
@@ -11,11 +13,9 @@ import {
 } from '../../../../../../shared';
 import { DialogService } from 'primeng/dynamicdialog';
 import { ActivatedRoute } from '@angular/router';
-import { ToggleSwitch } from 'primeng/toggleswitch';
-import { JsonPipe, NgClass } from '@angular/common';
 
 @Component({
-  selector: 'app-add-edit-action',
+  selector: 'app-add-edit-center-detail',
   imports: [
     CardModule,
     FormsModule,
@@ -23,24 +23,20 @@ import { JsonPipe, NgClass } from '@angular/common';
     SubmitButtonsComponent,
     PrimeInputTextComponent,
     PrimeAutoCompleteComponent,
-    ToggleSwitch,
-    JsonPipe,
-    NgClass,
   ],
-  templateUrl: './add-edit-management-member.component.html',
-  styleUrl: './add-edit-management-member.component.css',
+  templateUrl: './add-edit-center-detail.component.html',
+  styleUrl: './add-edit-center-detail.component.css',
 })
 //
-export class AddManagementMemberComponent
+export class AddEditCenterDetailComponent
   extends BaseEditComponent
   implements OnInit
 {
-  selectedManagement: any;
-  filteredManagements: any[] = [];
-  managementMembersService: ManagementMembersService = inject(
-    ManagementMembersService
-  );
-  managementsService: ManagementsService = inject(ManagementsService);
+  selectedCenter: any;
+  filteredCenters: any[] = [];
+
+  centerDetailsService: CenterDetailsService = inject(CenterDetailsService);
+  centersService: CentersService = inject(CentersService);
 
   dialogService: DialogService = inject(DialogService);
 
@@ -57,7 +53,7 @@ export class AddManagementMemberComponent
       }
     });
     if (this.pageType === 'edit') {
-      this.getEditManagementMember();
+      this.getEditCenterDetail();
     } else {
       this.initFormGroup();
     }
@@ -65,61 +61,63 @@ export class AddManagementMemberComponent
 
   initFormGroup() {
     this.form = this.fb.group({
-      isLeader: [false],
-      managementId: [null, Validators.required],
+      title: ['', Validators.required],
+      description: ['', Validators.required],
+      content: ['', Validators.required],
+      centerId: [null, Validators.required],
     });
   }
 
-  getManagements(event: any) {
+  getCenters(event: any) {
     const query = event.query.toLowerCase();
-    this.managementsService.managements.subscribe({
+    this.centersService.centers.subscribe({
       next: (res: any) => {
         console.log(res);
 
-        this.filteredManagements = res.filter((management: any) =>
-          management.pageId.includes(query)
+        this.filteredCenters = res.filter((center: any) =>
+          center.pageId.includes(query)
         );
       },
       error: (err) => {
-        this.alert.error('خطأ فى جلب الادارات');
+        this.alert.error('خطأ فى جلب المراكز');
       },
     });
   }
 
-  onManagementSelect(event: any) {
-    this.selectedManagement = event.value;
-    this.form.get('managementId')?.setValue(this.selectedManagement.id);
+  onCenterSelect(event: any) {
+    this.selectedCenter = event.value;
+    this.form.get('centerId')?.setValue(this.selectedCenter.id);
   }
 
-  fetchManagementDetails(managementDetail: any) {
-    this.managementsService.managements.subscribe((response: any) => {
-      this.filteredManagements = Array.isArray(response)
+  fetchCenterDetails(centerDetail: any) {
+    this.centersService.centers.subscribe((response: any) => {
+      this.filteredCenters = Array.isArray(response)
         ? response
         : response.data || [];
-      this.selectedManagement = this.filteredManagements.find(
-        (management: any) => management.id === managementDetail.id
+      this.selectedCenter = this.filteredCenters.find(
+        (center: any) => center.id === centerDetail.id
       );
-      this.form.get('managementId')?.setValue(this.selectedManagement.id);
+      this.form.get('centerId')?.setValue(this.selectedCenter.id);
     });
   }
 
-  getEditManagementMember = () => {
-    this.managementMembersService
-      .getManagementMember(this.id)
-      .subscribe((managementmember: any) => {
+  getEditCenterDetail = () => {
+    this.centerDetailsService
+      .getEditCenterDetail(this.id)
+      .subscribe((centerDetail: any) => {
         this.initFormGroup();
-        this.form.patchValue(managementmember);
-        this.fetchManagementDetails(managementmember);
+        this.form.patchValue(centerDetail);
+        this.fetchCenterDetails(centerDetail);
       });
   };
 
   submit() {
     if (this.pageType === 'add')
-      this.managementMembersService.add(this.form.value).subscribe(() => {
+      this.centerDetailsService.add(this.form.value).subscribe(() => {
         this.closeDialog();
       });
     if (this.pageType === 'edit')
-      this.managementMembersService
+      this.centerDetailsService
         .update({ id: this.id, ...this.form.value })
         .subscribe(() => {
           this.closeDialog();

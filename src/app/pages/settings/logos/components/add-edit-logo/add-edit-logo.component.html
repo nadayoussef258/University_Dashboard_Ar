@@ -1,45 +1,45 @@
 <p-card class="m-0 p-2">
   @if (form) {
-  <form method="post" class="row" [formGroup]="form">
-    <div class="col-lg-6">
+  <form method="post" class="grid grid-cols-12 gap-3" [formGroup]="form">
+    <div class="col-span-12">
       <app-prime-input-text [formGroup]="form" controlName="address" [label]="'العنوان بالتفصيل'"
         [inputType]="'textarea'">
       </app-prime-input-text>
     </div>
 
-    <div class="col-lg-6">
+    <div class="form-col">
       <app-prime-input-text [formGroup]="form" controlName="phone" [label]="'رقم الهاتف'">
       </app-prime-input-text>
     </div>
-    <div class="col-lg-6">
+    <div class="form-col">
       <app-prime-input-text [formGroup]="form" controlName="email" [label]="'البريد الإلكتروني'">
       </app-prime-input-text>
     </div>
-    <div class="col-lg-6">
+    <div class="form-col">
       <app-prime-input-text [formGroup]="form" controlName="facebook" [label]="'فيسبوك'">
       </app-prime-input-text>
     </div>
-    <div class="col-lg-6">
+    <div class="form-col">
       <app-prime-input-text [formGroup]="form" controlName="twitter" [label]="'تويتر'">
       </app-prime-input-text>
     </div>
-    <div class="col-lg-6">
+    <div class="form-col">
       <app-prime-input-text [formGroup]="form" controlName="instagram" [label]="'انستجرام'">
       </app-prime-input-text>
     </div>
-    <div class="col-lg-6">
+    <div class="form-col">
       <app-prime-input-text [formGroup]="form" controlName="linkedIn" [label]="'لينكد إن'">
       </app-prime-input-text>
     </div>
-    <div class="col-lg-6">
+    <div class="form-col">
       <app-prime-input-text [formGroup]="form" controlName="youTube" [label]="'يوتيوب'">
       </app-prime-input-text>
     </div>
-    <div class="col-lg-6">
+    <div class="form-col">
       <app-prime-input-text [formGroup]="form" controlName="whatsApp" [label]="'واتساب'">
       </app-prime-input-text>
     </div>
-    <div class="col-lg-6">
+    <div class="form-col">
       <app-prime-input-text [formGroup]="form" controlName="mapLocation" [label]="'موقع الجامعة'">
       </app-prime-input-text>
     </div>

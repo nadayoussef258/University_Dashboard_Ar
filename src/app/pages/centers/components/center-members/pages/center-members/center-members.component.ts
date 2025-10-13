@@ -2,18 +2,16 @@ import { Component, inject, Input } from '@angular/core';
 import { ActivatedRoute, RouterModule } from '@angular/router';
 import { CardModule } from 'primeng/card';
 import {
+  CenterMembersService,
   PrimeDataTableComponent,
   PrimeTitleToolBarComponent,
-  ActionsService,
-  ManagementMembersService,
 } from '../../../../../../shared';
 import { TableOptions } from '../../../../../../shared/interfaces';
 import { BaseListComponent } from '../../../../../../base/components/base-list-component';
-import { takeUntil } from 'rxjs';
-import { AddManagementMemberComponent } from '../../components/add-edit-management-member/add-edit-management-member.component';
+import { AddEditCenterMemberComponent } from '../../components/add-edit-center-member/add-edit-center-member.component';
 
 @Component({
-  selector: 'app-management-member',
+  selector: 'app-actions',
   standalone: true,
   imports: [
     RouterModule,
@@ -21,14 +19,14 @@ import { AddManagementMemberComponent } from '../../components/add-edit-manageme
     PrimeDataTableComponent,
     PrimeTitleToolBarComponent,
   ],
-  templateUrl: './management-members.component.html',
-  styleUrl: './management-members.component.css',
+  templateUrl: './center-members.component.html',
+  styleUrl: './center-members.component.css',
 })
-export class ManagementMembersComponent extends BaseListComponent {
+export class CenterMembersComponent extends BaseListComponent {
   @Input() employeeId: string = '';
   isEnglish = false;
   tableOptions!: TableOptions;
-  service = inject(ManagementMembersService);
+  service = inject(CenterMembersService);
 
   constructor(activatedRoute: ActivatedRoute) {
     super(activatedRoute);
@@ -41,14 +39,14 @@ export class ManagementMembersComponent extends BaseListComponent {
   initializeTableOptions() {
     this.tableOptions = {
       inputUrl: {
-        getAll: 'v2/managementnember/getPaged',
+        getAll: 'v2/centermember/getPaged',
         getAllMethod: 'POST',
-        delete: 'v2/managementnember/deletesoft',
+        delete: 'v2/centermember/deletesoft',
       },
       inputCols: this.initializeTableColumns(),
       inputActions: this.initializeTableActions(),
       permissions: {
-        componentName: 'MANAGEMENT-MEMBERS',
+        componentName: 'CENTER-MEMBERS',
         allowAll: true,
         listOfPermissions: [],
       },
@@ -64,12 +62,6 @@ export class ManagementMembersComponent extends BaseListComponent {
       {
         field: 'code',
         header: 'الكــود',
-        filter: true,
-        filterMode: 'text',
-      },
-      {
-        field: 'name',
-        header: 'الاســم',
         filter: true,
         filterMode: 'text',
       },
@@ -99,13 +91,13 @@ export class ManagementMembersComponent extends BaseListComponent {
   }
 
   openAdd() {
-    this.openDialog(AddManagementMemberComponent, 'اضافة عضو للإدارة', {
+    this.openDialog(AddEditCenterMemberComponent, 'اضافة عضو للمركز', {
       pageType: 'add',
     });
   }
 
   openEdit(rowData: any) {
-    this.openDialog(AddManagementMemberComponent, 'تعديل عضو الإدارة', {
+    this.openDialog(AddEditCenterMemberComponent, 'تعديل عضو', {
       pageType: 'edit',
       row: { rowData },
     });

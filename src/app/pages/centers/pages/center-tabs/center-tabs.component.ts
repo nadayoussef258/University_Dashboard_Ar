@@ -14,41 +14,41 @@ import { filter } from 'rxjs';
   selector: 'app-actions',
   standalone: true,
   imports: [RouterModule, CardModule, CommonModule, TabsModule],
-  templateUrl: './main-mangments.component.html',
-  styleUrl: './main-mangments.component.css',
+  templateUrl: './center-tabs.component.html',
+  styleUrl: './center-tabs.component.css',
 })
-export class MainMangmentsComponent implements OnInit {
+export class CenterTabsComponent implements OnInit {
   tabs = [
     {
-      route: 'managements',
-      label: 'الإدارات الرئيسية',
-      icon: 'pi pi-briefcase',
+      route: 'main-centers',
+      label: 'المراكز',
+      icon: 'pi pi-building',
     },
     {
-      route: 'management-attachments',
-      label: 'مرفقات الإدارات',
+      route: 'center-attachments',
+      label: 'مرفقات المراكز',
       icon: 'pi pi-paperclip',
     },
     {
-      route: 'management-details',
-      label: 'تفاصيل الإدارات',
+      route: 'center-details',
+      label: 'تفاصيل المراكز',
       icon: 'pi pi-info-circle',
     },
     {
-      route: 'management-members',
-      label: 'أعضاء الإدارات',
+      route: 'center-members',
+      label: 'أعضاء المراكز',
       icon: 'pi pi-users',
     },
   ];
 
-  activeTab: string = ''; // التاب الافتراضي
+  activeTab: string = 'centers';
 
   constructor(private router: Router) {}
 
   ngOnInit() {
     // ✅ عند أول تحميل
     const current = this.router.url.split('/').pop();
-    this.activeTab = current ?? '/managements';
+    this.activeTab = current ?? '/centers';
 
     // ✅ أثناء أي تنقل لاحق
     // ✅ نحدث التاب النشطة بناءً على المسار الحالي فقط عند NavigationEnd (علشان الأداء)
@@ -60,7 +60,7 @@ export class MainMangmentsComponent implements OnInit {
       )
       .subscribe((event) => {
         const current = event.urlAfterRedirects.split('/').pop();
-        this.activeTab = current ?? '/managements';
+        this.activeTab = current ?? '/centers';
       });
   }
 }

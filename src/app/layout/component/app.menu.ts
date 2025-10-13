@@ -60,7 +60,7 @@ export class AppMenu {
               {
                 label: 'صور رئيسية',
                 icon: 'pi pi-images',
-                routerLink: ['/pages/settings/sliderhero'],
+                routerLink: ['/pages/settings/hero-sections'],
               },
               {
                 label: 'الاحصائيات',

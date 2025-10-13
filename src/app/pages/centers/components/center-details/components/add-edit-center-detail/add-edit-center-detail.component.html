@@ -18,10 +18,10 @@
     </div>
 
     <div class="form-col">
-      <label class="text-middle mb-2">{{ 'عنوان الادارة' }}</label>
-      <app-prime-autocomplete [field]="'pageId'" [selectedOption]="selectedManagement"
-        [suggestions]="filteredManagements" [formGroup]="form" (onSelect)="onManagementSelect($event)" [lazy]="false"
-        (handleMethod)="getManagements($event)"></app-prime-autocomplete>
+      <label class="text-middle mb-2">{{ 'المركز' }}</label>
+      <app-prime-autocomplete [field]="'pageId'" [selectedOption]="selectedCenter" [suggestions]="filteredCenters"
+        [formGroup]="form" (onSelect)="onCenterSelect($event)" [lazy]="false"
+        (handleMethod)="getCenters($event)"></app-prime-autocomplete>
     </div>
 
   </form>

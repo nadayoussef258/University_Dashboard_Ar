@@ -3,7 +3,7 @@ import { BaseEditComponent } from '../../../../../../base/components/base-edit-c
 import { CardModule } from 'primeng/card';
 import { FormsModule, ReactiveFormsModule, Validators } from '@angular/forms';
 import {
-  ManagementDetailsService as ManageDetailsService,
+  ManagementMembersService,
   ManagementsService,
   PrimeAutoCompleteComponent,
   PrimeInputTextComponent,
@@ -11,9 +11,11 @@ import {
 } from '../../../../../../shared';
 import { DialogService } from 'primeng/dynamicdialog';
 import { ActivatedRoute } from '@angular/router';
+import { ToggleSwitch } from 'primeng/toggleswitch';
+import { JsonPipe, NgClass } from '@angular/common';
 
 @Component({
-  selector: 'app-add-edit-management-detail',
+  selector: 'app-add-edit-management-member',
   imports: [
     CardModule,
     FormsModule,
@@ -21,19 +23,23 @@ import { ActivatedRoute } from '@angular/router';
     SubmitButtonsComponent,
     PrimeInputTextComponent,
     PrimeAutoCompleteComponent,
+    ToggleSwitch,
+    JsonPipe,
+    NgClass,
   ],
-  templateUrl: './add-edit-management-detail.component.html',
-  styleUrl: './add-edit-management-detail.component.css',
+  templateUrl: './add-edit-management-member.component.html',
+  styleUrl: './add-edit-management-member.component.css',
 })
 //
-export class AddEditManagementDetailComponent
+export class AddManagementMemberComponent
   extends BaseEditComponent
   implements OnInit
 {
   selectedManagement: any;
   filteredManagements: any[] = [];
-
-  manageDetailsService: ManageDetailsService = inject(ManageDetailsService);
+  managementMembersService: ManagementMembersService = inject(
+    ManagementMembersService
+  );
   managementsService: ManagementsService = inject(ManagementsService);
 
   dialogService: DialogService = inject(DialogService);
@@ -51,7 +57,7 @@ export class AddEditManagementDetailComponent
       }
     });
     if (this.pageType === 'edit') {
-      this.getEditManagementDetail();
+      this.getEditManagementMember();
     } else {
       this.initFormGroup();
     }
@@ -59,9 +65,7 @@ export class AddEditManagementDetailComponent
 
   initFormGroup() {
     this.form = this.fb.group({
-      title: ['', Validators.required],
-      description: ['', Validators.required],
-      content: ['', Validators.required],
+      isLeader: [false],
       managementId: [null, Validators.required],
     });
   }
@@ -99,23 +103,23 @@ export class AddEditManagementDetailComponent
     });
   }
 
-  getEditManagementDetail = () => {
-    this.manageDetailsService
-      .getEditManagementDetail(this.id)
-      .subscribe((manageDetail: any) => {
+  getEditManagementMember = () => {
+    this.managementMembersService
+      .getManagementMember(this.id)
+      .subscribe((managementMember: any) => {
         this.initFormGroup();
-        this.form.patchValue(manageDetail);
-        this.fetchManagementDetails(manageDetail);
+        this.form.patchValue(managementMember);
+        this.fetchManagementDetails(managementMember);
       });
   };
 
   submit() {
     if (this.pageType === 'add')
-      this.manageDetailsService.add(this.form.value).subscribe(() => {
+      this.managementMembersService.add(this.form.value).subscribe(() => {
         this.closeDialog();
       });
     if (this.pageType === 'edit')
-      this.manageDetailsService
+      this.managementMembersService
         .update({ id: this.id, ...this.form.value })
         .subscribe(() => {
           this.closeDialog();

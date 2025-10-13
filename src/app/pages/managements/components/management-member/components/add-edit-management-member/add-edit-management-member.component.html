@@ -1,14 +1,14 @@
 <p-card class="m-0 p-2">
   @if (form) {
   <form method="post" class="grid grid-cols-12 md:gap-9" [formGroup]="form">
-    <div class="mt-2 col-span-12 md:col-span-6">
+    <div class="form-col mt-2">
       <label class="text-middle mb-2">{{ 'عنوان الادارة' }}</label>
       <app-prime-autocomplete [field]="'pageId'" [selectedOption]="selectedManagement"
         [suggestions]="filteredManagements" [formGroup]="form" (onSelect)="onManagementSelect($event)" [lazy]="false"
         (handleMethod)="getManagements($event)"></app-prime-autocomplete>
     </div>
 
-    <div class="mt-2 col-span-12 md:col-span-6">
+    <div class="form-col mt-2">
       <label class="text-middle mb-3">الحالة</label>
 
       <div class="flex gap-3 items-center">

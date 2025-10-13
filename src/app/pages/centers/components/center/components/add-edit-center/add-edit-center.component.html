@@ -1,6 +1,15 @@
 <p-card class="m-0 p-2">
   @if (form) {
-  <form method="post" class="grid grid-cols-12 gap-3" [formGroup]="form">
+  <form method="post" class="grid grid-cols-12 gap-2" [formGroup]="form">
+    <div class="form-col">
+      <app-prime-input-text [formGroup]="form" controlName="subTitle" [label]="'العنوان الفرعي'">
+      </app-prime-input-text>
+    </div>
+
+    <div class="form-col">
+      <app-prime-input-text [formGroup]="form" controlName="place" [label]="'المكان'">
+      </app-prime-input-text>
+    </div>
     <div class="form-col">
       <label class="text-middle mb-2">{{ 'عنوان الصفحة' }}</label>
       <app-prime-autocomplete [field]="'title'" [selectedOption]="selectedPage" [suggestions]="filteredPages"

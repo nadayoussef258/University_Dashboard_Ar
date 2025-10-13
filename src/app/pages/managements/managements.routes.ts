@@ -4,8 +4,8 @@ export const mainManagementsRoutes: Routes = [
   {
     path: '',
     loadComponent: () =>
-      import('./pages/main-mangments/main-mangments.component').then(
-        (c) => c.MainMangmentsComponent
+      import('./pages/mangment-tabs/mangment-tabs.component').then(
+        (c) => c.MangmentTabsComponent
       ),
     children: [
       {
@@ -14,7 +14,7 @@ export const mainManagementsRoutes: Routes = [
         redirectTo: 'main-managements', // ✅ أول ما يدخل على /managements يروح هنا
       },
       {
-        path: 'managements',
+        path: 'main-managements',
         loadChildren: () =>
           import('./components/management/managements.routes').then(
             (m) => m.managementsRoutes
