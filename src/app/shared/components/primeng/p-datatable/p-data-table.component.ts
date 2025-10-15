@@ -8,7 +8,7 @@ import {
   inject,
 } from '@angular/core';
 import { Router, RouterModule } from '@angular/router';
-import { BehaviorSubject, Subject } from 'rxjs';
+import { BehaviorSubject, debounceTime, Subject } from 'rxjs';
 import { ExportExcelService } from '../../../services/export-excel/export-excel.service';
 import { takeUntil } from 'rxjs';
 import { TableOptions } from '../../../interfaces';
@@ -62,9 +62,11 @@ export class PrimeDataTableComponent implements OnInit, OnDestroy {
   private _data = new BehaviorSubject<any[]>([]);
   /* subscriber to unsubscribe when leaving the component */
   private destroy$: Subject<boolean> = new Subject<boolean>();
+  private filterSubjects: { [key: string]: Subject<string> } = {};
   // services
   router = inject(Router);
   excel = inject(ExportExcelService);
+
   constructor() {
     this.currentRoute = this.router.url.substring(
       0,
@@ -76,7 +78,6 @@ export class PrimeDataTableComponent implements OnInit, OnDestroy {
     this.permissions = this.tableOptions.permissions;
     this._data.subscribe((x) => {
       this.finalData = this.data;
-      console.log(x);
 
       console.log('data at datatable at ngOnInit', this.finalData);
     });
@@ -97,6 +98,25 @@ export class PrimeDataTableComponent implements OnInit, OnDestroy {
     }
     return value;
   }
+
+  // filter(event: any, column: string): void {
+  //   const inputValue = event.target.value;
+
+  //   if (!this.filterSubjects[column]) {
+  //     this.filterSubjects[column] = new Subject<string>();
+  //     this.filterSubjects[column]
+  //       .pipe(debounceTime(500), takeUntil(this.destroy$))
+  //       .subscribe((debouncedValue) => {
+  //         this.event.emit({
+  //           eventType: 'filter',
+  //           value: { data: debouncedValue },
+  //           column,
+  //         });
+  //       });
+  //   }
+
+  //   this.filterSubjects[column].next(inputValue);
+  // }
 
   filter(value: string | any, column: string): void {
     console.log('value: ', value + ' column: ', column);

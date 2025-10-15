@@ -12,7 +12,7 @@ import { filter } from 'rxjs';
 
 @Component({
   selector: 'app-actions',
-  standalone: true,
+
   imports: [RouterModule, CardModule, CommonModule, TabsModule],
   templateUrl: './center-tabs.component.html',
   styleUrl: './center-tabs.component.css',

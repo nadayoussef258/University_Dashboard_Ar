@@ -14,7 +14,7 @@ import { AddEditManagementAttachmentComponent } from '../../components/add-edit-
 
 @Component({
   selector: 'app-management-attachments',
-  standalone: true,
+
   imports: [
     RouterModule,
     CardModule,
@@ -25,7 +25,7 @@ import { AddEditManagementAttachmentComponent } from '../../components/add-edit-
   styleUrl: './management-attachments.component.css',
 })
 export class ManagementAttachmentsComponent extends BaseListComponent {
-  @Input() employeeId: string = '';
+  @Input() managmentId: string = '';
   isEnglish = false;
   tableOptions!: TableOptions;
   service = inject(ManagementAttachmentService);
@@ -53,7 +53,7 @@ export class ManagementAttachmentsComponent extends BaseListComponent {
         listOfPermissions: [],
       },
       bodyOptions: {
-        filter: {},
+        filter: { managmentId: this.managmentId },
       },
       responsiveDisplayedProperties: ['code', 'name'],
     };
@@ -104,6 +104,7 @@ export class ManagementAttachmentsComponent extends BaseListComponent {
       'اضافة مرفق الادارة',
       {
         pageType: 'add',
+        row: { managmentId: this.managmentId },
       }
     );
   }

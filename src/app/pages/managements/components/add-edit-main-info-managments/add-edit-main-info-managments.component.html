@@ -1,0 +1,52 @@
+<p-tabs value="managements">
+  <p-tablist>
+    <p-tab value="managements">ادارة الصفحات والتعريف
+    </p-tab>
+    @if (pageType === 'edit' || showEmployeeTabs) {
+    <!-- <p-tab value="employeeTabEnum.ExperiencesTab">{{ 'مرفقات'  }}</p-tab> -->
+    <!-- <p-tab value="mangment-attachments">{{ '' }}</p-tab> -->
+    <p-tab value="mangment-detial">{{ 'تفاصيل الادارة' }}</p-tab>
+    <p-tab value="mangment-member">{{ 'عضو الادارة' }}</p-tab>
+
+    }
+  </p-tablist>
+  <p-tabpanels>
+    <p-tabpanel value="managements">
+      <p-card class="m-0 p-2">
+        @if (form) {
+        <form method="post" class="grid gap-3 grid-cols-12" [formGroup]="form">
+          <div class="form-col">
+            <label class="text-middle mb-2">{{ 'عنوان الصفحة' }}</label>
+            <app-prime-autocomplete [field]="'title'" [selectedOption]="selectedPage" [suggestions]="filteredPages"
+              [formGroup]="form" (onSelect)="onPageSelect($event)" [lazy]="false"
+              (handleMethod)="getPages($event)"></app-prime-autocomplete>
+          </div>
+          <div class="form-col">
+            <label class="text-middle mb-2">{{ 'تسعير عن الجامعة' }}</label>
+            <app-prime-autocomplete [field]="'content'" [selectedOption]="selectedAbout" [suggestions]="filteredAbout"
+              [formGroup]="form" (onSelect)="onAboutSelect($event)" [lazy]="false"
+              (handleMethod)="getAbouts($event)"></app-prime-autocomplete>
+          </div>
+        </form>
+        }
+      </p-card>
+
+      @if (form) {
+      <app-submit-buttons [isSubmitDisabled]="form.invalid" [submitButtonText]="pageType === 'add' ? 'Submit' : 'Save'"
+        (submit)="submit()" (cancel)="redirect()">
+      </app-submit-buttons>
+      }
+    </p-tabpanel>
+
+
+    <p-tabpanel value="mangment-detial">
+      <app-management-details [managementId]="managementId"></app-management-details>
+    </p-tabpanel>
+
+    <p-tabpanel value="mangment-member">
+      <app-management-member [managementId]="managementId"></app-management-member>
+
+    </p-tabpanel>
+    <!-- <p-tabpanel value="employeeTabEnum.FinancialDataTab"> </p-tabpanel> -->
+  </p-tabpanels>
+</p-tabs>

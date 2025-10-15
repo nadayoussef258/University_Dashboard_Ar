@@ -13,7 +13,7 @@ import { AddEditCategoryComponent } from '../../components/add-edit-category/add
 
 @Component({
   selector: 'app-categories',
-  standalone: true,
+
   imports: [
     RouterModule,
     CardModule,

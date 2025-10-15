@@ -3,7 +3,6 @@ import { Subject, takeUntil } from 'rxjs';
 
 @Pipe({
   name: 'validationHandler',
-  standalone: true,
 })
 export class ValidationHandlerPipe implements PipeTransform {
   private destroy$ = new Subject<any>();

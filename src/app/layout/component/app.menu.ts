@@ -6,7 +6,7 @@ import { AppMenuitem } from './app.menuitem';
 
 @Component({
   selector: 'app-menu',
-  standalone: true,
+
   imports: [CommonModule, AppMenuitem, RouterModule],
   template: `<ul class="layout-menu">
     @for (item of model; track $index) {
@@ -67,6 +67,16 @@ export class AppMenu {
                 icon: 'pi pi-chart-bar',
                 routerLink: ['/pages/settings/statistics'],
               },
+              {
+                label: 'أنواع القوائم',
+                icon: 'pi pi-sitemap',
+                routerLink: ['/pages/settings/menu-types'],
+              },
+              {
+                label: 'عناصر القوائم',
+                icon: 'pi pi-sitemap',
+                routerLink: ['/pages/settings/menu-items'],
+              },
             ],
           },
         ],
@@ -79,28 +89,6 @@ export class AppMenu {
             label: 'الادارات',
             icon: 'pi pi-sitemap',
             routerLink: ['/pages/managements'],
-            items: [
-              {
-                label: 'الإدارات الرئيسية',
-                icon: 'pi pi-briefcase',
-                routerLink: ['/pages/managements/main-managements'],
-              },
-              {
-                label: 'مرفقات الإدارات',
-                icon: 'pi pi-paperclip',
-                routerLink: ['/pages/managements/management-attachments'],
-              },
-              {
-                label: 'تفاصيل الإدارات',
-                icon: 'pi pi-info-circle',
-                routerLink: ['/pages/managements/management-details'],
-              },
-              {
-                label: 'أعضاء الإدارات',
-                icon: 'pi pi-users',
-                routerLink: ['/pages/managements/management-members'],
-              },
-            ],
           },
           {
             label: 'الوحدات',
@@ -130,7 +118,7 @@ export class AppMenu {
           {
             label: 'عن الجامعة',
             icon: 'pi pi-info-circle',
-            routerLink: ['/pages/overView'],
+            routerLink: ['/pages/about'],
           },
           {
             label: 'الصور',
@@ -151,6 +139,16 @@ export class AppMenu {
             label: 'التصنيفات',
             icon: 'pi pi-tags',
             routerLink: ['/pages/settings/categories'],
+          },
+          {
+            label: 'الصفحات',
+            icon: 'pi pi-sitemap',
+            routerLink: ['/pages/page-s'],
+          },
+          {
+            label: 'المنشورات',
+            icon: 'pi pi-sitemap',
+            routerLink: ['/pages/posts'],
           },
         ],
       },

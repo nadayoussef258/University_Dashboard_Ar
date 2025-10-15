@@ -1,7 +1,7 @@
 @if(formGroup) {
 <label for="inputId" class="m-1">{{ label }}</label>
 <div [formGroup]="formGroup">
-  <p-radioButton [formControlName]="controlName" [value]="value" [binary]="binary" [disabled]="disabled" inputId="inputId" />
+  <p-radioButton [formControlName]="controlName" [value]="value" [binary]="binary" inputId="inputId" />
 </div>
 @if (formGroup.get(controlName)?.errors) {
 <!-- <small>

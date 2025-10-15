@@ -13,7 +13,7 @@ import { AddEditLogoComponent } from '../../components/add-edit-logo/add-edit-lo
 
 @Component({
   selector: 'app-logos',
-  standalone: true,
+
   imports: [
     RouterModule,
     CardModule,

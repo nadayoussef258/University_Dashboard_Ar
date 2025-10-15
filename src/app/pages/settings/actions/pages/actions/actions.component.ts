@@ -1,4 +1,4 @@
-import { Component, inject, Input } from '@angular/core';
+import { Component, inject, Input, OnChanges } from '@angular/core';
 import { ActivatedRoute, RouterModule } from '@angular/router';
 import { CardModule } from 'primeng/card';
 import {
@@ -13,7 +13,7 @@ import { AddEditActionComponent } from '../../components/add-edit-action/add-edi
 
 @Component({
   selector: 'app-actions',
-  standalone: true,
+
   imports: [
     RouterModule,
     CardModule,
@@ -35,12 +35,13 @@ export class ActionsComponent extends BaseListComponent {
 
   override ngOnInit(): void {
     this.initializeTableOptions();
+    super.ngOnInit();
   }
 
   initializeTableOptions() {
     this.tableOptions = {
       inputUrl: {
-        getAll: 'v1/actions/getPaged',
+        getAll: 'v2/actions/getPaged',
         getAllMethod: 'POST',
         delete: 'v2/actions/deletesoft',
       },

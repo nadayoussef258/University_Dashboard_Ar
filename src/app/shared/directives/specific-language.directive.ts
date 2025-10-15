@@ -3,8 +3,14 @@ import { FormControl, AbstractControl, NG_VALIDATORS } from '@angular/forms';
 
 @Directive({
   selector: '[specificLanguage]',
-  standalone: true,
-  providers: [{ provide: NG_VALIDATORS, useExisting: SpecificLanguageDirective, multi: true }]
+
+  providers: [
+    {
+      provide: NG_VALIDATORS,
+      useExisting: SpecificLanguageDirective,
+      multi: true,
+    },
+  ],
 })
 export class SpecificLanguageDirective {
   @Input() specificLanguage = '';
@@ -18,7 +24,9 @@ export class SpecificLanguageDirective {
     return this.validateLanguageFactory(control);
   }
 
-  validateLanguageFactory(control: AbstractControl): { [key: string]: boolean } | null {
+  validateLanguageFactory(
+    control: AbstractControl
+  ): { [key: string]: boolean } | null {
     const isValid = this.validateLanguage(control.value, this.specificLanguage);
     if (isValid) {
       return null;

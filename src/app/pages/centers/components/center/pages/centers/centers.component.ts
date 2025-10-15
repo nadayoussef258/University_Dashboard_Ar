@@ -13,7 +13,7 @@ import { AddEditCenterComponent } from '../../components/add-edit-center/add-edi
 
 @Component({
   selector: 'app-centers',
-  standalone: true,
+
   imports: [
     RouterModule,
     CardModule,

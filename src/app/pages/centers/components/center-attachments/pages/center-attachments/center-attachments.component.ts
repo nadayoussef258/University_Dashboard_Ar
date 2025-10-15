@@ -13,7 +13,7 @@ import { AddEditCenterAttachmentComponent } from '../../components/add-edit-cent
 
 @Component({
   selector: 'app-center-attachments',
-  standalone: true,
+
   imports: [
     RouterModule,
     CardModule,

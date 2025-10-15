@@ -13,7 +13,7 @@ import { AddEditDepartmentComponent } from '../../components/add-edit-department
 
 @Component({
   selector: 'app-departments',
-  standalone: true,
+
   imports: [
     RouterModule,
     CardModule,

@@ -1,1 +1,2 @@
-export * from './pages/mangment-tabs/mangment-tabs.component';
+export * from './pages/management/managements.component';
+export * from './components/add-edit-main-info-managments/add-edit-main-info-managments.component';

@@ -393,6 +393,17 @@
   transform: translateY(0);
 }
 
+.user-dropdown {
+  display: none;
+}
+
+.user-dropdown:not(.hidden) {
+  display: block;
+  opacity: 1;
+  visibility: visible;
+  transform: translateY(0);
+}
+
 .dropdown-header {
   padding: 1rem;
   border-bottom: 1px solid #f1f5f9;
@@ -742,7 +753,6 @@
 
   .user-dropdown {
     width: 16rem;
-    right: -2rem;
   }
 }
 

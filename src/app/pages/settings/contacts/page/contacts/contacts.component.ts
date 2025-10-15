@@ -13,7 +13,7 @@ import { AddEditContactComponent } from '../../components/add-edit-contact/add-e
 
 @Component({
   selector: 'app-actions',
-  standalone: true,
+
   imports: [
     RouterModule,
     CardModule,

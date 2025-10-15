@@ -1,0 +1,52 @@
+<p-card class="m-0 p-2">
+  @if (form) {
+  <form method="post" class="grid gap-4 grid-cols-12" [formGroup]="form">
+
+    <div class="form-col">
+      <app-prime-input-text [formGroup]="form" controlName="title" [label]="'عنوان القائمة'">
+      </app-prime-input-text>
+    </div>
+
+    <div class="form-col">
+      <app-prime-input-text [formGroup]="form" controlName="target" [label]="'الرابط أو الهدف (Target)'">
+      </app-prime-input-text>
+    </div>
+
+    <div class="form-col">
+      <app-prime-input-text [formGroup]="form" controlName="fragment" [label]="'الجزء (Fragment)'">
+      </app-prime-input-text>
+    </div>
+
+    <div class="form-col">
+      <app-prime-input-text [formGroup]="form" controlName="icon" [label]="'الأيقونة (Icon), مثلاً: pi pi-home'">
+      </app-prime-input-text>
+    </div>
+
+    <div class="form-col">
+      <app-prime-input-text [formGroup]="form" controlName="order" [label]="'الترتيب'" contentType="number">
+      </app-prime-input-text>
+    </div>
+
+    <div class="form-col">
+      <label class="text-middle mb-2">{{ 'نوع القائمة' }}</label>
+      <app-prime-autocomplete [field]="'type'" [selectedOption]="selectedMenuType" [suggestions]="filteredMenuTypes"
+        [formGroup]="form" (onSelect)="onMenuTypeSelect($event)" [lazy]="false"
+        (handleMethod)="getMenuTypes($event)"></app-prime-autocomplete>
+    </div>
+
+    <div class="form-col">
+      <label class="text-middle mb-2">{{ 'قائمة رئيسية' }}</label>
+      <app-prime-autocomplete [field]="'title'" [selectedOption]="selectedParentMenuItem ?? selectedMenuItems"
+        [suggestions]="filteredMenuItems" [formGroup]="form" (onSelect)="onMenuItemSelect($event)" [lazy]="false"
+        (handleMethod)="getMenuItems($event)"></app-prime-autocomplete>
+    </div>
+
+  </form>
+  }
+</p-card>
+
+@if (form) {
+<app-submit-buttons [isSubmitDisabled]="form.invalid" [submitButtonText]="pageType === 'add' ? 'Submit' : 'Save'"
+  (submit)="submit()" (cancel)="closeDialog()">
+</app-submit-buttons>
+}

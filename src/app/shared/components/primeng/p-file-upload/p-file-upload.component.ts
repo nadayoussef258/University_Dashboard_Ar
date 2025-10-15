@@ -10,7 +10,7 @@ import { MessageService } from 'primeng/api';
 
 @Component({
   selector: 'app-prime-file-upload',
-  standalone: true,
+
   imports: [
     CommonModule,
     ReactiveFormsModule,

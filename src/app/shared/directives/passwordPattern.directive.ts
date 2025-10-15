@@ -4,8 +4,14 @@ import { CustomValidationService } from '../../shared/';
 
 @Directive({
   selector: '[appPasswordPattern]',
-  standalone: true,
-  providers: [{ provide: NG_VALIDATORS, useExisting: PasswordPatternDirective, multi: true }]
+
+  providers: [
+    {
+      provide: NG_VALIDATORS,
+      useExisting: PasswordPatternDirective,
+      multi: true,
+    },
+  ],
 })
 export class PasswordPatternDirective implements Validator {
   constructor(private customValidator: CustomValidationService) {}

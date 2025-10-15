@@ -12,7 +12,7 @@ import { AddEditCenterMemberComponent } from '../../components/add-edit-center-m
 
 @Component({
   selector: 'app-actions',
-  standalone: true,
+
   imports: [
     RouterModule,
     CardModule,

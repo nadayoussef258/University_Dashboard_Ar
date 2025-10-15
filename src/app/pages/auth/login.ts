@@ -22,7 +22,7 @@ import { AppFloatingConfigurator } from '../../layout/component/app.floatingconf
 
 @Component({
   selector: 'app-login',
-  standalone: true,
+
   imports: [
     ButtonModule,
     CheckboxModule,

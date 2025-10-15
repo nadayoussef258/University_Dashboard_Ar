@@ -245,6 +245,7 @@ export abstract class BaseListComponent
       orderByValue: [{ colId: 'id', sort: 'asc' }],
       filter: {},
     };
+
     this.dataTableService.opt.filter =
       this.tableOptions.bodyOptions.filter !== null &&
       this.tableOptions.bodyOptions.filter !== undefined

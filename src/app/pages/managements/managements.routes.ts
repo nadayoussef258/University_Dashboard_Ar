@@ -1,46 +1,28 @@
 import { Routes } from '@angular/router';
 
-export const mainManagementsRoutes: Routes = [
+export const managementsRoutes: Routes = [
   {
     path: '',
     loadComponent: () =>
-      import('./pages/mangment-tabs/mangment-tabs.component').then(
-        (c) => c.MangmentTabsComponent
+      import('./pages/management/managements.component').then(
+        (c) => c.ManagementsComponent
       ),
-    children: [
-      {
-        path: '',
-        pathMatch: 'full',
-        redirectTo: 'main-managements', // ✅ أول ما يدخل على /managements يروح هنا
-      },
-      {
-        path: 'main-managements',
-        loadChildren: () =>
-          import('./components/management/managements.routes').then(
-            (m) => m.managementsRoutes
-          ),
-      },
-      {
-        path: 'management-attachments',
-        loadChildren: () =>
-          import(
-            './components/management-attachment/management-attachments.routes'
-          ).then((m) => m.managementAttachmentsRoutes),
-      },
-      {
-        path: 'management-details',
-        loadChildren: () =>
-          import(
-            './components/management-detail/management-details.routes'
-          ).then((m) => m.managementDetailsRoutes),
-      },
-      {
-        path: 'management-members',
-        loadChildren: () =>
-          import(
-            './components/management-member/management-members.routes'
-          ).then((m) => m.managementMembersRoutes),
-      },
-    ],
+    data: { pageTitle: 'ادارة الصفحات والتعريف', pageType: 'list' },
+  },
+  {
+    path: 'add',
+    loadComponent: () =>
+      import(
+        './components/add-edit-main-info-managments/add-edit-main-info-managments.component'
+      ).then((c) => c.AddEditMainInfoManagementComponent),
+    data: { pageTitle: 'اضافة ادارة', pageType: 'add' },
+  },
+  {
+    path: 'edit/:id',
+    loadComponent: () =>
+      import(
+        './components/add-edit-main-info-managments/add-edit-main-info-managments.component'
+      ).then((c) => c.AddEditMainInfoManagementComponent),
+    data: { pageTitle: 'تعديل ادارة', pageType: 'edit' },
   },
 ];

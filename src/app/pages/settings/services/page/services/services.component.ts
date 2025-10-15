@@ -13,7 +13,7 @@ import { AddEditServiceComponent } from '../../components/add-edit-service/add-e
 
 @Component({
   selector: 'app-services',
-  standalone: true,
+
   imports: [
     RouterModule,
     CardModule,

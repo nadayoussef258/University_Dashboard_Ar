@@ -57,7 +57,7 @@ export class AddEditStatisticComponent
       title: ['', Validators.required],
       value: ['', Validators.required],
       iconPath: ['', Validators.required],
-      isActive: [false], // Boolean مش string
+      isActive: [false],
     });
   }
 

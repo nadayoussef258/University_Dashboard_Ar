@@ -13,7 +13,7 @@ import { AddEditStatisticComponent } from '../../components/add-edit-statistic/a
 
 @Component({
   selector: 'app-statistics',
-  standalone: true,
+
   imports: [
     RouterModule,
     CardModule,

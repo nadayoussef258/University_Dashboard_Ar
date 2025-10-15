@@ -46,6 +46,20 @@ export const settingsRoutes: Routes = [
             (m) => m.statisticsRoutes
           ),
       },
+      {
+        path: 'menu-types',
+        loadChildren: () =>
+          import('./menu-types/menu-types.routes').then(
+            (m) => m.menuTypesRoutes
+          ),
+      },
+      {
+        path: 'menu-items',
+        loadChildren: () =>
+          import('./menu-items/menu-items.routes').then(
+            (m) => m.menuItemsRoutes
+          ),
+      },
     ],
   },
 

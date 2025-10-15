@@ -40,7 +40,8 @@ export interface ColumnsInterface {
   dateFormat?: string;
   route?: string;
   viewRoute?: string;
-  
+  trueText?: string;
+  falseText?: string;
 }
 
 export interface ActionsInterface {

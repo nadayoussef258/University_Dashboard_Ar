@@ -12,7 +12,7 @@ import { AddEditCenterDetailComponent } from '../../components/add-edit-center-d
 
 @Component({
   selector: 'app-center-details',
-  standalone: true,
+
   imports: [
     RouterModule,
     CardModule,

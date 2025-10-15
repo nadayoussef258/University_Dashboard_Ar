@@ -7,11 +7,12 @@ export const pagesRoutes: Routes = [
     loadChildren: () =>
       import('./settings/settings.routes').then((m) => m.settingsRoutes),
   },
+
   {
     path: 'managements',
     loadChildren: () =>
-      import('../pages/managements/managements.routes').then(
-        (m) => m.mainManagementsRoutes
+      import('./managements/managements.routes').then(
+        (m) => m.managementsRoutes
       ),
   },
   {
@@ -27,6 +28,21 @@ export const pagesRoutes: Routes = [
       import('./departments/departments.routes').then(
         (m) => m.departmentsRoutes
       ),
+  },
+  {
+    path: 'page-s',
+    loadChildren: () =>
+      import('./page-s/page-s.routes').then((m) => m.pagesRoutes),
+  },
+  {
+    path: 'about',
+    loadChildren: () =>
+      import('./about/about.routes').then((m) => m.aboutRoutes),
+  },
+  {
+    path: 'posts',
+    loadChildren: () =>
+      import('./posts/posts.routes').then((m) => m.postsRoutes),
   },
   { path: 'empty', component: Empty },
   { path: '**', redirectTo: 'notfound', pathMatch: 'full' },

@@ -14,7 +14,7 @@ import { AddEditHeroSectionComponent } from '../../components/add-edit-hero-sect
 
 @Component({
   selector: 'app-hero-sections',
-  standalone: true,
+
   imports: [
     RouterModule,
     CardModule,
