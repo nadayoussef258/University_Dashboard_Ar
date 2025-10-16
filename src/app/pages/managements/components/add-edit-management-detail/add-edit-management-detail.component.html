@@ -15,6 +15,22 @@
       <app-prime-input-text [formGroup]="form" controlName="content" [label]="'المحتوى التفصيلي'"
         [inputType]="'textarea'">
       </app-prime-input-text>
+
+      <div class="form-col my-4 flex items-center gap-2">
+        <p-toggleswitch [(ngModel)]="allowEditManagement" [ngModelOptions]="{standalone: true}"
+          (onChange)="toggleManagementEdit()">
+        </p-toggleswitch>
+        <label class="text-sm font-medium">هل تريد التعديل على عنوان الإدارة؟</label>
+      </div>
+
+      <div class="form-col">
+        <label class="text-middle mb-2">{{ 'عنوان الادارة' }}</label>
+        <app-prime-autocomplete [disabled]="pageType === 'edit' && !allowEditManagement" [field]="'pageId'"
+          [selectedOption]="selectedManagement" [suggestions]="filteredManagements" [formGroup]="form"
+          (onSelect)="onManagementSelect($event)" [lazy]="false"
+          (handleMethod)="getManagements($event)"></app-prime-autocomplete>
+      </div>
+
     </div>
 
 
@@ -26,6 +42,6 @@
 
 @if (form) {
 <app-submit-buttons [isSubmitDisabled]="form.invalid" [submitButtonText]="pageType === 'add' ? 'Submit' : 'Save'"
-  (submit)="submit()" (cancel)="closeDialog()">
+  (submit)="submit()" (cancel)="redirect()">
 </app-submit-buttons>
 }

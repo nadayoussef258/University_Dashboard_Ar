@@ -270,6 +270,8 @@ export abstract class BaseListComponent
 
   // Add proper cleanup in ngOnDestroy
   override ngOnDestroy() {
+    console.log('List destroyed');
+
     this.dataTableService.searchNew$.next({});
     // this.dataTableService.searchNew$.complete();
     this.dataTableService.searchNew$.unsubscribe();

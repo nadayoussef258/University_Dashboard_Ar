@@ -1,16 +1,14 @@
-import { Component, inject, Input } from '@angular/core';
+import { Component, inject, Input, OnChanges } from '@angular/core';
 import { ActivatedRoute, RouterModule } from '@angular/router';
 import { CardModule } from 'primeng/card';
 import {
   PrimeDataTableComponent,
   PrimeTitleToolBarComponent,
-  ActionsService,
   ManagementDetailsService,
 } from '../../../../shared';
 import { TableOptions } from '../../../../shared/interfaces';
 import { BaseListComponent } from '../../../../base/components/base-list-component';
-import { takeUntil } from 'rxjs';
-import { AddEditManagementDetailComponent } from '../add-edit-management-detail/add-edit-management-detail.component';
+import { ToggleSwitchModule } from 'primeng/toggleswitch';
 
 @Component({
   selector: 'app-management-details',
@@ -20,11 +18,15 @@ import { AddEditManagementDetailComponent } from '../add-edit-management-detail/
     CardModule,
     PrimeDataTableComponent,
     PrimeTitleToolBarComponent,
+    ToggleSwitchModule,
   ],
   templateUrl: './management-details.component.html',
   styleUrl: './management-details.component.css',
 })
-export class ManagementDetailsComponent extends BaseListComponent {
+export class ManagementDetailsComponent
+  extends BaseListComponent
+  implements OnChanges
+{
   @Input() managementId: string = '';
   tableData: any[] = [];
   tableOptions!: TableOptions;
@@ -35,11 +37,29 @@ export class ManagementDetailsComponent extends BaseListComponent {
   }
 
   override ngOnInit(): void {
+    // لو اتبعت كـ input من تبويب
+    if (!this.managementId) {
+      // لو مفتوح كـ route
+      this.managementId =
+        this.activatedRoute.snapshot.paramMap.get('managementId') ??
+        this.activatedRoute.snapshot.paramMap.get('id') ??
+        '';
+    }
+
     this.initializeTableOptions();
     super.ngOnInit();
   }
 
+  ngOnChanges(): void {
+    if (this.managementId) {
+      this.initializeTableOptions();
+      this.loadDataFromServer();
+    }
+  }
+
   initializeTableOptions() {
+    const hasManagementId = !!this.managementId;
+
     this.tableOptions = {
       inputUrl: {
         getAll: 'v2/managementdetail/getPaged',
@@ -54,7 +74,7 @@ export class ManagementDetailsComponent extends BaseListComponent {
         listOfPermissions: [],
       },
       bodyOptions: {
-        filter: { managementId: this.managementId },
+        filter: hasManagementId ? { managementId: this.managementId } : {},
       },
       responsiveDisplayedProperties: ['title', 'description', 'content'],
     };
@@ -89,10 +109,8 @@ export class ManagementDetailsComponent extends BaseListComponent {
         name: 'Edit',
         icon: 'pi pi-file-edit',
         color: 'text-middle',
-        isCallBack: true,
-        call: (row) => {
-          this.openEdit(row);
-        },
+        isEdit: true,
+        route: '/pages/management-details/edit/',
         allowAll: true,
       },
       {
@@ -105,25 +123,11 @@ export class ManagementDetailsComponent extends BaseListComponent {
     ];
   }
 
-  openAdd() {
-    this.openDialog(AddEditManagementDetailComponent, 'اضافة التفاصيل', {
-      pageType: 'add',
-      row: { managementId: this.managementId },
-    });
-    console.log(this.managementId);
-  }
-
-  openEdit(rowData: any) {
-    this.openDialog(AddEditManagementDetailComponent, 'تعديل التفاصيل', {
-      pageType: 'edit',
-      row: { rowData },
-    });
-  }
-
   /* when leaving the component */
   override ngOnDestroy() {
     //Called once, before the instance is destroyed.
     //Add 'implements OnDestroy' to the class.
+    console.log(`destroy ManagementDetailsComponent`);
 
     this.destroy$.next(true);
     this.destroy$.unsubscribe();

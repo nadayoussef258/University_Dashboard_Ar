@@ -26,6 +26,7 @@ import { JsonPipe, NgClass } from '@angular/common';
     ToggleSwitch,
     JsonPipe,
     NgClass,
+    ToggleSwitch,
   ],
   templateUrl: './add-edit-management-member.component.html',
   styleUrl: './add-edit-management-member.component.css',
@@ -38,6 +39,8 @@ export class AddManagementMemberComponent
   managementId: string = '';
   selectedManagement: any;
   filteredManagements: any[] = [];
+  allowEditManagement: boolean = false;
+
   managementMembersService: ManagementMembersService = inject(
     ManagementMembersService
   );
@@ -74,14 +77,56 @@ export class AddManagementMemberComponent
     });
   }
 
+  getManagements(event: any) {
+    const query = event.query.toLowerCase();
+    this.managementsService.managements.subscribe({
+      next: (res: any) => {
+        this.filteredManagements = res.filter((management: any) =>
+          management.pageId.includes(query)
+        );
+      },
+      error: (err) => {
+        this.alert.error('خطأ فى جلب الادارات');
+      },
+    });
+  }
+
+  onManagementSelect(event: any) {
+    this.selectedManagement = event.value;
+    this.form.get('managementId')?.setValue(this.selectedManagement.id);
+  }
+
+  fetchManagementDetails(managementDetail: any) {
+    this.managementsService.managements.subscribe((response: any) => {
+      this.filteredManagements = Array.isArray(response)
+        ? response
+        : response.data || [];
+      this.selectedManagement = this.filteredManagements.find(
+        (management: any) => management.id === managementDetail.managementId
+      );
+      this.form.get('managementId')?.setValue(this.selectedManagement.id);
+    });
+  }
+
   getEditManagementMember = () => {
     this.managementMembersService
       .getManagementMember(this.id)
       .subscribe((managementMember: any) => {
         this.initFormGroup();
         this.form.patchValue(managementMember);
+        this.fetchManagementDetails(managementMember);
       });
   };
+
+  toggleManagementEdit() {
+    const control = this.form.get('pageId');
+
+    if (this.allowEditManagement) {
+      control?.enable({ emitEvent: false });
+    } else {
+      control?.disable({ emitEvent: false });
+    }
+  }
 
   submit() {
     if (this.pageType === 'add')

@@ -39,9 +39,11 @@
     </p-tabpanel>
 
 
+    @if(managementId){
     <p-tabpanel value="mangment-detial">
       <app-management-details [managementId]="managementId"></app-management-details>
     </p-tabpanel>
+    }
 
     <p-tabpanel value="mangment-member">
       <app-management-member [managementId]="managementId"></app-management-member>

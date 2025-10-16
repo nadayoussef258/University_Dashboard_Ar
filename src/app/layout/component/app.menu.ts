@@ -73,8 +73,8 @@ export class AppMenu {
                 routerLink: ['/pages/settings/menu-types'],
               },
               {
-                label: 'عناصر القوائم',
-                icon: 'pi pi-sitemap',
+                label: 'القوائم',
+                icon: 'pi pi-bars',
                 routerLink: ['/pages/settings/menu-items'],
               },
             ],
@@ -88,7 +88,23 @@ export class AppMenu {
           {
             label: 'الادارات',
             icon: 'pi pi-sitemap',
-            routerLink: ['/pages/managements'],
+            items: [
+              {
+                label: 'الإدارات الرئيسية',
+                icon: 'pi pi-info-circle',
+                routerLink: ['/pages/managements'],
+              },
+              {
+                label: 'تفاصيل الإدارات',
+                icon: 'pi pi-info-circle',
+                routerLink: ['/pages/management-details'],
+              },
+              {
+                label: 'أعضاء الإدارات',
+                icon: 'pi pi-users',
+                routerLink: ['/pages/management-members'],
+              },
+            ],
           },
           {
             label: 'الوحدات',
@@ -110,11 +126,7 @@ export class AppMenu {
             icon: 'pi pi-user-edit',
             routerLink: ['/pages/members'],
           },
-          {
-            label: 'القوائم',
-            icon: 'pi pi-bars',
-            routerLink: ['/pages/menus'],
-          },
+
           {
             label: 'عن الجامعة',
             icon: 'pi pi-info-circle',
@@ -144,11 +156,6 @@ export class AppMenu {
             label: 'الصفحات',
             icon: 'pi pi-sitemap',
             routerLink: ['/pages/page-s'],
-          },
-          {
-            label: 'المنشورات',
-            icon: 'pi pi-sitemap',
-            routerLink: ['/pages/posts'],
           },
         ],
       },

@@ -46,7 +46,7 @@ export const appConfig: ApplicationConfig = {
         LoadingNgxSpinnerInterceptor,
       ])
     ),
-    provideRouter(routes, withViewTransitions()),
+    provideRouter(routes),
     providePrimeNG({
       theme: {
         preset: Aura,

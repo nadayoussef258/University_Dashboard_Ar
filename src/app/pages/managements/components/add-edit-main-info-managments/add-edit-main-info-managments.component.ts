@@ -15,6 +15,7 @@ import { ActivatedRoute } from '@angular/router';
 import { TabsModule } from 'primeng/tabs';
 import { ManagementDetailsComponent } from '../management-detail/management-details.component';
 import { ManagementMembersComponent } from '../management-member/management-members.component';
+import { StorageService } from '../../../../core';
 
 @Component({
   selector: 'app-add-edit-main-info-managments',
@@ -30,7 +31,7 @@ import { ManagementMembersComponent } from '../management-member/management-memb
     ManagementMembersComponent,
   ],
   templateUrl: './add-edit-main-info-managments.component.html',
-  styleUrl: './add-edit-main-info-managments.component.css',
+  styleUrls: ['./add-edit-main-info-managments.component.css'],
 })
 //
 export class AddEditMainInfoManagementComponent
@@ -48,6 +49,7 @@ export class AddEditMainInfoManagementComponent
   managementsService: ManagementsService = inject(ManagementsService);
   pagesService: PagesService = inject(PagesService);
   aboutService: AboutService = inject(AboutService);
+  storageService = inject(StorageService);
   dialogService: DialogService = inject(DialogService);
 
   constructor(override activatedRoute: ActivatedRoute) {
@@ -56,13 +58,14 @@ export class AddEditMainInfoManagementComponent
 
   override ngOnInit(): void {
     super.ngOnInit();
-    this.id = this.activatedRoute.snapshot.paramMap.get('id') as string;
+    this.id = this.activatedRoute?.snapshot?.paramMap?.get('id') as string;
 
     if (this.pageType === 'edit') {
       this.getEditManagement();
       this.managementId = this.activatedRoute.snapshot.paramMap.get(
         'id'
       ) as string;
+      this.storageService.setSession$('managementId', this.id);
     } else {
       this.initFormGroup();
     }

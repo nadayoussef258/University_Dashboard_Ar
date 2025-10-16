@@ -16,6 +16,20 @@ export const pagesRoutes: Routes = [
       ),
   },
   {
+    path: 'management-details',
+    loadChildren: () =>
+      import(
+        './managements/components/management-detail/management-details.routes'
+      ).then((m) => m.managementDetailsRoutes),
+  },
+  {
+    path: 'management-members',
+    loadChildren: () =>
+      import(
+        './managements/components/management-member/management-members.routes'
+      ).then((m) => m.managementMembersRoutes),
+  },
+  {
     path: 'centers',
     loadChildren: () =>
       import('../pages/centers/centers.routes').then(

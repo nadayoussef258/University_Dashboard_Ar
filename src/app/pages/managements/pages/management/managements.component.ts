@@ -23,8 +23,6 @@ import { BaseListComponent } from '../../../../base/components/base-list-compone
   styleUrl: './managements.component.css',
 })
 export class ManagementsComponent extends BaseListComponent {
-  employeeId: string = '';
-  isEnglish = false;
   tableOptions!: TableOptions;
   service = inject(ManagementsService);
 
@@ -34,6 +32,7 @@ export class ManagementsComponent extends BaseListComponent {
 
   override ngOnInit(): void {
     this.initializeTableOptions();
+    super.ngOnInit();
   }
 
   initializeTableOptions() {
