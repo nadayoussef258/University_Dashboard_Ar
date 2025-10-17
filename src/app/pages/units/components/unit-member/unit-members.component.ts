@@ -6,14 +6,15 @@ import {
   PrimeTitleToolBarComponent,
   ActionsService,
   ManagementMembersService,
+  UnitDetailsService,
+  UnitMembersService,
 } from '../../../../shared';
 import { TableOptions } from '../../../../shared/interfaces';
 import { BaseListComponent } from '../../../../base/components/base-list-component';
-import { AddManagementMemberComponent } from '../add-edit-management-member/add-edit-management-member.component';
-import { ManagmentIdService } from '../../managment-id.service';
+import { AddEditUnitMemberComponent } from '../add-edit-unit-member/add-edit-unit-member.component';
 
 @Component({
-  selector: 'app-management-member',
+  selector: 'app-unit-member',
 
   imports: [
     RouterModule,
@@ -21,15 +22,14 @@ import { ManagmentIdService } from '../../managment-id.service';
     PrimeDataTableComponent,
     PrimeTitleToolBarComponent,
   ],
-  templateUrl: './management-members.component.html',
-  styleUrl: './management-members.component.css',
+  templateUrl: './unit-members.component.html',
+  styleUrl: './unit-members.component.css',
 })
-export class ManagementMembersComponent extends BaseListComponent {
-  @Input() managementId: string = '';
+export class UnitMembersComponent extends BaseListComponent {
+  @Input() unitId: string = '';
   isEnglish = false;
   tableOptions!: TableOptions;
-  service = inject(ManagementMembersService);
-  managmentIdService = inject(ManagmentIdService);
+  service = inject(UnitMembersService);
 
   constructor(activatedRoute: ActivatedRoute) {
     super(activatedRoute);
@@ -43,21 +43,21 @@ export class ManagementMembersComponent extends BaseListComponent {
   initializeTableOptions() {
     this.tableOptions = {
       inputUrl: {
-        getAll: 'v2/managementmember/getPaged',
+        getAll: 'v2/unitmember/getPaged',
         getAllMethod: 'POST',
-        delete: 'v2/managementmember/deletesoft',
+        delete: 'v2/unitmember/deletesoft',
       },
       inputCols: this.initializeTableColumns(),
       inputActions: this.initializeTableActions(),
       permissions: {
-        componentName: 'MANAGEMENT-MEMBERS',
+        componentName: 'UNIT-MEMBERS',
         allowAll: true,
         listOfPermissions: [],
       },
       bodyOptions: {
-        filter: { managementId: this.managementId },
+        filter: { unitId: this.unitId },
       },
-      responsiveDisplayedProperties: ['isLeader', 'managementId'],
+      responsiveDisplayedProperties: ['isLeader', 'unitId'],
     };
   }
 
@@ -72,8 +72,8 @@ export class ManagementMembersComponent extends BaseListComponent {
         filterMode: 'boolean',
       },
       {
-        field: 'managementId',
-        header: 'الادارة',
+        field: 'unitId',
+        header: 'الوحدة',
         filter: true,
         filterMode: 'text',
       },
@@ -103,14 +103,14 @@ export class ManagementMembersComponent extends BaseListComponent {
   }
 
   openAdd() {
-    this.openDialog(AddManagementMemberComponent, 'اضافة عضو للإدارة', {
+    this.openDialog(AddEditUnitMemberComponent, 'اضافة عضو للوحدة', {
       pageType: 'add',
-      row: { managementId: this.managementId },
+      row: { unitId: this.unitId },
     });
   }
 
   openEdit(rowData: any) {
-    this.openDialog(AddManagementMemberComponent, 'تعديل عضو الإدارة', {
+    this.openDialog(AddEditUnitMemberComponent, 'تعديل عضو الوحدة', {
       pageType: 'edit',
       row: { rowData },
     });

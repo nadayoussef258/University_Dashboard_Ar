@@ -4,19 +4,18 @@ import { CardModule } from 'primeng/card';
 import {
   PrimeDataTableComponent,
   PrimeTitleToolBarComponent,
-  ManagementDetailsService,
-  ServicesService,
+  UnitDetailsService,
 } from '../../../../shared';
 import { TableOptions } from '../../../../shared/interfaces';
 import { BaseListComponent } from '../../../../base/components/base-list-component';
 import { ToggleSwitchModule } from 'primeng/toggleswitch';
 import { StorageService } from '../../../../core';
-import { ManagmentIdService } from '../../managment-id.service';
+import { UnitIdService } from '../../unit-id.service';
 import { filter } from 'rxjs';
 import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 
 @Component({
-  selector: 'app-management-details',
+  selector: 'app-unit-details',
 
   imports: [
     RouterModule,
@@ -25,16 +24,16 @@ import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
     PrimeTitleToolBarComponent,
     ToggleSwitchModule,
   ],
-  templateUrl: './management-details.component.html',
-  styleUrl: './management-details.component.css',
+  templateUrl: './unit-details.component.html',
+  styleUrl: './unit-details.component.css',
 })
-export class ManagementDetailsComponent extends BaseListComponent {
-  @Input() managementId: string = '';
+export class UnitDetailsComponent extends BaseListComponent {
+  @Input() unitId: string = '';
   tableData: any[] = [];
   tableOptions!: TableOptions;
-  service = inject(ManagementDetailsService);
+  service = inject(UnitDetailsService);
   storageServices = inject(StorageService);
-  managmentIdService = inject(ManagmentIdService);
+  unitIdService = inject(UnitIdService);
   storageService = inject(StorageService);
 
   constructor(activatedRoute: ActivatedRoute) {
@@ -47,11 +46,8 @@ export class ManagementDetailsComponent extends BaseListComponent {
       )
       .subscribe((event: NavigationEnd) => {
         const currentUrl = event.urlAfterRedirects.split('?')[0];
-        if (currentUrl.startsWith('/pages/management-details')) {
-          this.managmentIdService.setManagementId('');
-          console.log(
-            '🧹 Cleared managementId (navigated to details directly)'
-          );
+        if (currentUrl.startsWith('/pages/unit-details')) {
+          this.unitIdService.setUnitId('');
         }
       });
   }
@@ -64,21 +60,21 @@ export class ManagementDetailsComponent extends BaseListComponent {
   initializeTableOptions() {
     this.tableOptions = {
       inputUrl: {
-        getAll: 'v2/managementdetail/getPaged',
+        getAll: 'v2/unitdetail/getPaged',
         getAllMethod: 'POST',
-        delete: 'v2/managementdetail/deletesoft',
+        delete: 'v2/unitdetail/deletesoft',
       },
       inputCols: this.initializeTableColumns(),
       inputActions: this.initializeTableActions(),
       permissions: {
-        componentName: 'MANAGEMENT-DETAILS',
+        componentName: 'UNIT-DETAILS',
         allowAll: true,
         listOfPermissions: [],
       },
       bodyOptions: {
-        filter: { managementId: this.managementId },
+        filter: { unitId: this.unitId },
       },
-      responsiveDisplayedProperties: ['title', 'description', 'content'],
+      responsiveDisplayedProperties: ['title', 'unitPlace', 'content'],
     };
   }
 
@@ -91,8 +87,8 @@ export class ManagementDetailsComponent extends BaseListComponent {
         filterMode: 'text',
       },
       {
-        field: 'description',
-        header: 'الوصف',
+        field: 'unitPlace',
+        header: 'مكان الوحدة',
         filter: true,
         filterMode: 'text',
       },
@@ -112,7 +108,7 @@ export class ManagementDetailsComponent extends BaseListComponent {
         icon: 'pi pi-file-edit',
         color: 'text-middle',
         isEdit: true,
-        route: '/pages/management-details/edit/',
+        route: '/pages/unit-details/edit/',
         allowAll: true,
       },
       {

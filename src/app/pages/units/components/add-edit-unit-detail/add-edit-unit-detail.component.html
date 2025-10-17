@@ -12,16 +12,15 @@
     </div>
 
     <div class="col-span-12">
-      <app-prime-input-text [formGroup]="form" controlName="content" [label]="'المحتوى التفصيلي'"
-        [inputType]="'textarea'">
+      <app-prime-input-text [formGroup]="form" controlName="unitPlace" [label]="'مكان الوحدة'" [inputType]="'textarea'">
       </app-prime-input-text>
 
-      @if (pageType !== 'add' && managementId || !managementId ) {
+      @if (pageType !== 'add' && unitId || !unitId ) {
       <div class="form-col  my-4">
-        <label class="text-middle mb-2">{{ 'عنوان الادارة' }}</label>
-        <app-prime-autocomplete [disabled]="!!managementId" [field]="'pageId'" [selectedOption]="selectedManagement"
-          [suggestions]="filteredManagements" [formGroup]="form" (onSelect)="onManagementSelect($event)" [lazy]="false"
-          (handleMethod)="getManagements($event)"></app-prime-autocomplete>
+        <label class="text-middle mb-2">{{ 'عنوان الوحدة' }}</label>
+        <app-prime-autocomplete [disabled]="!!unitId" [field]="'page.title'" [selectedOption]="selectedUnit"
+          [suggestions]="filteredUnits" [formGroup]="form" (onSelect)="onUnitSelect($event)" [lazy]="false"
+          (handleMethod)="getUnits($event)"></app-prime-autocomplete>
       </div>
       }
     </div>

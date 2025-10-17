@@ -8,7 +8,7 @@ import { HttpService } from '../../../../../core/services';
 })
 export class UnitDetailsService extends HttpService {
   protected get baseUrl(): string {
-    return 'v2/managementdetail/';
+    return 'v2/unitdetail/';
   }
 
   getUnitDetail(id: string) {

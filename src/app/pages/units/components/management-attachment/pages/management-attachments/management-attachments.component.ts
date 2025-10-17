@@ -5,15 +5,15 @@ import {
   PrimeDataTableComponent,
   PrimeTitleToolBarComponent,
   ActionsService,
-  ManagementMembersService,
-} from '../../../../shared';
-import { TableOptions } from '../../../../shared/interfaces';
-import { BaseListComponent } from '../../../../base/components/base-list-component';
-import { AddManagementMemberComponent } from '../add-edit-management-member/add-edit-management-member.component';
-import { ManagmentIdService } from '../../managment-id.service';
+  ManagementAttachmentService,
+} from '../../../../../../shared';
+import { TableOptions } from '../../../../../../shared/interfaces';
+import { BaseListComponent } from '../../../../../../base/components/base-list-component';
+import { takeUntil } from 'rxjs';
+import { AddEditManagementAttachmentComponent } from '../../components/add-edit-management-attachment/add-edit-management-attachment.component';
 
 @Component({
-  selector: 'app-management-member',
+  selector: 'app-management-attachments',
 
   imports: [
     RouterModule,
@@ -21,15 +21,14 @@ import { ManagmentIdService } from '../../managment-id.service';
     PrimeDataTableComponent,
     PrimeTitleToolBarComponent,
   ],
-  templateUrl: './management-members.component.html',
-  styleUrl: './management-members.component.css',
+  templateUrl: './management-attachments.component.html',
+  styleUrl: './management-attachments.component.css',
 })
-export class ManagementMembersComponent extends BaseListComponent {
-  @Input() managementId: string = '';
+export class ManagementAttachmentsComponent extends BaseListComponent {
+  @Input() managmentId: string = '';
   isEnglish = false;
   tableOptions!: TableOptions;
-  service = inject(ManagementMembersService);
-  managmentIdService = inject(ManagmentIdService);
+  service = inject(ManagementAttachmentService);
 
   constructor(activatedRoute: ActivatedRoute) {
     super(activatedRoute);
@@ -37,43 +36,40 @@ export class ManagementMembersComponent extends BaseListComponent {
 
   override ngOnInit(): void {
     this.initializeTableOptions();
-    super.ngOnInit();
   }
 
   initializeTableOptions() {
     this.tableOptions = {
       inputUrl: {
-        getAll: 'v2/managementmember/getPaged',
+        getAll: 'v2/managementattachment/getPaged',
         getAllMethod: 'POST',
-        delete: 'v2/managementmember/deletesoft',
+        delete: 'v2/managementattachment/deletesoft',
       },
       inputCols: this.initializeTableColumns(),
       inputActions: this.initializeTableActions(),
       permissions: {
-        componentName: 'MANAGEMENT-MEMBERS',
+        componentName: 'MANAGEMENT-ATTACHMENTS',
         allowAll: true,
         listOfPermissions: [],
       },
       bodyOptions: {
-        filter: { managementId: this.managementId },
+        filter: { managmentId: this.managmentId },
       },
-      responsiveDisplayedProperties: ['isLeader', 'managementId'],
+      responsiveDisplayedProperties: ['code', 'name'],
     };
   }
 
   initializeTableColumns(): TableOptions['inputCols'] {
     return [
       {
-        field: 'isLeader',
-        header: 'الحالة',
-        trueText: 'ادمن',
-        falseText: 'مستخدم',
+        field: 'code',
+        header: 'الكــود',
         filter: true,
-        filterMode: 'boolean',
+        filterMode: 'text',
       },
       {
-        field: 'managementId',
-        header: 'الادارة',
+        field: 'name',
+        header: 'الاســم',
         filter: true,
         filterMode: 'text',
       },
@@ -103,17 +99,25 @@ export class ManagementMembersComponent extends BaseListComponent {
   }
 
   openAdd() {
-    this.openDialog(AddManagementMemberComponent, 'اضافة عضو للإدارة', {
-      pageType: 'add',
-      row: { managementId: this.managementId },
-    });
+    this.openDialog(
+      AddEditManagementAttachmentComponent,
+      'اضافة مرفق الادارة',
+      {
+        pageType: 'add',
+        row: { managmentId: this.managmentId },
+      }
+    );
   }
 
   openEdit(rowData: any) {
-    this.openDialog(AddManagementMemberComponent, 'تعديل عضو الإدارة', {
-      pageType: 'edit',
-      row: { rowData },
-    });
+    this.openDialog(
+      AddEditManagementAttachmentComponent,
+      'تعديل مرفق الادارة',
+      {
+        pageType: 'edit',
+        row: { rowData },
+      }
+    );
   }
 
   /* when leaving the component */

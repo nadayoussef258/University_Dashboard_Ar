@@ -6,18 +6,19 @@ import {
   ManagementMembersService,
   ManagementsService,
   PrimeAutoCompleteComponent,
-  PrimeInputTextComponent,
   SubmitButtonsComponent,
+  UnitMembersService,
+  UnitsService,
 } from '../../../../shared';
 import { DialogService } from 'primeng/dynamicdialog';
 import { ActivatedRoute, NavigationEnd } from '@angular/router';
 import { ToggleSwitch } from 'primeng/toggleswitch';
 import { NgClass } from '@angular/common';
-import { ManagmentIdService } from '../../managment-id.service';
+import { UnitIdService } from '../../unit-id.service';
 import { filter } from 'rxjs';
 
 @Component({
-  selector: 'app-add-edit-management-member',
+  selector: 'app-add-edit-unit-member',
   imports: [
     CardModule,
     FormsModule,
@@ -28,24 +29,22 @@ import { filter } from 'rxjs';
     NgClass,
     ToggleSwitch,
   ],
-  templateUrl: './add-edit-management-member.component.html',
-  styleUrl: './add-edit-management-member.component.css',
+  templateUrl: './add-edit-unit-member.component.html',
+  styleUrl: './add-edit-unit-member.component.css',
 })
 //
-export class AddManagementMemberComponent
+export class AddEditUnitMemberComponent
   extends BaseEditComponent
   implements OnInit
 {
-  managementId: string = '';
-  selectedManagement: any;
-  filteredManagements: any[] = [];
-  allowEditManagement: boolean = false;
+  unitId: string = '';
+  selectedUnit: any;
+  filteredUnits: any[] = [];
+  allowEditUnit: boolean = false;
   hideToggleBtn: boolean = false;
 
-  managementMembersService: ManagementMembersService = inject(
-    ManagementMembersService
-  );
-  managementsService: ManagementsService = inject(ManagementsService);
+  unitMembersService: UnitMembersService = inject(UnitMembersService);
+  unitsService: UnitsService = inject(UnitsService);
   dialogService: DialogService = inject(DialogService);
 
   constructor(override activatedRoute: ActivatedRoute) {
@@ -66,13 +65,13 @@ export class AddManagementMemberComponent
 
     this.dialogService.dialogComponentRefMap.forEach((element) => {
       this.pageType = element.instance.ddconfig.data.pageType;
-      this.managementId = element.instance.ddconfig.data.row.managementId;
+      this.unitId = element.instance.ddconfig.data.row.unitId;
       if (this.pageType === 'edit') {
         this.id = element.instance.ddconfig.data.row.rowData.id;
       }
     });
     if (this.pageType === 'edit') {
-      this.getEditManagementMember();
+      this.getEditUnitMember();
     } else {
       this.initFormGroup();
     }
@@ -80,22 +79,22 @@ export class AddManagementMemberComponent
 
   private updateToggleVisibility(url: string): void {
     const cleanUrl = url.split('?')[0];
-    this.hideToggleBtn = cleanUrl.startsWith('/pages/managements/edit/');
+    this.hideToggleBtn = cleanUrl.startsWith('/pages/units/edit/');
   }
 
   initFormGroup() {
     this.form = this.fb.group({
       isLeader: [false],
-      managementId: [this.managementId, Validators.required],
+      unitId: [this.unitId, Validators.required],
     });
   }
 
-  getManagements(event: any) {
+  getUnits(event: any) {
     const query = event.query.toLowerCase();
-    this.managementsService.managements.subscribe({
+    this.unitsService.units.subscribe({
       next: (res: any) => {
-        this.filteredManagements = res.filter((management: any) =>
-          management.pageId.includes(query)
+        this.filteredUnits = res.filter((unit: any) =>
+          unit.pageId.includes(query)
         );
       },
       error: (err) => {
@@ -104,36 +103,37 @@ export class AddManagementMemberComponent
     });
   }
 
-  onManagementSelect(event: any) {
-    this.selectedManagement = event.value;
-    this.form.get('managementId')?.setValue(this.selectedManagement.id);
+  onUnitSelect(event: any) {
+    this.selectedUnit = event.value;
+    this.form.get('unitId')?.setValue(this.selectedUnit.id);
   }
 
-  fetchManagementDetails(managementDetail: any) {
-    this.managementsService.managements.subscribe((response: any) => {
-      this.filteredManagements = Array.isArray(response)
+  fetchUnitDetails(unitDetail: any) {
+    this.unitsService.units.subscribe((response: any) => {
+      this.filteredUnits = Array.isArray(response)
         ? response
         : response.data || [];
-      this.selectedManagement = this.filteredManagements.find(
-        (management: any) => management.id === managementDetail.managementId
+      this.selectedUnit = this.selectedUnit.find(
+        (unit: any) => unit.id === unitDetail.unitId
       );
-      this.form.get('managementId')?.setValue(this.selectedManagement.id);
+      this.form.get('unitId')?.setValue(this.selectedUnit.id);
     });
   }
 
-  getEditManagementMember = () => {
-    this.managementMembersService
-      .getManagementMember(this.id)
-      .subscribe((managementMember: any) => {
+  getEditUnitMember = () => {
+    this.unitMembersService
+      .getEditUnitMember(this.id)
+      .subscribe((unitMember: any) => {
         this.initFormGroup();
-        this.form.patchValue(managementMember);
-        this.fetchManagementDetails(managementMember);
+        this.form.patchValue(unitMember);
+        this.fetchUnitDetails(unitMember);
       });
   };
 
-  toggleManagementEdit() {
-    const control = this.form.get('managementId');
-    if (this.allowEditManagement) {
+  toggleUnitEdit() {
+    const control = this.form.get('unitId');
+
+    if (this.allowEditUnit) {
       control?.enable({ emitEvent: false });
     } else {
       control?.disable({ emitEvent: false });
@@ -142,11 +142,11 @@ export class AddManagementMemberComponent
 
   submit() {
     if (this.pageType === 'add')
-      this.managementMembersService.add(this.form.value).subscribe(() => {
+      this.unitMembersService.add(this.form.value).subscribe(() => {
         this.closeDialog();
       });
     if (this.pageType === 'edit')
-      this.managementMembersService
+      this.unitMembersService
         .update({ id: this.id, ...this.form.value })
         .subscribe(() => {
           this.closeDialog();

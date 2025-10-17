@@ -25,20 +25,18 @@
 
       @if (pageType !== 'add' && !hideToggleBtn) {
       <div class="form-col my-4 flex items-center gap-2">
-        <p-toggleswitch [(ngModel)]="allowEditManagement" [ngModelOptions]="{standalone: true}"
-          (onChange)="toggleManagementEdit()">
+        <p-toggleswitch [(ngModel)]="allowEditUnit" [ngModelOptions]="{standalone: true}" (onChange)="toggleUnitEdit()">
         </p-toggleswitch>
         <label class="text-sm font-medium">هل تريد التعديل على عنوان الإدارة؟</label>
       </div>
       }
-      @if(pageType !== 'add' && managementId || !managementId){
+      @if(pageType !== 'add' && unitId || !unitId){
 
       <div class="form-col mt-4">
         <label class="text-middle mb-2">{{ 'عنوان الادارة' }}</label>
-        <app-prime-autocomplete [disabled]="pageType === 'edit' && !allowEditManagement" [field]="'pageId'"
-          [selectedOption]="selectedManagement" [suggestions]="filteredManagements" [formGroup]="form"
-          (onSelect)="onManagementSelect($event)" [lazy]="false"
-          (handleMethod)="getManagements($event)"></app-prime-autocomplete>
+        <app-prime-autocomplete [disabled]="pageType === 'edit' && !allowEditUnit" [field]="'pageId'"
+          [selectedOption]="selectedUnit" [suggestions]="filteredUnits" [formGroup]="form"
+          (onSelect)="onUnitSelect($event)" [lazy]="false" (handleMethod)="getUnits($event)"></app-prime-autocomplete>
       </div>
       }
 

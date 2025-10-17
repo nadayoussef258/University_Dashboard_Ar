@@ -106,11 +106,29 @@ export class AppMenu {
               },
             ],
           },
+
           {
             label: 'الوحدات',
             icon: 'pi pi-users',
-            routerLink: ['/pages/units'],
+            items: [
+              {
+                label: 'الوحدات الرئيسية',
+                icon: 'pi pi-info-circle',
+                routerLink: ['/pages/units'],
+              },
+              {
+                label: 'تفاصيل الوحدات',
+                icon: 'pi pi-info-circle',
+                routerLink: ['/pages/unit-details'],
+              },
+              {
+                label: 'أعضاء الوحدات',
+                icon: 'pi pi-users',
+                routerLink: ['/pages/unit-members'],
+              },
+            ],
           },
+
           {
             label: 'القطاعات',
             icon: 'pi pi-th-large',

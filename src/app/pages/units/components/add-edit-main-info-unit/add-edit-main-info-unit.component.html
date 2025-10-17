@@ -1,12 +1,12 @@
 <p-tabs value="managements">
   <p-tablist>
-    <p-tab value="managements">ادارة الصفحات والتعريف
+    <p-tab value="managements">الوحدات
     </p-tab>
     @if (pageType === 'edit') {
     <!-- <p-tab value="employeeTabEnum.ExperiencesTab">{{ 'مرفقات'  }}</p-tab> -->
     <!-- <p-tab value="mangment-attachments">{{ '' }}</p-tab> -->
-    <p-tab value="mangment-detial">{{ 'تفاصيل الادارة' }}</p-tab>
-    <p-tab value="mangment-member">{{ 'عضو الادارة' }}</p-tab>
+    <p-tab value="mangment-detial">{{ 'تفاصيل الوحدات' }}</p-tab>
+    <p-tab value="mangment-member">{{ 'عضو الوحدات' }}</p-tab>
 
     }
   </p-tablist>
@@ -39,13 +39,13 @@
     </p-tabpanel>
 
 
-    @if(managementId && pageType === 'edit'){
+    @if(unitId && pageType === 'edit'){
     <p-tabpanel value="mangment-detial">
-      <app-management-details [managementId]="managementId"></app-management-details>
+      <app-unit-details [unitId]="unitId"></app-unit-details>
     </p-tabpanel>
 
     <p-tabpanel value="mangment-member">
-      <app-management-member [managementId]="managementId"></app-management-member>
+      <app-unit-member [unitId]="unitId"></app-unit-member>
     </p-tabpanel>
     }
 

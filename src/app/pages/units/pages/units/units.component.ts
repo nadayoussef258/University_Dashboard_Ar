@@ -4,16 +4,14 @@ import { CardModule } from 'primeng/card';
 import {
   PrimeDataTableComponent,
   PrimeTitleToolBarComponent,
-  ActionsService,
-  ManagementMembersService,
+  ManagementsService,
+  UnitsService,
 } from '../../../../shared';
 import { TableOptions } from '../../../../shared/interfaces';
 import { BaseListComponent } from '../../../../base/components/base-list-component';
-import { AddManagementMemberComponent } from '../add-edit-management-member/add-edit-management-member.component';
-import { ManagmentIdService } from '../../managment-id.service';
 
 @Component({
-  selector: 'app-management-member',
+  selector: 'app-units',
 
   imports: [
     RouterModule,
@@ -21,15 +19,12 @@ import { ManagmentIdService } from '../../managment-id.service';
     PrimeDataTableComponent,
     PrimeTitleToolBarComponent,
   ],
-  templateUrl: './management-members.component.html',
-  styleUrl: './management-members.component.css',
+  templateUrl: './units.component.html',
+  styleUrl: './units.component.css',
 })
-export class ManagementMembersComponent extends BaseListComponent {
-  @Input() managementId: string = '';
-  isEnglish = false;
+export class UnitsComponent extends BaseListComponent {
   tableOptions!: TableOptions;
-  service = inject(ManagementMembersService);
-  managmentIdService = inject(ManagmentIdService);
+  service = inject(UnitsService);
 
   constructor(activatedRoute: ActivatedRoute) {
     super(activatedRoute);
@@ -43,37 +38,35 @@ export class ManagementMembersComponent extends BaseListComponent {
   initializeTableOptions() {
     this.tableOptions = {
       inputUrl: {
-        getAll: 'v2/managementmember/getPaged',
+        getAll: 'v2/unit/getPaged',
         getAllMethod: 'POST',
-        delete: 'v2/managementmember/deletesoft',
+        delete: 'v2/unit/delete',
       },
       inputCols: this.initializeTableColumns(),
       inputActions: this.initializeTableActions(),
       permissions: {
-        componentName: 'MANAGEMENT-MEMBERS',
+        componentName: 'UNITS',
         allowAll: true,
         listOfPermissions: [],
       },
       bodyOptions: {
-        filter: { managementId: this.managementId },
+        filter: {},
       },
-      responsiveDisplayedProperties: ['isLeader', 'managementId'],
+      responsiveDisplayedProperties: ['page.title', 'about.content'],
     };
   }
 
   initializeTableColumns(): TableOptions['inputCols'] {
     return [
       {
-        field: 'isLeader',
-        header: 'الحالة',
-        trueText: 'ادمن',
-        falseText: 'مستخدم',
+        field: 'page.title',
+        header: 'اسم الصفحة',
         filter: true,
-        filterMode: 'boolean',
+        filterMode: 'text',
       },
       {
-        field: 'managementId',
-        header: 'الادارة',
+        field: 'about.content',
+        header: 'عنوان التعريف',
         filter: true,
         filterMode: 'text',
       },
@@ -86,10 +79,8 @@ export class ManagementMembersComponent extends BaseListComponent {
         name: 'Edit',
         icon: 'pi pi-file-edit',
         color: 'text-middle',
-        isCallBack: true,
-        call: (row) => {
-          this.openEdit(row);
-        },
+        isEdit: true,
+        route: 'edit/',
         allowAll: true,
       },
       {
@@ -100,20 +91,6 @@ export class ManagementMembersComponent extends BaseListComponent {
         isDelete: true,
       },
     ];
-  }
-
-  openAdd() {
-    this.openDialog(AddManagementMemberComponent, 'اضافة عضو للإدارة', {
-      pageType: 'add',
-      row: { managementId: this.managementId },
-    });
-  }
-
-  openEdit(rowData: any) {
-    this.openDialog(AddManagementMemberComponent, 'تعديل عضو الإدارة', {
-      pageType: 'edit',
-      row: { rowData },
-    });
   }
 
   /* when leaving the component */

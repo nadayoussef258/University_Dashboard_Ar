@@ -17,7 +17,7 @@ import {
 } from '../../../../shared';
 import { DialogService } from 'primeng/dynamicdialog';
 import { ActivatedRoute } from '@angular/router';
-import { ToggleSwitch } from 'primeng/toggleswitch';
+import { ManagmentIdService } from '../../managment-id.service';
 
 @Component({
   selector: 'app-add-edit-management-detail',
@@ -28,7 +28,6 @@ import { ToggleSwitch } from 'primeng/toggleswitch';
     SubmitButtonsComponent,
     PrimeInputTextComponent,
     PrimeAutoCompleteComponent,
-    ToggleSwitch,
   ],
   templateUrl: './add-edit-management-detail.component.html',
   styleUrl: './add-edit-management-detail.component.css',
@@ -41,11 +40,11 @@ export class AddEditManagementDetailComponent
   managementId: string = '';
   selectedManagement: any;
   filteredManagements: any[] = [];
-  allowEditManagement: boolean = false;
 
   manageDetailsService: ManageDetailsService = inject(ManageDetailsService);
   managementsService: ManagementsService = inject(ManagementsService);
   dialogService: DialogService = inject(DialogService);
+  managmentIdService: ManagmentIdService = inject(ManagmentIdService);
 
   constructor(override activatedRoute: ActivatedRoute) {
     super(activatedRoute);
@@ -53,7 +52,9 @@ export class AddEditManagementDetailComponent
 
   override ngOnInit(): void {
     super.ngOnInit();
+    this.managementId = this.managmentIdService.ManagmentId();
     this.id = this.activatedRoute.snapshot.paramMap.get('id') as string;
+
     if (this.pageType === 'edit') {
       this.getEditManagementDetail();
     } else {
@@ -75,7 +76,7 @@ export class AddEditManagementDetailComponent
     this.managementsService.managements.subscribe({
       next: (res: any) => {
         this.filteredManagements = res.filter((management: any) =>
-          management.pageId.includes(query)
+          management.pageId.toLowerCase().includes(query)
         );
       },
       error: (err) => {
@@ -111,17 +112,6 @@ export class AddEditManagementDetailComponent
       });
   };
 
-  // toggle to edit management
-  toggleManagementEdit() {
-    const control = this.form.get('managementId');
-
-    if (this.allowEditManagement) {
-      control?.enable({ emitEvent: false });
-    } else {
-      control?.disable({ emitEvent: false });
-    }
-  }
-
   submit() {
     if (this.pageType === 'add')
       this.manageDetailsService.add(this.form.value).subscribe(() => {
@@ -140,6 +130,10 @@ export class AddEditManagementDetailComponent
   }
 
   override redirect = () => {
-    super.redirect('/pages/management-details');
+    if (this.managementId) {
+      super.redirect(`/pages/managements/edit/${this.managementId}`);
+    } else {
+      super.redirect('/pages/management-details');
+    }
   };
 }

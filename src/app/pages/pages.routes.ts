@@ -7,7 +7,6 @@ export const pagesRoutes: Routes = [
     loadChildren: () =>
       import('./settings/settings.routes').then((m) => m.settingsRoutes),
   },
-
   {
     path: 'managements',
     loadChildren: () =>
@@ -28,6 +27,25 @@ export const pagesRoutes: Routes = [
       import(
         './managements/components/management-member/management-members.routes'
       ).then((m) => m.managementMembersRoutes),
+  },
+  {
+    path: 'units',
+    loadChildren: () =>
+      import('./units/units.routes').then((m) => m.unitsRoutes),
+  },
+  {
+    path: 'unit-details',
+    loadChildren: () =>
+      import('./units/components/unit-detail/unit-details.routes').then(
+        (m) => m.unitDetailsRoutes
+      ),
+  },
+  {
+    path: 'unit-members',
+    loadChildren: () =>
+      import('./units/components/unit-member/unit-members.routes').then(
+        (m) => m.unitMembersRoutes
+      ),
   },
   {
     path: 'centers',

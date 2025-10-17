@@ -4,22 +4,20 @@ import { CardModule } from 'primeng/card';
 import { FormsModule, ReactiveFormsModule, Validators } from '@angular/forms';
 import {
   AboutService,
-  ManagementsService,
   PagesService,
   PrimeAutoCompleteComponent,
-  PrimeInputTextComponent,
   SubmitButtonsComponent,
+  UnitsService,
 } from '../../../../shared';
 import { DialogService } from 'primeng/dynamicdialog';
 import { ActivatedRoute } from '@angular/router';
 import { TabsModule } from 'primeng/tabs';
-import { ManagementDetailsComponent } from '../management-detail/management-details.component';
-import { ManagementMembersComponent } from '../management-member/management-members.component';
-import { StorageService } from '../../../../core';
-import { ManagmentIdService } from '../../managment-id.service';
+import { UnitDetailsComponent } from '../unit-detail/unit-details.component';
+import { UnitMembersComponent } from '../unit-member/unit-members.component';
+import { UnitIdService } from '../../unit-id.service';
 
 @Component({
-  selector: 'app-add-edit-main-info-managments',
+  selector: 'app-add-edit-main-info-unit',
   imports: [
     CardModule,
     FormsModule,
@@ -27,29 +25,29 @@ import { ManagmentIdService } from '../../managment-id.service';
     ReactiveFormsModule,
     SubmitButtonsComponent,
     PrimeAutoCompleteComponent,
-    ManagementDetailsComponent,
-    ManagementMembersComponent,
+    UnitDetailsComponent,
+    UnitMembersComponent,
   ],
-  templateUrl: './add-edit-main-info-managments.component.html',
-  styleUrls: ['./add-edit-main-info-managments.component.css'],
+  templateUrl: './add-edit-main-info-unit.component.html',
+  styleUrls: ['./add-edit-main-info-unit.component.css'],
 })
 //
-export class AddEditMainInfoManagementComponent
+export class AddEditMainInfoUnitComponent
   extends BaseEditComponent
   implements OnInit
 {
-  managementId: string = '';
-  showManagementsTabs: boolean = false;
+  unitId: string = '';
+  showUnitsTabs: boolean = false;
 
   selectedPage: any;
   selectedAbout: any;
   filteredPages: any[] = [];
   filteredAbout: any[] = [];
 
-  managementsService: ManagementsService = inject(ManagementsService);
+  unitsService: UnitsService = inject(UnitsService);
   pagesService: PagesService = inject(PagesService);
   aboutService: AboutService = inject(AboutService);
-  managementIdServices = inject(ManagmentIdService);
+  unitIdServices = inject(UnitIdService);
 
   dialogService: DialogService = inject(DialogService);
 
@@ -60,15 +58,13 @@ export class AddEditMainInfoManagementComponent
   override ngOnInit(): void {
     super.ngOnInit();
     this.id = this.activatedRoute?.snapshot?.paramMap?.get('id') as string;
-    this.managementId = this.activatedRoute?.snapshot?.paramMap?.get(
-      'id'
-    ) as string;
+    this.unitId = this.activatedRoute?.snapshot?.paramMap?.get('id') as string;
 
-    // set value of managementId
-    this.managementIdServices.setManagementId(this.id);
+    // set value of unitId
+    this.unitIdServices.setUnitId(this.id);
 
     if (this.pageType === 'edit') {
-      this.getEditManagement();
+      this.getEditUnit();
     } else {
       this.initFormGroup();
     }
@@ -131,44 +127,43 @@ export class AddEditMainInfoManagementComponent
     this.form.get('aboutId')?.setValue(this.selectedAbout.id);
   }
 
-  fetchAboutDetails(management: any) {
+  fetchAboutDetails(unit: any) {
     this.aboutService.abouts.subscribe((response: any) => {
       this.filteredAbout = Array.isArray(response)
         ? response
         : response.data || [];
       this.selectedAbout = this.filteredAbout.find(
-        (about: any) => about.id === management.aboutId
+        (about: any) => about.id === unit.aboutId
       );
       this.form.get('aboutId')?.setValue(this.selectedAbout.id);
     });
   }
 
-  getEditManagement = () => {
-    this.managementsService
-      .getEditManagement(this.id)
-      .subscribe((management: any) => {
-        this.initFormGroup();
-        this.form.patchValue(management);
-        this.fetchPagesDetails(management);
-        this.fetchAboutDetails(management);
-      });
+  getEditUnit = () => {
+    this.unitsService.getEditUnit(this.id).subscribe((unit: any) => {
+      this.initFormGroup();
+      this.form.patchValue(unit);
+      this.fetchPagesDetails(unit);
+      this.fetchAboutDetails(unit);
+    });
   };
 
   submit() {
     if (this.pageType === 'add')
-      this.managementsService.add(this.form.value).subscribe((res: any) => {
-        this.showManagementsTabs = true;
+      this.unitsService.add(this.form.value).subscribe((res: any) => {
+        this.showUnitsTabs = true;
         this.redirect();
       });
     if (this.pageType === 'edit')
-      this.managementsService
+      this.unitsService
         .update({ id: this.id, ...this.form.value })
         .subscribe(() => {
           this.redirect();
+          this.unitIdServices.setUnitId('');
         });
   }
 
   override redirect = () => {
-    super.redirect('/pages/managements');
+    super.redirect('/pages/units');
   };
 }
