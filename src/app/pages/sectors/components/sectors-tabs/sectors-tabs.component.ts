@@ -30,7 +30,17 @@ export class SectorsTabsComponent extends BaseEditComponent implements OnInit {
     {
       route: 'sector-program',
       label: 'برامج القطاع',
-      icon: 'pi pi-briefcase',
+      icon: 'pi pi-sliders-h',
+    },
+    {
+      route: 'sector-service',
+      label: 'خدمات القطاع',
+      icon: 'pi  pi-cog',
+    },
+    {
+      route: 'sector-unit',
+      label: 'وحدات القطاع',
+      icon: 'pi pi-building',
     },
   ];
 }

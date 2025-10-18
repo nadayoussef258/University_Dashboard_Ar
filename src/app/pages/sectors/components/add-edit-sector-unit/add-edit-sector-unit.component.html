@@ -1,0 +1,57 @@
+<p-card class="m-0 p-2">
+  @if (form) {
+  <form method="post" class="grid gap-4 grid-cols-12" [formGroup]="form">
+    <div class="form-col">
+      <app-prime-input-text [formGroup]="form" controlName="unitNameAr" [label]="'اسم الوحدة بالعربية'">
+      </app-prime-input-text>
+    </div>
+
+    <div class="col-span-12">
+      <app-prime-input-text [formGroup]="form" controlName="unitDescriptionAr" [label]="'وصف الوحدة بالعربية'"
+        [inputType]="'textarea'">
+      </app-prime-input-text>
+    </div>
+
+    <div class="form-col">
+      <app-prime-input-text [formGroup]="form" controlName="manager" [label]="'اسم المدير'">
+      </app-prime-input-text>
+    </div>
+
+    <div class="form-col">
+      <app-prime-input-text [formGroup]="form" controlName="email" [label]="'البريد الإلكتروني'">
+      </app-prime-input-text>
+    </div>
+
+    <div class="form-col">
+      <app-prime-input-text [formGroup]="form" controlName="employeesCount" contentType="number"
+        [label]="'عدد الموظفين'">
+      </app-prime-input-text>
+    </div>
+
+    <div class="form-col">
+      <app-prime-input-text [formGroup]="form" controlName="location" [label]="'الموقع'">
+      </app-prime-input-text>
+    </div>
+
+    <div class="form-col">
+      <app-prime-input-text [formGroup]="form" controlName="unitPhone" [label]="'رقم الهاتف'">
+      </app-prime-input-text>
+    </div>
+
+    @if (pageType !== 'add' && sectorId || !sectorId ) {
+    <div class="form-col">
+      <label class="text-middle mb-2">{{ "القطاع" }}</label>
+      <app-prime-autocomplete [disabled]="!!sectorId" [field]="'name'" [selectedOption]="selectedSector"
+        [suggestions]="filteredSectors" [formGroup]="form" (onSelect)="onSectorSelect($event)" [lazy]="false"
+        (handleMethod)="getSectors($event)"></app-prime-autocomplete>
+    </div>
+    }
+  </form>
+  }
+</p-card>
+
+@if (form) {
+<app-submit-buttons [isSubmitDisabled]="form.invalid" [submitButtonText]="pageType === 'add' ? 'Submit' : 'Save'"
+  (submit)="submit()" (cancel)="redirect()">
+</app-submit-buttons>
+}

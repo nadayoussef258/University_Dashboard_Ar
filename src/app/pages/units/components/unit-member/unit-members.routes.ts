@@ -1,4 +1,5 @@
 import { Routes } from '@angular/router';
+import { clearUnitIdGuard } from '../../../guards/units/clear-unit-id-guard.guard';
 
 export const unitMembersRoutes: Routes = [
   {
@@ -6,6 +7,7 @@ export const unitMembersRoutes: Routes = [
     loadComponent: () =>
       import('./unit-members.component').then((c) => c.UnitMembersComponent),
     data: { pageTitle: 'أعضاء الوحدات', pageType: 'list' },
+    canActivate: [clearUnitIdGuard],
   },
   {
     path: 'add',

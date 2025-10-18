@@ -110,6 +110,20 @@ export const pagesRoutes: Routes = [
         './sectors/components/sector-programs/sector-programs.routes'
       ).then((m) => m.sectorProgramsRoutes),
   },
+  {
+    path: 'sector-services',
+    loadChildren: () =>
+      import(
+        './sectors/components/sector-services/sector-services.routes'
+      ).then((m) => m.sectorServicesRoutes),
+  },
+  {
+    path: 'sector-units',
+    loadChildren: () =>
+      import('./sectors/components/sector-units/sector-units.routes').then(
+        (c) => c.sectorUnitsRoutes
+      ),
+  },
   { path: 'empty', component: Empty },
   { path: '**', redirectTo: 'notfound', pathMatch: 'full' },
 ] as Routes;

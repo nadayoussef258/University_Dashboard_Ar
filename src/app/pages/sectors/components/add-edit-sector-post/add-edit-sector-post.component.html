@@ -1,57 +1,37 @@
 <p-card class="m-0 p-2">
   @if (form) {
-  <form method="post" class="grid grid-cols-12 md:gap-9" [formGroup]="form">
-    <div class="mt-2 form-col">
-      <div class="mt-4 form-col">
-        <label class="text-middle mb-2">{{ "المنشور" }}</label>
-        <app-prime-autocomplete
-          [field]="'title'"
-          [selectedOption]="selectedPost"
-          [suggestions]="filteredPosts"
-          [formGroup]="form"
-          (onSelect)="onPostSelect($event)"
-          [lazy]="false"
-          (handleMethod)="getPosts($event)"
-        ></app-prime-autocomplete>
-      </div>
-
-      @if (pageType !== 'add' && !hideToggleBtn) {
-      <div class="flex my-4 gap-2 form-col items-center">
-        <p-toggleswitch
-          [(ngModel)]="allowEditSector"
-          [ngModelOptions]="{ standalone: true }"
-          (onChange)="toggleSectorEdit()"
-        >
-        </p-toggleswitch>
-        <label class="font-medium text-sm">هل تريد التعديل علي القطاع ؟</label>
-      </div>
-      } @if(pageType !== 'add' && sectorId || !sectorId){
-
-      <div class="mt-4 form-col">
-        <label class="text-middle mb-2">{{ "القطاع" }}</label>
-        <app-prime-autocomplete
-          [disabled]="pageType === 'edit' && !allowEditSector"
-          [field]="'name'"
-          [selectedOption]="selectedSector"
-          [suggestions]="filteredSectors"
-          [formGroup]="form"
-          (onSelect)="onSectorSelect($event)"
-          [lazy]="false"
-          (handleMethod)="getSectors($event)"
-        ></app-prime-autocomplete>
-      </div>
-      }
+  <form method="post" class="grid grid-cols-12 gap-4" [formGroup]="form">
+    <div class=" form-col">
+      <label class="text-middle mb-2">{{ "المنشور" }}</label>
+      <app-prime-autocomplete [field]="'title'" [selectedOption]="selectedPost" [suggestions]="filteredPosts"
+        [formGroup]="form" (onSelect)="onPostSelect($event)" [lazy]="false"
+        (handleMethod)="getPosts($event)"></app-prime-autocomplete>
     </div>
+
+    @if (pageType !== 'add' && !hideToggleBtn) {
+    <div class="flex gap-2 form-col items-center">
+      <p-toggleswitch [(ngModel)]="allowEditSector" [ngModelOptions]="{ standalone: true }"
+        (onChange)="toggleSectorEdit()">
+      </p-toggleswitch>
+      <label class="font-medium text-sm">هل تريد التعديل علي القطاع ؟</label>
+    </div>
+    }
+    <!--  -->
+    @if(pageType !== 'add' && sectorId || !sectorId){
+
+    <div class="form-col">
+      <label class="text-middle mb-2">{{ "القطاع" }}</label>
+      <app-prime-autocomplete [disabled]="pageType === 'edit' && !allowEditSector" [field]="'name'"
+        [selectedOption]="selectedSector" [suggestions]="filteredSectors" [formGroup]="form"
+        (onSelect)="onSectorSelect($event)" [lazy]="false" (handleMethod)="getSectors($event)"></app-prime-autocomplete>
+    </div>
+    }
   </form>
   }
 </p-card>
 
 @if (form) {
-<app-submit-buttons
-  [isSubmitDisabled]="form.invalid"
-  [submitButtonText]="pageType === 'add' ? 'Submit' : 'Save'"
-  (submit)="submit()"
-  (cancel)="closeDialog()"
->
+<app-submit-buttons [isSubmitDisabled]="form.invalid" [submitButtonText]="pageType === 'add' ? 'Submit' : 'Save'"
+  (submit)="submit()" (cancel)="closeDialog()">
 </app-submit-buttons>
 }

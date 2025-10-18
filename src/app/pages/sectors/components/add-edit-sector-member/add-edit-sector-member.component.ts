@@ -90,7 +90,7 @@ export class AddEditSectorMemberComponent
     this.sectorsService.sectors.subscribe({
       next: (res: any) => {
         this.filteredSectors = res.filter((sector: any) =>
-          sector.pageId.includes(query)
+          sector.name.includes(query)
         );
       },
       error: (err) => {

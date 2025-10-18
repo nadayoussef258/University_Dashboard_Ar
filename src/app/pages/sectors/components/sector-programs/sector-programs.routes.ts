@@ -1,4 +1,5 @@
 import { Routes } from '@angular/router';
+import { clearSectorIdGuard } from '../../../guards/sectors/clear-sector-id-sector.guard';
 
 export const sectorProgramsRoutes: Routes = [
   {
@@ -8,6 +9,7 @@ export const sectorProgramsRoutes: Routes = [
         (c) => c.SectorProgramsComponent
       ),
     data: { pageTitle: 'اعضاء القطاعات', pageType: 'list' },
+    canActivate: [clearSectorIdGuard],
   },
   {
     path: 'add',

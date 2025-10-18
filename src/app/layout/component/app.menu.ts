@@ -148,8 +148,18 @@ export class AppMenu {
               },
               {
                 label: 'برامج القطاعات',
-                icon: 'pi pi-briefcase',
+                icon: 'pi pi-sliders-h',
                 routerLink: ['/pages/sector-programs'],
+              },
+              {
+                label: 'وحدات القطاعات',
+                icon: 'pi pi-building',
+                routerLink: ['/pages/sector-units'],
+              },
+              {
+                label: 'خدمات القطاعات',
+                icon: 'pi  pi-cog',
+                routerLink: ['/pages/sector-services'],
               },
             ],
           },

@@ -65,6 +65,22 @@ export const sectorsRoutes: Routes = [
           ),
         canActivate: [redirectIfDirectAccessSectorGuard],
       },
+      {
+        path: 'sector-service',
+        loadChildren: () =>
+          import('./components/sector-services/sector-services.routes').then(
+            (c) => c.sectorServicesRoutes
+          ),
+        canActivate: [redirectIfDirectAccessSectorGuard],
+      },
+      {
+        path: 'sector-unit',
+        loadChildren: () =>
+          import('./components/sector-units/sector-units.routes').then(
+            (c) => c.sectorUnitsRoutes
+          ),
+        canActivate: [redirectIfDirectAccessSectorGuard],
+      },
     ],
   },
 ];

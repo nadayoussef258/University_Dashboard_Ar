@@ -187,10 +187,14 @@
   <!-- ================= EMPTY MESSAGE ================= -->
   <ng-template pTemplate="emptymessage">
     <tr>
-      <td colspan="7">
-        <div class="text-center p-4 text-gray-500">
-          <i class="mb-3 pi pi-inbox !text-4xl"></i>
-          <div class="font-bold text-3xl text-red-500">لا توجد بيانات لعرضها</div>
+      <td [attr.colspan]="(tableOptions.inputCols?.length || 0) + 1" class="p-4">
+        <div class="flex justify-center items-center w-full min-h-[100px] text-center break-words overflow-hidden">
+          <div class="max-w-full px-4">
+            <i class="mb-3 pi pi-inbox text-4xl block text-gray-600"></i>
+            <div class="font-bold text-2xl text-red-500 whitespace-normal">
+              لا توجد بيانات لعرضها
+            </div>
+          </div>
         </div>
       </td>
     </tr>
