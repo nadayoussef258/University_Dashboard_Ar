@@ -2,16 +2,16 @@ import { Component, inject, Input } from '@angular/core';
 import { ActivatedRoute, RouterModule } from '@angular/router';
 import { CardModule } from 'primeng/card';
 import {
-  CenterMembersService,
   PrimeDataTableComponent,
   PrimeTitleToolBarComponent,
-} from '../../../../../../shared';
-import { TableOptions } from '../../../../../../shared/interfaces';
-import { BaseListComponent } from '../../../../../../base/components/base-list-component';
-import { AddEditCenterMemberComponent } from '../../components/add-edit-center-member/add-edit-center-member.component';
+  CenterDetailsService,
+} from '../../../../shared';
+import { TableOptions } from '../../../../shared/interfaces';
+import { BaseListComponent } from '../../../../base/components/base-list-component';
+import { CenterIdService } from '../../center-id.service';
 
 @Component({
-  selector: 'app-actions',
+  selector: 'app-center-details',
 
   imports: [
     RouterModule,
@@ -19,49 +19,64 @@ import { AddEditCenterMemberComponent } from '../../components/add-edit-center-m
     PrimeDataTableComponent,
     PrimeTitleToolBarComponent,
   ],
-  templateUrl: './center-members.component.html',
-  styleUrl: './center-members.component.css',
+  templateUrl: './center-details.component.html',
+  styleUrl: './center-details.component.css',
 })
-export class CenterMembersComponent extends BaseListComponent {
-  @Input() employeeId: string = '';
-  isEnglish = false;
+export class CenterDetailsComponent extends BaseListComponent {
+  centerId: string = '';
   tableOptions!: TableOptions;
-  service = inject(CenterMembersService);
+
+  service = inject(CenterDetailsService);
+  centerIdService = inject(CenterIdService);
 
   constructor(activatedRoute: ActivatedRoute) {
     super(activatedRoute);
   }
 
   override ngOnInit(): void {
+    this.centerId = this.centerIdService.CenterId();
     this.initializeTableOptions();
+    // super.ngOnInit();
   }
 
   initializeTableOptions() {
     this.tableOptions = {
       inputUrl: {
-        getAll: 'v2/centermember/getPaged',
+        getAll: 'v2/centerdetail/getPaged',
         getAllMethod: 'POST',
-        delete: 'v2/centermember/deletesoft',
+        delete: 'v2/centerdetail/deletesoft',
       },
       inputCols: this.initializeTableColumns(),
       inputActions: this.initializeTableActions(),
       permissions: {
-        componentName: 'CENTER-MEMBERS',
+        componentName: 'CENTER-DETAILS',
         allowAll: true,
         listOfPermissions: [],
       },
       bodyOptions: {
-        filter: {},
+        filter: { centerId: this.centerId },
       },
-      responsiveDisplayedProperties: ['code', 'name'],
+      responsiveDisplayedProperties: ['title', 'description', 'content'],
     };
   }
 
   initializeTableColumns(): TableOptions['inputCols'] {
     return [
       {
-        field: 'code',
-        header: 'الكــود',
+        field: 'title',
+        header: 'العنوان',
+        filter: true,
+        filterMode: 'text',
+      },
+      {
+        field: 'description',
+        header: 'الوصف',
+        filter: true,
+        filterMode: 'text',
+      },
+      {
+        field: 'content',
+        header: 'المحتوي',
         filter: true,
         filterMode: 'text',
       },
@@ -74,10 +89,8 @@ export class CenterMembersComponent extends BaseListComponent {
         name: 'Edit',
         icon: 'pi pi-file-edit',
         color: 'text-middle',
-        isCallBack: true,
-        call: (row) => {
-          this.openEdit(row);
-        },
+        isEdit: true,
+        route: '/pages/center-details/edit/',
         allowAll: true,
       },
       {
@@ -88,19 +101,6 @@ export class CenterMembersComponent extends BaseListComponent {
         isDelete: true,
       },
     ];
-  }
-
-  openAdd() {
-    this.openDialog(AddEditCenterMemberComponent, 'اضافة عضو للمركز', {
-      pageType: 'add',
-    });
-  }
-
-  openEdit(rowData: any) {
-    this.openDialog(AddEditCenterMemberComponent, 'تعديل عضو', {
-      pageType: 'edit',
-      row: { rowData },
-    });
   }
 
   /* when leaving the component */

@@ -4,14 +4,14 @@ import { CardModule } from 'primeng/card';
 import {
   PrimeDataTableComponent,
   PrimeTitleToolBarComponent,
-  CenterDetailsService,
-} from '../../../../../../shared';
-import { TableOptions } from '../../../../../../shared/interfaces';
-import { BaseListComponent } from '../../../../../../base/components/base-list-component';
-import { AddEditCenterDetailComponent } from '../../components/add-edit-center-detail/add-edit-center-detail.component';
+  CentersService,
+} from '../../../../shared';
+import { TableOptions } from '../../../../shared/interfaces';
+import { BaseListComponent } from '../../../../base/components/base-list-component';
+import { AddEditCenterComponent } from '../../components/add-edit-center/add-edit-center.component';
 
 @Component({
-  selector: 'app-center-details',
+  selector: 'app-centers',
 
   imports: [
     RouterModule,
@@ -19,14 +19,12 @@ import { AddEditCenterDetailComponent } from '../../components/add-edit-center-d
     PrimeDataTableComponent,
     PrimeTitleToolBarComponent,
   ],
-  templateUrl: './center-details.component.html',
-  styleUrl: './center-details.component.css',
+  templateUrl: './centers.component.html',
+  styleUrl: './centers.component.css',
 })
-export class CenterDetailsComponent extends BaseListComponent {
-  @Input() employeeId: string = '';
-  isEnglish = false;
+export class CentersComponent extends BaseListComponent {
   tableOptions!: TableOptions;
-  service = inject(CenterDetailsService);
+  service = inject(CentersService);
 
   constructor(activatedRoute: ActivatedRoute) {
     super(activatedRoute);
@@ -34,46 +32,41 @@ export class CenterDetailsComponent extends BaseListComponent {
 
   override ngOnInit(): void {
     this.initializeTableOptions();
+    // super.ngOnInit();
   }
 
   initializeTableOptions() {
     this.tableOptions = {
       inputUrl: {
-        getAll: 'v2/centerdetail/getPaged',
+        getAll: 'v2/center/getPaged',
         getAllMethod: 'POST',
-        delete: 'v2/centerdetail/deletesoft',
+        delete: 'v2/center/deletesoft',
       },
       inputCols: this.initializeTableColumns(),
       inputActions: this.initializeTableActions(),
       permissions: {
-        componentName: 'CENTER-DETAILS',
+        componentName: 'CENTERS',
         allowAll: true,
         listOfPermissions: [],
       },
       bodyOptions: {
         filter: {},
       },
-      responsiveDisplayedProperties: ['title', 'description', 'content'],
+      responsiveDisplayedProperties: ['subTitle', 'place'],
     };
   }
 
   initializeTableColumns(): TableOptions['inputCols'] {
     return [
       {
-        field: 'title',
-        header: 'العنوان',
+        field: 'subTitle',
+        header: 'العنوان الفرعي',
         filter: true,
         filterMode: 'text',
       },
       {
-        field: 'description',
-        header: 'الوصف',
-        filter: true,
-        filterMode: 'text',
-      },
-      {
-        field: 'content',
-        header: 'المحتوي',
+        field: 'place',
+        header: 'المكان',
         filter: true,
         filterMode: 'text',
       },
@@ -86,10 +79,8 @@ export class CenterDetailsComponent extends BaseListComponent {
         name: 'Edit',
         icon: 'pi pi-file-edit',
         color: 'text-middle',
-        isCallBack: true,
-        call: (row) => {
-          this.openEdit(row);
-        },
+        isEdit: true,
+        route: 'edit/',
         allowAll: true,
       },
       {
@@ -100,19 +91,6 @@ export class CenterDetailsComponent extends BaseListComponent {
         isDelete: true,
       },
     ];
-  }
-
-  openAdd() {
-    this.openDialog(AddEditCenterDetailComponent, 'اضافة تفاصيل للمركز', {
-      pageType: 'add',
-    });
-  }
-
-  openEdit(rowData: any) {
-    this.openDialog(AddEditCenterDetailComponent, 'تعديل تفاصيل للمركز', {
-      pageType: 'edit',
-      row: { rowData },
-    });
   }
 
   /* when leaving the component */

@@ -29,22 +29,23 @@
       </app-prime-input-text>
     </div>
 
-    @if (pageType !== 'add' && managementId || !managementId ) {
+    @if (pageType !== 'add' && centerId || !centerId ) {
     <div class="form-col">
-      <label class="text-middle mb-2">{{ "الادارة" }}</label>
+      <label class="text-middle mb-2">{{ "المركز" }}</label>
       <app-prime-autocomplete
-        [disabled]="!!managementId"
+        [disabled]="!!centerId"
         [field]="'pageId'"
-        [selectedOption]="selectedManagement"
-        [suggestions]="filteredManagements"
+        [selectedOption]="selectedCenter"
+        [suggestions]="filteredCenters"
         [formGroup]="form"
-        (onSelect)="onManagementSelect($event)"
+        (onSelect)="onCenterSelect($event)"
         [lazy]="false"
-        (handleMethod)="getManagements($event)"
+        (handleMethod)="getCenters($event)"
       ></app-prime-autocomplete>
     </div>
     }
   </form>
+
   }
 </p-card>
 

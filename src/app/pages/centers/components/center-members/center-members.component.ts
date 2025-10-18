@@ -2,17 +2,17 @@ import { Component, inject, Input } from '@angular/core';
 import { ActivatedRoute, RouterModule } from '@angular/router';
 import { CardModule } from 'primeng/card';
 import {
+  CenterMembersService,
   PrimeDataTableComponent,
   PrimeTitleToolBarComponent,
-  CentersService,
-} from '../../../../../../shared';
-import { TableOptions } from '../../../../../../shared/interfaces';
-import { BaseListComponent } from '../../../../../../base/components/base-list-component';
-import { takeUntil } from 'rxjs';
-import { AddEditCenterComponent } from '../../components/add-edit-center/add-edit-center.component';
+} from '../../../../shared';
+import { TableOptions } from '../../../../shared/interfaces';
+import { BaseListComponent } from '../../../../base/components/base-list-component';
+import { AddEditCenterMemberComponent } from '../../components/add-edit-center-member/add-edit-center-member.component';
+import { CenterIdService } from '../../center-id.service';
 
 @Component({
-  selector: 'app-centers',
+  selector: 'app-center',
 
   imports: [
     RouterModule,
@@ -20,55 +20,60 @@ import { AddEditCenterComponent } from '../../components/add-edit-center/add-edi
     PrimeDataTableComponent,
     PrimeTitleToolBarComponent,
   ],
-  templateUrl: './centers.component.html',
-  styleUrl: './centers.component.css',
+  templateUrl: './center-members.component.html',
+  styleUrl: './center-members.component.css',
 })
-export class CentersComponent extends BaseListComponent {
-  @Input() employeeId: string = '';
-  isEnglish = false;
+export class CenterMembersComponent extends BaseListComponent {
+  centerId: string = '';
   tableOptions!: TableOptions;
-  service = inject(CentersService);
+
+  service = inject(CenterMembersService);
+  centerIdService = inject(CenterIdService);
 
   constructor(activatedRoute: ActivatedRoute) {
     super(activatedRoute);
   }
 
   override ngOnInit(): void {
+    this.centerId = this.centerIdService.CenterId();
     this.initializeTableOptions();
+    // super.ngOnInit();
   }
 
   initializeTableOptions() {
     this.tableOptions = {
       inputUrl: {
-        getAll: 'v2/center/getPaged',
+        getAll: 'v2/centermember/getPaged',
         getAllMethod: 'POST',
-        delete: 'v2/center/deletesoft',
+        delete: 'v2/centermember/deletesoft',
       },
       inputCols: this.initializeTableColumns(),
       inputActions: this.initializeTableActions(),
       permissions: {
-        componentName: 'CENTERS',
+        componentName: 'CENTER-MEMBERS',
         allowAll: true,
         listOfPermissions: [],
       },
       bodyOptions: {
-        filter: {},
+        filter: { centerId: this.centerId },
       },
-      responsiveDisplayedProperties: ['subTitle', 'place'],
+      responsiveDisplayedProperties: ['isLeader', 'centerId'],
     };
   }
 
   initializeTableColumns(): TableOptions['inputCols'] {
     return [
       {
-        field: 'subTitle',
-        header: 'العنوان الفرعي',
+        field: 'isLeader',
+        header: 'الحالة',
+        trueText: 'ادمن',
+        falseText: 'مستخدم',
         filter: true,
-        filterMode: 'text',
+        filterMode: 'boolean',
       },
       {
-        field: 'place',
-        header: 'المكان',
+        field: 'centerId',
+        header: 'المركز',
         filter: true,
         filterMode: 'text',
       },
@@ -98,13 +103,14 @@ export class CentersComponent extends BaseListComponent {
   }
 
   openAdd() {
-    this.openDialog(AddEditCenterComponent, 'اضافة مركز ', {
+    this.openDialog(AddEditCenterMemberComponent, 'اضافة عضو للمركز', {
       pageType: 'add',
+      row: { centerId: this.centerId },
     });
   }
 
   openEdit(rowData: any) {
-    this.openDialog(AddEditCenterComponent, 'تعديل مركز', {
+    this.openDialog(AddEditCenterMemberComponent, 'تعديل عضو', {
       pageType: 'edit',
       row: { rowData },
     });

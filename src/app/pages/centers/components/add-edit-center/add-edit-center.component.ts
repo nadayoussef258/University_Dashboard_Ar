@@ -1,5 +1,5 @@
 import { Component, inject, OnInit } from '@angular/core';
-import { BaseEditComponent } from '../../../../../../base/components/base-edit-component';
+import { BaseEditComponent } from '../../../../base/components/base-edit-component';
 import { CardModule } from 'primeng/card';
 import { FormsModule, ReactiveFormsModule, Validators } from '@angular/forms';
 import {
@@ -11,9 +11,10 @@ import {
   PrimeAutoCompleteComponent,
   PrimeInputTextComponent,
   SubmitButtonsComponent,
-} from '../../../../../../shared';
+} from '../../../../shared';
 import { DialogService } from 'primeng/dynamicdialog';
 import { ActivatedRoute } from '@angular/router';
+import { CenterIdService } from '../../center-id.service';
 
 @Component({
   selector: 'app-add-edit-center',
@@ -33,6 +34,8 @@ export class AddEditCenterComponent
   extends BaseEditComponent
   implements OnInit
 {
+  centerId: string = '';
+
   selectedPage: any;
   selectedAbout: any;
   filteredPages: any[] = [];
@@ -41,6 +44,7 @@ export class AddEditCenterComponent
   centersService: CentersService = inject(CentersService);
   pagesService: PagesService = inject(PagesService);
   aboutService: AboutService = inject(AboutService);
+  centerIdService: CenterIdService = inject(CenterIdService);
   dialogService: DialogService = inject(DialogService);
 
   constructor(override activatedRoute: ActivatedRoute) {
@@ -48,13 +52,12 @@ export class AddEditCenterComponent
   }
 
   override ngOnInit(): void {
-    super.ngOnInit();
-    this.dialogService.dialogComponentRefMap.forEach((element) => {
-      this.pageType = element.instance.ddconfig.data.pageType;
-      if (this.pageType === 'edit') {
-        this.id = element.instance.ddconfig.data.row.rowData.id;
-      }
-    });
+    // super.ngOnInit();
+    this.id = this.activatedRoute?.snapshot?.paramMap?.get('id') as string;
+    // this.centerId = this.activatedRoute?.snapshot?.paramMap?.get('id') ?? '';
+
+    this.centerIdService.setCenterId(this.id);
+
     if (this.pageType === 'edit') {
       this.getEditCenter();
     } else {
@@ -145,19 +148,17 @@ export class AddEditCenterComponent
   submit() {
     if (this.pageType === 'add')
       this.centersService.add(this.form.value).subscribe(() => {
-        this.closeDialog();
+        this.redirect();
       });
     if (this.pageType === 'edit')
       this.centersService
         .update({ id: this.id, ...this.form.value })
         .subscribe(() => {
-          this.closeDialog();
+          this.redirect();
         });
   }
 
-  closeDialog() {
-    this.dialogService.dialogComponentRefMap.forEach((dialog) => {
-      dialog.destroy();
-    });
-  }
+  override redirect = () => {
+    super.redirect('/pages/centers');
+  };
 }

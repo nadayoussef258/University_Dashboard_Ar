@@ -1,45 +1,63 @@
 import { Routes } from '@angular/router';
+import { redirectIfDirectAccessCenterGuard } from '../guards/centers/redirect-if-direct-access-center.guard';
+import { CenterResolver } from './center-resolver.resolver';
 
-export const mainCentersRoutes: Routes = [
+export const centersRoutes: Routes = [
   {
     path: '',
     loadComponent: () =>
-      import('./pages/center-tabs/center-tabs.component').then(
-        (c) => c.CenterTabsComponent
+      import('./pages/centers/centers.component').then(
+        (c) => c.CentersComponent
       ),
+    data: { pageTitle: 'المراكز', pageType: 'list' },
+  },
+  {
+    path: 'add',
+    loadComponent: () =>
+      import('./components/centers-tabs/centers-tabs.component').then(
+        (c) => c.CentersTabsComponent
+      ),
+    data: { pageTitle: 'إضافة مركز', pageType: 'add' },
     children: [
       {
         path: '',
-        pathMatch: 'full',
-        redirectTo: 'main-centers', // ✅ أول ما يدخل على /managements يروح هنا
+        loadComponent: () =>
+          import('./components/add-edit-center/add-edit-center.component').then(
+            (c) => c.AddEditCenterComponent
+          ),
       },
+    ],
+  },
+  {
+    path: 'edit/:id',
+    loadComponent: () =>
+      import('./components/centers-tabs/centers-tabs.component').then(
+        (c) => c.CentersTabsComponent
+      ),
+    data: { pageTitle: 'تعديل مركز', pageType: 'edit' },
+    children: [
       {
-        path: 'main-centers',
-        loadChildren: () =>
-          import('./components/center/centers.routes').then(
-            (m) => m.centersRoutes
+        path: '',
+        loadComponent: () =>
+          import('./components/add-edit-center/add-edit-center.component').then(
+            (c) => c.AddEditCenterComponent
           ),
       },
       {
-        path: 'center-attachments',
-        loadChildren: () =>
-          import(
-            './components/center-attachments/center-attachments.routes'
-          ).then((m) => m.centerAttachmentsRoutes),
-      },
-      {
-        path: 'center-details',
+        path: 'center-detail',
         loadChildren: () =>
           import('./components/center-details/center-details.routes').then(
-            (m) => m.centerDetailsRoutes
+            (c) => c.centerDetailsRoutes
           ),
+        canActivate: [redirectIfDirectAccessCenterGuard],
       },
       {
-        path: 'center-members',
+        path: 'center-member',
         loadChildren: () =>
           import('./components/center-members/center-members.routes').then(
-            (m) => m.centerMembersRoutes
+            (c) => c.centerMembersRoutes
           ),
+        canActivate: [redirectIfDirectAccessCenterGuard],
       },
     ],
   },

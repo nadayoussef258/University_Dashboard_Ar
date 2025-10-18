@@ -123,6 +123,27 @@ export class AppMenu {
             ],
           },
           {
+            label: 'المراكز',
+            icon: 'pi pi-sitemap',
+            items: [
+              {
+                label: 'المراكز الرئيسية',
+                icon: 'pi pi-building',
+                routerLink: ['/pages/centers'],
+              },
+              {
+                label: 'تفاصيل المراكز',
+                icon: 'pi pi-info-circle',
+                routerLink: ['/pages/center-details'],
+              },
+              {
+                label: 'أعضاء المراكز',
+                icon: 'pi pi-users',
+                routerLink: ['/pages/center-members'],
+              },
+            ],
+          },
+          {
             label: 'القطاعات',
             icon: 'pi pi-th-large',
             items: [

@@ -37,8 +37,8 @@ export class AddEditManagementDetailComponent
 
   manageDetailsService: ManageDetailsService = inject(ManageDetailsService);
   managementsService: ManagementsService = inject(ManagementsService);
-  dialogService: DialogService = inject(DialogService);
   managmentIdService: ManagmentIdService = inject(ManagmentIdService);
+  dialogService: DialogService = inject(DialogService);
 
   constructor(override activatedRoute: ActivatedRoute) {
     super(activatedRoute);

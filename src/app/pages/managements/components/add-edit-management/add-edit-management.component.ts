@@ -33,7 +33,6 @@ export class AddEditManagementComponent
   implements OnInit
 {
   managementId: string = '';
-  showManagementsTabs: boolean = false;
 
   selectedPage: any;
   selectedAbout: any;
@@ -54,9 +53,8 @@ export class AddEditManagementComponent
   override ngOnInit(): void {
     super.ngOnInit();
     this.id = this.activatedRoute?.snapshot?.paramMap?.get('id') as string;
-    this.managementId = this.activatedRoute?.snapshot?.paramMap?.get(
-      'id'
-    ) as string;
+    // this.managementId =
+    // this.activatedRoute?.snapshot?.paramMap?.get('id') ?? '';
 
     // set value of managementId
     this.managementIdServices.setManagementId(this.id);
@@ -151,7 +149,6 @@ export class AddEditManagementComponent
   submit() {
     if (this.pageType === 'add')
       this.managementsService.add(this.form.value).subscribe((res: any) => {
-        this.showManagementsTabs = true;
         this.redirect();
       });
     if (this.pageType === 'edit')

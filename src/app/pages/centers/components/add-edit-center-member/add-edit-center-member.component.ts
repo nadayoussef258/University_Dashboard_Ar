@@ -1,19 +1,22 @@
 import { Component, inject, OnInit } from '@angular/core';
-import { BaseEditComponent } from '../../../../../../base/components/base-edit-component';
+import { BaseEditComponent } from '../../../../base/components/base-edit-component';
 import { CardModule } from 'primeng/card';
 import { FormsModule, ReactiveFormsModule, Validators } from '@angular/forms';
 import {
-  CenterDetailsService,
+  CenterMembersService,
   CentersService,
   PrimeAutoCompleteComponent,
   PrimeInputTextComponent,
   SubmitButtonsComponent,
-} from '../../../../../../shared';
+} from '../../../../shared';
 import { DialogService } from 'primeng/dynamicdialog';
 import { ActivatedRoute } from '@angular/router';
+import { ToggleSwitch } from 'primeng/toggleswitch';
+import { JsonPipe, NgClass } from '@angular/common';
+import { CenterIdService } from '../../center-id.service';
 
 @Component({
-  selector: 'app-add-edit-center-detail',
+  selector: 'app-add-edit-center-member',
   imports: [
     CardModule,
     FormsModule,
@@ -21,20 +24,27 @@ import { ActivatedRoute } from '@angular/router';
     SubmitButtonsComponent,
     PrimeInputTextComponent,
     PrimeAutoCompleteComponent,
+    ToggleSwitch,
+    JsonPipe,
+    NgClass,
   ],
-  templateUrl: './add-edit-center-detail.component.html',
-  styleUrl: './add-edit-center-detail.component.css',
+  templateUrl: './add-edit-center-member.component.html',
+  styleUrl: './add-edit-center-member.component.css',
 })
 //
-export class AddEditCenterDetailComponent
+export class AddEditCenterMemberComponent
   extends BaseEditComponent
   implements OnInit
 {
+  centerId: string = '';
   selectedCenter: any;
   filteredCenters: any[] = [];
+  allowEditCenter: boolean = false;
+  hideToggleBtn: boolean = false;
 
-  centerDetailsService: CenterDetailsService = inject(CenterDetailsService);
+  centerMembersService: CenterMembersService = inject(CenterMembersService);
   centersService: CentersService = inject(CentersService);
+  centerIdService: CenterIdService = inject(CenterIdService);
 
   dialogService: DialogService = inject(DialogService);
 
@@ -43,7 +53,9 @@ export class AddEditCenterDetailComponent
   }
 
   override ngOnInit(): void {
-    super.ngOnInit();
+    // super.ngOnInit();
+    this.centerId = this.centerIdService.CenterId();
+
     this.dialogService.dialogComponentRefMap.forEach((element) => {
       this.pageType = element.instance.ddconfig.data.pageType;
       if (this.pageType === 'edit') {
@@ -51,7 +63,7 @@ export class AddEditCenterDetailComponent
       }
     });
     if (this.pageType === 'edit') {
-      this.getEditCenterDetail();
+      this.getEditCenterMember();
     } else {
       this.initFormGroup();
     }
@@ -59,9 +71,7 @@ export class AddEditCenterDetailComponent
 
   initFormGroup() {
     this.form = this.fb.group({
-      title: ['', Validators.required],
-      description: ['', Validators.required],
-      content: ['', Validators.required],
+      isLeader: [false],
       centerId: [null, Validators.required],
     });
   }
@@ -70,10 +80,8 @@ export class AddEditCenterDetailComponent
     const query = event.query.toLowerCase();
     this.centersService.centers.subscribe({
       next: (res: any) => {
-        console.log(res);
-
         this.filteredCenters = res.filter((center: any) =>
-          center.pageId.includes(query)
+          center.centerId.includes(query)
         );
       },
       error: (err) => {
@@ -99,23 +107,32 @@ export class AddEditCenterDetailComponent
     });
   }
 
-  getEditCenterDetail = () => {
-    this.centerDetailsService
-      .getEditCenterDetail(this.id)
-      .subscribe((centerDetail: any) => {
+  getEditCenterMember = () => {
+    this.centerMembersService
+      .getEditCenterMember(this.id)
+      .subscribe((centerMember: any) => {
         this.initFormGroup();
-        this.form.patchValue(centerDetail);
-        this.fetchCenterDetails(centerDetail);
+        this.form.patchValue(centerMember);
+        this.fetchCenterDetails(centerMember);
       });
   };
 
+  toggleCenterEdit() {
+    const control = this.form.get('centerId');
+    if (this.allowEditCenter) {
+      control?.enable({ emitEvent: false });
+    } else {
+      control?.disable({ emitEvent: false });
+    }
+  }
+
   submit() {
     if (this.pageType === 'add')
-      this.centerDetailsService.add(this.form.value).subscribe(() => {
+      this.centerMembersService.add(this.form.value).subscribe(() => {
         this.closeDialog();
       });
     if (this.pageType === 'edit')
-      this.centerDetailsService
+      this.centerMembersService
         .update({ id: this.id, ...this.form.value })
         .subscribe(() => {
           this.closeDialog();

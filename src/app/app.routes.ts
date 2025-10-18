@@ -20,8 +20,13 @@ export const routes: Routes = [
   { path: 'landing', component: Landing },
   { path: 'auth', loadChildren: () => import('../app/pages/auth/auth.routes') },
   {
+    path: 'notfound-404',
+    component: Notfound,
+  },
+
+  {
     path: '**',
-    loadComponent: () =>
-      import('./pages/notfound/notfound').then((c) => c.Notfound),
+    redirectTo: '/notfound-404',
+    pathMatch: 'full',
   },
 ];

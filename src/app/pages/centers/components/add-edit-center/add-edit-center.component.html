@@ -1,6 +1,24 @@
 @if (form) {
 <form method="post" class="my-4 grid gap-3 grid-cols-12" [formGroup]="form">
   <div class="form-col">
+    <app-prime-input-text
+      [formGroup]="form"
+      controlName="subTitle"
+      [label]="'العنوان الفرعي'"
+    >
+    </app-prime-input-text>
+  </div>
+
+  <div class="form-col">
+    <app-prime-input-text
+      [formGroup]="form"
+      controlName="place"
+      [label]="'المكان'"
+    >
+    </app-prime-input-text>
+  </div>
+
+  <div class="form-col">
     <label class="text-middle mb-2">{{ "عنوان الصفحة" }}</label>
     <app-prime-autocomplete
       [field]="'title'"

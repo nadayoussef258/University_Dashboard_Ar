@@ -49,13 +49,6 @@ export const pagesRoutes: Routes = [
       ),
   },
   {
-    path: 'centers',
-    loadChildren: () =>
-      import('../pages/centers/centers.routes').then(
-        (m) => m.mainCentersRoutes
-      ),
-  },
-  {
     path: 'departments',
     loadChildren: () =>
       import('./departments/departments.routes').then(
@@ -124,6 +117,25 @@ export const pagesRoutes: Routes = [
         (c) => c.sectorUnitsRoutes
       ),
   },
+  {
+    path: 'centers',
+    loadChildren: () =>
+      import('./centers/centers.routes').then((m) => m.centersRoutes),
+  },
+  {
+    path: 'center-details',
+    loadChildren: () =>
+      import('./centers/components/center-details/center-details.routes').then(
+        (m) => m.centerDetailsRoutes
+      ),
+  },
+  {
+    path: 'center-members',
+    loadChildren: () =>
+      import('./centers/components/center-members/center-members.routes').then(
+        (m) => m.centerMembersRoutes
+      ),
+  },
   { path: 'empty', component: Empty },
-  { path: '**', redirectTo: 'notfound', pathMatch: 'full' },
+  { path: '**', redirectTo: '/notfound-404', pathMatch: 'full' },
 ] as Routes;

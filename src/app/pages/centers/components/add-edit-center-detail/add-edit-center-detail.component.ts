@@ -1,21 +1,20 @@
 import { Component, inject, OnInit } from '@angular/core';
-import { BaseEditComponent } from '../../../../../../base/components/base-edit-component';
+import { BaseEditComponent } from '../../../../base/components/base-edit-component';
 import { CardModule } from 'primeng/card';
 import { FormsModule, ReactiveFormsModule, Validators } from '@angular/forms';
 import {
-  CenterMembersService,
+  CenterDetailsService,
   CentersService,
   PrimeAutoCompleteComponent,
   PrimeInputTextComponent,
   SubmitButtonsComponent,
-} from '../../../../../../shared';
+} from '../../../../shared';
 import { DialogService } from 'primeng/dynamicdialog';
 import { ActivatedRoute } from '@angular/router';
-import { ToggleSwitch } from 'primeng/toggleswitch';
-import { JsonPipe, NgClass } from '@angular/common';
+import { CenterIdService } from '../../center-id.service';
 
 @Component({
-  selector: 'app-add-edit-center-member',
+  selector: 'app-add-edit-center-detail',
   imports: [
     CardModule,
     FormsModule,
@@ -23,23 +22,22 @@ import { JsonPipe, NgClass } from '@angular/common';
     SubmitButtonsComponent,
     PrimeInputTextComponent,
     PrimeAutoCompleteComponent,
-    ToggleSwitch,
-    JsonPipe,
-    NgClass,
   ],
-  templateUrl: './add-edit-center-member.component.html',
-  styleUrl: './add-edit-center-member.component.css',
+  templateUrl: './add-edit-center-detail.component.html',
+  styleUrl: './add-edit-center-detail.component.css',
 })
 //
-export class AddEditCenterMemberComponent
+export class AddEditCenterDetailComponent
   extends BaseEditComponent
   implements OnInit
 {
+  centerId: string = '';
   selectedCenter: any;
   filteredCenters: any[] = [];
 
-  centerMembersService: CenterMembersService = inject(CenterMembersService);
+  centerDetailsService: CenterDetailsService = inject(CenterDetailsService);
   centersService: CentersService = inject(CentersService);
+  centerIdService: CenterIdService = inject(CenterIdService);
 
   dialogService: DialogService = inject(DialogService);
 
@@ -48,15 +46,12 @@ export class AddEditCenterMemberComponent
   }
 
   override ngOnInit(): void {
-    super.ngOnInit();
-    this.dialogService.dialogComponentRefMap.forEach((element) => {
-      this.pageType = element.instance.ddconfig.data.pageType;
-      if (this.pageType === 'edit') {
-        this.id = element.instance.ddconfig.data.row.rowData.id;
-      }
-    });
+    // super.ngOnInit();
+    this.centerId = this.centerIdService.CenterId();
+    this.id = this.activatedRoute.snapshot.paramMap.get('id') as string;
+
     if (this.pageType === 'edit') {
-      this.getEditCenterMember();
+      this.getEditCenterDetail();
     } else {
       this.initFormGroup();
     }
@@ -64,7 +59,9 @@ export class AddEditCenterMemberComponent
 
   initFormGroup() {
     this.form = this.fb.group({
-      isLeader: [false],
+      title: ['', Validators.required],
+      description: ['', Validators.required],
+      content: ['', Validators.required],
       centerId: [null, Validators.required],
     });
   }
@@ -73,10 +70,8 @@ export class AddEditCenterMemberComponent
     const query = event.query.toLowerCase();
     this.centersService.centers.subscribe({
       next: (res: any) => {
-        console.log(res);
-
         this.filteredCenters = res.filter((center: any) =>
-          center.centerId.includes(query)
+          center.pageId.includes(query)
         );
       },
       error: (err) => {
@@ -102,32 +97,34 @@ export class AddEditCenterMemberComponent
     });
   }
 
-  getEditCenterMember = () => {
-    this.centerMembersService
-      .getEditCenterMember(this.id)
-      .subscribe((centerMember: any) => {
+  getEditCenterDetail = () => {
+    this.centerDetailsService
+      .getEditCenterDetail(this.id)
+      .subscribe((centerDetail: any) => {
         this.initFormGroup();
-        this.form.patchValue(centerMember);
-        this.fetchCenterDetails(centerMember);
+        this.form.patchValue(centerDetail);
+        this.fetchCenterDetails(centerDetail);
       });
   };
 
   submit() {
     if (this.pageType === 'add')
-      this.centerMembersService.add(this.form.value).subscribe(() => {
-        this.closeDialog();
+      this.centerDetailsService.add(this.form.value).subscribe(() => {
+        this.redirect();
       });
     if (this.pageType === 'edit')
-      this.centerMembersService
+      this.centerDetailsService
         .update({ id: this.id, ...this.form.value })
         .subscribe(() => {
-          this.closeDialog();
+          this.redirect();
         });
   }
 
-  closeDialog() {
-    this.dialogService.dialogComponentRefMap.forEach((dialog) => {
-      dialog.destroy();
-    });
-  }
+  override redirect = () => {
+    if (this.centerId) {
+      super.redirect(`/pages/centers/edit/${this.centerId}`);
+    } else {
+      super.redirect('/pages/center-details');
+    }
+  };
 }

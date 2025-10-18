@@ -4,29 +4,27 @@
     @if (pageType !== 'add' && !hideToggleBtn) {
     <div class="flex gap-2 col-span-12 items-center">
       <p-toggleswitch
-        [(ngModel)]="allowEditManagement"
+        [(ngModel)]="allowEditCenter"
         [ngModelOptions]="{ standalone: true }"
-        (onChange)="toggleManagementEdit()"
+        (onChange)="toggleCenterEdit()"
       >
       </p-toggleswitch>
-      <label class="font-medium text-sm"
-        >هل تريد التعديل على عنوان الإدارة؟</label
-      >
+      <label class="font-medium text-sm">هل تريد تعديل المركز ؟</label>
     </div>
     }
+
     <!--  -->
-    @if(pageType !== 'add' && managementId || !managementId){
+    @if(pageType !== 'add' && centerId || !centerId){
     <div class="form-col">
-      <label class="text-middle mb-2">{{ "عنوان الادارة" }}</label>
+      <label class="text-middle mb-2">{{ "المركز" }}</label>
       <app-prime-autocomplete
-        [disabled]="pageType === 'edit' && !allowEditManagement"
         [field]="'pageId'"
-        [selectedOption]="selectedManagement"
-        [suggestions]="filteredManagements"
+        [selectedOption]="selectedCenter"
+        [suggestions]="filteredCenters"
         [formGroup]="form"
-        (onSelect)="onManagementSelect($event)"
+        (onSelect)="onCenterSelect($event)"
         [lazy]="false"
-        (handleMethod)="getManagements($event)"
+        (handleMethod)="getCenters($event)"
       ></app-prime-autocomplete>
     </div>
     }

@@ -25,6 +25,7 @@ export const sectorsRoutes: Routes = [
         (c) => c.SectorsTabsComponent
       ),
     data: { pageTitle: 'تعديل ادارة', pageType: 'edit' },
+    canActivateChild: [redirectIfDirectAccessSectorGuard],
     children: [
       {
         path: '',
@@ -39,7 +40,6 @@ export const sectorsRoutes: Routes = [
           import('./components/sector-details/sector-details.routes').then(
             (c) => c.sectorDetailsRoutes
           ),
-        canActivate: [redirectIfDirectAccessSectorGuard],
       },
       {
         path: 'sector-member',
@@ -47,7 +47,6 @@ export const sectorsRoutes: Routes = [
           import('./components/sector-member/sector-members.routes').then(
             (c) => c.sectorMembersRoutes
           ),
-        canActivate: [redirectIfDirectAccessSectorGuard],
       },
       {
         path: 'sector-post',
@@ -55,7 +54,6 @@ export const sectorsRoutes: Routes = [
           import('./components/sector-posts/sector-posts.routes').then(
             (c) => c.sectorPostsRoutes
           ),
-        canActivate: [redirectIfDirectAccessSectorGuard],
       },
       {
         path: 'sector-program',
@@ -63,7 +61,6 @@ export const sectorsRoutes: Routes = [
           import('./components/sector-programs/sector-programs.routes').then(
             (c) => c.sectorProgramsRoutes
           ),
-        canActivate: [redirectIfDirectAccessSectorGuard],
       },
       {
         path: 'sector-service',
@@ -71,7 +68,6 @@ export const sectorsRoutes: Routes = [
           import('./components/sector-services/sector-services.routes').then(
             (c) => c.sectorServicesRoutes
           ),
-        canActivate: [redirectIfDirectAccessSectorGuard],
       },
       {
         path: 'sector-unit',
@@ -79,7 +75,6 @@ export const sectorsRoutes: Routes = [
           import('./components/sector-units/sector-units.routes').then(
             (c) => c.sectorUnitsRoutes
           ),
-        canActivate: [redirectIfDirectAccessSectorGuard],
       },
     ],
   },

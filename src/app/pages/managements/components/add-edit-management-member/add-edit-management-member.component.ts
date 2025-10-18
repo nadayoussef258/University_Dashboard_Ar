@@ -66,6 +66,11 @@ export class AddEditManagementMemberComponent
     this.dialogService.dialogComponentRefMap.forEach((element) => {
       this.pageType = element.instance.ddconfig.data.pageType;
       this.managementId = element.instance.ddconfig.data.row.managementId;
+      console.log(
+        'this.managementId from dialogComponentRefMap AddEditManagementMemberComponent ',
+        this.managementId
+      );
+
       if (this.pageType === 'edit') {
         this.id = element.instance.ddconfig.data.row.rowData.id;
       }

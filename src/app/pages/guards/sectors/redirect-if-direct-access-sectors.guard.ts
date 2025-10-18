@@ -4,13 +4,19 @@ import { inject } from '@angular/core';
 export const redirectIfDirectAccessSectorGuard: CanActivateFn = (route) => {
   const router = inject(Router);
   const id = route.parent?.params['id'];
+  const tabPath = route.routeConfig?.path;
 
-  /**
-   * router.navigated === false معناها:
-   * - المستخدم عمل Refresh
-   * - أو كتب اللينك في address bar
-   */
-  if (!router.navigated && id) {
+  // قائمة التابات التي نمنع الدخول المباشر لها
+  const protectedTabs = [
+    'sector-detail',
+    'sector-member',
+    'sector-post',
+    'sector-program',
+    'sector-service',
+    'sector-unit',
+  ];
+
+  if (!router.navigated && id && protectedTabs.includes(tabPath || '')) {
     return router.createUrlTree([`/pages/sectors/edit/${id}`]);
   }
 
