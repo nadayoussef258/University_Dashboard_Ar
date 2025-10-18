@@ -1,10 +1,9 @@
-import { Component, inject, Input } from '@angular/core';
+import { Component, inject } from '@angular/core';
 import { ActivatedRoute, RouterModule } from '@angular/router';
 import { CardModule } from 'primeng/card';
 import {
   PrimeDataTableComponent,
   PrimeTitleToolBarComponent,
-  ActionsService,
   ManagementsService,
 } from '../../../../shared';
 import { TableOptions } from '../../../../shared/interfaces';

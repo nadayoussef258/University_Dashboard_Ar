@@ -1,0 +1,58 @@
+<p-card class="m-0 p-2">
+  @if (form) {
+  <form method="post" class="grid gap-4 grid-cols-12" [formGroup]="form">
+    <div class="form-col">
+      <app-prime-input-text
+        [formGroup]="form"
+        controlName="name"
+        [label]="'اسم القطاع'"
+      >
+      </app-prime-input-text>
+    </div>
+
+    <div class="form-col">
+      <app-prime-input-text
+        [formGroup]="form"
+        controlName="subTitle"
+        [label]="'عنوان فرعي للقطاع'"
+      >
+      </app-prime-input-text>
+    </div>
+
+    <div class="form-col">
+      <label class="text-middle mb-2 form-col">{{ "عنوان الصفحة" }}</label>
+      <app-prime-autocomplete
+        [field]="'title'"
+        [selectedOption]="selectedPage"
+        [suggestions]="filteredPages"
+        [formGroup]="form"
+        (onSelect)="onPageSelect($event)"
+        [lazy]="false"
+        (handleMethod)="getPages($event)"
+      ></app-prime-autocomplete>
+    </div>
+    <div class="form-col">
+      <label class="text-middle mb-2">{{ "عن الجامعة" }}</label>
+      <app-prime-autocomplete
+        [field]="'content'"
+        [selectedOption]="selectedAbout"
+        [suggestions]="filteredAbout"
+        [formGroup]="form"
+        (onSelect)="onAboutSelect($event)"
+        [lazy]="false"
+        (handleMethod)="getAbouts($event)"
+      ></app-prime-autocomplete>
+    </div>
+  </form>
+  }
+</p-card>
+
+@if (form) {
+<app-submit-buttons
+  [isSubmitDisabled]="form.invalid"
+  [submitButtonText]="pageType === 'add' ? 'Submit' : 'Save'"
+  (submit)="submit()"
+  (cancel)="redirect()"
+>
+</app-submit-buttons>
+}

@@ -4,12 +4,11 @@ import { CardModule } from 'primeng/card';
 import {
   PrimeDataTableComponent,
   PrimeTitleToolBarComponent,
-  ActionsService,
   ManagementMembersService,
 } from '../../../../shared';
 import { TableOptions } from '../../../../shared/interfaces';
 import { BaseListComponent } from '../../../../base/components/base-list-component';
-import { AddManagementMemberComponent } from '../add-edit-management-member/add-edit-management-member.component';
+import { AddEditManagementMemberComponent } from '../add-edit-management-member/add-edit-management-member.component';
 import { ManagmentIdService } from '../../managment-id.service';
 
 @Component({
@@ -25,7 +24,7 @@ import { ManagmentIdService } from '../../managment-id.service';
   styleUrl: './management-members.component.css',
 })
 export class ManagementMembersComponent extends BaseListComponent {
-  @Input() managementId: string = '';
+  managementId: string = '';
   isEnglish = false;
   tableOptions!: TableOptions;
   service = inject(ManagementMembersService);
@@ -38,6 +37,8 @@ export class ManagementMembersComponent extends BaseListComponent {
   override ngOnInit(): void {
     this.initializeTableOptions();
     super.ngOnInit();
+
+    this.managementId = this.managmentIdService.ManagmentId();
   }
 
   initializeTableOptions() {
@@ -103,14 +104,14 @@ export class ManagementMembersComponent extends BaseListComponent {
   }
 
   openAdd() {
-    this.openDialog(AddManagementMemberComponent, 'اضافة عضو للإدارة', {
+    this.openDialog(AddEditManagementMemberComponent, 'اضافة عضو للإدارة', {
       pageType: 'add',
       row: { managementId: this.managementId },
     });
   }
 
   openEdit(rowData: any) {
-    this.openDialog(AddManagementMemberComponent, 'تعديل عضو الإدارة', {
+    this.openDialog(AddEditManagementMemberComponent, 'تعديل عضو الإدارة', {
       pageType: 'edit',
       row: { rowData },
     });

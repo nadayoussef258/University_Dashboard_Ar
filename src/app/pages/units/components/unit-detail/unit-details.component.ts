@@ -1,4 +1,4 @@
-import { Component, inject, Input, OnChanges } from '@angular/core';
+import { Component, inject, Input } from '@angular/core';
 import { ActivatedRoute, NavigationEnd, RouterModule } from '@angular/router';
 import { CardModule } from 'primeng/card';
 import {
@@ -9,10 +9,7 @@ import {
 import { TableOptions } from '../../../../shared/interfaces';
 import { BaseListComponent } from '../../../../base/components/base-list-component';
 import { ToggleSwitchModule } from 'primeng/toggleswitch';
-import { StorageService } from '../../../../core';
 import { UnitIdService } from '../../unit-id.service';
-import { filter } from 'rxjs';
-import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 
 @Component({
   selector: 'app-unit-details',
@@ -32,29 +29,29 @@ export class UnitDetailsComponent extends BaseListComponent {
   tableData: any[] = [];
   tableOptions!: TableOptions;
   service = inject(UnitDetailsService);
-  storageServices = inject(StorageService);
   unitIdService = inject(UnitIdService);
-  storageService = inject(StorageService);
 
   constructor(activatedRoute: ActivatedRoute) {
     super(activatedRoute);
 
-    this.router.events
-      .pipe(
-        filter((event) => event instanceof NavigationEnd),
-        takeUntilDestroyed()
-      )
-      .subscribe((event: NavigationEnd) => {
-        const currentUrl = event.urlAfterRedirects.split('?')[0];
-        if (currentUrl.startsWith('/pages/unit-details')) {
-          this.unitIdService.setUnitId('');
-        }
-      });
+    // this.router.events
+    //   .pipe(
+    //     filter((event) => event instanceof NavigationEnd),
+    //     takeUntilDestroyed()
+    //   )
+    //   .subscribe((event: NavigationEnd) => {
+    //     const currentUrl = event.urlAfterRedirects.split('?')[0];
+    //     if (currentUrl.startsWith('/pages/unit-details')) {
+    //       this.unitIdService.setUnitId('');
+    //     }
+    //   });
   }
 
   override ngOnInit(): void {
     this.initializeTableOptions();
     super.ngOnInit();
+
+    this.unitId = this.unitIdService.UnitId();
   }
 
   initializeTableOptions() {

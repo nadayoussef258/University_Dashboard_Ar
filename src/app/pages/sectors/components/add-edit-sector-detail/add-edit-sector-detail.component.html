@@ -1,0 +1,50 @@
+<p-card class="m-0 p-2">
+  @if (form) {
+  <form method="post" class="grid gap-4 grid-cols-12" [formGroup]="form">
+    <div class="form-col">
+      <app-prime-input-text
+        [formGroup]="form"
+        controlName="title"
+        [label]="'عنوان القطاع'"
+      >
+      </app-prime-input-text>
+    </div>
+
+    <div class="col-span-12">
+      <app-prime-input-text
+        [formGroup]="form"
+        controlName="content"
+        [label]="'محتوي القطاع'"
+        [inputType]="'textarea'"
+      >
+      </app-prime-input-text>
+
+      @if (pageType !== 'add' && sectorId || !sectorId ) {
+      <div class="my-4 form-col">
+        <label class="text-middle mb-2">{{ "القطاع" }}</label>
+        <app-prime-autocomplete
+          [disabled]="!!sectorId"
+          [field]="'name'"
+          [selectedOption]="selectedSector"
+          [suggestions]="filteredSectors"
+          [formGroup]="form"
+          (onSelect)="onSectorSelect($event)"
+          [lazy]="false"
+          (handleMethod)="getSectors($event)"
+        ></app-prime-autocomplete>
+      </div>
+      }
+    </div>
+  </form>
+  }
+</p-card>
+
+@if (form) {
+<app-submit-buttons
+  [isSubmitDisabled]="form.invalid"
+  [submitButtonText]="pageType === 'add' ? 'Submit' : 'Save'"
+  (submit)="submit()"
+  (cancel)="redirect()"
+>
+</app-submit-buttons>
+}

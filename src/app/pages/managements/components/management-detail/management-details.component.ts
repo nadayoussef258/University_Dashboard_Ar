@@ -1,19 +1,15 @@
-import { Component, inject, Input, OnChanges } from '@angular/core';
+import { Component, inject } from '@angular/core';
 import { ActivatedRoute, NavigationEnd, RouterModule } from '@angular/router';
 import { CardModule } from 'primeng/card';
 import {
   PrimeDataTableComponent,
   PrimeTitleToolBarComponent,
   ManagementDetailsService,
-  ServicesService,
 } from '../../../../shared';
 import { TableOptions } from '../../../../shared/interfaces';
 import { BaseListComponent } from '../../../../base/components/base-list-component';
 import { ToggleSwitchModule } from 'primeng/toggleswitch';
-import { StorageService } from '../../../../core';
 import { ManagmentIdService } from '../../managment-id.service';
-import { filter } from 'rxjs';
-import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 
 @Component({
   selector: 'app-management-details',
@@ -29,36 +25,36 @@ import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
   styleUrl: './management-details.component.css',
 })
 export class ManagementDetailsComponent extends BaseListComponent {
-  @Input() managementId: string = '';
+  managementId: string = '';
   tableData: any[] = [];
   tableOptions!: TableOptions;
   service = inject(ManagementDetailsService);
-  storageServices = inject(StorageService);
   managmentIdService = inject(ManagmentIdService);
-  storageService = inject(StorageService);
 
   constructor(activatedRoute: ActivatedRoute) {
     super(activatedRoute);
 
-    this.router.events
-      .pipe(
-        filter((event) => event instanceof NavigationEnd),
-        takeUntilDestroyed()
-      )
-      .subscribe((event: NavigationEnd) => {
-        const currentUrl = event.urlAfterRedirects.split('?')[0];
-        if (currentUrl.startsWith('/pages/management-details')) {
-          this.managmentIdService.setManagementId('');
-          console.log(
-            '🧹 Cleared managementId (navigated to details directly)'
-          );
-        }
-      });
+    // this.router.events
+    //   .pipe(
+    //     filter((event) => event instanceof NavigationEnd),
+    //     takeUntilDestroyed()
+    //   )
+    //   .subscribe((event: NavigationEnd) => {
+    //     const currentUrl = event.urlAfterRedirects.split('?')[0];
+    //     if (currentUrl.startsWith('/pages/management-details')) {
+    //       this.managmentIdService.setManagementId('');
+    //       console.log(
+    //         '🧹 Cleared managementId (navigated to details directly)'
+    //       );
+    //     }
+    //   });
   }
 
   override ngOnInit(): void {
     this.initializeTableOptions();
     super.ngOnInit();
+
+    this.managementId = this.managmentIdService.ManagmentId();
   }
 
   initializeTableOptions() {

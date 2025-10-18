@@ -1,5 +1,6 @@
 import { Routes } from '@angular/router';
 import { Empty } from './empty/empty';
+import { clearManagementIdGuard } from './guards/managements/clear-management-id-guard.guard';
 
 export const pagesRoutes: Routes = [
   {
@@ -75,6 +76,39 @@ export const pagesRoutes: Routes = [
     path: 'posts',
     loadChildren: () =>
       import('./posts/posts.routes').then((m) => m.postsRoutes),
+  },
+  {
+    path: 'sectors',
+    loadChildren: () =>
+      import('./sectors/sectors.routes').then((m) => m.sectorsRoutes),
+  },
+  {
+    path: 'sector-details',
+    loadChildren: () =>
+      import('./sectors/components/sector-details/sector-details.routes').then(
+        (m) => m.sectorDetailsRoutes
+      ),
+  },
+  {
+    path: 'sector-members',
+    loadChildren: () =>
+      import('./sectors/components/sector-member/sector-members.routes').then(
+        (m) => m.sectorMembersRoutes
+      ),
+  },
+  {
+    path: 'sector-posts',
+    loadChildren: () =>
+      import('./sectors/components/sector-posts/sector-posts.routes').then(
+        (m) => m.sectorPostsRoutes
+      ),
+  },
+  {
+    path: 'sector-programs',
+    loadChildren: () =>
+      import(
+        './sectors/components/sector-programs/sector-programs.routes'
+      ).then((m) => m.sectorProgramsRoutes),
   },
   { path: 'empty', component: Empty },
   { path: '**', redirectTo: 'notfound', pathMatch: 'full' },

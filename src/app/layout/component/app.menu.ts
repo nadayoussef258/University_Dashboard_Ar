@@ -6,18 +6,13 @@ import { AppMenuitem } from './app.menuitem';
 
 @Component({
   selector: 'app-menu',
-
   imports: [CommonModule, AppMenuitem, RouterModule],
   template: `<ul class="layout-menu">
-    @for (item of model; track $index) {
-    <!--  -->
-    @if (!item.separator) {
+    @for (item of model; track $index) { @if (!item.separator) {
     <li app-menuitem [item]="item" [index]="$index" [root]="true"></li>
     } @else {
     <li class="menu-separator"></li>
-    }
-    <!--  -->
-    }
+    } }
   </ul>`,
 })
 export class AppMenu {
@@ -91,12 +86,12 @@ export class AppMenu {
             items: [
               {
                 label: 'الإدارات الرئيسية',
-                icon: 'pi pi-info-circle',
+                icon: 'pi pi-building',
                 routerLink: ['/pages/managements'],
               },
               {
                 label: 'تفاصيل الإدارات',
-                icon: 'pi pi-info-circle',
+                icon: 'pi pi-list',
                 routerLink: ['/pages/management-details'],
               },
               {
@@ -106,19 +101,18 @@ export class AppMenu {
               },
             ],
           },
-
           {
             label: 'الوحدات',
             icon: 'pi pi-users',
             items: [
               {
                 label: 'الوحدات الرئيسية',
-                icon: 'pi pi-info-circle',
+                icon: 'pi pi-building',
                 routerLink: ['/pages/units'],
               },
               {
                 label: 'تفاصيل الوحدات',
-                icon: 'pi pi-info-circle',
+                icon: 'pi pi-list',
                 routerLink: ['/pages/unit-details'],
               },
               {
@@ -128,11 +122,36 @@ export class AppMenu {
               },
             ],
           },
-
           {
             label: 'القطاعات',
             icon: 'pi pi-th-large',
-            routerLink: ['/pages/sectors'],
+            items: [
+              {
+                label: 'القطاعات الرئيسية',
+                icon: 'pi pi-building',
+                routerLink: ['/pages/sectors'],
+              },
+              {
+                label: 'تفاصيل القطاعات',
+                icon: 'pi pi-list',
+                routerLink: ['/pages/sector-details'],
+              },
+              {
+                label: 'أعضاء القطاعات',
+                icon: 'pi pi-users',
+                routerLink: ['/pages/sector-members'],
+              },
+              {
+                label: 'منشورات القطاعات',
+                icon: 'pi pi-send',
+                routerLink: ['/pages/sector-posts'],
+              },
+              {
+                label: 'برامج القطاعات',
+                icon: 'pi pi-briefcase',
+                routerLink: ['/pages/sector-programs'],
+              },
+            ],
           },
           {
             label: 'الاخبار والاحدات',
@@ -144,15 +163,14 @@ export class AppMenu {
             icon: 'pi pi-user-edit',
             routerLink: ['/pages/members'],
           },
-
           {
             label: 'عن الجامعة',
-            icon: 'pi pi-info-circle',
+            icon: 'pi pi-university',
             routerLink: ['/pages/about'],
           },
           {
             label: 'الصور',
-            icon: 'pi pi-camera',
+            icon: 'pi pi-image',
             routerLink: ['/pages/media'],
           },
           {
@@ -172,7 +190,7 @@ export class AppMenu {
           },
           {
             label: 'الصفحات',
-            icon: 'pi pi-sitemap',
+            icon: 'pi pi-file',
             routerLink: ['/pages/page-s'],
           },
         ],

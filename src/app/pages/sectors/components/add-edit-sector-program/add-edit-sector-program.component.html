@@ -1,0 +1,55 @@
+<p-card class="m-0 p-2">
+  @if (form) {
+  <form method="post" class="grid grid-cols-12 md:gap-9" [formGroup]="form">
+    <div class="mt-2 form-col">
+      <label class="text-middle mb-3">الحالة</label>
+
+      <div class="form-col">
+        <app-prime-input-text
+          [formGroup]="form"
+          controlName="name"
+          [label]="'اسم البرنامج'"
+        >
+        </app-prime-input-text>
+      </div>
+
+      @if (pageType !== 'add' && !hideToggleBtn) {
+      <div class="flex my-4 gap-2 form-col items-center">
+        <p-toggleswitch
+          [(ngModel)]="allowEditSector"
+          [ngModelOptions]="{ standalone: true }"
+          (onChange)="toggleSectorEdit()"
+        >
+        </p-toggleswitch>
+        <label class="font-medium text-sm">هل تريد تعديل القطاع ؟</label>
+      </div>
+      } @if(pageType !== 'add' && sectorId || !sectorId){
+
+      <div class="mt-4 form-col">
+        <label class="text-middle mb-2">{{ "القطاع" }}</label>
+        <app-prime-autocomplete
+          [disabled]="pageType === 'edit' && !allowEditSector"
+          [field]="'name'"
+          [selectedOption]="selectedSector"
+          [suggestions]="filteredSectors"
+          [formGroup]="form"
+          (onSelect)="onSectorSelect($event)"
+          [lazy]="false"
+          (handleMethod)="getSectors($event)"
+        ></app-prime-autocomplete>
+      </div>
+      }
+    </div>
+  </form>
+  }
+</p-card>
+
+@if (form) {
+<app-submit-buttons
+  [isSubmitDisabled]="form.invalid"
+  [submitButtonText]="pageType === 'add' ? 'Submit' : 'Save'"
+  (submit)="submit()"
+  (cancel)="closeDialog()"
+>
+</app-submit-buttons>
+}

@@ -1,5 +1,5 @@
 import { Routes } from '@angular/router';
-
+import { clearManagementIdGuard } from '../../../guards/managements/clear-management-id-guard.guard';
 export const managementDetailsRoutes: Routes = [
   {
     path: '',
@@ -8,6 +8,7 @@ export const managementDetailsRoutes: Routes = [
         (c) => c.ManagementDetailsComponent
       ),
     data: { pageTitle: 'تفاصيل الإدارات', pageType: 'list' },
+    canActivate: [clearManagementIdGuard],
   },
   {
     path: 'add',

@@ -1,53 +1,33 @@
-<p-tabs value="managements">
+<p-tabs [value]="`.`">
   <p-tablist>
-    <p-tab value="managements">الوحدات
+    <p-tab
+      [value]="`.`"
+      [routerLink]="['.']"
+      class="flex text-inherit items-center !gap-2"
+    >
+      <i class="pi pi-user-plus"></i>
+      <span>الوحدات</span>
     </p-tab>
+
     @if (pageType === 'edit') {
-    <!-- <p-tab value="employeeTabEnum.ExperiencesTab">{{ 'مرفقات'  }}</p-tab> -->
-    <!-- <p-tab value="mangment-attachments">{{ '' }}</p-tab> -->
-    <p-tab value="mangment-detial">{{ 'تفاصيل الوحدات' }}</p-tab>
-    <p-tab value="mangment-member">{{ 'عضو الوحدات' }}</p-tab>
+    <!-- <p-tab value="mangment-attachments">{{ 'مرفقات' }}</p-tab> -->
+
+    @for(tab of tabs; track tab.route){
+    <p-tab
+      [value]="tab.route"
+      [routerLink]="tab.route"
+      class="flex text-inherit items-center !gap-2"
+    >
+      <i [class]="tab.icon"></i>
+      <span>{{ tab.label }}</span>
+    </p-tab>
+    }
+    <!-- <p-tab value="mangment-detial">{{ "تفاصيل الادارة" }}</p-tab> -->
+    <!-- <p-tab value="mangment-member">{{ "عضو الادارة" }}</p-tab> -->
 
     }
   </p-tablist>
   <p-tabpanels>
-    <p-tabpanel value="managements">
-      <p-card class="m-0 p-2">
-        @if (form) {
-        <form method="post" class="grid gap-3 grid-cols-12" [formGroup]="form">
-          <div class="form-col">
-            <label class="text-middle mb-2">{{ 'عنوان الصفحة' }}</label>
-            <app-prime-autocomplete [field]="'title'" [selectedOption]="selectedPage" [suggestions]="filteredPages"
-              [formGroup]="form" (onSelect)="onPageSelect($event)" [lazy]="false"
-              (handleMethod)="getPages($event)"></app-prime-autocomplete>
-          </div>
-          <div class="form-col">
-            <label class="text-middle mb-2">{{ 'عن الجامعة' }}</label>
-            <app-prime-autocomplete [field]="'content'" [selectedOption]="selectedAbout" [suggestions]="filteredAbout"
-              [formGroup]="form" (onSelect)="onAboutSelect($event)" [lazy]="false"
-              (handleMethod)="getAbouts($event)"></app-prime-autocomplete>
-          </div>
-        </form>
-        }
-      </p-card>
-
-      @if (form) {
-      <app-submit-buttons [isSubmitDisabled]="form.invalid" [submitButtonText]="pageType === 'add' ? 'Submit' : 'Save'"
-        (submit)="submit()" (cancel)="redirect()">
-      </app-submit-buttons>
-      }
-    </p-tabpanel>
-
-
-    @if(unitId && pageType === 'edit'){
-    <p-tabpanel value="mangment-detial">
-      <app-unit-details [unitId]="unitId"></app-unit-details>
-    </p-tabpanel>
-
-    <p-tabpanel value="mangment-member">
-      <app-unit-member [unitId]="unitId"></app-unit-member>
-    </p-tabpanel>
-    }
-
+    <router-outlet />
   </p-tabpanels>
 </p-tabs>

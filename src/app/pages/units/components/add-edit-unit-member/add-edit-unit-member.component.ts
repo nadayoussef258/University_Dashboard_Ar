@@ -66,6 +66,8 @@ export class AddEditUnitMemberComponent
     this.dialogService.dialogComponentRefMap.forEach((element) => {
       this.pageType = element.instance.ddconfig.data.pageType;
       this.unitId = element.instance.ddconfig.data.row.unitId;
+      console.log(this.unitId, 'unitId');
+
       if (this.pageType === 'edit') {
         this.id = element.instance.ddconfig.data.row.rowData.id;
       }

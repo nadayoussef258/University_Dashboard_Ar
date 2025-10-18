@@ -6,7 +6,6 @@ import {
   ManagementMembersService,
   ManagementsService,
   PrimeAutoCompleteComponent,
-  PrimeInputTextComponent,
   SubmitButtonsComponent,
 } from '../../../../shared';
 import { DialogService } from 'primeng/dynamicdialog';
@@ -32,7 +31,7 @@ import { filter } from 'rxjs';
   styleUrl: './add-edit-management-member.component.css',
 })
 //
-export class AddManagementMemberComponent
+export class AddEditManagementMemberComponent
   extends BaseEditComponent
   implements OnInit
 {

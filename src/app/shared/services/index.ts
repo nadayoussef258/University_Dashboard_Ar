@@ -36,6 +36,14 @@ export * from './pages/centers/center-details/center-detail.service';
 export * from './pages/centers/center-members/center-member.service';
 export * from './pages/centers/center-members/center-member.service';
 
+export * from './pages/sectors/sectors/sectors.service';
+export * from './pages/sectors/sector-units/sector-units.service';
+export * from './pages/sectors/sector-services/sector-services.service';
+export * from './pages/sectors/sector-programs/sector-programs.service';
+export * from './pages/sectors/sector-posts/sector-posts.service';
+export * from './pages/sectors/sector-member/sector-member.service';
+export * from './pages/sectors/sector-details/sector-details.service';
+
 export * from './pages/menus/menu-types/menu-types.service';
 export * from './pages/menus/menu-items/menu-items.service';
 

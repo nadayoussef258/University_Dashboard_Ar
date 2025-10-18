@@ -4,14 +4,12 @@ import { CardModule } from 'primeng/card';
 import {
   PrimeDataTableComponent,
   PrimeTitleToolBarComponent,
-  ActionsService,
-  ManagementMembersService,
-  UnitDetailsService,
   UnitMembersService,
 } from '../../../../shared';
 import { TableOptions } from '../../../../shared/interfaces';
 import { BaseListComponent } from '../../../../base/components/base-list-component';
 import { AddEditUnitMemberComponent } from '../add-edit-unit-member/add-edit-unit-member.component';
+import { UnitIdService } from '../../unit-id.service';
 
 @Component({
   selector: 'app-unit-member',
@@ -26,10 +24,11 @@ import { AddEditUnitMemberComponent } from '../add-edit-unit-member/add-edit-uni
   styleUrl: './unit-members.component.css',
 })
 export class UnitMembersComponent extends BaseListComponent {
-  @Input() unitId: string = '';
+  unitId: string = '';
   isEnglish = false;
   tableOptions!: TableOptions;
   service = inject(UnitMembersService);
+  unitIdService = inject(UnitIdService);
 
   constructor(activatedRoute: ActivatedRoute) {
     super(activatedRoute);
@@ -38,6 +37,9 @@ export class UnitMembersComponent extends BaseListComponent {
   override ngOnInit(): void {
     this.initializeTableOptions();
     super.ngOnInit();
+
+    this.unitId = this.unitIdService.UnitId();
+    console.log(this.unitId, 'unitId from unit-member component');
   }
 
   initializeTableOptions() {

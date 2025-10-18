@@ -14,7 +14,7 @@ export const managementMembersRoutes: Routes = [
     loadComponent: () =>
       import(
         '../add-edit-management-member/add-edit-management-member.component'
-      ).then((c) => c.AddManagementMemberComponent),
+      ).then((c) => c.AddEditManagementMemberComponent),
     data: { pageTitle: 'اضافة عضو للإدارة', pageType: 'add' },
   },
   {
@@ -22,7 +22,7 @@ export const managementMembersRoutes: Routes = [
     loadComponent: () =>
       import(
         '../add-edit-management-member/add-edit-management-member.component'
-      ).then((c) => c.AddManagementMemberComponent),
+      ).then((c) => c.AddEditManagementMemberComponent),
     data: { pageTitle: 'تعديل عضو الإدارة', pageType: 'edit' },
   },
 ];
