@@ -25,7 +25,7 @@ import { UnitIdService } from '../../unit-id.service';
   styleUrl: './unit-details.component.css',
 })
 export class UnitDetailsComponent extends BaseListComponent {
-  @Input() unitId: string = '';
+  unitId: string = '';
   tableData: any[] = [];
   tableOptions!: TableOptions;
   service = inject(UnitDetailsService);
@@ -33,25 +33,12 @@ export class UnitDetailsComponent extends BaseListComponent {
 
   constructor(activatedRoute: ActivatedRoute) {
     super(activatedRoute);
-
-    // this.router.events
-    //   .pipe(
-    //     filter((event) => event instanceof NavigationEnd),
-    //     takeUntilDestroyed()
-    //   )
-    //   .subscribe((event: NavigationEnd) => {
-    //     const currentUrl = event.urlAfterRedirects.split('?')[0];
-    //     if (currentUrl.startsWith('/pages/unit-details')) {
-    //       this.unitIdService.setUnitId('');
-    //     }
-    //   });
   }
 
   override ngOnInit(): void {
+    this.unitId = this.unitIdService.UnitId();
     this.initializeTableOptions();
     super.ngOnInit();
-
-    this.unitId = this.unitIdService.UnitId();
   }
 
   initializeTableOptions() {

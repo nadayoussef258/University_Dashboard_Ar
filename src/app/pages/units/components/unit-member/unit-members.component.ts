@@ -35,11 +35,9 @@ export class UnitMembersComponent extends BaseListComponent {
   }
 
   override ngOnInit(): void {
+    this.unitId = this.unitIdService.UnitId();
     this.initializeTableOptions();
     super.ngOnInit();
-
-    this.unitId = this.unitIdService.UnitId();
-    console.log(this.unitId, 'unitId from unit-member component');
   }
 
   initializeTableOptions() {

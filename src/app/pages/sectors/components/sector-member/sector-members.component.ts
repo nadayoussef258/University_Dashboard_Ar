@@ -35,10 +35,9 @@ export class SectorMembersComponent extends BaseListComponent {
   }
 
   override ngOnInit(): void {
+    this.sectorId = this.sectorIdService.SectortId();
     this.initializeTableOptions();
     super.ngOnInit();
-
-    this.sectorId = this.sectorIdService.SectortId();
   }
 
   initializeTableOptions() {

@@ -1,4 +1,4 @@
-import { Component, inject } from '@angular/core';
+import { Component, inject, effect } from '@angular/core';
 import { ActivatedRoute, NavigationEnd, RouterModule } from '@angular/router';
 import { CardModule } from 'primeng/card';
 import {
@@ -13,7 +13,6 @@ import { ManagmentIdService } from '../../managment-id.service';
 
 @Component({
   selector: 'app-management-details',
-
   imports: [
     RouterModule,
     CardModule,
@@ -28,33 +27,19 @@ export class ManagementDetailsComponent extends BaseListComponent {
   managementId: string = '';
   tableData: any[] = [];
   tableOptions!: TableOptions;
+
   service = inject(ManagementDetailsService);
   managmentIdService = inject(ManagmentIdService);
 
   constructor(activatedRoute: ActivatedRoute) {
     super(activatedRoute);
-
-    // this.router.events
-    //   .pipe(
-    //     filter((event) => event instanceof NavigationEnd),
-    //     takeUntilDestroyed()
-    //   )
-    //   .subscribe((event: NavigationEnd) => {
-    //     const currentUrl = event.urlAfterRedirects.split('?')[0];
-    //     if (currentUrl.startsWith('/pages/management-details')) {
-    //       this.managmentIdService.setManagementId('');
-    //       console.log(
-    //         '🧹 Cleared managementId (navigated to details directly)'
-    //       );
-    //     }
-    //   });
+    // this.managementId = this.managmentIdService.ManagmentId();
   }
 
   override ngOnInit(): void {
+    this.managementId = this.managmentIdService.ManagmentId();
     this.initializeTableOptions();
     super.ngOnInit();
-
-    this.managementId = this.managmentIdService.ManagmentId();
   }
 
   initializeTableOptions() {
@@ -121,10 +106,7 @@ export class ManagementDetailsComponent extends BaseListComponent {
     ];
   }
 
-  /* when leaving the component */
   override ngOnDestroy() {
-    //Called once, before the instance is destroyed.
-    //Add 'implements OnDestroy' to the class.
     this.destroy$.next(true);
     this.destroy$.unsubscribe();
   }

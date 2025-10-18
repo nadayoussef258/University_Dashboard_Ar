@@ -35,6 +35,8 @@ export class ManagementMembersComponent extends BaseListComponent {
   }
 
   override ngOnInit(): void {
+    this.managementId = this.managmentIdService.ManagmentId();
+
     this.initializeTableOptions();
     super.ngOnInit();
 
