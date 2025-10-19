@@ -14,8 +14,6 @@ export class AddEditMainInfoUnitComponent
   extends BaseEditComponent
   implements OnInit
 {
-  managementId: string = '';
-
   tabs = [
     {
       route: 'unit-detail',

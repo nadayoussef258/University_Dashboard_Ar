@@ -1,33 +1,24 @@
 <p-tabs [value]="`.`">
   <p-tablist>
-    <p-tab
-      [value]="`.`"
-      [routerLink]="['.']"
-      class="flex text-inherit items-center !gap-2"
-    >
+    <p-tab [value]="`.`" [routerLink]="['.']" class="flex text-inherit items-center !gap-2">
       <i class="pi pi-user-plus"></i>
-      <span>الوحدات</span>
-    </p-tab>
+      <span>
+        @if (pageType === 'edit') { تعديل وحدة }@else{ اضافة وحدة}
+      </span> </p-tab>
 
     @if (pageType === 'edit') {
-    <!-- <p-tab value="mangment-attachments">{{ 'مرفقات' }}</p-tab> -->
-
+    <!--  -->
     @for(tab of tabs; track tab.route){
-    <p-tab
-      [value]="tab.route"
-      [routerLink]="tab.route"
-      class="flex text-inherit items-center !gap-2"
-    >
+    <p-tab [value]="tab.route" [routerLink]="tab.route" class="flex text-inherit items-center !gap-2">
       <i [class]="tab.icon"></i>
       <span>{{ tab.label }}</span>
     </p-tab>
     }
-    <!-- <p-tab value="mangment-detial">{{ "تفاصيل الادارة" }}</p-tab> -->
-    <!-- <p-tab value="mangment-member">{{ "عضو الادارة" }}</p-tab> -->
-
     }
   </p-tablist>
   <p-tabpanels>
+    <!--  -->
     <router-outlet />
+    <!--  -->
   </p-tabpanels>
 </p-tabs>

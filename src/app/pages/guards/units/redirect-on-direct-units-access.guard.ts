@@ -1,7 +1,7 @@
 import { CanActivateFn, Router } from '@angular/router';
 import { inject } from '@angular/core';
 
-export const redirectIfDirectAccessUnitGuard: CanActivateFn = (route) => {
+export const redirectOnDirectUnitsAccessGuard: CanActivateFn = (route) => {
   const router = inject(Router);
   const id = route.parent?.params['id'];
 

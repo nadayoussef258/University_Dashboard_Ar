@@ -13,6 +13,7 @@ import { DialogService } from 'primeng/dynamicdialog';
 import { ActivatedRoute, NavigationEnd } from '@angular/router';
 import { ToggleSwitch } from 'primeng/toggleswitch';
 import { filter } from 'rxjs';
+import { SectorIdService } from '../../sector-id.service';
 
 @Component({
   selector: 'app-add-edit-sector-program',
@@ -37,11 +38,10 @@ export class AddEditSectorProgramComponent
   sectorId: string = '';
   selectedSector: any;
   filteredSectors: any[] = [];
-  allowEditSector: boolean = false;
-  hideToggleBtn: boolean = false;
 
   sectorProgramsService: SectorProgramsService = inject(SectorProgramsService);
   sectorsService: SectorsService = inject(SectorsService);
+  sectorIdService: SectorIdService = inject(SectorIdService);
   dialogService: DialogService = inject(DialogService);
 
   constructor(override activatedRoute: ActivatedRoute) {
@@ -49,19 +49,11 @@ export class AddEditSectorProgramComponent
   }
 
   override ngOnInit(): void {
-    super.ngOnInit();
-    // ✅ تشغيل الكود عند أول تحميل للكومبوننت
-    this.updateToggleVisibility(this.router.url);
-    // ✅ تشغيل الكود عند أي تنقل داخل التطبيق
-    this.router.events
-      .pipe(filter((event) => event instanceof NavigationEnd))
-      .subscribe((event: NavigationEnd) => {
-        this.updateToggleVisibility(event.urlAfterRedirects);
-      });
+    // super.ngOnInit();
+    this.sectorId = this.sectorIdService.SectortId();
 
     this.dialogService.dialogComponentRefMap.forEach((element) => {
       this.pageType = element.instance.ddconfig.data.pageType;
-      this.sectorId = element.instance.ddconfig.data.row.sectorId;
       if (this.pageType === 'edit') {
         this.id = element.instance.ddconfig.data.row.rowData.id;
       }
@@ -71,11 +63,6 @@ export class AddEditSectorProgramComponent
     } else {
       this.initFormGroup();
     }
-  }
-
-  private updateToggleVisibility(url: string): void {
-    const cleanUrl = url.split('?')[0];
-    this.hideToggleBtn = cleanUrl.startsWith('/pages/sectors/edit/');
   }
 
   initFormGroup() {
@@ -125,15 +112,6 @@ export class AddEditSectorProgramComponent
         this.fetchSectorDetails(sectorProgram);
       });
   };
-
-  toggleSectorEdit() {
-    const control = this.form.get('sectorId');
-    if (this.allowEditSector) {
-      control?.enable({ emitEvent: false });
-    } else {
-      control?.disable({ emitEvent: false });
-    }
-  }
 
   submit() {
     if (this.pageType === 'add')

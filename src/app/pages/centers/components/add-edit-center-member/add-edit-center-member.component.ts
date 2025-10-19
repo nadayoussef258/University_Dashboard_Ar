@@ -6,13 +6,12 @@ import {
   CenterMembersService,
   CentersService,
   PrimeAutoCompleteComponent,
-  PrimeInputTextComponent,
   SubmitButtonsComponent,
 } from '../../../../shared';
 import { DialogService } from 'primeng/dynamicdialog';
 import { ActivatedRoute } from '@angular/router';
 import { ToggleSwitch } from 'primeng/toggleswitch';
-import { JsonPipe, NgClass } from '@angular/common';
+import { NgClass } from '@angular/common';
 import { CenterIdService } from '../../center-id.service';
 
 @Component({
@@ -22,10 +21,8 @@ import { CenterIdService } from '../../center-id.service';
     FormsModule,
     ReactiveFormsModule,
     SubmitButtonsComponent,
-    PrimeInputTextComponent,
     PrimeAutoCompleteComponent,
     ToggleSwitch,
-    JsonPipe,
     NgClass,
   ],
   templateUrl: './add-edit-center-member.component.html',
@@ -39,8 +36,6 @@ export class AddEditCenterMemberComponent
   centerId: string = '';
   selectedCenter: any;
   filteredCenters: any[] = [];
-  allowEditCenter: boolean = false;
-  hideToggleBtn: boolean = false;
 
   centerMembersService: CenterMembersService = inject(CenterMembersService);
   centersService: CentersService = inject(CentersService);
@@ -58,6 +53,7 @@ export class AddEditCenterMemberComponent
 
     this.dialogService.dialogComponentRefMap.forEach((element) => {
       this.pageType = element.instance.ddconfig.data.pageType;
+
       if (this.pageType === 'edit') {
         this.id = element.instance.ddconfig.data.row.rowData.id;
       }
@@ -72,7 +68,7 @@ export class AddEditCenterMemberComponent
   initFormGroup() {
     this.form = this.fb.group({
       isLeader: [false],
-      centerId: [null, Validators.required],
+      centerId: [this.centerId, Validators.required],
     });
   }
 
@@ -116,15 +112,6 @@ export class AddEditCenterMemberComponent
         this.fetchCenterDetails(centerMember);
       });
   };
-
-  toggleCenterEdit() {
-    const control = this.form.get('centerId');
-    if (this.allowEditCenter) {
-      control?.enable({ emitEvent: false });
-    } else {
-      control?.disable({ emitEvent: false });
-    }
-  }
 
   submit() {
     if (this.pageType === 'add')

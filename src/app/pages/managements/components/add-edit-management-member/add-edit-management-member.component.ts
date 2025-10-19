@@ -38,13 +38,12 @@ export class AddEditManagementMemberComponent
   managementId: string = '';
   selectedManagement: any;
   filteredManagements: any[] = [];
-  allowEditManagement: boolean = false;
-  hideToggleBtn: boolean = false;
 
   managementMembersService: ManagementMembersService = inject(
     ManagementMembersService
   );
   managementsService: ManagementsService = inject(ManagementsService);
+  managmentIdService: ManagmentIdService = inject(ManagmentIdService);
   dialogService: DialogService = inject(DialogService);
 
   constructor(override activatedRoute: ActivatedRoute) {
@@ -53,19 +52,12 @@ export class AddEditManagementMemberComponent
   }
 
   override ngOnInit(): void {
-    super.ngOnInit();
-    // ✅ تشغيل الكود عند أول تحميل للكومبوننت
-    this.updateToggleVisibility(this.router.url);
-    // ✅ تشغيل الكود عند أي تنقل داخل التطبيق
-    this.router.events
-      .pipe(filter((event) => event instanceof NavigationEnd))
-      .subscribe((event: NavigationEnd) => {
-        this.updateToggleVisibility(event.urlAfterRedirects);
-      });
+    // super.ngOnInit();
+
+    this.managementId = this.managmentIdService.ManagmentId();
 
     this.dialogService.dialogComponentRefMap.forEach((element) => {
       this.pageType = element.instance.ddconfig.data.pageType;
-      this.managementId = element.instance.ddconfig.data.row.managementId;
       console.log(
         'this.managementId from dialogComponentRefMap AddEditManagementMemberComponent ',
         this.managementId
@@ -80,11 +72,6 @@ export class AddEditManagementMemberComponent
     } else {
       this.initFormGroup();
     }
-  }
-
-  private updateToggleVisibility(url: string): void {
-    const cleanUrl = url.split('?')[0];
-    this.hideToggleBtn = cleanUrl.startsWith('/pages/managements/edit/');
   }
 
   initFormGroup() {
@@ -134,15 +121,6 @@ export class AddEditManagementMemberComponent
         this.fetchManagementDetails(managementMember);
       });
   };
-
-  toggleManagementEdit() {
-    const control = this.form.get('managementId');
-    if (this.allowEditManagement) {
-      control?.enable({ emitEvent: false });
-    } else {
-      control?.disable({ emitEvent: false });
-    }
-  }
 
   submit() {
     if (this.pageType === 'add')

@@ -1,7 +1,7 @@
 import { CanActivateFn, Router } from '@angular/router';
 import { inject } from '@angular/core';
 
-export const redirectIfDirectAccessSectorGuard: CanActivateFn = (route) => {
+export const redirectOnDirectSectorAccessGuard: CanActivateFn = (route) => {
   const router = inject(Router);
   const id = route.parent?.params['id'];
   const tabPath = route.routeConfig?.path;

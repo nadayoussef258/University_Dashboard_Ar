@@ -1,33 +1,21 @@
 <p-card class="m-0 p-2">
   @if (form) {
   <form method="post" class="grid grid-cols-12 md:gap-9" [formGroup]="form">
-    @if (pageType !== 'add' && !hideToggleBtn) {
+    @if (pageType !== 'add' && !unitId ) {
     <div class="flex gap-2 col-span-12 items-center">
-      <p-toggleswitch
-        [(ngModel)]="allowEditUnit"
-        [ngModelOptions]="{ standalone: true }"
-        (onChange)="toggleUnitEdit()"
-      >
+      <p-toggleswitch [(ngModel)]="allowEdit" [ngModelOptions]="{ standalone: true }"
+        (onChange)="toggleEditBtn('unitId')">
       </p-toggleswitch>
-      <label class="font-medium text-sm"
-        >هل تريد التعديل على عنوان الإدارة؟</label
-      >
+      <label class="font-medium text-sm">هل تريد تعديل الوحدة</label>
     </div>
     }
     <!--  -->
     @if(pageType !== 'add' && unitId || !unitId){
     <div class="form-col">
       <label class="text-middle mb-2">{{ "عنوان الادارة" }}</label>
-      <app-prime-autocomplete
-        [disabled]="pageType === 'edit' && !allowEditUnit"
-        [field]="'pageId'"
-        [selectedOption]="selectedUnit"
-        [suggestions]="filteredUnits"
-        [formGroup]="form"
-        (onSelect)="onUnitSelect($event)"
-        [lazy]="false"
-        (handleMethod)="getUnits($event)"
-      ></app-prime-autocomplete>
+      <app-prime-autocomplete [disabled]="pageType === 'edit' && !allowEdit" [field]="'pageId'"
+        [selectedOption]="selectedUnit" [suggestions]="filteredUnits" [formGroup]="form"
+        (onSelect)="onUnitSelect($event)" [lazy]="false" (handleMethod)="getUnits($event)"></app-prime-autocomplete>
     </div>
     }
 
@@ -41,16 +29,12 @@
             form.get('isLeader')?.value
               ? 'bg-blue-100 text-blue-700 border-blue-300'
               : 'bg-gray-100 text-gray-600 border-gray-300'
-          "
-        >
-          <i
-            class="text-base"
-            [ngClass]="
+          ">
+          <i class="text-base" [ngClass]="
               form.get('isLeader')?.value
                 ? 'pi pi-star text-blue-500'
                 : 'pi pi-user text-gray-500'
-            "
-          ></i>
+            "></i>
           {{ form.get("isLeader")?.value ? "ادمن" : "مستخدم" }}
         </span>
       </div>
@@ -60,11 +44,7 @@
 </p-card>
 
 @if (form) {
-<app-submit-buttons
-  [isSubmitDisabled]="form.invalid"
-  [submitButtonText]="pageType === 'add' ? 'Submit' : 'Save'"
-  (submit)="submit()"
-  (cancel)="closeDialog()"
->
+<app-submit-buttons [isSubmitDisabled]="form.invalid" [submitButtonText]="pageType === 'add' ? 'Submit' : 'Save'"
+  (submit)="submit()" (cancel)="closeDialog()">
 </app-submit-buttons>
 }

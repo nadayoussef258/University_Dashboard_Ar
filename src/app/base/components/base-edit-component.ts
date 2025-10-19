@@ -16,6 +16,8 @@ export abstract class BaseEditComponent
   id: string = '';
   role: any = {};
   fb = inject(FormBuilder);
+  allowEdit: boolean = false;
+
   override router = inject(Router);
   protected override destroy$: Subject<boolean> = new Subject<boolean>();
   constructor(protected override activatedRoute: ActivatedRoute) {
@@ -25,6 +27,19 @@ export abstract class BaseEditComponent
   override ngOnInit(): void {
     super.ngOnInit();
     this.getRouteParams();
+  }
+
+  /**
+   * Handle toggel button to edit formControl
+   * @param formControl
+   */
+  toggleEditBtn(formControl: any) {
+    const control = this.form.get(formControl);
+    if (this.allowEdit) {
+      control?.enable({ emitEvent: false });
+    } else {
+      control?.disable({ emitEvent: false });
+    }
   }
 
   protected getRouteParams() {

@@ -55,7 +55,7 @@ export class CenterMembersComponent extends BaseListComponent {
         listOfPermissions: [],
       },
       bodyOptions: {
-        filter: { centerId: this.centerId },
+        filter: { centerId: this.centerId ?? '' },
       },
       responsiveDisplayedProperties: ['isLeader', 'centerId'],
     };

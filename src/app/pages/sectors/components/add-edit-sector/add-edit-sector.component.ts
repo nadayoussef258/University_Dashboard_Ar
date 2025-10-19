@@ -9,12 +9,10 @@ import {
   PrimeInputTextComponent,
   SubmitButtonsComponent,
 } from '../../../../shared';
-import { RouterLink, RouterOutlet } from '@angular/router';
 import { DialogService } from 'primeng/dynamicdialog';
 import { ActivatedRoute } from '@angular/router';
 import { TabsModule } from 'primeng/tabs';
 import { SectorIdService } from '../../sector-id.service';
-import { UnitIdService } from '../../../units/unit-id.service';
 import { SectorsService } from '../../../../shared';
 
 @Component({
@@ -37,7 +35,6 @@ export class AddEditSectorComponent
   implements OnInit
 {
   sectorId: string = '';
-  showSectorsTabs: boolean = false;
 
   selectedPage: any;
   selectedAbout: any;
@@ -160,7 +157,6 @@ export class AddEditSectorComponent
   submit() {
     if (this.pageType === 'add')
       this.sectorsService.add(this.form.value).subscribe((res: any) => {
-        this.showSectorsTabs = true;
         this.redirect();
       });
     if (this.pageType === 'edit')

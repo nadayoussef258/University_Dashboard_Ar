@@ -1,6 +1,8 @@
 import { Routes } from '@angular/router';
-import { redirectIfDirectAccessUnitGuard } from '../guards/units/redirect-if-direct-access-unit.guard';
-
+import {
+  redirectOnDirectUnitsAccessGuard,
+  validateUnitIdGuard,
+} from '../guards/units';
 export const unitsRoutes: Routes = [
   {
     path: '',
@@ -12,9 +14,19 @@ export const unitsRoutes: Routes = [
     path: 'add',
     loadComponent: () =>
       import(
-        './components/add-edit-main-unit/add-edit-main-unit.component'
-      ).then((c) => c.AddEditUnitComponent),
+        './components/add-edit-main-info-unit/add-edit-main-info-unit.component'
+      ).then((c) => c.AddEditMainInfoUnitComponent),
     data: { pageTitle: 'اضافة وحدة', pageType: 'add' },
+    children: [
+      {
+        path: '',
+        loadComponent: () =>
+          import(
+            './components/add-edit-main-unit/add-edit-main-unit.component'
+          ).then((c) => c.AddEditUnitComponent),
+        data: { pageTitle: 'اضافة وحدة', pageType: 'add' },
+      },
+    ],
   },
   {
     path: 'edit/:id',
@@ -26,6 +38,7 @@ export const unitsRoutes: Routes = [
     children: [
       {
         path: '',
+        canActivate: [validateUnitIdGuard],
         loadComponent: () =>
           import(
             './components/add-edit-main-unit/add-edit-main-unit.component'
@@ -33,7 +46,7 @@ export const unitsRoutes: Routes = [
       },
       {
         path: 'unit-detail',
-        canActivate: [redirectIfDirectAccessUnitGuard],
+        canActivate: [redirectOnDirectUnitsAccessGuard],
         loadChildren: () =>
           import('./components/unit-detail/unit-details.routes').then(
             (c) => c.unitDetailsRoutes
@@ -41,7 +54,7 @@ export const unitsRoutes: Routes = [
       },
       {
         path: 'unit-member',
-        canActivate: [redirectIfDirectAccessUnitGuard],
+        canActivate: [redirectOnDirectUnitsAccessGuard],
         loadChildren: () =>
           import('./components/unit-member/unit-members.routes').then(
             (c) => c.unitMembersRoutes

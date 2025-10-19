@@ -3,8 +3,6 @@ import { BaseEditComponent } from '../../../../base/components/base-edit-compone
 import { CardModule } from 'primeng/card';
 import { FormsModule, ReactiveFormsModule, Validators } from '@angular/forms';
 import {
-  ManagementMembersService,
-  ManagementsService,
   PrimeAutoCompleteComponent,
   SubmitButtonsComponent,
   UnitMembersService,
@@ -15,7 +13,6 @@ import { ActivatedRoute, NavigationEnd } from '@angular/router';
 import { ToggleSwitch } from 'primeng/toggleswitch';
 import { NgClass } from '@angular/common';
 import { UnitIdService } from '../../unit-id.service';
-import { filter } from 'rxjs';
 
 @Component({
   selector: 'app-add-edit-unit-member',
@@ -40,11 +37,10 @@ export class AddEditUnitMemberComponent
   unitId: string = '';
   selectedUnit: any;
   filteredUnits: any[] = [];
-  allowEditUnit: boolean = false;
-  hideToggleBtn: boolean = false;
 
   unitMembersService: UnitMembersService = inject(UnitMembersService);
   unitsService: UnitsService = inject(UnitsService);
+  unitIdService: UnitIdService = inject(UnitIdService);
   dialogService: DialogService = inject(DialogService);
 
   constructor(override activatedRoute: ActivatedRoute) {
@@ -53,19 +49,10 @@ export class AddEditUnitMemberComponent
   }
 
   override ngOnInit(): void {
-    super.ngOnInit();
-    // ✅ تشغيل الكود عند أول تحميل للكومبوننت
-    this.updateToggleVisibility(this.router.url);
-    // ✅ تشغيل الكود عند أي تنقل داخل التطبيق
-    this.router.events
-      .pipe(filter((event) => event instanceof NavigationEnd))
-      .subscribe((event: NavigationEnd) => {
-        this.updateToggleVisibility(event.urlAfterRedirects);
-      });
-
+    // super.ngOnInit();
+    this.unitId = this.unitIdService.UnitId();
     this.dialogService.dialogComponentRefMap.forEach((element) => {
       this.pageType = element.instance.ddconfig.data.pageType;
-      this.unitId = element.instance.ddconfig.data.row.unitId;
       console.log(this.unitId, 'unitId');
 
       if (this.pageType === 'edit') {
@@ -77,11 +64,6 @@ export class AddEditUnitMemberComponent
     } else {
       this.initFormGroup();
     }
-  }
-
-  private updateToggleVisibility(url: string): void {
-    const cleanUrl = url.split('?')[0];
-    this.hideToggleBtn = cleanUrl.startsWith('/pages/units/edit/');
   }
 
   initFormGroup() {
@@ -131,16 +113,6 @@ export class AddEditUnitMemberComponent
         this.fetchUnitDetails(unitMember);
       });
   };
-
-  toggleUnitEdit() {
-    const control = this.form.get('unitId');
-
-    if (this.allowEditUnit) {
-      control?.enable({ emitEvent: false });
-    } else {
-      control?.disable({ emitEvent: false });
-    }
-  }
 
   submit() {
     if (this.pageType === 'add')

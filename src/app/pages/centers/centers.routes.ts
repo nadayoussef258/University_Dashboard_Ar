@@ -1,6 +1,8 @@
 import { Routes } from '@angular/router';
-import { redirectIfDirectAccessCenterGuard } from '../guards/centers/redirect-if-direct-access-center.guard';
-import { CenterResolver } from './center-resolver.resolver';
+import {
+  validateCenterIdGuard,
+  redirectOnDirectCenterAccessGuard,
+} from '../guards/centers/index';
 
 export const centersRoutes: Routes = [
   {
@@ -25,6 +27,7 @@ export const centersRoutes: Routes = [
           import('./components/add-edit-center/add-edit-center.component').then(
             (c) => c.AddEditCenterComponent
           ),
+        data: { pageTitle: 'إضافة مركز', pageType: 'add' },
       },
     ],
   },
@@ -38,26 +41,30 @@ export const centersRoutes: Routes = [
     children: [
       {
         path: '',
+        canActivate: [validateCenterIdGuard],
         loadComponent: () =>
           import('./components/add-edit-center/add-edit-center.component').then(
             (c) => c.AddEditCenterComponent
           ),
+        data: { pageTitle: 'تعديل مركز', pageType: 'edit' },
       },
       {
         path: 'center-detail',
+        canActivate: [redirectOnDirectCenterAccessGuard],
         loadChildren: () =>
           import('./components/center-details/center-details.routes').then(
             (c) => c.centerDetailsRoutes
           ),
-        canActivate: [redirectIfDirectAccessCenterGuard],
+        data: { pageTitle: 'تفاصيل المركز', pageType: 'list' },
       },
       {
         path: 'center-member',
+        canActivate: [redirectOnDirectCenterAccessGuard],
         loadChildren: () =>
           import('./components/center-members/center-members.routes').then(
             (c) => c.centerMembersRoutes
           ),
-        canActivate: [redirectIfDirectAccessCenterGuard],
+        data: { pageTitle: 'اعضاء المركز', pageType: 'list' },
       },
     ],
   },
