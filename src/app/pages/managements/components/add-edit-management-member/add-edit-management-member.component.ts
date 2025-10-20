@@ -100,13 +100,13 @@ export class AddEditManagementMemberComponent
     this.form.get('managementId')?.setValue(this.selectedManagement.id);
   }
 
-  fetchManagementDetails(managementDetail: any) {
+  fetchManagementDetails(managementMember: any) {
     this.managementsService.managements.subscribe((response: any) => {
       this.filteredManagements = Array.isArray(response)
         ? response
         : response.data || [];
       this.selectedManagement = this.filteredManagements.find(
-        (management: any) => management.id === managementDetail.managementId
+        (management: any) => management.id === managementMember.managementId
       );
       this.form.get('managementId')?.setValue(this.selectedManagement.id);
     });

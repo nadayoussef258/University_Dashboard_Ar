@@ -4,9 +4,7 @@ import { CardModule } from 'primeng/card';
 import { FormsModule, ReactiveFormsModule, Validators } from '@angular/forms';
 import {
   PrimeAutoCompleteComponent,
-  PrimeCheckBoxComponent,
   PrimeInputTextComponent,
-  SectorDetailsService,
   SectorServicesService,
   SectorsService,
   SubmitButtonsComponent,
@@ -26,7 +24,6 @@ import { NgClass } from '@angular/common';
     SubmitButtonsComponent,
     PrimeInputTextComponent,
     PrimeAutoCompleteComponent,
-    PrimeCheckBoxComponent,
     ToggleSwitch,
     NgClass,
   ],
@@ -98,13 +95,13 @@ export class AddEditSectorServiceComponent
     this.form.get('sectorId')?.setValue(this.selectedSector.id);
   }
 
-  fetchSectorDetails(sectorDetail: any) {
+  fetchSectorDetails(sectorService: any) {
     this.sectorsService.sectors.subscribe((response: any) => {
       this.filteredSectors = Array.isArray(response)
         ? response
         : response.data || [];
       this.selectedSector = this.filteredSectors.find(
-        (sector: any) => sector.id === sectorDetail.sectorId
+        (sector: any) => sector.id === sectorService.sectorId
       );
       this.form.get('sectorId')?.setValue(this.selectedSector.id);
     });

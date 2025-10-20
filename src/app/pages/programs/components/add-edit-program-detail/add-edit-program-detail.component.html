@@ -1,0 +1,70 @@
+<p-card class="m-0 p-2">
+  @if (form) {
+  <form method="post" class="grid gap-4 grid-cols-12" [formGroup]="form">
+    <div class="form-col">
+      <app-prime-input-text
+        [formGroup]="form"
+        controlName="title"
+        [label]="'عنوان التفاصيل'"
+      >
+      </app-prime-input-text>
+    </div>
+
+    <div class="form-col">
+      <app-prime-input-text
+        [formGroup]="form"
+        controlName="programCategory"
+        [label]="'نوع البرنامج'"
+      >
+      </app-prime-input-text>
+    </div>
+
+    <div class="col-span-12">
+      <app-prime-input-text
+        [formGroup]="form"
+        controlName="content"
+        [label]="'المحتوى التفصيلي'"
+        [inputType]="'textarea'"
+      >
+      </app-prime-input-text>
+    </div>
+
+    <div class="form-col">
+      <app-prime-input-text
+        [formGroup]="form"
+        controlName="facultyId"
+        [label]="'الكلية'"
+      >
+      </app-prime-input-text>
+    </div>
+
+    @if (pageType !== 'add' && programId || !programId ) {
+    <div class="form-col">
+      <label class="text-middle mb-2">{{ "البرامج" }}</label>
+      <app-prime-autocomplete
+        [disabled]="!!programId"
+        [field]="'pageId'"
+        [selectedOption]="selectedProgram"
+        [suggestions]="filteredPrograms"
+        [formGroup]="form"
+        (onSelect)="onProgramSelect($event)"
+        [lazy]="false"
+        (handleMethod)="getPrograms($event)"
+      ></app-prime-autocomplete>
+    </div>
+    }
+  </form>
+
+  }
+</p-card>
+
+@if (form) {
+<app-submit-buttons
+  [isSubmitDisabled]="form.invalid"
+  [submitButtonText]="pageType === 'add' ? 'Submit' : 'Save'"
+  [buttonText]="pageType === 'add' ? 'اضافة' : 'حفظ'"
+  (submit)="submit()"
+  (cancel)="redirect()"
+>
+</app-submit-buttons>
+}

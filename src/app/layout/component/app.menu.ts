@@ -144,6 +144,27 @@ export class AppMenu {
             ],
           },
           {
+            label: 'البرامج',
+            icon: 'pi pi-briefcase',
+            items: [
+              {
+                label: 'البرامج الرئيسية',
+                icon: 'pi pi-th-large',
+                routerLink: ['/pages/programs'],
+              },
+              {
+                label: 'تفاصيل البرامج',
+                icon: 'pi pi-file',
+                routerLink: ['/pages/program-details'],
+              },
+              {
+                label: 'أعضاء البرامج',
+                icon: 'pi pi-user',
+                routerLink: ['/pages/program-members'],
+              },
+            ],
+          },
+          {
             label: 'القطاعات',
             icon: 'pi pi-th-large',
             items: [

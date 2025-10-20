@@ -5,7 +5,6 @@ import { FormsModule, ReactiveFormsModule, Validators } from '@angular/forms';
 import {
   PrimeAutoCompleteComponent,
   PrimeInputTextComponent,
-  SectorDetailsService,
   SectorsService,
   SectorUnitsService,
   SubmitButtonsComponent,

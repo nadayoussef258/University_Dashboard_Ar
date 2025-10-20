@@ -91,13 +91,13 @@ export class AddEditSectorProgramComponent
     this.form.get('sectorId')?.setValue(this.selectedSector.id);
   }
 
-  fetchSectorDetails(sectorDetail: any) {
+  fetchSectorDetails(sectorprogram: any) {
     this.sectorsService.sectors.subscribe((response: any) => {
       this.filteredSectors = Array.isArray(response)
         ? response
         : response.data || [];
       this.selectedSector = this.filteredSectors.find(
-        (sector: any) => sector.id === sectorDetail.sectorId
+        (sector: any) => sector.id === sectorprogram.sectorId
       );
       this.form.get('sectorId')?.setValue(this.selectedSector.id);
     });

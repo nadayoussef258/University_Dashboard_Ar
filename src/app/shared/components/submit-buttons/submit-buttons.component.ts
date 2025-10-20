@@ -7,14 +7,15 @@ import { ToolbarModule } from 'primeng/toolbar';
   selector: 'app-submit-buttons',
   imports: [ToolbarModule, RouterModule, CardModule],
   templateUrl: './submit-buttons.component.html',
-  styleUrls: ['./submit-buttons.component.scss']
+  styleUrls: ['./submit-buttons.component.scss'],
 })
 export class SubmitButtonsComponent {
   @Input() isSubmitDisabled: boolean = false;
-  @Input() submitButtonText: string = 'ACTIONS.SUBMIT';
+  @Input() submitButtonText: string = 'إرسال';
+  @Input() buttonText: string = 'حفظ';
   @Output() submit = new EventEmitter<void>();
   @Output() cancel = new EventEmitter<void>();
-  
+
   @Input() viewCancelBtn: Boolean = true;
 
   onSubmit() {

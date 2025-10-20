@@ -1,6 +1,5 @@
 import { Routes } from '@angular/router';
 import { Empty } from './empty/empty';
-import { clearManagementIdGuard } from './guards/managements/clear-management-id-guard.guard';
 
 export const pagesRoutes: Routes = [
   {
@@ -135,6 +134,25 @@ export const pagesRoutes: Routes = [
       import('./centers/components/center-members/center-members.routes').then(
         (m) => m.centerMembersRoutes
       ),
+  },
+  {
+    path: 'programs',
+    loadChildren: () =>
+      import('./programs/centers.routes').then((m) => m.programsRoutes),
+  },
+  {
+    path: 'program-details',
+    loadChildren: () =>
+      import(
+        './programs/components/program-details/program-details.routes'
+      ).then((m) => m.programDetailsRoutes),
+  },
+  {
+    path: 'program-members',
+    loadChildren: () =>
+      import(
+        './programs/components/program-members/program-members.routes'
+      ).then((m) => m.programMembersRoutes),
   },
   { path: 'empty', component: Empty },
   { path: '**', redirectTo: '/notfound-404', pathMatch: 'full' },

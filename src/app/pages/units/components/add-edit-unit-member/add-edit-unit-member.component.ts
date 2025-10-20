@@ -92,13 +92,13 @@ export class AddEditUnitMemberComponent
     this.form.get('unitId')?.setValue(this.selectedUnit.id);
   }
 
-  fetchUnitDetails(unitDetail: any) {
+  fetchUnitDetails(unitMember: any) {
     this.unitsService.units.subscribe((response: any) => {
       this.filteredUnits = Array.isArray(response)
         ? response
         : response.data || [];
       this.selectedUnit = this.selectedUnit.find(
-        (unit: any) => unit.id === unitDetail.unitId
+        (unit: any) => unit.id === unitMember.unitId
       );
       this.form.get('unitId')?.setValue(this.selectedUnit.id);
     });

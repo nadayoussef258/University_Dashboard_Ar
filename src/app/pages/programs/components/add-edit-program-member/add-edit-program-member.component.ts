@@ -4,19 +4,18 @@ import { CardModule } from 'primeng/card';
 import { FormsModule, ReactiveFormsModule, Validators } from '@angular/forms';
 import {
   PrimeAutoCompleteComponent,
-  SectorMembersService,
-  SectorsService,
+  ProgramMembersService,
+  ProgramsService,
   SubmitButtonsComponent,
 } from '../../../../shared';
 import { DialogService } from 'primeng/dynamicdialog';
-import { ActivatedRoute, NavigationEnd } from '@angular/router';
+import { ActivatedRoute } from '@angular/router';
 import { ToggleSwitch } from 'primeng/toggleswitch';
 import { NgClass } from '@angular/common';
-import { filter } from 'rxjs';
-import { SectorIdService } from '../../sector-id.service';
+import { ProgramIdService } from '../../program-id.service';
 
 @Component({
-  selector: 'app-add-edit-sector-member',
+  selector: 'app-add-edit-program-member',
   imports: [
     CardModule,
     FormsModule,
@@ -25,23 +24,23 @@ import { SectorIdService } from '../../sector-id.service';
     PrimeAutoCompleteComponent,
     ToggleSwitch,
     NgClass,
-    ToggleSwitch,
   ],
-  templateUrl: './add-edit-sector-member.component.html',
-  styleUrl: './add-edit-sector-member.component.css',
+  templateUrl: './add-edit-program-member.component.html',
+  styleUrl: './add-edit-program-member.component.css',
 })
 //
-export class AddEditSectorMemberComponent
+export class AddEditProgramMemberComponent
   extends BaseEditComponent
   implements OnInit
 {
-  sectorId: string = '';
-  selectedSector: any;
-  filteredSectors: any[] = [];
+  programId: string = '';
+  selectedProgram: any;
+  filteredPrograms: any[] = [];
 
-  sectorMembersService: SectorMembersService = inject(SectorMembersService);
-  sectorsService: SectorsService = inject(SectorsService);
-  sectorIdService: SectorIdService = inject(SectorIdService);
+  programMembersService: ProgramMembersService = inject(ProgramMembersService);
+  programsService: ProgramsService = inject(ProgramsService);
+  programIdService: ProgramIdService = inject(ProgramIdService);
+
   dialogService: DialogService = inject(DialogService);
 
   constructor(override activatedRoute: ActivatedRoute) {
@@ -50,16 +49,17 @@ export class AddEditSectorMemberComponent
 
   override ngOnInit(): void {
     super.ngOnInit();
-    this.sectorId = this.sectorIdService.SectortId();
+    this.programId = this.programIdService.ProgramId();
 
     this.dialogService.dialogComponentRefMap.forEach((element) => {
       this.pageType = element.instance.ddconfig.data.pageType;
+
       if (this.pageType === 'edit') {
         this.id = element.instance.ddconfig.data.row.rowData.id;
       }
     });
     if (this.pageType === 'edit') {
-      this.getEditSectorsMember();
+      this.getEditProgramMember();
     } else {
       this.initFormGroup();
     }
@@ -68,58 +68,58 @@ export class AddEditSectorMemberComponent
   initFormGroup() {
     this.form = this.fb.group({
       isLeader: [false],
-      sectorId: [this.sectorId, Validators.required],
+      centerId: [this.programId, Validators.required],
     });
   }
 
-  getSectors(event: any) {
+  getPrograms(event: any) {
     const query = event.query.toLowerCase();
-    this.sectorsService.sectors.subscribe({
+    this.programsService.programs.subscribe({
       next: (res: any) => {
-        this.filteredSectors = res.filter((sector: any) =>
-          sector.name.includes(query)
+        this.filteredPrograms = res.filter((program: any) =>
+          program.pageId.includes(query)
         );
       },
       error: (err) => {
-        this.alert.error('خطأ فى جلب القطاعات');
+        this.alert.error('خطأ فى جلب البرامج');
       },
     });
   }
 
-  onSectorSelect(event: any) {
-    this.selectedSector = event.value;
-    this.form.get('sectorId')?.setValue(this.selectedSector.id);
+  onProgramSelect(event: any) {
+    this.selectedProgram = event.value;
+    this.form.get('programId')?.setValue(this.selectedProgram.id);
   }
 
-  fetchSectorDetails(sectorMember: any) {
-    this.sectorsService.sectors.subscribe((response: any) => {
-      this.filteredSectors = Array.isArray(response)
+  fetchProgramDetails(programMember: any) {
+    this.programsService.programs.subscribe((response: any) => {
+      this.programsService = Array.isArray(response)
         ? response
         : response.data || [];
-      this.selectedSector = this.filteredSectors.find(
-        (sector: any) => sector.id === sectorMember.sectorId
+      this.selectedProgram = this.filteredPrograms.find(
+        (program: any) => program.id === programMember.id
       );
-      this.form.get('sectorId')?.setValue(this.selectedSector.id);
+      this.form.get('programId')?.setValue(this.selectedProgram.id);
     });
   }
 
-  getEditSectorsMember = () => {
-    this.sectorMembersService
-      .getEditSectorMember(this.id)
-      .subscribe((sectorMember: any) => {
+  getEditProgramMember = () => {
+    this.programMembersService
+      .getEditProgramMember(this.id)
+      .subscribe((programMember: any) => {
         this.initFormGroup();
-        this.form.patchValue(sectorMember);
-        this.fetchSectorDetails(sectorMember);
+        this.form.patchValue(programMember);
+        this.fetchProgramDetails(programMember);
       });
   };
 
   submit() {
     if (this.pageType === 'add')
-      this.sectorMembersService.add(this.form.value).subscribe(() => {
+      this.programMembersService.add(this.form.value).subscribe(() => {
         this.closeDialog();
       });
     if (this.pageType === 'edit')
-      this.sectorMembersService
+      this.programMembersService
         .update({ id: this.id, ...this.form.value })
         .subscribe(() => {
           this.closeDialog();
