@@ -46,8 +46,6 @@ export class AddEditSectorComponent
   aboutService: AboutService = inject(AboutService);
   sectorIdServices = inject(SectorIdService);
 
-  dialogService: DialogService = inject(DialogService);
-
   constructor(override activatedRoute: ActivatedRoute) {
     super(activatedRoute);
   }
@@ -55,9 +53,6 @@ export class AddEditSectorComponent
   override ngOnInit(): void {
     super.ngOnInit();
     this.id = this.activatedRoute?.snapshot?.paramMap?.get('id') as string;
-    this.sectorId = this.activatedRoute?.snapshot?.paramMap?.get(
-      'id'
-    ) as string;
 
     // set value of sectorId
     this.sectorIdServices.setSectorId(this.id);

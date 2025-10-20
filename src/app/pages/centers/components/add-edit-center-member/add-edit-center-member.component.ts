@@ -48,7 +48,7 @@ export class AddEditCenterMemberComponent
   }
 
   override ngOnInit(): void {
-    // super.ngOnInit();
+    super.ngOnInit();
     this.centerId = this.centerIdService.CenterId();
 
     this.dialogService.dialogComponentRefMap.forEach((element) => {

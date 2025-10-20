@@ -2,35 +2,19 @@
 <form method="post" class="my-4 grid gap-3 grid-cols-12" [formGroup]="form">
   <div class="form-col">
     <label class="text-middle mb-2">{{ "عنوان الصفحة" }}</label>
-    <app-prime-autocomplete
-      [field]="'title'"
-      [selectedOption]="selectedPage"
-      [suggestions]="filteredPages"
-      [formGroup]="form"
-      (onSelect)="onPageSelect($event)"
-      [lazy]="false"
-      (handleMethod)="getPages($event)"
-    ></app-prime-autocomplete>
+    <app-prime-autocomplete [field]="'title'" [selectedOption]="selectedPage" [suggestions]="filteredPages"
+      [formGroup]="form" (onSelect)="onPageSelect($event)" [lazy]="false"
+      (handleMethod)="getPages($event)"></app-prime-autocomplete>
   </div>
   <div class="form-col">
     <label class="text-middle mb-2">{{ "عن الجامعة" }}</label>
-    <app-prime-autocomplete
-      [field]="'content'"
-      [selectedOption]="selectedAbout"
-      [suggestions]="filteredAbout"
-      [formGroup]="form"
-      (onSelect)="onAboutSelect($event)"
-      [lazy]="false"
-      (handleMethod)="getAbouts($event)"
-    ></app-prime-autocomplete>
+    <app-prime-autocomplete [field]="'content'" [selectedOption]="selectedAbout" [suggestions]="filteredAbout"
+      [formGroup]="form" (onSelect)="onAboutSelect($event)" [lazy]="false"
+      (handleMethod)="getAbouts($event)"></app-prime-autocomplete>
   </div>
 </form>
 } @if (form) {
-<app-submit-buttons
-  [isSubmitDisabled]="form.invalid"
-  [submitButtonText]="pageType === 'add' ? 'Submit' : 'Save'"
-  (submit)="submit()"
-  (cancel)="redirect()"
->
+<app-submit-buttons [isSubmitDisabled]="form.invalid" [submitButtonText]="pageType === 'add' ? 'Submit' : 'Save'"
+  [buttonText]="pageType === 'add' ? 'اضافة' : 'حفظ'" (submit)="submit()" (cancel)="redirect()">
 </app-submit-buttons>
 }

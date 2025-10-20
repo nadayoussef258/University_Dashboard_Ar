@@ -37,7 +37,6 @@ export class AddEditStatisticComponent
 
   override ngOnInit(): void {
     super.ngOnInit();
-
     this.dialogService.dialogComponentRefMap.forEach((element) => {
       this.pageType = element.instance.ddconfig.data.pageType;
       if (this.pageType === 'edit') {

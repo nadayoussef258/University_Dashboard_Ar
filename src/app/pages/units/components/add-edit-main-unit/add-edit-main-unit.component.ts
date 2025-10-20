@@ -12,8 +12,6 @@ import {
 import { DialogService } from 'primeng/dynamicdialog';
 import { ActivatedRoute } from '@angular/router';
 import { TabsModule } from 'primeng/tabs';
-import { UnitDetailsComponent } from '../unit-detail/unit-details.component';
-import { UnitMembersComponent } from '../unit-member/unit-members.component';
 import { UnitIdService } from '../../unit-id.service';
 
 @Component({
@@ -25,8 +23,6 @@ import { UnitIdService } from '../../unit-id.service';
     ReactiveFormsModule,
     SubmitButtonsComponent,
     PrimeAutoCompleteComponent,
-    UnitDetailsComponent,
-    UnitMembersComponent,
   ],
   templateUrl: './add-edit-main-unit.component.html',
   styleUrls: ['./add-edit-main-unit.component.css'],
@@ -55,7 +51,6 @@ export class AddEditUnitComponent extends BaseEditComponent implements OnInit {
   override ngOnInit(): void {
     super.ngOnInit();
     this.id = this.activatedRoute?.snapshot?.paramMap?.get('id') as string;
-    this.unitId = this.activatedRoute?.snapshot?.paramMap?.get('id') as string;
 
     // set value of unitId
     this.unitIdServices.setUnitId(this.id);

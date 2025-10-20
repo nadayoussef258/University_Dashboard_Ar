@@ -102,6 +102,11 @@ export class AppMenu {
             ],
           },
           {
+            label: 'اعضاء هيئة التدريس',
+            icon: 'pi pi-id-card',
+            routerLink: ['/pages/members'],
+          },
+          {
             label: 'الوحدات',
             icon: 'pi pi-users',
             items: [

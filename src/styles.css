@@ -3,7 +3,7 @@
 @import url("./assets/demo/demo.scss");
 
 @import "tailwindcss";
-@plugin "tailwindcss-primeui";
+@import "tailwindcss-primeui";
 
 /* @source './index.html'; */
 @source './**/*.{html,ts,scss,css}';
@@ -37,10 +37,6 @@
   .container {
     margin-inline: auto;
     padding-inline: 2rem;
-  }
-
-  .amr-btn {
-    @apply bg-red-700 mx-6 my-3;
   }
 }
 

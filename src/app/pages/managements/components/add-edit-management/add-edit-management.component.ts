@@ -53,8 +53,6 @@ export class AddEditManagementComponent
   override ngOnInit(): void {
     super.ngOnInit();
     this.id = this.activatedRoute?.snapshot?.paramMap?.get('id') as string;
-    // this.managementId =
-    // this.activatedRoute?.snapshot?.paramMap?.get('id') ?? '';
 
     // set value of managementId
     this.managementIdServices.setManagementId(this.id);

@@ -41,7 +41,6 @@ export class AddEditMenuTypeComponent
       this.pageType = element.instance.ddconfig.data.pageType;
       if (this.pageType === 'edit') {
         this.id = element.instance.ddconfig.data.row.rowData.id;
-        console.log('element :::', element);
       }
     });
     if (this.pageType === 'edit') {

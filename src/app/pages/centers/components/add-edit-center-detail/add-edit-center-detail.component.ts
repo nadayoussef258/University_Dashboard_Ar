@@ -46,7 +46,7 @@ export class AddEditCenterDetailComponent
   }
 
   override ngOnInit(): void {
-    // super.ngOnInit();
+    super.ngOnInit();
     this.centerId = this.centerIdService.CenterId();
     this.id = this.activatedRoute.snapshot.paramMap.get('id') as string;
 

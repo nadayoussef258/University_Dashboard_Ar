@@ -30,6 +30,6 @@
 
 @if (form) {
 <app-submit-buttons [isSubmitDisabled]="form.invalid" [submitButtonText]="pageType === 'add' ? 'Submit' : 'Save'"
-  (submit)="submit()" (cancel)="redirect()">
+  [buttonText]="pageType === 'add' ? 'اضافة' : 'حفظ'" (submit)="submit()" (cancel)="redirect()">
 </app-submit-buttons>
 }

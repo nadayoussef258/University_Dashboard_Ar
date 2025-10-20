@@ -49,7 +49,7 @@ export class AddEditSectorProgramComponent
   }
 
   override ngOnInit(): void {
-    // super.ngOnInit();
+    super.ngOnInit();
     this.sectorId = this.sectorIdService.SectortId();
 
     this.dialogService.dialogComponentRefMap.forEach((element) => {

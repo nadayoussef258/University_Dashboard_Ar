@@ -3,11 +3,8 @@
   <form method="post" class="grid gap-4 grid-cols-12" [formGroup]="form">
     @if ( pageType !== 'add' && !programId ) {
     <div class="flex gap-2 col-span-12 items-center">
-      <p-toggleswitch
-        [(ngModel)]="allowEdit"
-        [ngModelOptions]="{ standalone: true }"
-        (onChange)="toggleEditBtn('centerId')"
-      >
+      <p-toggleswitch [(ngModel)]="allowEdit" [ngModelOptions]="{ standalone: true }"
+        (onChange)="toggleEditBtn('centerId')">
       </p-toggleswitch>
       <label class="font-medium text-sm">هل تريد التعديل علي المركز ؟</label>
     </div>
@@ -17,16 +14,10 @@
     @if(pageType !== 'add' && programId || !programId){
     <div class="form-col">
       <label class="text-middle mb-2">{{ "المركز" }}</label>
-      <app-prime-autocomplete
-        [disabled]="pageType === 'edit' && !allowEdit"
-        [field]="'pageId'"
-        [selectedOption]="selectedProgram"
-        [suggestions]="filteredPrograms"
-        [formGroup]="form"
-        (onSelect)="onProgramSelect($event)"
-        [lazy]="false"
-        (handleMethod)="getPrograms($event)"
-      ></app-prime-autocomplete>
+      <app-prime-autocomplete [disabled]="pageType === 'edit' && !allowEdit" [field]="'pageId'"
+        [selectedOption]="selectedProgram" [suggestions]="filteredPrograms" [formGroup]="form"
+        (onSelect)="onProgramSelect($event)" [lazy]="false"
+        (handleMethod)="getPrograms($event)"></app-prime-autocomplete>
     </div>
     }
     <div class="col-span-12 lg:col-span-3">
@@ -39,16 +30,12 @@
             form.get('isLeader')?.value
               ? 'bg-blue-100 text-blue-700 border-blue-300'
               : 'bg-gray-100 text-gray-600 border-gray-300'
-          "
-        >
-          <i
-            class="text-base"
-            [ngClass]="
+          ">
+          <i class="text-base" [ngClass]="
               form.get('isLeader')?.value
                 ? 'pi pi-star text-blue-500'
                 : 'pi pi-user text-gray-500'
-            "
-          ></i>
+            "></i>
           {{ form.get("isLeader")?.value ? "ادمن" : "مستخدم" }}
         </span>
       </div>
@@ -58,12 +45,7 @@
 </p-card>
 
 @if (form) {
-<app-submit-buttons
-  [isSubmitDisabled]="form.invalid"
-  [submitButtonText]="pageType === 'add' ? 'Submit' : 'Save'"
-  [buttonText]="pageType === 'add' ? 'اضافة' : 'حفظ'"
-  (submit)="submit()"
-  (cancel)="closeDialog()"
->
+<app-submit-buttons [isSubmitDisabled]="form.invalid" [submitButtonText]="pageType === 'add' ? 'Submit' : 'Save'"
+  [buttonText]="pageType === 'add' ? 'اضافة' : 'حفظ'" (submit)="submit()" (cancel)="closeDialog()">
 </app-submit-buttons>
 }

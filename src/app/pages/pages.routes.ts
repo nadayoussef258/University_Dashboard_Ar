@@ -8,12 +8,18 @@ export const pagesRoutes: Routes = [
       import('./settings/settings.routes').then((m) => m.settingsRoutes),
   },
   {
+    path: 'members',
+    loadChildren: () =>
+      import('./members/members.routes').then((m) => m.membersRoutes),
+  },
+  {
     path: 'managements',
     loadChildren: () =>
       import('./managements/managements.routes').then(
         (m) => m.managementsRoutes
       ),
   },
+
   {
     path: 'management-details',
     loadChildren: () =>

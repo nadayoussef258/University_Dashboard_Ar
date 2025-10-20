@@ -41,7 +41,7 @@ export const sectorsRoutes: Routes = [
     children: [
       {
         path: '',
-        canActivateChild: [validateSectorIdGuard],
+        canActivate: [validateSectorIdGuard],
         loadComponent: () =>
           import('./components/add-edit-sector/add-edit-sector.component').then(
             (c) => c.AddEditSectorComponent

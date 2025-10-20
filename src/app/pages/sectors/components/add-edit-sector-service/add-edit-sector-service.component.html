@@ -2,101 +2,56 @@
   @if (form) {
   <form method="post" class="grid gap-4 grid-cols-12" [formGroup]="form">
     <div class="form-col">
-      <app-prime-input-text
-        [formGroup]="form"
-        controlName="name"
-        [label]="'اسم الخدمة'"
-      >
+      <app-prime-input-text [formGroup]="form" controlName="name" [label]="'اسم الخدمة'">
       </app-prime-input-text>
     </div>
 
     <div class="col-span-12">
-      <app-prime-input-text
-        [formGroup]="form"
-        controlName="details"
-        [label]="'تفاصيل الخدمة'"
-        [inputType]="'textarea'"
-      >
+      <app-prime-input-text [formGroup]="form" controlName="details" [label]="'تفاصيل الخدمة'" [inputType]="'textarea'">
       </app-prime-input-text>
     </div>
 
     <div class="form-col">
-      <app-prime-input-text
-        [formGroup]="form"
-        controlName="duration"
-        [label]="'المدة'"
-      >
+      <app-prime-input-text [formGroup]="form" controlName="duration" [label]="'المدة'">
       </app-prime-input-text>
     </div>
 
     <div class="form-col">
-      <app-prime-input-text
-        [formGroup]="form"
-        controlName="category"
-        [label]="'الفئة'"
-      >
+      <app-prime-input-text [formGroup]="form" controlName="category" [label]="'الفئة'">
       </app-prime-input-text>
     </div>
 
     <div class="form-col">
-      <app-prime-input-text
-        [formGroup]="form"
-        controlName="fees"
-        contentType="number"
-        [label]="'الرسوم (جنيه)'"
-      >
+      <app-prime-input-text [formGroup]="form" controlName="fees" contentType="number" [label]="'الرسوم (جنيه)'">
       </app-prime-input-text>
     </div>
 
     <div class="form-col">
-      <app-prime-input-text
-        [formGroup]="form"
-        controlName="applicationUrl"
-        [label]="'رابط التقديم الإلكتروني'"
-      >
+      <app-prime-input-text [formGroup]="form" controlName="applicationUrl" [label]="'رابط التقديم الإلكتروني'">
       </app-prime-input-text>
     </div>
 
     <div class="form-col">
-      <app-prime-input-text
-        [formGroup]="form"
-        controlName="downloadUrl"
-        [label]="'رابط التحميل'"
-      >
+      <app-prime-input-text [formGroup]="form" controlName="downloadUrl" [label]="'رابط التحميل'">
       </app-prime-input-text>
     </div>
 
     <div class="form-col">
-      <app-prime-input-text
-        [formGroup]="form"
-        controlName="contactPerson"
-        [label]="'اسم مسؤول التواصل'"
-      >
+      <app-prime-input-text [formGroup]="form" controlName="contactPerson" [label]="'اسم مسؤول التواصل'">
       </app-prime-input-text>
     </div>
 
     <div class="form-col">
-      <app-prime-input-text
-        [formGroup]="form"
-        controlName="contactPhone"
-        [label]="'رقم الهاتف'"
-      >
+      <app-prime-input-text [formGroup]="form" controlName="contactPhone" [label]="'رقم الهاتف'">
       </app-prime-input-text>
     </div>
 
     @if (pageType !== 'add' && sectorId || !sectorId ) {
     <div class="form-col">
       <label class="text-middle mb-2">{{ "القطاع" }}</label>
-      <app-prime-autocomplete
-        [disabled]="!!sectorId"
-        [field]="'name'"
-        [selectedOption]="selectedSector"
-        [suggestions]="filteredSectors"
-        [formGroup]="form"
-        (onSelect)="onSectorSelect($event)"
-        [lazy]="false"
-        (handleMethod)="getSectors($event)"
-      ></app-prime-autocomplete>
+      <app-prime-autocomplete [disabled]="!!sectorId" [field]="'name'" [selectedOption]="selectedSector"
+        [suggestions]="filteredSectors" [formGroup]="form" (onSelect)="onSectorSelect($event)" [lazy]="false"
+        (handleMethod)="getSectors($event)"></app-prime-autocomplete>
     </div>
 
     <div class="form-col">
@@ -109,20 +64,16 @@
             form.get('isOnline')?.value
               ? 'bg-blue-100 text-green-700 border-blue-300'
               : 'bg-gray-100 text-red-600 border-gray-300'
-          "
-        >
-          <i
-            class="text-base"
-            [ngClass]="
+          ">
+          <i class="text-base" [ngClass]="
               form.get('isOnline')?.value
                 ? 'pi pi-star text-green-500'
                 : 'pi pi-user text-red-500'
-            "
-          ></i>
+            "></i>
           {{
-            form.get("isLeader")?.value
-              ? "متاحة اون لاين"
-              : "غير متاحة اون لاين"
+          form.get("isLeader")?.value
+          ? "متاحة اون لاين"
+          : "غير متاحة اون لاين"
           }}
         </span>
       </div>
@@ -133,11 +84,7 @@
 </p-card>
 
 @if (form) {
-<app-submit-buttons
-  [isSubmitDisabled]="form.invalid"
-  [submitButtonText]="pageType === 'add' ? 'Submit' : 'Save'"
-  (submit)="submit()"
-  (cancel)="redirect()"
->
+<app-submit-buttons [isSubmitDisabled]="form.invalid" [submitButtonText]="pageType === 'add' ? 'Submit' : 'Save'"
+  [buttonText]="pageType === 'add' ? 'اضافة' : 'حفظ'" (submit)="submit()" (cancel)="redirect()">
 </app-submit-buttons>
 }

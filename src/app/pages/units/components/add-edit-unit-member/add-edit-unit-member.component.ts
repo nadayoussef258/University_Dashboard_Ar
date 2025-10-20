@@ -49,7 +49,7 @@ export class AddEditUnitMemberComponent
   }
 
   override ngOnInit(): void {
-    // super.ngOnInit();
+    super.ngOnInit();
     this.unitId = this.unitIdService.UnitId();
     this.dialogService.dialogComponentRefMap.forEach((element) => {
       this.pageType = element.instance.ddconfig.data.pageType;

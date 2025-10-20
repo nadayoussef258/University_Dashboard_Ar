@@ -52,21 +52,17 @@ export class AddEditManagementMemberComponent
   }
 
   override ngOnInit(): void {
-    // super.ngOnInit();
-
+    super.ngOnInit();
     this.managementId = this.managmentIdService.ManagmentId();
 
     this.dialogService.dialogComponentRefMap.forEach((element) => {
       this.pageType = element.instance.ddconfig.data.pageType;
-      console.log(
-        'this.managementId from dialogComponentRefMap AddEditManagementMemberComponent ',
-        this.managementId
-      );
 
       if (this.pageType === 'edit') {
         this.id = element.instance.ddconfig.data.row.rowData.id;
       }
     });
+
     if (this.pageType === 'edit') {
       this.getEditManagementMember();
     } else {
