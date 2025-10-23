@@ -55,7 +55,7 @@ export class AddEditSectorMemberComponent
     this.dialogService.dialogComponentRefMap.forEach((element) => {
       this.pageType = element.instance.ddconfig.data.pageType;
       if (this.pageType === 'edit') {
-        this.id = element.instance.ddconfig.data.row.rowData.id;
+        this.id.set(element.instance.ddconfig.data.row.rowData.id);
       }
     });
     if (this.pageType === 'edit') {
@@ -77,7 +77,7 @@ export class AddEditSectorMemberComponent
     this.sectorsService.sectors.subscribe({
       next: (res: any) => {
         this.filteredSectors = res.filter((sector: any) =>
-          sector.name.includes(query)
+          sector.name.includes(query),
         );
       },
       error: (err) => {
@@ -97,7 +97,7 @@ export class AddEditSectorMemberComponent
         ? response
         : response.data || [];
       this.selectedSector = this.filteredSectors.find(
-        (sector: any) => sector.id === sectorMember.sectorId
+        (sector: any) => sector.id === sectorMember.sectorId,
       );
       this.form.get('sectorId')?.setValue(this.selectedSector.id);
     });
@@ -105,7 +105,7 @@ export class AddEditSectorMemberComponent
 
   getEditSectorsMember = () => {
     this.sectorMembersService
-      .getEditSectorMember(this.id)
+      .getEditSectorMember(this.id())
       .subscribe((sectorMember: any) => {
         this.initFormGroup();
         this.form.patchValue(sectorMember);
@@ -120,7 +120,7 @@ export class AddEditSectorMemberComponent
       });
     if (this.pageType === 'edit')
       this.sectorMembersService
-        .update({ id: this.id, ...this.form.value })
+        .update({ id: this.id(), ...this.form.value })
         .subscribe(() => {
           this.closeDialog();
         });

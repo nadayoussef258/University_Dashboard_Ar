@@ -23,8 +23,6 @@ import { AddEditAboutComponent } from '../../components/add-edit-about/add-edit-
   styleUrl: './about.component.css',
 })
 export class AboutComponent extends BaseListComponent {
-  @Input() employeeId: string = '';
-  isEnglish = false;
   tableOptions!: TableOptions;
   service = inject(AboutService);
 
@@ -66,7 +64,7 @@ export class AboutComponent extends BaseListComponent {
   initializeTableColumns(): TableOptions['inputCols'] {
     return [
       {
-        field: 'pageTitle',
+        field: 'pageName',
         header: 'عنوان الصفحة',
         filter: true,
         filterMode: 'text',
@@ -134,10 +132,4 @@ export class AboutComponent extends BaseListComponent {
   }
 
   /* when leaving the component */
-  override ngOnDestroy() {
-    //Called once, before the instance is destroyed.
-    //Add 'implements OnDestroy' to the class.
-    this.destroy$.next(true);
-    this.destroy$.unsubscribe();
-  }
 }

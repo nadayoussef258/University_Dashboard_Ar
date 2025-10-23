@@ -47,7 +47,7 @@ export class AddEditAboutComponent extends BaseEditComponent implements OnInit {
     this.dialogService.dialogComponentRefMap.forEach((element) => {
       this.pageType = element.instance.ddconfig.data.pageType;
       if (this.pageType === 'edit') {
-        this.id = element.instance.ddconfig.data.row.rowData.id;
+        this.id.set(element.instance.ddconfig.data.row.rowData.id);
       }
     });
     if (this.pageType === 'edit') {
@@ -72,7 +72,7 @@ export class AddEditAboutComponent extends BaseEditComponent implements OnInit {
     this.pagesService.pages.subscribe({
       next: (res: any) => {
         this.filteredPages = res.filter((page: any) =>
-          page.title.toLowerCase().includes(query)
+          page.title.toLowerCase().includes(query),
         );
       },
       error: (err) => {
@@ -92,14 +92,14 @@ export class AddEditAboutComponent extends BaseEditComponent implements OnInit {
         ? response
         : response.data || [];
       this.selectedPage = this.filteredPages.find(
-        (page: any) => page.id === about.pageId
+        (page: any) => page.id === about.pageId,
       );
       this.form.get('pageId')?.setValue(this.selectedPage.id);
     });
   }
 
   getEditAbout = () => {
-    this.aboutService.getEditabout(this.id).subscribe((about: any) => {
+    this.aboutService.getEditabout(this.id()).subscribe((about: any) => {
       this.initFormGroup();
       this.form.patchValue(about);
       this.fetchPagesDetails(about);
@@ -113,7 +113,7 @@ export class AddEditAboutComponent extends BaseEditComponent implements OnInit {
       });
     if (this.pageType === 'edit')
       this.aboutService
-        .update({ id: this.id, ...this.form.value })
+        .update({ id: this.id(), ...this.form.value })
         .subscribe(() => {
           this.closeDialog();
         });

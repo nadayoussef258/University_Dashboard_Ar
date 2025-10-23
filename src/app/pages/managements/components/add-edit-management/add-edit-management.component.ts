@@ -52,10 +52,10 @@ export class AddEditManagementComponent
 
   override ngOnInit(): void {
     super.ngOnInit();
-    this.id = this.activatedRoute?.snapshot?.paramMap?.get('id') as string;
+    this.id.set(this.activatedRoute?.snapshot?.paramMap?.get('id') as string);
 
     // set value of managementId
-    this.managementIdServices.setManagementId(this.id);
+    this.managementIdServices.setManagementId(this.id());
 
     if (this.pageType === 'edit') {
       this.getEditManagement();
@@ -76,7 +76,7 @@ export class AddEditManagementComponent
     this.pagesService.pages.subscribe({
       next: (res: any) => {
         this.filteredPages = res.filter((page: any) =>
-          page.title.toLowerCase().includes(query)
+          page.title.toLowerCase().includes(query),
         );
       },
       error: (err) => {
@@ -96,7 +96,7 @@ export class AddEditManagementComponent
         ? response
         : response.data || [];
       this.selectedPage = this.filteredPages.find(
-        (page: any) => page.id === management.pageId
+        (page: any) => page.id === management.pageId,
       );
       this.form.get('pageId')?.setValue(this.selectedPage.id);
     });
@@ -107,7 +107,7 @@ export class AddEditManagementComponent
     this.aboutService.abouts.subscribe({
       next: (res: any) => {
         this.filteredAbout = res.filter((about: any) =>
-          about.content.toLowerCase().includes(query)
+          about.content.toLowerCase().includes(query),
         );
       },
       error: (err) => {
@@ -127,7 +127,7 @@ export class AddEditManagementComponent
         ? response
         : response.data || [];
       this.selectedAbout = this.filteredAbout.find(
-        (about: any) => about.id === management.aboutId
+        (about: any) => about.id === management.aboutId,
       );
       this.form.get('aboutId')?.setValue(this.selectedAbout.id);
     });
@@ -135,7 +135,7 @@ export class AddEditManagementComponent
 
   getEditManagement = () => {
     this.managementsService
-      .getEditManagement(this.id)
+      .getEditManagement(this.id())
       .subscribe((management: any) => {
         this.initFormGroup();
         this.form.patchValue(management);
@@ -151,7 +151,7 @@ export class AddEditManagementComponent
       });
     if (this.pageType === 'edit')
       this.managementsService
-        .update({ id: this.id, ...this.form.value })
+        .update({ id: this.id(), ...this.form.value })
         .subscribe(() => {
           this.redirect();
         });

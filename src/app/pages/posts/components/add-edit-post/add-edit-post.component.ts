@@ -3,9 +3,7 @@ import { BaseEditComponent } from '../../../../base/components/base-edit-compone
 import { CardModule } from 'primeng/card';
 import { FormsModule, ReactiveFormsModule, Validators } from '@angular/forms';
 import {
-  PagesService,
   PostsService,
-  PrimeDropDownComponent,
   PrimeInputTextComponent,
   PrimeRadioButtonComponent,
   SubmitButtonsComponent,
@@ -22,7 +20,6 @@ import { ToggleSwitchModule } from 'primeng/toggleswitch';
     ReactiveFormsModule,
     SubmitButtonsComponent,
     PrimeInputTextComponent,
-    PrimeDropDownComponent,
     PrimeRadioButtonComponent,
     ToggleSwitchModule,
   ],
@@ -90,13 +87,13 @@ export class AddEditPostComponent extends BaseEditComponent implements OnInit {
 
   fetchStatusDetails(page: any) {
     this.selectedStatus = this.statusOptions.find(
-      (stauts: any) => stauts.nameEn === page.status
+      (stauts: any) => stauts.nameEn === page.status,
     );
     this.form.get('stauts')?.setValue(this.selectedStatus?.nameEn);
   }
 
   getEditPost = () => {
-    this.postsService.getEditPost(this.id).subscribe((post: any) => {
+    this.postsService.getEditPost(this.id()).subscribe((post: any) => {
       this.initFormGroup();
       this.form.patchValue(post);
       this.fetchStatusDetails(post);

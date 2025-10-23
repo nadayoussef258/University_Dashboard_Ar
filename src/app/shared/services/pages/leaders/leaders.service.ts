@@ -6,27 +6,27 @@ import { HttpService } from '../../../../core/services';
 @Injectable({
   providedIn: 'root',
 })
-export class ProgramsService extends HttpService {
+export class LeadersService extends HttpService {
   protected get baseUrl(): string {
-    return 'v2/program/';
+    return 'v2/leaders/';
   }
 
-  getProgram(id: string) {
+  getLeaders(id: string) {
     return this.get<any>({ apiName: `Get/${id}` });
   }
 
-  getEditProgram(id: string) {
+  getEditLeader(id: string) {
     return this.get<any>({ apiName: `getedit/${id}` });
   }
 
-  get programs() {
+  get leaders() {
     return this.get<any[]>({ apiName: 'getAll' });
   }
 
   getDropDown(body: GetPagedBody<any>): Observable<any> {
     return this.dropdownPost<any, any>(
       { apiName: `getdropdown`, showAlert: true },
-      body
+      body,
     );
   }
 

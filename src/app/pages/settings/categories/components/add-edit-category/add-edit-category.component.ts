@@ -39,7 +39,7 @@ export class AddEditCategoryComponent
     this.dialogService.dialogComponentRefMap.forEach((element) => {
       this.pageType = element.instance.ddconfig.data.pageType;
       if (this.pageType === 'edit') {
-        this.id = element.instance.ddconfig.data.row.rowData.id;
+        this.id.set(element.instance.ddconfig.data.row.rowData.id);
       }
     });
     if (this.pageType === 'edit') {
@@ -57,7 +57,7 @@ export class AddEditCategoryComponent
   }
 
   getEditCategory = () => {
-    this.categoriesService.getCategory(this.id).subscribe((page: any) => {
+    this.categoriesService.getCategory(this.id()).subscribe((page: any) => {
       this.initFormGroup();
       this.form.patchValue(page);
     });
@@ -70,7 +70,7 @@ export class AddEditCategoryComponent
       });
     if (this.pageType === 'edit')
       this.categoriesService
-        .update({ id: this.id, ...this.form.value })
+        .update({ id: this.id(), ...this.form.value })
         .subscribe(() => {
           this.closeDialog();
         });

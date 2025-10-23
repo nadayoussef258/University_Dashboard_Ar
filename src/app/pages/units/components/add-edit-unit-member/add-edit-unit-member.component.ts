@@ -56,7 +56,7 @@ export class AddEditUnitMemberComponent
       console.log(this.unitId, 'unitId');
 
       if (this.pageType === 'edit') {
-        this.id = element.instance.ddconfig.data.row.rowData.id;
+        this.id.set(element.instance.ddconfig.data.row.rowData.id);
       }
     });
     if (this.pageType === 'edit') {
@@ -78,7 +78,7 @@ export class AddEditUnitMemberComponent
     this.unitsService.units.subscribe({
       next: (res: any) => {
         this.filteredUnits = res.filter((unit: any) =>
-          unit.pageId.includes(query)
+          unit.pageId.includes(query),
         );
       },
       error: (err) => {
@@ -98,7 +98,7 @@ export class AddEditUnitMemberComponent
         ? response
         : response.data || [];
       this.selectedUnit = this.selectedUnit.find(
-        (unit: any) => unit.id === unitMember.unitId
+        (unit: any) => unit.id === unitMember.unitId,
       );
       this.form.get('unitId')?.setValue(this.selectedUnit.id);
     });
@@ -106,7 +106,7 @@ export class AddEditUnitMemberComponent
 
   getEditUnitMember = () => {
     this.unitMembersService
-      .getEditUnitMember(this.id)
+      .getEditUnitMember(this.id())
       .subscribe((unitMember: any) => {
         this.initFormGroup();
         this.form.patchValue(unitMember);
@@ -121,7 +121,7 @@ export class AddEditUnitMemberComponent
       });
     if (this.pageType === 'edit')
       this.unitMembersService
-        .update({ id: this.id, ...this.form.value })
+        .update({ id: this.id(), ...this.form.value })
         .subscribe(() => {
           this.closeDialog();
         });

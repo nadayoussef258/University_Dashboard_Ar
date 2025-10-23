@@ -4,7 +4,6 @@ import { CardModule } from 'primeng/card';
 import { FormsModule, ReactiveFormsModule, Validators } from '@angular/forms';
 import {
   PagesService,
-  PrimeDropDownComponent,
   PrimeInputTextComponent,
   PrimeRadioButtonComponent,
   SubmitButtonsComponent,
@@ -21,7 +20,6 @@ import { ToggleSwitchModule } from 'primeng/toggleswitch';
     ReactiveFormsModule,
     SubmitButtonsComponent,
     PrimeInputTextComponent,
-    PrimeDropDownComponent,
     PrimeRadioButtonComponent,
     ToggleSwitchModule,
   ],
@@ -51,7 +49,7 @@ export class AddEditPageComponent extends BaseEditComponent implements OnInit {
     this.dialogService.dialogComponentRefMap.forEach((element) => {
       this.pageType = element.instance.ddconfig.data.pageType;
       if (this.pageType === 'edit') {
-        this.id = element.instance.ddconfig.data.row.rowData.id;
+        this.id.set(element.instance.ddconfig.data.row.rowData.id);
       }
     });
     if (this.pageType === 'edit') {
@@ -86,13 +84,13 @@ export class AddEditPageComponent extends BaseEditComponent implements OnInit {
 
   fetchStatusDetails(page: any) {
     this.selectedStatus = this.statusOptions.find(
-      (stauts: any) => stauts.nameEn === page.status
+      (stauts: any) => stauts.nameEn === page.status,
     );
     this.form.get('stauts')?.setValue(this.selectedStatus?.nameEn);
   }
 
   getEditPage = () => {
-    this.pagesService.getEditPages(this.id).subscribe((page: any) => {
+    this.pagesService.getEditPages(this.id()).subscribe((page: any) => {
       this.initFormGroup();
       this.form.patchValue(page);
       this.fetchStatusDetails(page);
@@ -106,7 +104,7 @@ export class AddEditPageComponent extends BaseEditComponent implements OnInit {
       });
     if (this.pageType === 'edit')
       this.pagesService
-        .update({ id: this.id, ...this.form.value })
+        .update({ id: this.id(), ...this.form.value })
         .subscribe(() => {
           this.closeDialog();
         });

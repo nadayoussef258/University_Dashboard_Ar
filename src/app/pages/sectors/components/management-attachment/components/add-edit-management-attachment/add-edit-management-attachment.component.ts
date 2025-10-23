@@ -1,15 +1,11 @@
-import { ManagementAttachmentService } from './../../../../../../shared/services/pages/management/management-attachment/management-attachment.service';
 import { Component, inject, OnInit } from '@angular/core';
-import { BaseEditComponent } from '../../../../../../base/components/base-edit-component';
-import { CardModule } from 'primeng/card';
 import { FormsModule, ReactiveFormsModule, Validators } from '@angular/forms';
-import {
-  ActionsService,
-  PrimeInputTextComponent,
-  SubmitButtonsComponent,
-} from '../../../../../../shared';
-import { DialogService } from 'primeng/dynamicdialog';
 import { ActivatedRoute } from '@angular/router';
+import { DialogService } from 'primeng/dynamicdialog';
+import { CardModule } from 'primeng/card';
+import { SubmitButtonsComponent } from '../../../../../../shared';
+import { BaseEditComponent } from '../../../../../../base/components/base-edit-component';
+import { ManagementAttachmentService } from './../../../../../../shared';
 
 @Component({
   selector: 'app-add-edit-management-attachment',
@@ -18,7 +14,6 @@ import { ActivatedRoute } from '@angular/router';
     FormsModule,
     ReactiveFormsModule,
     SubmitButtonsComponent,
-    PrimeInputTextComponent,
   ],
   templateUrl: './add-edit-management-attachment.component.html',
   styleUrl: './add-edit-management-attachment.component.css',
@@ -29,7 +24,7 @@ export class AddEditManagementAttachmentComponent
   implements OnInit
 {
   managementAttachmentService: ManagementAttachmentService = inject(
-    ManagementAttachmentService
+    ManagementAttachmentService,
   );
   dialogService: DialogService = inject(DialogService);
 
@@ -41,7 +36,7 @@ export class AddEditManagementAttachmentComponent
     this.managementAttachmentService.managementAttachments.subscribe(
       (response: any) => {
         console.log('managementAttachments ::', response);
-      }
+      },
     );
   }
   override ngOnInit(): void {
@@ -49,7 +44,7 @@ export class AddEditManagementAttachmentComponent
     this.dialogService.dialogComponentRefMap.forEach((element) => {
       this.pageType = element.instance.ddconfig.data.pageType;
       if (this.pageType === 'edit') {
-        this.id = element.instance.ddconfig.data.row.rowData.id;
+        this.id.set(element.instance.ddconfig.data.row.rowData.id);
       }
     });
     if (this.pageType === 'edit') {
@@ -69,7 +64,7 @@ export class AddEditManagementAttachmentComponent
 
   getEditManagementAttachment = () => {
     this.managementAttachmentService
-      .getEditManagementAttachment(this.id)
+      .getEditManagementAttachment(this.id())
       .subscribe((managementAttachment: any) => {
         this.initFormGroup();
         this.form.patchValue(managementAttachment);
@@ -83,7 +78,7 @@ export class AddEditManagementAttachmentComponent
       });
     if (this.pageType === 'edit')
       this.managementAttachmentService
-        .update({ id: this.id, ...this.form.value })
+        .update({ id: this.id(), ...this.form.value })
         .subscribe(() => {
           this.closeDialog();
         });

@@ -50,10 +50,10 @@ export class AddEditUnitComponent extends BaseEditComponent implements OnInit {
 
   override ngOnInit(): void {
     super.ngOnInit();
-    this.id = this.activatedRoute?.snapshot?.paramMap?.get('id') as string;
+    this.id.set(this.activatedRoute?.snapshot?.paramMap?.get('id') as string);
 
     // set value of unitId
-    this.unitIdServices.setUnitId(this.id);
+    this.unitIdServices.setUnitId(this.id());
 
     if (this.pageType === 'edit') {
       this.getEditUnit();
@@ -74,7 +74,7 @@ export class AddEditUnitComponent extends BaseEditComponent implements OnInit {
     this.pagesService.pages.subscribe({
       next: (res: any) => {
         this.filteredPages = res.filter((page: any) =>
-          page.title.toLowerCase().includes(query)
+          page.title.toLowerCase().includes(query),
         );
       },
       error: (err) => {
@@ -94,7 +94,7 @@ export class AddEditUnitComponent extends BaseEditComponent implements OnInit {
         ? response
         : response.data || [];
       this.selectedPage = this.filteredPages.find(
-        (page: any) => page.id === management.pageId
+        (page: any) => page.id === management.pageId,
       );
       this.form.get('pageId')?.setValue(this.selectedPage.id);
     });
@@ -105,7 +105,7 @@ export class AddEditUnitComponent extends BaseEditComponent implements OnInit {
     this.aboutService.abouts.subscribe({
       next: (res: any) => {
         this.filteredAbout = res.filter((about: any) =>
-          about.content.toLowerCase().includes(query)
+          about.content.toLowerCase().includes(query),
         );
       },
       error: (err) => {
@@ -125,14 +125,14 @@ export class AddEditUnitComponent extends BaseEditComponent implements OnInit {
         ? response
         : response.data || [];
       this.selectedAbout = this.filteredAbout.find(
-        (about: any) => about.id === unit.aboutId
+        (about: any) => about.id === unit.aboutId,
       );
       this.form.get('aboutId')?.setValue(this.selectedAbout.id);
     });
   }
 
   getEditUnit = () => {
-    this.unitsService.getEditUnit(this.id).subscribe((unit: any) => {
+    this.unitsService.getEditUnit(this.id()).subscribe((unit: any) => {
       this.initFormGroup();
       this.form.patchValue(unit);
       this.fetchPagesDetails(unit);
@@ -148,7 +148,7 @@ export class AddEditUnitComponent extends BaseEditComponent implements OnInit {
       });
     if (this.pageType === 'edit')
       this.unitsService
-        .update({ id: this.id, ...this.form.value })
+        .update({ id: this.id(), ...this.form.value })
         .subscribe(() => {
           this.redirect();
         });

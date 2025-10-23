@@ -49,8 +49,8 @@ export class AddEditProgramComponent
 
   override ngOnInit(): void {
     super.ngOnInit();
-    this.id = this.activatedRoute?.snapshot?.paramMap?.get('id') as string;
-    this.programIdService.setProgramId(this.id);
+    this.id.set(this.activatedRoute?.snapshot?.paramMap?.get('id') as string);
+    this.programIdService.setProgramId(this.id());
 
     if (this.pageType === 'edit') {
       this.getEditProgram();
@@ -71,7 +71,7 @@ export class AddEditProgramComponent
     this.pagesService.pages.subscribe({
       next: (res: any) => {
         this.filteredPages = res.filter((page: any) =>
-          page.title.toLowerCase().includes(query)
+          page.title.toLowerCase().includes(query),
         );
       },
       error: (err) => {
@@ -91,7 +91,7 @@ export class AddEditProgramComponent
         ? response
         : response.data || [];
       this.selectedPage = this.filteredPages.find(
-        (page: any) => page.id === program.pageId
+        (page: any) => page.id === program.pageId,
       );
       this.form.get('pageId')?.setValue(this.selectedPage.id);
     });
@@ -102,7 +102,7 @@ export class AddEditProgramComponent
     this.aboutService.abouts.subscribe({
       next: (res: any) => {
         this.filteredAbout = res.filter((about: any) =>
-          about.content.toLowerCase().includes(query)
+          about.content.toLowerCase().includes(query),
         );
       },
       error: (err) => {
@@ -122,17 +122,17 @@ export class AddEditProgramComponent
         ? response
         : response.data || [];
       this.selectedAbout = this.filteredAbout.find(
-        (about: any) => about.id === program.aboutId
+        (about: any) => about.id === program.aboutId,
       );
       this.form.get('aboutId')?.setValue(this.selectedAbout.id);
     });
   }
 
   getEditProgram = () => {
-    this.programsService.getEditProgram(this.id).subscribe((program: any) => {
+    this.programsService.getEditProgram(this.id()).subscribe((program: any) => {
       console.log(
         `program from getEditProgram AddEditProgramComponent`,
-        program
+        program,
       );
 
       this.initFormGroup();
@@ -149,7 +149,7 @@ export class AddEditProgramComponent
       });
     if (this.pageType === 'edit')
       this.programsService
-        .update({ id: this.id, ...this.form.value })
+        .update({ id: this.id(), ...this.form.value })
         .subscribe(() => {
           this.redirect();
         });

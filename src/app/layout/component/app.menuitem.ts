@@ -20,71 +20,76 @@ import { LayoutService } from '../service/layout.service';
   imports: [CommonModule, RouterModule, RippleModule],
   template: `
     <ng-container>
-      <div
-        *ngIf="root && item.visible !== false"
-        class="layout-menuitem-root-text"
-      >
-        {{ item.label }}
-      </div>
-      @if((!item.routerLink || item.items) && item.visible !== false){
-      <a
-        [attr.href]="item.url"
-        (click)="itemClick($event)"
-        [ngClass]="item.styleClass"
-        [attr.target]="item.target"
-        tabindex="0"
-        pRipple
-      >
-        <i [ngClass]="item.icon" class="layout-menuitem-icon"></i>
-        <span class="layout-menuitem-text">{{ item.label }}</span>
-        <i
-          class="pi pi-fw pi-angle-down layout-submenu-toggler"
-          *ngIf="item.items"
-        ></i>
-      </a>
-      } @if (item.routerLink && !item.items && item.visible !== false ) {
-      <a
-        (click)="itemClick($event)"
-        [ngClass]="item.styleClass"
-        [routerLink]="item.routerLink"
-        routerLinkActive="active-route"
-        [routerLinkActiveOptions]="
-          item.routerLinkActiveOptions || {
-            paths: 'exact',
-            queryParams: 'ignored',
-            matrixParams: 'ignored',
-            fragment: 'ignored'
+      @if (root && item.visible !== false) {
+        <div class="layout-menuitem-root-text">
+          <span
+            class="font-bold  underline decoration-white decoration-2 underline-offset-6 "
+          >
+            {{ item.label }}
+          </span>
+        </div>
+      }
+      @if ((!item.routerLink || item.items) && item.visible !== false) {
+        <a
+          [attr.href]="item.url"
+          (click)="itemClick($event)"
+          [ngClass]="item.styleClass"
+          [attr.target]="item.target"
+          tabindex="0"
+          pRipple
+        >
+          <i [ngClass]="item.icon" class="layout-menuitem-icon"></i>
+          <span class="layout-menuitem-text">{{ item.label }}</span>
+          <i
+            class="pi pi-fw pi-angle-down layout-submenu-toggler"
+            *ngIf="item.items"
+          ></i>
+        </a>
+      }
+      @if (item.routerLink && !item.items && item.visible !== false) {
+        <a
+          (click)="itemClick($event)"
+          [ngClass]="item.styleClass"
+          [routerLink]="item.routerLink"
+          routerLinkActive="active-route"
+          [routerLinkActiveOptions]="
+            item.routerLinkActiveOptions || {
+              paths: 'exact',
+              queryParams: 'ignored',
+              matrixParams: 'ignored',
+              fragment: 'ignored',
+            }
+          "
+          [fragment]="item.fragment"
+          [queryParamsHandling]="item.queryParamsHandling"
+          [preserveFragment]="item.preserveFragment"
+          [skipLocationChange]="item.skipLocationChange"
+          [replaceUrl]="item.replaceUrl"
+          [state]="item.state"
+          [queryParams]="item.queryParams"
+          [attr.target]="item.target"
+          tabindex="0"
+          pRipple
+        >
+          <i [ngClass]="item.icon" class="layout-menuitem-icon"></i>
+          <span class="layout-menuitem-text">{{ item.label }}</span>
+          @if (item.items) {
+            <i class="pi pi-fw pi-angle-down layout-submenu-toggler"></i>
           }
-        "
-        [fragment]="item.fragment"
-        [queryParamsHandling]="item.queryParamsHandling"
-        [preserveFragment]="item.preserveFragment"
-        [skipLocationChange]="item.skipLocationChange"
-        [replaceUrl]="item.replaceUrl"
-        [state]="item.state"
-        [queryParams]="item.queryParams"
-        [attr.target]="item.target"
-        tabindex="0"
-        pRipple
-      >
-        <i [ngClass]="item.icon" class="layout-menuitem-icon"></i>
-        <span class="layout-menuitem-text">{{ item.label }}</span>
-        @if (item.items) {
-        <i class="pi pi-fw pi-angle-down layout-submenu-toggler"></i>
-        }
-      </a>
-      } @if (item.items && item.visible !== false) {
-      <ul [@children]="submenuAnimation">
-        @for (child of item.items; track $index) {
-        <li
-          app-menuitem
-          [item]="child"
-          [index]="$index"
-          [parentKey]="key"
-          [class]="child['badgeClass']"
-        ></li>
-        }
-      </ul>
+        </a>
+      }
+      @if (item.items && item.visible !== false) {
+        <ul [@children]="submenuAnimation">
+          @for (child of item.items; track $index) {
+            <li
+              app-menuitem
+              [item]="child"
+              [index]="$index"
+              [parentKey]="key"
+              [class]="child['badgeClass']"
+            ></li>
+          }
+        </ul>
       }
     </ng-container>
   `,
@@ -94,17 +99,17 @@ import { LayoutService } from '../service/layout.service';
         'collapsed',
         style({
           height: '0',
-        })
+        }),
       ),
       state(
         'expanded',
         style({
           height: '*',
-        })
+        }),
       ),
       transition(
         'collapsed <=> expanded',
-        animate('400ms cubic-bezier(0.86, 0, 0.07, 1)')
+        animate('400ms cubic-bezier(0.86, 0, 0.07, 1)'),
       ),
     ]),
   ],
@@ -127,7 +132,10 @@ export class AppMenuitem {
 
   key: string = '';
 
-  constructor(public router: Router, private layoutService: LayoutService) {
+  constructor(
+    public router: Router,
+    private layoutService: LayoutService,
+  ) {
     this.menuSourceSubscription = this.layoutService.menuSource$.subscribe(
       (value) => {
         Promise.resolve(null).then(() => {
@@ -145,13 +153,13 @@ export class AppMenuitem {
             }
           }
         });
-      }
+      },
     );
 
     this.menuResetSubscription = this.layoutService.resetSource$.subscribe(
       () => {
         this.active = false;
-      }
+      },
     );
 
     this.router.events

@@ -55,7 +55,7 @@ export class AddEditSectorProgramComponent
     this.dialogService.dialogComponentRefMap.forEach((element) => {
       this.pageType = element.instance.ddconfig.data.pageType;
       if (this.pageType === 'edit') {
-        this.id = element.instance.ddconfig.data.row.rowData.id;
+        this.id.set(this.activatedRoute.snapshot.paramMap.get('id') as string);
       }
     });
     if (this.pageType === 'edit') {
@@ -77,7 +77,7 @@ export class AddEditSectorProgramComponent
     this.sectorsService.sectors.subscribe({
       next: (res: any) => {
         this.filteredSectors = res.filter((sector: any) =>
-          sector.name.includes(query)
+          sector.name.includes(query),
         );
       },
       error: (err) => {
@@ -97,7 +97,7 @@ export class AddEditSectorProgramComponent
         ? response
         : response.data || [];
       this.selectedSector = this.filteredSectors.find(
-        (sector: any) => sector.id === sectorprogram.sectorId
+        (sector: any) => sector.id === sectorprogram.sectorId,
       );
       this.form.get('sectorId')?.setValue(this.selectedSector.id);
     });
@@ -105,7 +105,7 @@ export class AddEditSectorProgramComponent
 
   getEditSectorsProgram = () => {
     this.sectorProgramsService
-      .getEditSectorProgram(this.id)
+      .getEditSectorProgram(this.id())
       .subscribe((sectorProgram: any) => {
         this.initFormGroup();
         this.form.patchValue(sectorProgram);
@@ -120,7 +120,7 @@ export class AddEditSectorProgramComponent
       });
     if (this.pageType === 'edit')
       this.sectorProgramsService
-        .update({ id: this.id, ...this.form.value })
+        .update({ id: this.id(), ...this.form.value })
         .subscribe(() => {
           this.closeDialog();
         });

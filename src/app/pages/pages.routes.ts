@@ -8,6 +8,11 @@ export const pagesRoutes: Routes = [
       import('./settings/settings.routes').then((m) => m.settingsRoutes),
   },
   {
+    path: 'leaders',
+    loadChildren: () =>
+      import('./leaders/leaders.routes').then((m) => m.leadersRoutes),
+  },
+  {
     path: 'members',
     loadChildren: () =>
       import('./members/members.routes').then((m) => m.membersRoutes),
@@ -16,7 +21,7 @@ export const pagesRoutes: Routes = [
     path: 'managements',
     loadChildren: () =>
       import('./managements/managements.routes').then(
-        (m) => m.managementsRoutes
+        (m) => m.managementsRoutes,
       ),
   },
 
@@ -43,21 +48,14 @@ export const pagesRoutes: Routes = [
     path: 'unit-details',
     loadChildren: () =>
       import('./units/components/unit-detail/unit-details.routes').then(
-        (m) => m.unitDetailsRoutes
+        (m) => m.unitDetailsRoutes,
       ),
   },
   {
     path: 'unit-members',
     loadChildren: () =>
       import('./units/components/unit-member/unit-members.routes').then(
-        (m) => m.unitMembersRoutes
-      ),
-  },
-  {
-    path: 'departments',
-    loadChildren: () =>
-      import('./departments/departments.routes').then(
-        (m) => m.departmentsRoutes
+        (m) => m.unitMembersRoutes,
       ),
   },
   {
@@ -84,21 +82,21 @@ export const pagesRoutes: Routes = [
     path: 'sector-details',
     loadChildren: () =>
       import('./sectors/components/sector-details/sector-details.routes').then(
-        (m) => m.sectorDetailsRoutes
+        (m) => m.sectorDetailsRoutes,
       ),
   },
   {
     path: 'sector-members',
     loadChildren: () =>
       import('./sectors/components/sector-member/sector-members.routes').then(
-        (m) => m.sectorMembersRoutes
+        (m) => m.sectorMembersRoutes,
       ),
   },
   {
     path: 'sector-posts',
     loadChildren: () =>
       import('./sectors/components/sector-posts/sector-posts.routes').then(
-        (m) => m.sectorPostsRoutes
+        (m) => m.sectorPostsRoutes,
       ),
   },
   {
@@ -119,7 +117,7 @@ export const pagesRoutes: Routes = [
     path: 'sector-units',
     loadChildren: () =>
       import('./sectors/components/sector-units/sector-units.routes').then(
-        (c) => c.sectorUnitsRoutes
+        (c) => c.sectorUnitsRoutes,
       ),
   },
   {
@@ -131,14 +129,14 @@ export const pagesRoutes: Routes = [
     path: 'center-details',
     loadChildren: () =>
       import('./centers/components/center-details/center-details.routes').then(
-        (m) => m.centerDetailsRoutes
+        (m) => m.centerDetailsRoutes,
       ),
   },
   {
     path: 'center-members',
     loadChildren: () =>
       import('./centers/components/center-members/center-members.routes').then(
-        (m) => m.centerMembersRoutes
+        (m) => m.centerMembersRoutes,
       ),
   },
   {

@@ -46,7 +46,8 @@
 </p-card>
 
 @if (form) {
-<app-submit-buttons [isSubmitDisabled]="form.invalid" [submitButtonText]="pageType === 'add' ? 'إضافة' : 'حفظ'"
+<app-submit-buttons [isSubmitDisabled]="form.invalid" [submitButtonText]="pageType === 'add' ? 'add' : 'submit'"
+  [buttonText]="pageType === 'add' ? 'اضافة' : 'حفظ'" (submit)="submit()" (cancel)="closeDialog()">
   (submit)="submit()" (cancel)="closeDialog()">
 </app-submit-buttons>
 }

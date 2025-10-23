@@ -1,185 +1,268 @@
 @if (checkbox && selected && selected.length > 0) {
-<button class="font-14 px-4 main-btn cancel deleteSelected" type="button" (click)="deleteSelected()"
-  [disabled]="!selected || !selected.length" flat-button>
-  <div class="d-flex align-items-center">
-    <i class="font-18 m-inline-end-1 pi pi-trash"></i>
-    <span class="p-inline-end-1">حذف</span>
-  </div>
-</button>
+  <button
+    class="font-14 px-4 main-btn cancel deleteSelected"
+    type="button"
+    (click)="deleteSelected()"
+    [disabled]="!selected || !selected.length"
+    flat-button
+  >
+    <div class="d-flex align-items-center">
+      <i class="font-18 m-inline-end-1 pi pi-trash"></i>
+      <span class="p-inline-end-1">حذف</span>
+    </div>
+  </button>
 }
 
-<p-table #table [columns]="tableOptions.inputCols" [value]="data" [sortField]="'id'" [sortOrder]="1" [lazy]="true"
-  [showCurrentPageReport]="true" [paginatorLocale]="language == 'ar' ? 'ar-EG' : 'en-US'"
-  [currentPageReportTemplate]="'Showing {first} to {last} of {totalRecords} entries'" [paginator]="true"
-  [rowsPerPageOptions]="[5, 10, 15, 20]" [rows]="pageSize" [totalRecords]="totalCount"
-  (onLazyLoad)="loadLazyLoadedData($event)" [(selection)]="selected">
+<p-table
+  #table
+  [columns]="tableOptions.inputCols"
+  [value]="data"
+  [sortField]="'id'"
+  [sortOrder]="1"
+  [lazy]="true"
+  [showCurrentPageReport]="true"
+  [paginatorLocale]="language == 'ar' ? 'ar-EG' : 'en-US'"
+  [currentPageReportTemplate]="
+    'Showing {first} to {last} of {totalRecords} entries'
+  "
+  [paginator]="true"
+  [rowsPerPageOptions]="[5, 10, 15, 20]"
+  [rows]="pageSizeSignal()"
+  [totalRecords]="totalCountSignal()"
+  (onLazyLoad)="loadLazyLoadedData($event)"
+  [(selection)]="selected"
+>
   <!-- ================= HEADER ================= -->
   <ng-template pTemplate="header" let-columns>
     <tr class="table-header">
       @if (checkbox) {
-      <th style="width: 4rem">
-        <p-tableHeaderCheckbox />
-      </th>
+        <th style="width: 4rem">
+          <p-tableHeaderCheckbox />
+        </th>
       }
 
       @for (col of columns; track $index) {
-      <th [pSortableColumn]="col.field">
-        {{ col.header }}
-        <p-sortIcon [field]="col.field"></p-sortIcon>
-      </th>
+        <th [pSortableColumn]="col.field">
+          {{ col.header }}
+          <p-sortIcon [field]="col.field"></p-sortIcon>
+        </th>
       }
 
-      @if ((tableOptions.inputActions &&
-      permissions.listOfPermissions.indexOf('Permission.' + permissions.componentName + '.View') > -1)
-      || permissions.allowAll) {
-      <th style="width: 10em">الإجراءات</th>
+      @if (
+        (tableOptions.inputActions &&
+          permissions().listOfPermissions.indexOf(
+            "Permission." + permissions().componentName + ".View"
+          ) > -1) ||
+        permissions().allowAll
+      ) {
+        <th style="width: 10em">الإجراءات</th>
       }
     </tr>
 
     <!-- ================= FILTER ROW ================= -->
     <tr class="table-search-controls">
       @if (checkbox) {
-      <th style="width: 4rem"></th>
+        <th style="width: 4rem"></th>
       }
 
       @for (col of columns; track $index) {
-      @if (col.filter) {
-      <th>
-        @switch (col.filterMode) {
-        @case ('text') {
-        <div class="form-group has-search">
-          <input class="form-control search-box" type="text" (input)="filter($event, col.field)"
-            placeholder="{{ col.header }}" />
-        </div>
+        @if (col.filter) {
+          <th>
+            @switch (col.filterMode) {
+              @case ("text") {
+                <div class="form-group has-search">
+                  <input
+                    class="form-control search-box"
+                    type="text"
+                    (input)="filter($event, col.field)"
+                    placeholder="{{ col.header }}"
+                  />
+                </div>
+              }
+              @case ("date") {
+                <div class="form-group has-search">
+                  <input
+                    class="form-control search-box"
+                    type="date"
+                    (input)="filter($event, col.field)"
+                    placeholder="{{ col.header }}"
+                  />
+                </div>
+              }
+              @default {
+                <div class="form-group has-search">
+                  <input
+                    class="form-control search-box"
+                    type="text"
+                    (input)="filter($event, col.field)"
+                    placeholder="{{ col.header }}"
+                  />
+                </div>
+              }
+            }
+          </th>
+        } @else {
+          <th></th>
         }
-        @case ('date') {
-        <div class="form-group has-search">
-          <input class="form-control search-box" type="date" (input)="filter($event, col.field)"
-            placeholder="{{ col.header }}" />
-        </div>
-        }
-        @default {
-        <div class="form-group has-search">
-          <input class="form-control search-box" type="text" (input)="filter($event, col.field)"
-            placeholder="{{ col.header }}" />
-        </div>
-        }
-        }
-      </th>
-      } @else {
-      <th></th>
-      }
       }
 
-      @if ((tableOptions.inputActions &&
-      permissions.listOfPermissions.indexOf('Permission.' + permissions.componentName + '.View') > -1)
-      || permissions.allowAll) {
-      <th></th>
+      @if (
+        (tableOptions.inputActions &&
+          permissions().listOfPermissions.indexOf(
+            "Permission." + permissions().componentName + ".View"
+          ) > -1) ||
+        permissions().allowAll
+      ) {
+        <th></th>
       }
     </tr>
   </ng-template>
 
   <!-- ================= BODY ================= -->
   <ng-template pTemplate="body" let-row let-columns="columns">
-    <tr class="tr-body" [ngClass]="{ 'tr-body-background': getCellData(row, { field: 'isLate' }) }">
+    <tr
+      class="tr-body"
+      [ngClass]="{
+        'tr-body-background': getCellData(row, { field: 'isLate' }),
+      }"
+    >
       @if (checkbox) {
-      <td>
-        <p-tableCheckbox [value]="row" />
-      </td>
+        <td>
+          <p-tableCheckbox [value]="row" />
+        </td>
       }
 
       @for (col of columns; track $index) {
-      <td>
-        <ng-container>
-          @switch (col.filterMode) {
-          @case ('link') {
-          <a [routerLink]="['edit', row.id]">{{ getCellData(row, col) }}</a>
-          }
+        <td>
+          <ng-container>
+            @switch (col.filterMode) {
+              @case ("link") {
+                <a [routerLink]="['edit', row.id]">{{
+                  getCellData(row, col)
+                }}</a>
+              }
 
-          @case ('text') {
-          <span [ngClass]="{ cell: getCellData(row, { field: 'isLate' }) }">
-            {{ getCellData(row, col) }}
-          </span>
-          }
+              @case ("text") {
+                <span
+                  [ngClass]="{ cell: getCellData(row, { field: 'isLate' }) }"
+                >
+                  {{ getCellData(row, col) }}
+                </span>
+              }
 
-          @case ('date') {
-          <span>{{ getCellData(row, col) | date: 'dd/MM/yyyy' }}</span>
-          }
+              @case ("date") {
+                <span>{{ getCellData(row, col) | date: "dd/MM/yyyy" }}</span>
+              }
 
-          @case ('time') {
-          <span>{{ getCellData(row, col) | date: 'hh:mm aa' }}</span>
-          }
+              @case ("time") {
+                <span>{{ getCellData(row, col) | date: "hh:mm aa" }}</span>
+              }
 
-          @case ('dateTime') {
-          <span>{{ getCellData(row, col) | date: 'dd/MM/yyyy hh:mm aa' }}</span>
-          }
+              @case ("dateTime") {
+                <span>{{
+                  getCellData(row, col) | date: "dd/MM/yyyy hh:mm aa"
+                }}</span>
+              }
 
-          <!-- ====== BOOLEAN FIELD ====== -->
-          @case ('boolean') {
-          <span [ngClass]="{
-                    'bg-green-100 text-green-700': getCellData(row, col) === true,
-                    'bg-red-100 text-red-700': getCellData(row, col) === false
-                  }" class="rounded-md font-semibold text-center min-w-[100px] py-2 px-3 inline-block">
-            @if (getCellData(row, col) === true) {
-            {{ col.trueText ? col.trueText : '✅' }}
+              <!-- ====== BOOLEAN FIELD ====== -->
+              @case ("boolean") {
+                <span
+                  [ngClass]="{
+                    'bg-green-100 text-green-700':
+                      getCellData(row, col) === true,
+                    'bg-red-100 text-red-700': getCellData(row, col) === false,
+                  }"
+                  class="rounded-md font-semibold text-center min-w-[100px] py-2 px-3 inline-block"
+                >
+                  @if (getCellData(row, col) === true) {
+                    {{ col.trueText ? col.trueText : "✅" }}
+                  }
+                  @if (getCellData(row, col) === false) {
+                    {{ col.falseText ? col.falseText : "❌" }}
+                  }
+                  @if (
+                    getCellData(row, col) === null ||
+                    getCellData(row, col) === undefined
+                  ) {
+                    <span class="text-gray-500 italic">غير محدد</span>
+                  }
+                </span>
+              }
+
+              @case ("none") {
+                <span>{{ getCellData(row, col) }}</span>
+              }
             }
-            @if (getCellData(row, col) === false) {
-            {{ col.falseText ? col.falseText : '❌' }}
-            }
-            @if (getCellData(row, col) === null || getCellData(row, col) === undefined) {
-            <span class="text-gray-500 italic">غير محدد</span>
-            }
-          </span>
-          }
-
-          @case ('none') {
-          <span>{{ getCellData(row, col) }}</span>
-          }
-          }
-        </ng-container>
-      </td>
+          </ng-container>
+        </td>
       }
 
       <!-- ================= ACTIONS ================= -->
-      @if ((tableOptions.inputActions &&
-      permissions.listOfPermissions.indexOf('Permission.' + permissions.componentName + '.View') > -1)
-      || permissions.allowAll) {
-      <td class="actions">
-        @for (action of tableOptions.inputActions; track $index) {
-        <span>
-          @if ((action.isEdit &&
-          (permissions.listOfPermissions.indexOf('Permission.' + permissions.componentName + '.Edit') > -1
-          || action.allowAll))) {
-          <a [routerLink]="action.route + row.id" class="icon-btn">
-            <i class="{{ action.icon }} icon" [title]="action.name"></i>
-          </a>
-          }
+      @if (
+        (tableOptions.inputActions &&
+          permissions().listOfPermissions.indexOf(
+            "Permission." + permissions().componentName + ".View"
+          ) > -1) ||
+        permissions().allowAll
+      ) {
+        <td class="actions">
+          @for (action of tableOptions.inputActions; track $index) {
+            <span>
+              @if (
+                action.isEdit &&
+                (permissions().listOfPermissions.indexOf(
+                  "Permission." + permissions().componentName + ".Edit"
+                ) > -1 ||
+                  action.allowAll)
+              ) {
+                <a [routerLink]="action.route + row.id" class="icon-btn">
+                  <i class="{{ action.icon }} icon" [title]="action.name"></i>
+                </a>
+              }
 
-          @if ((action.isDelete &&
-          (permissions.listOfPermissions.indexOf('Permission.' + permissions.componentName + '.Delete') > -1
-          || action.allowAll))) {
-          <a class="icon-btn" (click)="delete(row.id)">
-            <i class="{{ action.icon }} icon" [title]="action.name"></i>
-          </a>
-          }
+              @if (
+                action.isDelete &&
+                (permissions().listOfPermissions.indexOf(
+                  "Permission." + permissions().componentName + ".Delete"
+                ) > -1 ||
+                  action.allowAll)
+              ) {
+                <a class="icon-btn" (click)="delete(row.id)">
+                  <i class="{{ action.icon }} icon" [title]="action.name"></i>
+                </a>
+              }
 
-          @if ((action.isView &&
-          (permissions.listOfPermissions.indexOf('Permission.' + permissions.componentName + '.View') > -1
-          || action.allowAll))) {
-          <a [routerLink]="action.route + row.id" class="icon-btn">
-            <i class="{{ action.icon }} icon {{ action.color }}" [title]="action.name"></i>
-          </a>
-          }
+              @if (
+                action.isView &&
+                (permissions().listOfPermissions.indexOf(
+                  "Permission." + permissions().componentName + ".View"
+                ) > -1 ||
+                  action.allowAll)
+              ) {
+                <a [routerLink]="action.route + row.id" class="icon-btn">
+                  <i
+                    class="{{ action.icon }} icon {{ action.color }}"
+                    [title]="action.name"
+                  ></i>
+                </a>
+              }
 
-          @if (action.isCallBack &&
-          (permissions.listOfPermissions.indexOf(action.permission) > -1 || action.allowAll)) {
-          <a class="icon-btn" (click)="action?.call(row)">
-            <i class="{{ action.icon }} icon {{ action.color }}" [title]="action.name"></i>
-          </a>
+              @if (
+                action.isCallBack &&
+                (permissions().listOfPermissions.indexOf(action.permission) >
+                  -1 ||
+                  action.allowAll)
+              ) {
+                <a class="icon-btn" (click)="action?.call(row)">
+                  <i
+                    class="{{ action.icon }} icon {{ action.color }}"
+                    [title]="action.name"
+                  ></i>
+                </a>
+              }
+            </span>
           }
-        </span>
-        }
-      </td>
+        </td>
       }
     </tr>
   </ng-template>
@@ -187,10 +270,15 @@
   <!-- ================= EMPTY MESSAGE ================= -->
   <ng-template pTemplate="emptymessage">
     <tr>
-      <td [attr.colspan]="(tableOptions.inputCols?.length || 0) + 1" class="p-4">
-        <div class="flex justify-center items-center w-full min-h-[100px] text-center break-words overflow-hidden">
+      <td
+        [attr.colspan]="(tableOptions.inputCols?.length || 0) + 1"
+        class="p-4"
+      >
+        <div
+          class="flex text-center w-full min-h-[100px] justify-center items-center break-words overflow-hidden"
+        >
           <div class="max-w-full px-4">
-            <i class="mb-3 pi pi-inbox text-4xl block text-gray-600"></i>
+            <i class="mb-3 text-4xl text-gray-600 pi pi-inbox block"></i>
             <div class="font-bold text-2xl text-red-500 whitespace-normal">
               لا توجد بيانات لعرضها
             </div>
@@ -202,5 +290,7 @@
 </p-table>
 
 @if (deleteDialog) {
-<app-prime-delete-dialog (onClose)="modalClosed($event)"></app-prime-delete-dialog>
+  <app-prime-delete-dialog
+    (onClose)="modalClosed($event)"
+  ></app-prime-delete-dialog>
 }

@@ -55,7 +55,7 @@ export class AddEditCenterMemberComponent
       this.pageType = element.instance.ddconfig.data.pageType;
 
       if (this.pageType === 'edit') {
-        this.id = element.instance.ddconfig.data.row.rowData.id;
+        this.id.set(element.instance.ddconfig.data.row.rowData.id);
       }
     });
     if (this.pageType === 'edit') {
@@ -77,7 +77,7 @@ export class AddEditCenterMemberComponent
     this.centersService.centers.subscribe({
       next: (res: any) => {
         this.filteredCenters = res.filter((center: any) =>
-          center.centerId.includes(query)
+          center.centerId.includes(query),
         );
       },
       error: (err) => {
@@ -97,7 +97,7 @@ export class AddEditCenterMemberComponent
         ? response
         : response.data || [];
       this.selectedCenter = this.filteredCenters.find(
-        (center: any) => center.id === centerDetail.id
+        (center: any) => center.id === centerDetail.id,
       );
       this.form.get('centerId')?.setValue(this.selectedCenter.id);
     });
@@ -105,7 +105,7 @@ export class AddEditCenterMemberComponent
 
   getEditCenterMember = () => {
     this.centerMembersService
-      .getEditCenterMember(this.id)
+      .getEditCenterMember(this.id())
       .subscribe((centerMember: any) => {
         this.initFormGroup();
         this.form.patchValue(centerMember);
@@ -120,7 +120,7 @@ export class AddEditCenterMemberComponent
       });
     if (this.pageType === 'edit')
       this.centerMembersService
-        .update({ id: this.id, ...this.form.value })
+        .update({ id: this.id(), ...this.form.value })
         .subscribe(() => {
           this.closeDialog();
         });

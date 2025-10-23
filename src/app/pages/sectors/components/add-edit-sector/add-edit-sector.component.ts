@@ -52,10 +52,10 @@ export class AddEditSectorComponent
 
   override ngOnInit(): void {
     super.ngOnInit();
-    this.id = this.activatedRoute?.snapshot?.paramMap?.get('id') as string;
+    this.id.set(this.activatedRoute?.snapshot?.paramMap?.get('id') as string);
 
     // set value of sectorId
-    this.sectorIdServices.setSectorId(this.id);
+    this.sectorIdServices.setSectorId(this.id());
 
     if (this.pageType === 'edit') {
       this.getEditSector();
@@ -78,7 +78,7 @@ export class AddEditSectorComponent
     this.pagesService.pages.subscribe({
       next: (res: any) => {
         this.filteredPages = res.filter((page: any) =>
-          page.title.toLowerCase().includes(query)
+          page.title.toLowerCase().includes(query),
         );
       },
       error: (err) => {
@@ -100,7 +100,7 @@ export class AddEditSectorComponent
         ? response
         : response.data || [];
       this.selectedPage = this.filteredPages.find(
-        (page: any) => page.id === sector.pageId
+        (page: any) => page.id === sector.pageId,
       );
       console.log('fetchPagesDetails this.filteredPages', this.filteredPages);
       console.log('fetchPagesDetails selectedPage', this.selectedPage);
@@ -114,7 +114,7 @@ export class AddEditSectorComponent
     this.aboutService.abouts.subscribe({
       next: (res: any) => {
         this.filteredAbout = res.filter((about: any) =>
-          about.content.toLowerCase().includes(query)
+          about.content.toLowerCase().includes(query),
         );
       },
       error: (err) => {
@@ -134,14 +134,14 @@ export class AddEditSectorComponent
         ? response
         : response.data || [];
       this.selectedAbout = this.filteredAbout.find(
-        (about: any) => about.id === sector.aboutId
+        (about: any) => about.id === sector.aboutId,
       );
       this.form.get('aboutId')?.setValue(this.selectedAbout.id);
     });
   }
 
   getEditSector = () => {
-    this.sectorsService.getEditSector(this.id).subscribe((sector: any) => {
+    this.sectorsService.getEditSector(this.id()).subscribe((sector: any) => {
       this.initFormGroup();
       this.form.patchValue(sector);
       this.fetchPagesDetails(sector);
@@ -156,7 +156,7 @@ export class AddEditSectorComponent
       });
     if (this.pageType === 'edit')
       this.sectorsService
-        .update({ id: this.id, ...this.form.value })
+        .update({ id: this.id(), ...this.form.value })
         .subscribe(() => {
           this.redirect();
         });

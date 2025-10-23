@@ -68,9 +68,9 @@ export class AddEditMemberComponent
 
   override ngOnInit(): void {
     super.ngOnInit();
-    this.id = this.activatedRoute?.snapshot?.paramMap?.get('id') as string;
+    this.id.set(this.activatedRoute?.snapshot?.paramMap?.get('id') as string);
     // set value of sectorId
-    this.memberIdService.setMemberId(this.id);
+    this.memberIdService.setMemberId(this.id());
 
     if (this.pageType === 'edit') {
       this.getEditMember();
@@ -101,7 +101,7 @@ export class AddEditMemberComponent
     this.pagesService.pages.subscribe({
       next: (res: any) => {
         this.filteredPages = res.filter((page: any) =>
-          page.title.toLowerCase().includes(query)
+          page.title.toLowerCase().includes(query),
         );
       },
       error: (err) => {
@@ -121,7 +121,7 @@ export class AddEditMemberComponent
         ? response
         : response.data || [];
       this.selectedPage = this.filteredPages.find(
-        (page: any) => page.id === member.pageId
+        (page: any) => page.id === member.pageId,
       );
       this.form.get('pageId')?.setValue(this.selectedPage.id);
     });
@@ -135,7 +135,7 @@ export class AddEditMemberComponent
         console.log('sectors ::: ', res);
 
         this.filteredSectorMembers = res.filter((sectorMember: any) =>
-          sectorMember.id.toLowerCase().includes(query)
+          sectorMember.id.toLowerCase().includes(query),
         );
       },
       error: (err) => {
@@ -155,7 +155,7 @@ export class AddEditMemberComponent
         ? response
         : response.data || [];
       this.selectedSectorMember = this.filteredSectorMembers.find(
-        (sectorMember: any) => sectorMember.id === member.sectorMemberId
+        (sectorMember: any) => sectorMember.id === member.sectorMemberId,
       );
       this.form.get('sectorMemberId')?.setValue(this.selectedSectorMember.id);
     });
@@ -167,7 +167,7 @@ export class AddEditMemberComponent
     this.programMembersService.programMembers.subscribe({
       next: (res: any) => {
         this.filteredProgramMembers = res.filter((programMember: any) =>
-          programMember.id.toLowerCase().includes(query)
+          programMember.id.toLowerCase().includes(query),
         );
       },
       error: (err) => {
@@ -187,7 +187,7 @@ export class AddEditMemberComponent
         ? response
         : response.data || [];
       this.selectedProgramMember = this.filteredProgramMembers.find(
-        (programMember: any) => programMember.id === member.progamMemberId
+        (programMember: any) => programMember.id === member.progamMemberId,
       );
       this.form.get('progamMemberId')?.setValue(this.selectedProgramMember.id);
     });
@@ -199,7 +199,7 @@ export class AddEditMemberComponent
     this.managementMembersService.managementMembers.subscribe({
       next: (res: any) => {
         this.filteredManagementMembers = res.filter((managementMember: any) =>
-          managementMember.id.toLowerCase().includes(query)
+          managementMember.id.toLowerCase().includes(query),
         );
       },
       error: (err) => {
@@ -223,12 +223,12 @@ export class AddEditMemberComponent
           : response.data || [];
         this.selectedManagementMember = this.filteredManagementMembers.find(
           (managementMember: any) =>
-            managementMember.id === member.managementMemberId
+            managementMember.id === member.managementMemberId,
         );
         this.form
           .get('managementMemberId')
           ?.setValue(this.selectedManagementMember.id);
-      }
+      },
     );
   }
 
@@ -238,7 +238,7 @@ export class AddEditMemberComponent
     this.centerMembersService.centerMembers.subscribe({
       next: (res: any) => {
         this.filteredCenterMembers = res.filter((centerMember: any) =>
-          centerMember.id.toLowerCase().includes(query)
+          centerMember.id.toLowerCase().includes(query),
         );
       },
       error: (err) => {
@@ -258,7 +258,7 @@ export class AddEditMemberComponent
         ? response
         : response.data || [];
       this.selectedCenterMember = this.filteredCenterMembers.find(
-        (centerMember: any) => centerMember.id === member.centerMemberId
+        (centerMember: any) => centerMember.id === member.centerMemberId,
       );
       this.form.get('centerMemberId')?.setValue(this.selectedCenterMember.id);
     });
@@ -270,7 +270,7 @@ export class AddEditMemberComponent
     this.unitMembersService.unitMembers.subscribe({
       next: (res: any) => {
         this.filteredUnitMembers = res.filter((unitMember: any) =>
-          unitMember.id.toLowerCase().includes(query)
+          unitMember.id.toLowerCase().includes(query),
         );
       },
       error: (err) => {
@@ -290,14 +290,14 @@ export class AddEditMemberComponent
         ? response
         : response.data || [];
       this.selectedUnitMember = this.filteredUnitMembers.find(
-        (unitMember: any) => unitMember.id === member.unitMemberId
+        (unitMember: any) => unitMember.id === member.unitMemberId,
       );
       this.form.get('unitMemberId')?.setValue(this.selectedUnitMember.id);
     });
   }
 
   getEditMember = () => {
-    this.membersService.getEditMember(this.id).subscribe((member: any) => {
+    this.membersService.getEditMember(this.id()).subscribe((member: any) => {
       this.initFormGroup();
       this.form.patchValue(member);
       this.fetchPagesDetails(member);
@@ -316,7 +316,7 @@ export class AddEditMemberComponent
       });
     if (this.pageType === 'edit')
       this.membersService
-        .update({ id: this.id, ...this.form.value })
+        .update({ id: this.id(), ...this.form.value })
         .subscribe(() => {
           this.redirect();
         });

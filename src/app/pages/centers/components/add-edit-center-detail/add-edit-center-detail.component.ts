@@ -48,7 +48,7 @@ export class AddEditCenterDetailComponent
   override ngOnInit(): void {
     super.ngOnInit();
     this.centerId = this.centerIdService.CenterId();
-    this.id = this.activatedRoute.snapshot.paramMap.get('id') as string;
+    this.id.set(this.activatedRoute.snapshot.paramMap.get('id') as string);
 
     if (this.pageType === 'edit') {
       this.getEditCenterDetail();
@@ -62,7 +62,7 @@ export class AddEditCenterDetailComponent
       title: ['', Validators.required],
       description: ['', Validators.required],
       content: ['', Validators.required],
-      centerId: [null, Validators.required],
+      centerId: [this.centerId, Validators.required],
     });
   }
 
@@ -71,7 +71,7 @@ export class AddEditCenterDetailComponent
     this.centersService.centers.subscribe({
       next: (res: any) => {
         this.filteredCenters = res.filter((center: any) =>
-          center.pageId.includes(query)
+          center.pageId.includes(query),
         );
       },
       error: (err) => {
@@ -91,7 +91,7 @@ export class AddEditCenterDetailComponent
         ? response
         : response.data || [];
       this.selectedCenter = this.filteredCenters.find(
-        (center: any) => center.id === centerDetail.id
+        (center: any) => center.id === centerDetail.id,
       );
       this.form.get('centerId')?.setValue(this.selectedCenter.id);
     });
@@ -99,7 +99,7 @@ export class AddEditCenterDetailComponent
 
   getEditCenterDetail = () => {
     this.centerDetailsService
-      .getEditCenterDetail(this.id)
+      .getEditCenterDetail(this.id())
       .subscribe((centerDetail: any) => {
         this.initFormGroup();
         this.form.patchValue(centerDetail);
@@ -114,7 +114,7 @@ export class AddEditCenterDetailComponent
       });
     if (this.pageType === 'edit')
       this.centerDetailsService
-        .update({ id: this.id, ...this.form.value })
+        .update({ id: this.id(), ...this.form.value })
         .subscribe(() => {
           this.redirect();
         });

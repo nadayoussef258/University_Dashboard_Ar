@@ -4,15 +4,15 @@ import { CardModule } from 'primeng/card';
 import {
   PrimeDataTableComponent,
   PrimeTitleToolBarComponent,
-  PagesService,
+  AboutService,
 } from '../../../../shared';
 import { TableOptions } from '../../../../shared/interfaces';
 import { BaseListComponent } from '../../../../base/components/base-list-component';
-import { takeUntil } from 'rxjs';
-import { AddEditDepartmentComponent } from '../../components/add-edit-department/add-edit-department.component';
+import { AddEditLeaderComponent } from '../../components/add-edit-leader/add-edit-leader.component';
+import { LeadersService } from '../../../../shared/services/pages/leaders/leaders.service';
 
 @Component({
-  selector: 'app-departments',
+  selector: 'app-leaders',
 
   imports: [
     RouterModule,
@@ -20,14 +20,12 @@ import { AddEditDepartmentComponent } from '../../components/add-edit-department
     PrimeDataTableComponent,
     PrimeTitleToolBarComponent,
   ],
-  templateUrl: './departments.component.html',
-  styleUrl: './departments.component.scss',
+  templateUrl: './leaders.component.html',
+  styleUrl: './leaders.component.css',
 })
-export class DepartmentsComponent extends BaseListComponent {
-  @Input() employeeId: string = '';
-  isEnglish = false;
+export class LeaderComponent extends BaseListComponent {
   tableOptions!: TableOptions;
-  service = inject(PagesService);
+  service = inject(LeadersService);
 
   constructor(activatedRoute: ActivatedRoute) {
     super(activatedRoute);
@@ -40,35 +38,41 @@ export class DepartmentsComponent extends BaseListComponent {
   initializeTableOptions() {
     this.tableOptions = {
       inputUrl: {
-        getAll: 'v1/about/getPaged',
+        getAll: 'v2/leaders/getPaged',
         getAllMethod: 'POST',
-        delete: 'v2/pages/deletesoft',
+        delete: 'v2/leaders/deletesoft',
       },
       inputCols: this.initializeTableColumns(),
       inputActions: this.initializeTableActions(),
       permissions: {
-        componentName: 'DEPARTMENTS',
+        componentName: 'ABOUT',
         allowAll: true,
         listOfPermissions: [],
       },
       bodyOptions: {
         filter: {},
       },
-      responsiveDisplayedProperties: ['orgStructureName', 'jobTitleName'],
+      responsiveDisplayedProperties: ['fullName', 'position', 'mamberName'],
     };
   }
 
   initializeTableColumns(): TableOptions['inputCols'] {
     return [
       {
-        field: 'name',
-        header: 'القسم',
+        field: 'fullName',
+        header: 'الاسم بالكامل',
         filter: true,
         filterMode: 'text',
       },
       {
-        field: 'branch',
-        header: 'الفرع',
+        field: 'position',
+        header: 'المنصب',
+        filter: true,
+        filterMode: 'text',
+      },
+      {
+        field: 'mamberName',
+        header: 'اسم عضو هيئة التدريس',
         filter: true,
         filterMode: 'text',
       },
@@ -98,23 +102,17 @@ export class DepartmentsComponent extends BaseListComponent {
   }
 
   openAdd() {
-    this.openDialog(AddEditDepartmentComponent, 'اضافة قسم', {
+    this.openDialog(AddEditLeaderComponent, 'اضافة بيانات القائد', {
       pageType: 'add',
     });
   }
 
   openEdit(rowData: any) {
-    this.openDialog(AddEditDepartmentComponent, 'تعديل قسم', {
+    this.openDialog(AddEditLeaderComponent, 'تعديل بيانات القائد', {
       pageType: 'edit',
       row: { rowData },
     });
   }
 
   /* when leaving the component */
-  override ngOnDestroy() {
-    //Called once, before the instance is destroyed.
-    //Add 'implements OnDestroy' to the class.
-    this.destroy$.next(true);
-    this.destroy$.unsubscribe();
-  }
 }

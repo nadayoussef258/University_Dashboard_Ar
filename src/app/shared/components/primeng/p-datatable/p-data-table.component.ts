@@ -1,25 +1,30 @@
 import {
   Component,
-  OnInit,
   Input,
-  OnDestroy,
   Output,
   EventEmitter,
   inject,
+  signal,
+  WritableSignal,
+  effect,
+  OnDestroy,
 } from '@angular/core';
 import { Router, RouterModule } from '@angular/router';
-import { BehaviorSubject, debounceTime, Subject } from 'rxjs';
+import { Subject, debounceTime, takeUntil } from 'rxjs';
 import { ExportExcelService } from '../../../services/export-excel/export-excel.service';
-import { takeUntil } from 'rxjs';
 import { TableOptions } from '../../../interfaces';
+
+// PrimeNG imports
 import { TableModule } from 'primeng/table';
 import { DatePipe, NgClass } from '@angular/common';
 import { PrimeDeleteDialogComponent } from '../p-delete-dialog/p-delete-dialog.component';
 import { Toolbar } from 'primeng/toolbar';
 import { ButtonModule } from 'primeng/button';
 import { StyleClass } from 'primeng/styleclass';
+
 @Component({
   selector: 'app-prime-data-table',
+  standalone: true,
   imports: [
     TableModule,
     NgClass,
@@ -33,107 +38,139 @@ import { StyleClass } from 'primeng/styleclass';
   templateUrl: './p-data-table.component.html',
   styleUrls: ['./p-data-table.component.scss'],
 })
-export class PrimeDataTableComponent implements OnInit, OnDestroy {
-  // Inputs
-  @Input() tableOptions!: TableOptions;
-  @Input() totalCount: number = 0;
-  @Input() pageSize: number = 0;
-  @Input() checkbox: boolean = false;
-  @Input() set data(value) {
-    this._data.next(value);
+export class PrimeDataTableComponent implements OnDestroy {
+  // 🧩 Inputs
+  @Input({ required: true }) tableOptions!: TableOptions;
+  totalCountSignal = signal(0);
+  pageSizeSignal = signal(0);
+  @Input() checkbox = false;
+
+  // 🧩 Inputs مع setters
+  @Input() set totalCount(value: number) {
+    this.totalCountSignal.set(value ?? 0);
   }
-  get data() {
-    return this._data.getValue();
+
+  @Input() set pageSize(value: number) {
+    this.pageSizeSignal.set(value ?? 0);
   }
-  finalData: any[] = [];
-  permissions: any = {};
-  Showing: string = 'Showing';
+
+  totalEffect = effect(() => {
+    console.log('📊 totalCount changed to:', this.totalCountSignal());
+    console.log('📏 pageSize changed to:', this.pageSizeSignal());
+  });
+  // 🧠 Reactive data using signals
+  private _data: WritableSignal<any[]> = signal([]);
+  finalData: WritableSignal<any[]> = signal([]);
+  permissions: WritableSignal<any> = signal({});
+
+  // 🗣️ Output Events
+  @Output() event = new EventEmitter<any>();
+
+  // 🧭 Routing + Services
+  router = inject(Router);
+  excel = inject(ExportExcelService);
+
+  // 🧹 Cleanup subjects (للفلاتر)
+  private destroy$ = new Subject<void>();
+  private filterSubjects: Record<string, Subject<string>> = {};
+
+  // 🌐 Helpers
+  Showing = 'Showing';
   language!: string;
-  deleteDialog: boolean = false;
+  deleteDialog = false;
   rowId!: string;
   rowRoute!: string;
   selected: any = '';
-  // Output
-
-  @Output() event: EventEmitter<any> = new EventEmitter<any>();
-
-  /* hold the current route */
-  currentRoute;
-  private _data = new BehaviorSubject<any[]>([]);
-  /* subscriber to unsubscribe when leaving the component */
-  private destroy$: Subject<boolean> = new Subject<boolean>();
-  private filterSubjects: { [key: string]: Subject<string> } = {};
-  // services
-  router = inject(Router);
-  excel = inject(ExportExcelService);
+  currentRoute: string;
 
   constructor() {
     this.currentRoute = this.router.url.substring(
       0,
-      this.router.url.length - 3
+      this.router.url.length - 3,
     );
   }
 
-  ngOnInit(): void {
-    this.permissions = this.tableOptions.permissions;
-    this._data.subscribe((x) => {
-      this.finalData = this.data;
-
-      console.log('data at datatable at ngOnInit', this.finalData);
-    });
+  /** Setter & Getter for input data */
+  @Input() set data(value: any[]) {
+    this._data.set(value ?? []);
+  }
+  get data() {
+    return this._data();
   }
 
+  // ⚡️ Effect: Watch for data changes
+  dataEffect = effect(() => {
+    const res = this._data();
+    if (!res || res.length === 0) {
+      console.log('⚠️ No data available.');
+      this.finalData.set([]);
+      return;
+    }
+    this.finalData.set(res);
+    console.log('✅ Data updated:', this.finalData());
+  });
+
+  // ⚡️ Effect: Watch for permissions changes
+  permissionsEffect = effect(() => {
+    const opts = this.tableOptions;
+    if (opts?.permissions) {
+      this.permissions.set(opts.permissions);
+      // console.log('🔐 Permissions updated:', this.permissions());
+    }
+  });
+
+  // 🔁 Lazy loading event
   loadLazyLoadedData($event: any): void {
     this.event.emit({ data: $event, eventType: 'lazyLoad' });
   }
 
+  // 🧩 Nested property getter
   getCellData(row: any, col: any): any {
-    const nestedProperties: string[] = col.field.split('.');
-    let value: any = row;
-    for (const prop of nestedProperties) {
-      if (value[prop] == null) {
-        return '';
-      }
+    const nestedProps = col.field.split('.');
+    let value = row;
+    for (const prop of nestedProps) {
+      if (value[prop] == null) return '';
       value = value[prop];
     }
     return value;
   }
 
-  // filter(event: any, column: string): void {
-  //   const inputValue = event.target.value;
+  // 🔍 Filtering logic (debounced)
+  filter(event: any, column: string): void {
+    const inputValue = event.target.value;
 
-  //   if (!this.filterSubjects[column]) {
-  //     this.filterSubjects[column] = new Subject<string>();
-  //     this.filterSubjects[column]
-  //       .pipe(debounceTime(500), takeUntil(this.destroy$))
-  //       .subscribe((debouncedValue) => {
-  //         this.event.emit({
-  //           eventType: 'filter',
-  //           value: { data: debouncedValue },
-  //           column,
-  //         });
-  //       });
-  //   }
+    if (!this.filterSubjects[column]) {
+      this.filterSubjects[column] = new Subject<string>();
+      this.filterSubjects[column]
+        .pipe(debounceTime(500), takeUntil(this.destroy$))
+        .subscribe((debouncedValue) => {
+          this.event.emit({
+            eventType: 'filter',
+            value: { data: debouncedValue },
+            column,
+          });
+        });
+    }
 
-  //   this.filterSubjects[column].next(inputValue);
-  // }
+    this.filterSubjects[column].next(inputValue);
 
-  filter(value: string | any, column: string): void {
-    console.log('value: ', value + ' column: ', column);
-    this.event.emit({ eventType: 'filter', value, column });
+    console.log('inputValue :::', inputValue);
+    console.log('column :::', column);
+    console.log('this.filterSubjects[column] :::', this.filterSubjects[column]);
   }
 
+  // 🗑️ Deletion logic
   delete(id: any): void {
     this.deleteDialog = true;
     this.rowId = id;
-    console.log('rowId: ', this.rowId);
+    console.log('🗑️ Selected row ID:', this.rowId);
   }
 
   modalClosed(isClosed: boolean) {
     if (isClosed) {
       if (this.selected && this.selected.length > 0) {
-        const idsToDelete = this.selected.map((item: any) => item.id); // Collect IDs of selected items
-        this.deleteData(idsToDelete); // Call method to delete selected items
+        const idsToDelete = this.selected.map((item: any) => item.id);
+        this.deleteData(idsToDelete);
       } else {
         this.event.emit({ data: this.rowId, eventType: 'delete' });
       }
@@ -147,38 +184,40 @@ export class PrimeDataTableComponent implements OnInit, OnDestroy {
 
   deleteData(ids: string[]) {
     this.event.emit({ data: ids, eventType: 'deleteRange' });
-    console.log('IDs to be deleted:', ids);
+    console.log('🗑️ IDs to be deleted:', ids);
   }
 
+  // 📤 Export
   export(columnNames: any, reportName: any): void {
     this.event.emit({ data: columnNames, reportName, eventType: 'export' });
   }
 
+  // 🔗 Handle click navigation
   handleLinkClick(row: any, col: any) {
-    console.log('test click: ', row, 'col: ', col);
-    console.log('permission: ', this.permissions);
+    console.log('🖱️ Link clicked:', row, col);
+    const perms = this.permissions();
+
     if (
-      this.permissions.listOfPermissions.indexOf(
-        'Permission.' + this.permissions.componentName + '.Edit'
-      ) > -1
+      perms.listOfPermissions?.includes(
+        `Permission.${perms.componentName}.Edit`,
+      )
     ) {
-      // Navigate to the edit page
       this.router.navigate([col.route + row.id]);
     } else if (
-      this.permissions.listOfPermissions.indexOf(
-        'Permission.' + this.permissions.componentName + '.View'
-      ) > -1
+      perms.listOfPermissions?.includes(
+        `Permission.${perms.componentName}.View`,
+      )
     ) {
-      // Navigate to the view page
       this.router.navigate([col.viewRoute + row.id]);
     }
   }
 
-  /* when leaving the component */
+  // 🧹 Cleanup on destroy
   ngOnDestroy() {
     this.event.emit({ eventType: 'reset' });
-    this._data.unsubscribe();
-    this.destroy$.next(true);
+    Object.values(this.filterSubjects).forEach((subject) => subject.complete());
+    this.destroy$.next();
     this.destroy$.complete();
+    // console.log('🧹 PrimeDataTableComponent destroyed — reset event emitted');
   }
 }

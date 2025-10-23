@@ -117,10 +117,4 @@ export class ServicesComponent extends BaseListComponent {
   }
 
   /* when leaving the component */
-  override ngOnDestroy() {
-    //Called once, before the instance is destroyed.
-    //Add 'implements OnDestroy' to the class.
-    this.destroy$.next(true);
-    this.destroy$.unsubscribe();
-  }
 }

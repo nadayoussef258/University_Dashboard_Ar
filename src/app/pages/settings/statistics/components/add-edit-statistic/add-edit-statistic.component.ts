@@ -40,7 +40,7 @@ export class AddEditStatisticComponent
     this.dialogService.dialogComponentRefMap.forEach((element) => {
       this.pageType = element.instance.ddconfig.data.pageType;
       if (this.pageType === 'edit') {
-        this.id = element.instance.ddconfig.data.row.rowData.id;
+        this.id.set(element.instance.ddconfig.data.row.rowData.id);
       }
     });
 
@@ -61,10 +61,12 @@ export class AddEditStatisticComponent
   }
 
   getEditStatistics = () => {
-    this.statisticsService.getEditStatistic(this.id).subscribe((page: any) => {
-      this.initFormGroup();
-      this.form.patchValue(page);
-    });
+    this.statisticsService
+      .getEditStatistic(this.id())
+      .subscribe((page: any) => {
+        this.initFormGroup();
+        this.form.patchValue(page);
+      });
   };
 
   submit() {
@@ -76,7 +78,7 @@ export class AddEditStatisticComponent
 
     if (this.pageType === 'edit') {
       this.statisticsService
-        .update({ id: this.id, ...this.form.value })
+        .update({ id: this.id(), ...this.form.value })
         .subscribe(() => {
           this.closeDialog();
         });

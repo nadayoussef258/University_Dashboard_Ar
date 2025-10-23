@@ -55,7 +55,7 @@ export class AddEditProgramMemberComponent
       this.pageType = element.instance.ddconfig.data.pageType;
 
       if (this.pageType === 'edit') {
-        this.id = element.instance.ddconfig.data.row.rowData.id;
+        this.id.set(element.instance.ddconfig.data.row.rowData.id);
       }
     });
     if (this.pageType === 'edit') {
@@ -77,7 +77,7 @@ export class AddEditProgramMemberComponent
     this.programsService.programs.subscribe({
       next: (res: any) => {
         this.filteredPrograms = res.filter((program: any) =>
-          program.pageId.includes(query)
+          program.pageId.includes(query),
         );
       },
       error: (err) => {
@@ -97,7 +97,7 @@ export class AddEditProgramMemberComponent
         ? response
         : response.data || [];
       this.selectedProgram = this.filteredPrograms.find(
-        (program: any) => program.id === programMember.id
+        (program: any) => program.id === programMember.id,
       );
       this.form.get('programId')?.setValue(this.selectedProgram.id);
     });
@@ -105,7 +105,7 @@ export class AddEditProgramMemberComponent
 
   getEditProgramMember = () => {
     this.programMembersService
-      .getEditProgramMember(this.id)
+      .getEditProgramMember(this.id())
       .subscribe((programMember: any) => {
         this.initFormGroup();
         this.form.patchValue(programMember);
@@ -120,7 +120,7 @@ export class AddEditProgramMemberComponent
       });
     if (this.pageType === 'edit')
       this.programMembersService
-        .update({ id: this.id, ...this.form.value })
+        .update({ id: this.id(), ...this.form.value })
         .subscribe(() => {
           this.closeDialog();
         });

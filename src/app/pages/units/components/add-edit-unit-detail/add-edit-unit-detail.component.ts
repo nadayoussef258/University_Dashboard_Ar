@@ -47,7 +47,7 @@ export class AddEditUnitDetailComponent
   override ngOnInit(): void {
     super.ngOnInit();
     this.unitId = this.unitIdService.UnitId();
-    this.id = this.activatedRoute.snapshot.paramMap.get('id') as string;
+    this.id.set(this.activatedRoute.snapshot.paramMap.get('id') as string);
 
     if (this.pageType === 'edit') {
       this.getEditUnitDetail();
@@ -70,7 +70,7 @@ export class AddEditUnitDetailComponent
     this.unitsService.units.subscribe({
       next: (res: any) => {
         this.filteredUnits = res.filter((unit: any) =>
-          unit.page.title.toLowerCase.includes(query)
+          unit.page.title.toLowerCase.includes(query),
         );
       },
       error: (err) => {
@@ -90,7 +90,7 @@ export class AddEditUnitDetailComponent
         ? response
         : response.data || [];
       this.selectedUnit = this.selectedUnit.find(
-        (unit: any) => unit.id === unitDetail.unitId
+        (unit: any) => unit.id === unitDetail.unitId,
       );
       this.form.get('unitId')?.setValue(this.selectedUnit.id);
     });
@@ -98,7 +98,7 @@ export class AddEditUnitDetailComponent
 
   getEditUnitDetail = () => {
     this.unitDetailsService
-      .getEditUnitDetail(this.id)
+      .getEditUnitDetail(this.id())
       .subscribe((unitDetail: any) => {
         this.initFormGroup();
         this.form.patchValue(unitDetail);
@@ -114,7 +114,7 @@ export class AddEditUnitDetailComponent
     if (this.pageType === 'edit') {
       this.unitDetailsService
         .update({
-          id: this.id,
+          id: this.id(),
           ...this.form.value,
         })
         .subscribe(() => {

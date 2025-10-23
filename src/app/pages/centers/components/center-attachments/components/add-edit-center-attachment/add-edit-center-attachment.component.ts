@@ -30,7 +30,7 @@ export class AddEditCenterAttachmentComponent
   implements OnInit
 {
   centerAttachmentsService: CenterAttachmentsService = inject(
-    CenterAttachmentsService
+    CenterAttachmentsService,
   );
   dialogService: DialogService = inject(DialogService);
 
@@ -43,7 +43,7 @@ export class AddEditCenterAttachmentComponent
     this.dialogService.dialogComponentRefMap.forEach((element) => {
       this.pageType = element.instance.ddconfig.data.pageType;
       if (this.pageType === 'edit') {
-        this.id = element.instance.ddconfig.data.row.rowData.id;
+        this.id.set(element.instance.ddconfig.data.row.rowData.id);
       }
     });
     if (this.pageType === 'edit') {
@@ -62,7 +62,7 @@ export class AddEditCenterAttachmentComponent
 
   getEditCenterAttachment = () => {
     this.centerAttachmentsService
-      .getEditCenterAttachment(this.id)
+      .getEditCenterAttachment(this.id())
       .subscribe((centerAttachment: any) => {
         this.initFormGroup();
         this.form.patchValue(centerAttachment);
@@ -76,7 +76,7 @@ export class AddEditCenterAttachmentComponent
       });
     if (this.pageType === 'edit')
       this.centerAttachmentsService
-        .update({ id: this.id, ...this.form.value })
+        .update({ id: this.id(), ...this.form.value })
         .subscribe(() => {
           this.closeDialog();
         });

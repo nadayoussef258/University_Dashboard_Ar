@@ -1,21 +1,21 @@
-import { inject, Injectable } from '@angular/core';
+import { inject, Injectable, signal, WritableSignal } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable, BehaviorSubject } from 'rxjs';
 import { TableOptions } from '../../interfaces';
 import { ConfigService } from '../../../core';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class DataTableService {
   opt: TableOptions['bodyOptions'] = {
     pageNumber: 1,
     pageSize: 5,
     orderByValue: [{ colId: 'id', sort: 'asc' }],
-    filter: {}
+    filter: {},
   };
   hostApi: string;
-  public searchNew$: BehaviorSubject<{}> = new BehaviorSubject({});
+  public searchNew$: WritableSignal<any> = signal({});
   configService = inject(ConfigService);
   constructor(private http: HttpClient) {
     this.hostApi = this.configService.getAppUrl('HOST_API');

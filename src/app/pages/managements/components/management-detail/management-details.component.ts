@@ -40,6 +40,7 @@ export class ManagementDetailsComponent extends BaseListComponent {
     this.managementId = this.managmentIdService.ManagmentId();
     this.initializeTableOptions();
     super.ngOnInit();
+    console.log('searchEffect:', this['searchEffec']);
   }
 
   initializeTableOptions() {
@@ -104,10 +105,5 @@ export class ManagementDetailsComponent extends BaseListComponent {
         isDelete: true,
       },
     ];
-  }
-
-  override ngOnDestroy() {
-    this.destroy$.next(true);
-    this.destroy$.unsubscribe();
   }
 }

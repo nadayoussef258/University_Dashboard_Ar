@@ -48,7 +48,7 @@ export class AddEditProgramDetailComponent
   override ngOnInit(): void {
     super.ngOnInit();
     this.programId = this.programIdService.ProgramId();
-    this.id = this.activatedRoute.snapshot.paramMap.get('id') as string;
+    this.id.set(this.activatedRoute.snapshot.paramMap.get('id') as string);
 
     if (this.pageType === 'edit') {
       this.getEditProgramDetail();
@@ -73,7 +73,7 @@ export class AddEditProgramDetailComponent
     this.programsService.programs.subscribe({
       next: (res: any) => {
         this.filteredPrograms = res.filter((program: any) =>
-          program.pageId.includes(query)
+          program.pageId.includes(query),
         );
       },
       error: (err) => {
@@ -93,7 +93,7 @@ export class AddEditProgramDetailComponent
         ? response
         : response.data || [];
       this.selectedProgram = this.filteredPrograms.find(
-        (program: any) => program.id === programDetail.id
+        (program: any) => program.id === programDetail.id,
       );
       this.form.get('programId')?.setValue(this.selectedProgram.id);
     });
@@ -101,7 +101,7 @@ export class AddEditProgramDetailComponent
 
   getEditProgramDetail = () => {
     this.programDetailsService
-      .getEditProgramDetail(this.id)
+      .getEditProgramDetail(this.id())
       .subscribe((programDetail: any) => {
         this.initFormGroup();
         this.form.patchValue(programDetail);
@@ -116,7 +116,7 @@ export class AddEditProgramDetailComponent
       });
     if (this.pageType === 'edit')
       this.programDetailsService
-        .update({ id: this.id, ...this.form.value })
+        .update({ id: this.id(), ...this.form.value })
         .subscribe(() => {
           this.redirect();
         });

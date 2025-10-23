@@ -17,16 +17,16 @@
     </a>
 
     @if (tableOptions) {
-    <div class="mt-4">
-      <app-prime-data-table
-        (event)="handleEvent($event)"
-        [tableOptions]="tableOptions"
-        [data]="data"
-        [totalCount]="totalCount"
-        [pageSize]="dataTableService.opt.pageSize"
-      >
-      </app-prime-data-table>
-    </div>
+      <div class="mt-4">
+        <app-prime-data-table
+          (event)="handleEvent($event)"
+          [tableOptions]="tableOptions"
+          [data]="data()"
+          [totalCount]="totalCount()"
+          [pageSize]="dataTableService.opt.pageSize"
+        >
+        </app-prime-data-table>
+      </div>
     }
   </div>
 </div>

@@ -40,7 +40,7 @@ export class AddEditManagementMemberComponent
   filteredManagements: any[] = [];
 
   managementMembersService: ManagementMembersService = inject(
-    ManagementMembersService
+    ManagementMembersService,
   );
   managementsService: ManagementsService = inject(ManagementsService);
   managmentIdService: ManagmentIdService = inject(ManagmentIdService);
@@ -59,7 +59,7 @@ export class AddEditManagementMemberComponent
       this.pageType = element.instance.ddconfig.data.pageType;
 
       if (this.pageType === 'edit') {
-        this.id = element.instance.ddconfig.data.row.rowData.id;
+        this.id.set(element.instance.ddconfig.data.row.rowData.id);
       }
     });
 
@@ -82,7 +82,7 @@ export class AddEditManagementMemberComponent
     this.managementsService.managements.subscribe({
       next: (res: any) => {
         this.filteredManagements = res.filter((management: any) =>
-          management.pageId.includes(query)
+          management.pageId.includes(query),
         );
       },
       error: (err) => {
@@ -102,7 +102,7 @@ export class AddEditManagementMemberComponent
         ? response
         : response.data || [];
       this.selectedManagement = this.filteredManagements.find(
-        (management: any) => management.id === managementMember.managementId
+        (management: any) => management.id === managementMember.managementId,
       );
       this.form.get('managementId')?.setValue(this.selectedManagement.id);
     });
@@ -110,7 +110,7 @@ export class AddEditManagementMemberComponent
 
   getEditManagementMember = () => {
     this.managementMembersService
-      .getManagementMember(this.id)
+      .getManagementMember(this.id())
       .subscribe((managementMember: any) => {
         this.initFormGroup();
         this.form.patchValue(managementMember);
@@ -125,7 +125,7 @@ export class AddEditManagementMemberComponent
       });
     if (this.pageType === 'edit')
       this.managementMembersService
-        .update({ id: this.id, ...this.form.value })
+        .update({ id: this.id(), ...this.form.value })
         .subscribe(() => {
           this.closeDialog();
         });

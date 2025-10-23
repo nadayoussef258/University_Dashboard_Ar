@@ -56,7 +56,7 @@ export class AddEditSectorPostComponent
     this.dialogService.dialogComponentRefMap.forEach((element) => {
       this.pageType = element.instance.ddconfig.data.pageType;
       if (this.pageType === 'edit') {
-        this.id = element.instance.ddconfig.data.row.rowData.id;
+        this.id.set(this.activatedRoute.snapshot.paramMap.get('id') as string);
       }
     });
     if (this.pageType === 'edit') {
@@ -78,7 +78,7 @@ export class AddEditSectorPostComponent
     this.sectorsService.sectors.subscribe({
       next: (res: any) => {
         this.filteredSectors = res.filter((sector: any) =>
-          sector.name.includes(query)
+          sector.name.includes(query),
         );
       },
       error: (err) => {
@@ -98,7 +98,7 @@ export class AddEditSectorPostComponent
         ? response
         : response.data || [];
       this.selectedSector = this.filteredSectors.find(
-        (sector: any) => sector.id === sectorPost.sectorId
+        (sector: any) => sector.id === sectorPost.sectorId,
       );
       this.form.get('sectorId')?.setValue(this.selectedSector.id);
     });
@@ -109,7 +109,7 @@ export class AddEditSectorPostComponent
     this.postsService.posts.subscribe({
       next: (res: any) => {
         this.filteredPosts = res.filter((post: any) =>
-          post.title.includes(query)
+          post.title.includes(query),
         );
       },
       error: (err) => {
@@ -129,7 +129,7 @@ export class AddEditSectorPostComponent
         ? response
         : response.data || [];
       this.selectedPost = this.filteredPosts.find(
-        (post: any) => post.id === sectorPost.postId
+        (post: any) => post.id === sectorPost.postId,
       );
       this.form.get('postId')?.setValue(this.selectedPost.id);
     });
@@ -137,7 +137,7 @@ export class AddEditSectorPostComponent
 
   getEditSectorsPost = () => {
     this.sectorPostsService
-      .getEditSectorPost(this.id)
+      .getEditSectorPost(this.id())
       .subscribe((sectorPost: any) => {
         this.initFormGroup();
         this.form.patchValue(sectorPost);
@@ -152,7 +152,7 @@ export class AddEditSectorPostComponent
       });
     if (this.pageType === 'edit')
       this.sectorPostsService
-        .update({ id: this.id, ...this.form.value })
+        .update({ id: this.id(), ...this.form.value })
         .subscribe(() => {
           this.closeDialog();
         });

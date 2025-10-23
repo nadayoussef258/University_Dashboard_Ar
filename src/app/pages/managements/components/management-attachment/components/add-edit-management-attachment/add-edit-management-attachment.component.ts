@@ -29,7 +29,7 @@ export class AddEditManagementAttachmentComponent
   implements OnInit
 {
   managementAttachmentService: ManagementAttachmentService = inject(
-    ManagementAttachmentService
+    ManagementAttachmentService,
   );
   dialogService: DialogService = inject(DialogService);
 
@@ -41,7 +41,7 @@ export class AddEditManagementAttachmentComponent
     this.managementAttachmentService.managementAttachments.subscribe(
       (response: any) => {
         console.log('managementAttachments ::', response);
-      }
+      },
     );
   }
   override ngOnInit(): void {
@@ -69,7 +69,7 @@ export class AddEditManagementAttachmentComponent
 
   getEditManagementAttachment = () => {
     this.managementAttachmentService
-      .getEditManagementAttachment(this.id)
+      .getEditManagementAttachment(this.id())
       .subscribe((managementAttachment: any) => {
         this.initFormGroup();
         this.form.patchValue(managementAttachment);
@@ -83,7 +83,7 @@ export class AddEditManagementAttachmentComponent
       });
     if (this.pageType === 'edit')
       this.managementAttachmentService
-        .update({ id: this.id, ...this.form.value })
+        .update({ id: this.id(), ...this.form.value })
         .subscribe(() => {
           this.closeDialog();
         });

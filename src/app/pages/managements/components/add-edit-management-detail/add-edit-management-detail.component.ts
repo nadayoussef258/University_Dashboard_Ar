@@ -47,7 +47,7 @@ export class AddEditManagementDetailComponent
   override ngOnInit(): void {
     super.ngOnInit();
     this.managementId = this.managmentIdService.ManagmentId();
-    this.id = this.activatedRoute.snapshot.paramMap.get('id') as string;
+    this.id.set(this.activatedRoute.snapshot.paramMap.get('id') as string);
 
     if (this.pageType === 'edit') {
       this.getEditManagementDetail();
@@ -70,7 +70,7 @@ export class AddEditManagementDetailComponent
     this.managementsService.managements.subscribe({
       next: (res: any) => {
         this.filteredManagements = res.filter((management: any) =>
-          management.pageId.toLowerCase().includes(query)
+          management.pageId.toLowerCase().includes(query),
         );
       },
       error: (err) => {
@@ -90,7 +90,7 @@ export class AddEditManagementDetailComponent
         ? response
         : response.data || [];
       this.selectedManagement = this.filteredManagements.find(
-        (management: any) => management.id === managementDetail.managementId
+        (management: any) => management.id === managementDetail.managementId,
       );
       this.form.get('managementId')?.setValue(this.selectedManagement.id);
     });
@@ -98,7 +98,7 @@ export class AddEditManagementDetailComponent
 
   getEditManagementDetail = () => {
     this.manageDetailsService
-      .getEditManagementDetail(this.id)
+      .getEditManagementDetail(this.id())
       .subscribe((manageDetail: any) => {
         this.initFormGroup();
         this.form.patchValue(manageDetail);
@@ -114,7 +114,7 @@ export class AddEditManagementDetailComponent
     if (this.pageType === 'edit') {
       this.manageDetailsService
         .update({
-          id: this.id,
+          id: this.id(),
           ...this.form.value,
         })
         .subscribe(() => {

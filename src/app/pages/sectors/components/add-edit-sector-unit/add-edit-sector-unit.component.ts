@@ -47,7 +47,7 @@ export class AddEditSectorUnitComponent
   override ngOnInit(): void {
     super.ngOnInit();
     this.sectorId = this.sectorIdService.SectortId();
-    this.id = this.activatedRoute.snapshot.paramMap.get('id') as string;
+    this.id.set(this.activatedRoute.snapshot.paramMap.get('id') as string);
 
     if (this.pageType === 'edit') {
       this.getEditSectorUnit();
@@ -73,7 +73,7 @@ export class AddEditSectorUnitComponent
     this.sectorsService.sectors.subscribe({
       next: (res: any) => {
         this.filteredSectors = res.filter((sector: any) =>
-          sector.name.includes(query)
+          sector.name.includes(query),
         );
       },
       error: (err) => {
@@ -93,7 +93,7 @@ export class AddEditSectorUnitComponent
         ? response
         : response.data || [];
       this.selectedSector = this.filteredSectors.find(
-        (sector: any) => sector.id === sectorUnit.sectorId
+        (sector: any) => sector.id === sectorUnit.sectorId,
       );
       this.form.get('sectorId')?.setValue(this.selectedSector.id);
     });
@@ -101,7 +101,7 @@ export class AddEditSectorUnitComponent
 
   getEditSectorUnit = () => {
     this.sectorUnitsService
-      .getEditSectorUnit(this.id)
+      .getEditSectorUnit(this.id())
       .subscribe((sectorUnit: any) => {
         this.initFormGroup();
         this.form.patchValue(sectorUnit);
@@ -117,7 +117,7 @@ export class AddEditSectorUnitComponent
     if (this.pageType === 'edit') {
       this.sectorUnitsService
         .update({
-          id: this.id,
+          id: this.id(),
           ...this.form.value,
         })
         .subscribe(() => {

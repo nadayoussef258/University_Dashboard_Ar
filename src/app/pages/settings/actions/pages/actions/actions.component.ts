@@ -24,8 +24,6 @@ import { AddEditActionComponent } from '../../components/add-edit-action/add-edi
   styleUrl: './actions.component.css',
 })
 export class ActionsComponent extends BaseListComponent {
-  @Input() employeeId: string = '';
-  isEnglish = false;
   tableOptions!: TableOptions;
   service = inject(ActionsService);
 
@@ -35,7 +33,7 @@ export class ActionsComponent extends BaseListComponent {
 
   override ngOnInit(): void {
     this.initializeTableOptions();
-    super.ngOnInit();
+    // super.ngOnInit();
   }
 
   initializeTableOptions() {
@@ -112,10 +110,4 @@ export class ActionsComponent extends BaseListComponent {
   }
 
   /* when leaving the component */
-  override ngOnDestroy() {
-    //Called once, before the instance is destroyed.
-    //Add 'implements OnDestroy' to the class.
-    this.destroy$.next(true);
-    this.destroy$.unsubscribe();
-  }
 }

@@ -28,8 +28,9 @@
   top: 6rem;
   // top: 4.5rem;
   right: 2rem;
-  transition: transform var(--layout-section-transition-duration),
-    left var(--layout-section-transition-duration);
+  transition:
+    transform var(--layout-section-transition-duration),
+    right var(--layout-section-transition-duration);
   // background-image: url(../img/sidBar.jpg);
   background-repeat: no-repeat;
   background-size: cover;
@@ -94,7 +95,8 @@
       cursor: pointer;
       padding: 0.75rem 1rem;
       border-radius: var(--content-border-radius);
-      transition: background-color var(--element-transition-duration),
+      transition:
+        background-color var(--element-transition-duration),
         box-shadow var(--element-transition-duration);
 
       // .layout-menuitem-icon {
@@ -107,13 +109,14 @@
 
       .layout-submenu-toggler {
         font-size: 0.5rem;
-        margin-left: auto;
+        margin-right: auto;
         transition: transform var(--element-transition-duration);
       }
 
       &.active-route {
         font-weight: 700;
         color: var(--secondary-color);
+        background: white;
       }
 
       &:hover {
@@ -132,32 +135,32 @@
 
       li {
         a {
-          margin-left: 1rem;
+          margin-right: 1rem;
         }
 
         li {
           a {
-            margin-left: 2rem;
+            margin-right: 2rem;
           }
 
           li {
             a {
-              margin-left: 2.5rem;
+              margin-right: 2.5rem;
             }
 
             li {
               a {
-                margin-left: 3rem;
+                margin-right: 3rem;
               }
 
               li {
                 a {
-                  margin-left: 3.5rem;
+                  margin-right: 3.5rem;
                 }
 
                 li {
                   a {
-                    margin-left: 4rem;
+                    margin-right: 4rem;
                   }
                 }
               }

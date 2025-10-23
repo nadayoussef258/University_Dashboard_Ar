@@ -37,7 +37,7 @@ export class AddEditLogoComponent extends BaseEditComponent implements OnInit {
     this.dialogService.dialogComponentRefMap.forEach((element) => {
       this.pageType = element.instance.ddconfig.data.pageType;
       if (this.pageType === 'edit') {
-        this.id = element.instance.ddconfig.data.row.rowData.id;
+        this.id.set(element.instance.ddconfig.data.row.rowData.id);
       }
     });
     if (this.pageType === 'edit') {
@@ -63,7 +63,7 @@ export class AddEditLogoComponent extends BaseEditComponent implements OnInit {
   }
 
   getEditLogo = () => {
-    this.logosService.getEditLogo(this.id).subscribe((logo: any) => {
+    this.logosService.getEditLogo(this.id()).subscribe((logo: any) => {
       this.initFormGroup();
       this.form.patchValue(logo);
     });
@@ -76,7 +76,7 @@ export class AddEditLogoComponent extends BaseEditComponent implements OnInit {
       });
     if (this.pageType === 'edit')
       this.logosService
-        .update({ id: this.id, ...this.form.value })
+        .update({ id: this.id(), ...this.form.value })
         .subscribe(() => {
           this.closeDialog();
         });

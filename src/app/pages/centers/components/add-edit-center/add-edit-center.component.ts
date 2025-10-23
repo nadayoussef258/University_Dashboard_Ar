@@ -53,10 +53,10 @@ export class AddEditCenterComponent
 
   override ngOnInit(): void {
     super.ngOnInit();
-    this.id = this.activatedRoute?.snapshot?.paramMap?.get('id') as string;
+    this.id.set(this.activatedRoute?.snapshot?.paramMap?.get('id') as string);
     // this.centerId = this.activatedRoute?.snapshot?.paramMap?.get('id') ?? '';
 
-    this.centerIdService.setCenterId(this.id);
+    this.centerIdService.setCenterId(this.id());
 
     if (this.pageType === 'edit') {
       this.getEditCenter();
@@ -79,7 +79,7 @@ export class AddEditCenterComponent
     this.pagesService.pages.subscribe({
       next: (res: any) => {
         this.filteredPages = res.filter((page: any) =>
-          page.title.toLowerCase().includes(query)
+          page.title.toLowerCase().includes(query),
         );
       },
       error: (err) => {
@@ -99,7 +99,7 @@ export class AddEditCenterComponent
         ? response
         : response.data || [];
       this.selectedPage = this.filteredPages.find(
-        (page: any) => page.id === management.pageId
+        (page: any) => page.id === management.pageId,
       );
       this.form.get('pageId')?.setValue(this.selectedPage.id);
     });
@@ -110,7 +110,7 @@ export class AddEditCenterComponent
     this.aboutService.abouts.subscribe({
       next: (res: any) => {
         this.filteredAbout = res.filter((about: any) =>
-          about.content.toLowerCase().includes(query)
+          about.content.toLowerCase().includes(query),
         );
       },
       error: (err) => {
@@ -130,14 +130,14 @@ export class AddEditCenterComponent
         ? response
         : response.data || [];
       this.selectedAbout = this.filteredAbout.find(
-        (about: any) => about.id === management.aboutId
+        (about: any) => about.id === management.aboutId,
       );
       this.form.get('aboutId')?.setValue(this.selectedAbout.id);
     });
   }
 
   getEditCenter = () => {
-    this.centersService.getEditCenter(this.id).subscribe((center: any) => {
+    this.centersService.getEditCenter(this.id()).subscribe((center: any) => {
       this.initFormGroup();
       this.form.patchValue(center);
       this.fetchPagesDetails(center);
@@ -152,7 +152,7 @@ export class AddEditCenterComponent
       });
     if (this.pageType === 'edit')
       this.centersService
-        .update({ id: this.id, ...this.form.value })
+        .update({ id: this.id(), ...this.form.value })
         .subscribe(() => {
           this.redirect();
         });

@@ -1,25 +1,46 @@
-import { OnInit, Directive, inject } from '@angular/core';
+import {
+  OnInit,
+  Directive,
+  inject,
+  DestroyRef,
+  effect,
+  signal,
+} from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { FormBuilder, FormGroup } from '@angular/forms';
 import { BaseComponent } from './base-component';
-import { Subject } from 'rxjs';
 
 @Directive()
 export abstract class BaseEditComponent
   extends BaseComponent
   implements OnInit
 {
-  model: any = {};
-  form!: FormGroup;
-  isEnglish = false;
-  language: string = 'ar';
-  id: string = '';
-  role: any = {};
-  fb = inject(FormBuilder);
-  allowEdit: boolean = false;
+  /** بيانات الموديل */
+  model = signal<any>({});
 
+  /** نموذج الفورم */
+  form!: FormGroup;
+
+  /** اللغة الحالية */
+  language = signal<'ar' | 'en'>('ar');
+
+  /** هل اللغة إنجليزية */
+  isEnglish = signal(false);
+
+  /** رقم / هوية العنصر الجاري تعديله */
+  id = signal<string>('');
+
+  /** بيانات الدور أو الصلاحيات */
+  role = signal<any>({});
+
+  /** تحكم في صلاحية التعديل */
+  allowEdit = signal(false);
+
+  /** Dependency Injection */
+  fb = inject(FormBuilder);
   override router = inject(Router);
-  protected override destroy$: Subject<boolean> = new Subject<boolean>();
+  override destroyRef = inject(DestroyRef);
+
   constructor(protected override activatedRoute: ActivatedRoute) {
     super(activatedRoute);
   }
@@ -27,39 +48,52 @@ export abstract class BaseEditComponent
   override ngOnInit(): void {
     super.ngOnInit();
     this.getRouteParams();
+
+    /**
+     * تأثير بسيط لتحديث حالة اللغة الإنجليزية
+     * لما تتغير قيمة اللغة
+     */
+    effect(() => {
+      this.isEnglish.set(this.language() === 'en');
+    });
   }
 
   /**
-   * Handle toggel button to edit formControl
-   * @param formControl
+   * تفعيل أو تعطيل حقل بناءً على زر التبديل
    */
-  toggleEditBtn(formControl: any) {
+  toggleEditBtn(formControl: string) {
     const control = this.form.get(formControl);
-    if (this.allowEdit) {
+    if (this.allowEdit()) {
       control?.enable({ emitEvent: false });
     } else {
       control?.disable({ emitEvent: false });
     }
   }
 
+  /**
+   * قراءة الـ id من الـ route
+   */
   protected getRouteParams() {
-    if (this.activatedRoute.snapshot.paramMap.get('id')) {
-      this.id = this.activatedRoute.snapshot.paramMap.get('id') || '';
+    const routeId = this.activatedRoute.snapshot.paramMap.get('id');
+    if (routeId) {
+      this.id.set(routeId);
       this.pageType = 'edit';
     } else {
       this.pageType = 'add';
     }
   }
 
-  /** Protected Methods */
+  /** دالة لحفظ صلاحيات المستخدم (يمكن تفعيلها لاحقاً) */
   protected getUserRole(): void {
-    // this.role = this.manager.GetRole();
+    // this.role.set(this.manager.GetRole());
   }
 
+  /** الانتقال لعنوان آخر */
   redirect(url?: string) {
     this.router.navigate([url]);
   }
 
+  /** منع الحدث الافتراضي */
   preventDefault(event: Event) {
     event.preventDefault();
   }

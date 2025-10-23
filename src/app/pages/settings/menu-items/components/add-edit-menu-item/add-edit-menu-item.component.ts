@@ -50,7 +50,7 @@ export class AddEditMenuItemComponent
     this.dialogService.dialogComponentRefMap.forEach((element) => {
       this.pageType = element.instance.ddconfig.data.pageType;
       if (this.pageType === 'edit') {
-        this.id = element.instance.ddconfig.data.row.rowData.id;
+        this.id.set(element.instance.ddconfig.data.row.rowData.id);
       }
     });
     if (this.pageType === 'edit') {
@@ -77,7 +77,7 @@ export class AddEditMenuItemComponent
     this.menutypesService.menuTypes.subscribe({
       next: (res: any) => {
         this.filteredMenuTypes = res.filter((mType: any) =>
-          mType.type.includes(query)
+          mType.type.includes(query),
         );
       },
       error: (err) => {
@@ -97,7 +97,7 @@ export class AddEditMenuItemComponent
         ? response
         : response.data || [];
       this.selectedMenuType = this.filteredMenuTypes.find(
-        (mType: any) => mType.id === menuItem.menuTypeId
+        (mType: any) => mType.id === menuItem.menuTypeId,
       );
       this.form.get('menuTypeId')?.setValue(this.selectedMenuType.id);
     });
@@ -108,7 +108,7 @@ export class AddEditMenuItemComponent
     this.menuItemsService.menuItems.subscribe({
       next: (res: any) => {
         this.filteredMenuItems = res.filter((mItems: any) =>
-          mItems.title.includes(query)
+          mItems.title.includes(query),
         );
       },
       error: (err) => {
@@ -128,7 +128,7 @@ export class AddEditMenuItemComponent
         ? response
         : response.data || [];
       this.selectedMenuItems = this.filteredMenuItems.find(
-        (mItems: any) => mItems.id === menuItems.parentId
+        (mItems: any) => mItems.id === menuItems.parentId,
       );
       if (this.selectedMenuItems) {
         this.selectedParentMenuItem = this.selectedParentMenuItem;
@@ -139,7 +139,7 @@ export class AddEditMenuItemComponent
 
   getEditMenuItem = () => {
     this.menuItemsService
-      .getEditMenuItem(this.id)
+      .getEditMenuItem(this.id())
       .subscribe((menuItems: any) => {
         this.initFormGroup();
         this.form.patchValue(menuItems);
@@ -155,7 +155,7 @@ export class AddEditMenuItemComponent
       });
     if (this.pageType === 'edit')
       this.menuItemsService
-        .update({ id: this.id, ...this.form.value })
+        .update({ id: this.id(), ...this.form.value })
         .subscribe(() => {
           this.closeDialog();
         });

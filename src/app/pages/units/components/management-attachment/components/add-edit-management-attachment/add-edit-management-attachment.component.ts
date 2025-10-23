@@ -3,11 +3,7 @@ import { Component, inject, OnInit } from '@angular/core';
 import { BaseEditComponent } from '../../../../../../base/components/base-edit-component';
 import { CardModule } from 'primeng/card';
 import { FormsModule, ReactiveFormsModule, Validators } from '@angular/forms';
-import {
-  ActionsService,
-  PrimeInputTextComponent,
-  SubmitButtonsComponent,
-} from '../../../../../../shared';
+import { SubmitButtonsComponent } from '../../../../../../shared';
 import { DialogService } from 'primeng/dynamicdialog';
 import { ActivatedRoute } from '@angular/router';
 
@@ -18,7 +14,6 @@ import { ActivatedRoute } from '@angular/router';
     FormsModule,
     ReactiveFormsModule,
     SubmitButtonsComponent,
-    PrimeInputTextComponent,
   ],
   templateUrl: './add-edit-management-attachment.component.html',
   styleUrl: './add-edit-management-attachment.component.css',
@@ -29,7 +24,7 @@ export class AddEditManagementAttachmentComponent
   implements OnInit
 {
   managementAttachmentService: ManagementAttachmentService = inject(
-    ManagementAttachmentService
+    ManagementAttachmentService,
   );
   dialogService: DialogService = inject(DialogService);
 
@@ -41,7 +36,7 @@ export class AddEditManagementAttachmentComponent
     this.managementAttachmentService.managementAttachments.subscribe(
       (response: any) => {
         console.log('managementAttachments ::', response);
-      }
+      },
     );
   }
   override ngOnInit(): void {
@@ -69,7 +64,7 @@ export class AddEditManagementAttachmentComponent
 
   getEditManagementAttachment = () => {
     this.managementAttachmentService
-      .getEditManagementAttachment(this.id)
+      .getEditManagementAttachment(this.id())
       .subscribe((managementAttachment: any) => {
         this.initFormGroup();
         this.form.patchValue(managementAttachment);

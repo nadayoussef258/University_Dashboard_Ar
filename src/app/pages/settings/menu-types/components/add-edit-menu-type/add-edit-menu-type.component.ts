@@ -40,7 +40,7 @@ export class AddEditMenuTypeComponent
     this.dialogService.dialogComponentRefMap.forEach((element) => {
       this.pageType = element.instance.ddconfig.data.pageType;
       if (this.pageType === 'edit') {
-        this.id = element.instance.ddconfig.data.row.rowData.id;
+        this.id.set(element.instance.ddconfig.data.row.rowData.id);
       }
     });
     if (this.pageType === 'edit') {
@@ -57,7 +57,7 @@ export class AddEditMenuTypeComponent
   }
 
   getEditMenuType = () => {
-    this.menutypesService.getEditMenuType(this.id).subscribe((page: any) => {
+    this.menutypesService.getEditMenuType(this.id()).subscribe((page: any) => {
       this.initFormGroup();
       this.form.patchValue(page);
     });
@@ -66,11 +66,12 @@ export class AddEditMenuTypeComponent
   submit() {
     if (this.pageType === 'add')
       this.menutypesService.add(this.form.value).subscribe(() => {
+        this.alert.success('تم الاصافة بنجاح ');
         this.closeDialog();
       });
     if (this.pageType === 'edit')
       this.menutypesService
-        .update({ id: this.id, ...this.form.value })
+        .update({ id: this.id(), ...this.form.value })
         .subscribe(() => {
           this.closeDialog();
         });

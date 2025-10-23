@@ -43,7 +43,7 @@ export class AddEditHeroSectionComponent
     this.dialogService.dialogComponentRefMap.forEach((element) => {
       this.pageType = element.instance.ddconfig.data.pageType;
       if (this.pageType === 'edit') {
-        this.id = element.instance.ddconfig.data.row.rowData.id;
+        this.id.set(element.instance.ddconfig.data.row.rowData.id);
       }
     });
 
@@ -66,7 +66,7 @@ export class AddEditHeroSectionComponent
 
   getEditHeroSection = () => {
     this.heroSectionsService
-      .getEditHeroSection(this.id)
+      .getEditHeroSection(this.id())
       .subscribe((hero: any) => {
         this.initFormGroup();
         this.form.patchValue(hero);
@@ -80,14 +80,14 @@ export class AddEditHeroSectionComponent
         .subscribe(() => this.closeDialog());
     } else if (this.pageType === 'edit') {
       this.heroSectionsService
-        .update({ id: this.id, ...this.form.value })
+        .update({ id: this.id(), ...this.form.value })
         .subscribe(() => this.closeDialog());
     }
   }
 
   closeDialog() {
     this.dialogService.dialogComponentRefMap.forEach((dialog) =>
-      dialog.destroy()
+      dialog.destroy(),
     );
   }
 }
