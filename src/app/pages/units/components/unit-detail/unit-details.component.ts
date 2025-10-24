@@ -1,5 +1,5 @@
-import { Component, inject, Input } from '@angular/core';
-import { ActivatedRoute, NavigationEnd, RouterModule } from '@angular/router';
+import { Component, inject } from '@angular/core';
+import { ActivatedRoute, RouterModule } from '@angular/router';
 import { CardModule } from 'primeng/card';
 import {
   PrimeDataTableComponent,
@@ -10,6 +10,7 @@ import { TableOptions } from '../../../../shared/interfaces';
 import { BaseListComponent } from '../../../../base/components/base-list-component';
 import { ToggleSwitchModule } from 'primeng/toggleswitch';
 import { UnitIdService } from '../../unit-id.service';
+import { TranslatePipe } from '@ngx-translate/core';
 
 @Component({
   selector: 'app-unit-details',
@@ -20,6 +21,7 @@ import { UnitIdService } from '../../unit-id.service';
     PrimeDataTableComponent,
     PrimeTitleToolBarComponent,
     ToggleSwitchModule,
+    TranslatePipe,
   ],
   templateUrl: './unit-details.component.html',
   styleUrl: './unit-details.component.css',
@@ -104,6 +106,4 @@ export class UnitDetailsComponent extends BaseListComponent {
       },
     ];
   }
-
-  /* when leaving the component */
 }

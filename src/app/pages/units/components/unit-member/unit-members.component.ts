@@ -10,6 +10,7 @@ import { TableOptions } from '../../../../shared/interfaces';
 import { BaseListComponent } from '../../../../base/components/base-list-component';
 import { AddEditUnitMemberComponent } from '../add-edit-unit-member/add-edit-unit-member.component';
 import { UnitIdService } from '../../unit-id.service';
+import { TranslatePipe } from '@ngx-translate/core';
 
 @Component({
   selector: 'app-unit-member',
@@ -19,6 +20,7 @@ import { UnitIdService } from '../../unit-id.service';
     CardModule,
     PrimeDataTableComponent,
     PrimeTitleToolBarComponent,
+    TranslatePipe,
   ],
   templateUrl: './unit-members.component.html',
   styleUrl: './unit-members.component.css',
@@ -115,6 +117,4 @@ export class UnitMembersComponent extends BaseListComponent {
       row: { rowData },
     });
   }
-
-  /* when leaving the component */
 }

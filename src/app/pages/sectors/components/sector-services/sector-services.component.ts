@@ -4,13 +4,13 @@ import { CardModule } from 'primeng/card';
 import {
   PrimeDataTableComponent,
   PrimeTitleToolBarComponent,
-  SectorDetailsService,
   SectorServicesService,
 } from '../../../../shared';
 import { TableOptions } from '../../../../shared/interfaces';
 import { BaseListComponent } from '../../../../base/components/base-list-component';
 import { ToggleSwitchModule } from 'primeng/toggleswitch';
 import { SectorIdService } from '../../sector-id.service';
+import { TranslatePipe } from '@ngx-translate/core';
 
 @Component({
   selector: 'app-sector-services',
@@ -21,6 +21,7 @@ import { SectorIdService } from '../../sector-id.service';
     PrimeDataTableComponent,
     PrimeTitleToolBarComponent,
     ToggleSwitchModule,
+    TranslatePipe,
   ],
   templateUrl: './sector-services.component.html',
   styleUrl: './sector-services.component.css',
@@ -160,6 +161,4 @@ export class SectorServicesComponent extends BaseListComponent {
       },
     ];
   }
-
-  /* when leaving the component */
 }

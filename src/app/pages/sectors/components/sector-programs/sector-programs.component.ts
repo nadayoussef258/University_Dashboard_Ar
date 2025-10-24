@@ -5,12 +5,12 @@ import {
   PrimeDataTableComponent,
   PrimeTitleToolBarComponent,
   SectorProgramsService,
-  SectorsService,
 } from '../../../../shared';
 import { TableOptions } from '../../../../shared/interfaces';
 import { BaseListComponent } from '../../../../base/components/base-list-component';
 import { AddEditSectorProgramComponent } from '../add-edit-sector-program/add-edit-sector-program.component';
 import { SectorIdService } from '../../sector-id.service';
+import { TranslatePipe } from '@ngx-translate/core';
 
 @Component({
   selector: 'app-sector-programs',
@@ -20,6 +20,7 @@ import { SectorIdService } from '../../sector-id.service';
     CardModule,
     PrimeDataTableComponent,
     PrimeTitleToolBarComponent,
+    TranslatePipe,
   ],
   templateUrl: './sector-programs.component.html',
   styleUrl: './sector-programs.component.css',
@@ -114,6 +115,4 @@ export class SectorProgramsComponent extends BaseListComponent {
       row: { rowData },
     });
   }
-
-  /* when leaving the component */
 }

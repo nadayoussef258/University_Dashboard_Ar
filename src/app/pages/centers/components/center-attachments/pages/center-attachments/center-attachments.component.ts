@@ -8,8 +8,9 @@ import {
 } from '../../../../../../shared';
 import { TableOptions } from '../../../../../../shared/interfaces';
 import { BaseListComponent } from '../../../../../../base/components/base-list-component';
-import { takeUntil } from 'rxjs';
+
 import { AddEditCenterAttachmentComponent } from '../../components/add-edit-center-attachment/add-edit-center-attachment.component';
+import { TranslatePipe } from '@ngx-translate/core';
 
 @Component({
   selector: 'app-center-attachments',
@@ -19,6 +20,7 @@ import { AddEditCenterAttachmentComponent } from '../../components/add-edit-cent
     CardModule,
     PrimeDataTableComponent,
     PrimeTitleToolBarComponent,
+    TranslatePipe,
   ],
   templateUrl: './center-attachments.component.html',
   styleUrl: './center-attachments.component.css',
@@ -109,6 +111,4 @@ export class CenterAttachmentsComponent extends BaseListComponent {
       row: { rowData },
     });
   }
-
-  /* when leaving the component */
 }

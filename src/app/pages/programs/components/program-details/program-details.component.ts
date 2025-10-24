@@ -9,6 +9,7 @@ import {
 import { TableOptions } from '../../../../shared/interfaces';
 import { BaseListComponent } from '../../../../base/components/base-list-component';
 import { ProgramIdService } from '../../program-id.service';
+import { TranslatePipe } from '@ngx-translate/core';
 
 @Component({
   selector: 'app-program-details',
@@ -18,6 +19,7 @@ import { ProgramIdService } from '../../program-id.service';
     CardModule,
     PrimeDataTableComponent,
     PrimeTitleToolBarComponent,
+    TranslatePipe,
   ],
   templateUrl: './program-details.component.html',
   styleUrls: ['./program-details.component.css'],
@@ -102,6 +104,4 @@ export class ProgramDetailsComponent extends BaseListComponent {
       },
     ];
   }
-
-  /* when leaving the component */
 }

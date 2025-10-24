@@ -10,9 +10,8 @@ import {
   SubmitButtonsComponent,
 } from '../../../../shared';
 import { DialogService } from 'primeng/dynamicdialog';
-import { ActivatedRoute, NavigationEnd } from '@angular/router';
+import { ActivatedRoute } from '@angular/router';
 import { ToggleSwitch } from 'primeng/toggleswitch';
-import { filter } from 'rxjs';
 import { SectorIdService } from '../../sector-id.service';
 
 @Component({

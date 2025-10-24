@@ -10,6 +10,7 @@ import { TableOptions } from '../../../../shared/interfaces';
 import { BaseListComponent } from '../../../../base/components/base-list-component';
 import { AddEditCenterMemberComponent } from '../../components/add-edit-center-member/add-edit-center-member.component';
 import { CenterIdService } from '../../center-id.service';
+import { TranslatePipe } from '@ngx-translate/core';
 
 @Component({
   selector: 'app-center',
@@ -19,6 +20,7 @@ import { CenterIdService } from '../../center-id.service';
     CardModule,
     PrimeDataTableComponent,
     PrimeTitleToolBarComponent,
+    TranslatePipe,
   ],
   templateUrl: './center-members.component.html',
   styleUrl: './center-members.component.css',
@@ -115,6 +117,4 @@ export class CenterMembersComponent extends BaseListComponent {
       row: { rowData },
     });
   }
-
-  /* when leaving the component */
 }

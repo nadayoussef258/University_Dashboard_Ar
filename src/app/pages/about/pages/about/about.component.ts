@@ -9,6 +9,7 @@ import {
 import { TableOptions } from '../../../../shared/interfaces';
 import { BaseListComponent } from '../../../../base/components/base-list-component';
 import { AddEditAboutComponent } from '../../components/add-edit-about/add-edit-about.component';
+import { TranslatePipe } from '@ngx-translate/core';
 
 @Component({
   selector: 'app-about',
@@ -18,7 +19,9 @@ import { AddEditAboutComponent } from '../../components/add-edit-about/add-edit-
     CardModule,
     PrimeDataTableComponent,
     PrimeTitleToolBarComponent,
+    TranslatePipe,
   ],
+  providers: [],
   templateUrl: './about.component.html',
   styleUrl: './about.component.css',
 })
@@ -130,6 +133,4 @@ export class AboutComponent extends BaseListComponent {
       row: { rowData },
     });
   }
-
-  /* when leaving the component */
 }

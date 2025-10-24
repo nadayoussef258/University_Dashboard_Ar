@@ -8,6 +8,7 @@ import {
 } from '../../../../shared';
 import { TableOptions } from '../../../../shared/interfaces';
 import { BaseListComponent } from '../../../../base/components/base-list-component';
+import { TranslatePipe } from '@ngx-translate/core';
 
 @Component({
   selector: 'app-units',
@@ -17,6 +18,7 @@ import { BaseListComponent } from '../../../../base/components/base-list-compone
     CardModule,
     PrimeDataTableComponent,
     PrimeTitleToolBarComponent,
+    TranslatePipe,
   ],
   templateUrl: './units.component.html',
   styleUrl: './units.component.css',
@@ -91,6 +93,4 @@ export class UnitsComponent extends BaseListComponent {
       },
     ];
   }
-
-  /* when leaving the component */
 }

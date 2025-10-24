@@ -1,5 +1,5 @@
 import { Component, inject } from '@angular/core';
-import { ActivatedRoute, NavigationEnd, RouterModule } from '@angular/router';
+import { ActivatedRoute, RouterModule } from '@angular/router';
 import { CardModule } from 'primeng/card';
 import {
   PrimeDataTableComponent,
@@ -10,6 +10,7 @@ import { TableOptions } from '../../../../shared/interfaces';
 import { BaseListComponent } from '../../../../base/components/base-list-component';
 import { ToggleSwitchModule } from 'primeng/toggleswitch';
 import { SectorIdService } from '../../sector-id.service';
+import { TranslatePipe } from '@ngx-translate/core';
 
 @Component({
   selector: 'app-sector-details',
@@ -20,6 +21,7 @@ import { SectorIdService } from '../../sector-id.service';
     PrimeDataTableComponent,
     PrimeTitleToolBarComponent,
     ToggleSwitchModule,
+    TranslatePipe,
   ],
   templateUrl: './sector-details.component.html',
   styleUrl: './sector-details.component.css',
@@ -98,6 +100,4 @@ export class SectorDetailsComponent extends BaseListComponent {
       },
     ];
   }
-
-  /* when leaving the component */
 }

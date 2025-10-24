@@ -8,8 +8,8 @@ import {
 } from '../../../../../shared';
 import { TableOptions } from '../../../../../shared/interfaces';
 import { BaseListComponent } from '../../../../../base/components/base-list-component';
-import { takeUntil } from 'rxjs';
 import { AddEditLogoComponent } from '../../components/add-edit-logo/add-edit-logo.component';
+import { TranslatePipe } from '@ngx-translate/core';
 
 @Component({
   selector: 'app-logos',
@@ -19,6 +19,7 @@ import { AddEditLogoComponent } from '../../components/add-edit-logo/add-edit-lo
     CardModule,
     PrimeDataTableComponent,
     PrimeTitleToolBarComponent,
+    TranslatePipe,
   ],
   templateUrl: './logos.component.html',
   styleUrl: './logos.component.css',
@@ -168,6 +169,4 @@ export class LogosComponent extends BaseListComponent {
       row: { rowData },
     });
   }
-
-  /* when leaving the component */
 }

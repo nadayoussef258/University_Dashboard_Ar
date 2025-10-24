@@ -1,3 +1,4 @@
+import { Language, Languages } from './../../core/enums/languages';
 import {
   OnInit,
   Directive,
@@ -22,7 +23,7 @@ export abstract class BaseEditComponent
   form!: FormGroup;
 
   /** اللغة الحالية */
-  language = signal<'ar' | 'en'>('ar');
+  language = signal<Language>(Languages.AR);
 
   /** هل اللغة إنجليزية */
   isEnglish = signal(false);
@@ -48,15 +49,15 @@ export abstract class BaseEditComponent
   override ngOnInit(): void {
     super.ngOnInit();
     this.getRouteParams();
-
-    /**
-     * تأثير بسيط لتحديث حالة اللغة الإنجليزية
-     * لما تتغير قيمة اللغة
-     */
-    effect(() => {
-      this.isEnglish.set(this.language() === 'en');
-    });
   }
+
+  /**
+   * تأثير بسيط لتحديث حالة اللغة الإنجليزية
+   * لما تتغير قيمة اللغة
+   */
+  change = effect(() => {
+    this.isEnglish.set(this.language() === Languages.EN);
+  });
 
   /**
    * تفعيل أو تعطيل حقل بناءً على زر التبديل

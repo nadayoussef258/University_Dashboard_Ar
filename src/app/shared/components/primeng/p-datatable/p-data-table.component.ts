@@ -18,9 +18,8 @@ import { TableOptions } from '../../../interfaces';
 import { TableModule } from 'primeng/table';
 import { DatePipe, NgClass } from '@angular/common';
 import { PrimeDeleteDialogComponent } from '../p-delete-dialog/p-delete-dialog.component';
-import { Toolbar } from 'primeng/toolbar';
 import { ButtonModule } from 'primeng/button';
-import { StyleClass } from 'primeng/styleclass';
+import { TranslatePipe } from '@ngx-translate/core';
 
 @Component({
   selector: 'app-prime-data-table',
@@ -31,9 +30,8 @@ import { StyleClass } from 'primeng/styleclass';
     RouterModule,
     PrimeDeleteDialogComponent,
     DatePipe,
-    Toolbar,
     ButtonModule,
-    StyleClass,
+    TranslatePipe,
   ],
   templateUrl: './p-data-table.component.html',
   styleUrls: ['./p-data-table.component.scss'],

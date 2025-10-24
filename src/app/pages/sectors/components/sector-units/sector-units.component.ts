@@ -1,16 +1,16 @@
 import { Component, inject } from '@angular/core';
-import { ActivatedRoute, NavigationEnd, RouterModule } from '@angular/router';
+import { ActivatedRoute, RouterModule } from '@angular/router';
 import { CardModule } from 'primeng/card';
 import {
   PrimeDataTableComponent,
   PrimeTitleToolBarComponent,
-  SectorDetailsService,
   SectorUnitsService,
 } from '../../../../shared';
 import { TableOptions } from '../../../../shared/interfaces';
 import { BaseListComponent } from '../../../../base/components/base-list-component';
 import { ToggleSwitchModule } from 'primeng/toggleswitch';
 import { SectorIdService } from '../../sector-id.service';
+import { TranslatePipe } from '@ngx-translate/core';
 
 @Component({
   selector: 'app-sector-units',
@@ -21,6 +21,7 @@ import { SectorIdService } from '../../sector-id.service';
     PrimeDataTableComponent,
     PrimeTitleToolBarComponent,
     ToggleSwitchModule,
+    TranslatePipe,
   ],
   templateUrl: './sector-units.component.html',
   styleUrl: './sector-units.component.css',
@@ -137,6 +138,4 @@ export class SectorUnitsComponent extends BaseListComponent {
       },
     ];
   }
-
-  /* when leaving the component */
 }

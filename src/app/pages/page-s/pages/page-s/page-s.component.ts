@@ -1,4 +1,4 @@
-import { Component, inject, Input } from '@angular/core';
+import { Component, inject } from '@angular/core';
 import { ActivatedRoute, RouterModule } from '@angular/router';
 import { CardModule } from 'primeng/card';
 import {
@@ -8,8 +8,8 @@ import {
 } from '../../../../shared';
 import { TableOptions } from '../../../../shared/interfaces';
 import { BaseListComponent } from '../../../../base/components/base-list-component';
-import { takeUntil } from 'rxjs';
 import { AddEditPageComponent } from '../../components/add-edit-page/add-edit-page.component';
+import { TranslatePipe } from '@ngx-translate/core';
 
 @Component({
   selector: 'app-pages',
@@ -19,12 +19,12 @@ import { AddEditPageComponent } from '../../components/add-edit-page/add-edit-pa
     CardModule,
     PrimeDataTableComponent,
     PrimeTitleToolBarComponent,
+    TranslatePipe,
   ],
   templateUrl: './page-s.component.html',
   styleUrl: './page-s.component.css',
 })
 export class PagesComponent extends BaseListComponent {
-  @Input() employeeId: string = '';
   isEnglish = false;
   tableOptions!: TableOptions;
   service = inject(PagesService);
@@ -115,6 +115,4 @@ export class PagesComponent extends BaseListComponent {
       row: { rowData },
     });
   }
-
-  /* when leaving the component */
 }

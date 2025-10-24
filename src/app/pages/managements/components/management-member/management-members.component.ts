@@ -10,6 +10,7 @@ import { TableOptions } from '../../../../shared/interfaces';
 import { BaseListComponent } from '../../../../base/components/base-list-component';
 import { AddEditManagementMemberComponent } from '../add-edit-management-member/add-edit-management-member.component';
 import { ManagmentIdService } from '../../managment-id.service';
+import { TranslatePipe } from '@ngx-translate/core';
 
 @Component({
   selector: 'app-management-member',
@@ -19,6 +20,7 @@ import { ManagmentIdService } from '../../managment-id.service';
     CardModule,
     PrimeDataTableComponent,
     PrimeTitleToolBarComponent,
+    TranslatePipe,
   ],
   templateUrl: './management-members.component.html',
   styleUrl: './management-members.component.css',
@@ -118,6 +120,4 @@ export class ManagementMembersComponent extends BaseListComponent {
       row: { rowData },
     });
   }
-
-  /* when leaving the component */
 }

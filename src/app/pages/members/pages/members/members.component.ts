@@ -9,6 +9,7 @@ import {
 import { TableOptions } from '../../../../shared/interfaces';
 import { BaseListComponent } from '../../../../base/components/base-list-component';
 import { AddEditMemberComponent } from '../../components/add-edit-member/add-edit-member.component';
+import { TranslatePipe } from '@ngx-translate/core';
 
 @Component({
   selector: 'app-members',
@@ -18,6 +19,7 @@ import { AddEditMemberComponent } from '../../components/add-edit-member/add-edi
     CardModule,
     PrimeDataTableComponent,
     PrimeTitleToolBarComponent,
+    TranslatePipe,
   ],
   templateUrl: './members.component.html',
   styleUrl: './members.component.css',
@@ -153,6 +155,4 @@ export class MembersComponent extends BaseListComponent {
       },
     ];
   }
-
-  /* when leaving the component */
 }

@@ -8,6 +8,7 @@ import {
 } from '../../../../shared';
 import { TableOptions } from '../../../../shared/interfaces';
 import { BaseListComponent } from '../../../../base/components/base-list-component';
+import { TranslatePipe } from '@ngx-translate/core';
 
 @Component({
   selector: 'app-managements',
@@ -17,6 +18,7 @@ import { BaseListComponent } from '../../../../base/components/base-list-compone
     CardModule,
     PrimeDataTableComponent,
     PrimeTitleToolBarComponent,
+    TranslatePipe,
   ],
   templateUrl: './managements.component.html',
   styleUrl: './managements.component.css',
@@ -91,6 +93,4 @@ export class ManagementsComponent extends BaseListComponent {
       },
     ];
   }
-
-  /* when leaving the component */
 }

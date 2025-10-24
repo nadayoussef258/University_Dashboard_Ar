@@ -8,8 +8,8 @@ import {
 } from '../../../../../shared';
 import { TableOptions } from '../../../../../shared/interfaces';
 import { BaseListComponent } from '../../../../../base/components/base-list-component';
-import { takeUntil } from 'rxjs';
 import { AddEditCategoryComponent } from '../../components/add-edit-category/add-edit-category.component';
+import { TranslatePipe } from '@ngx-translate/core';
 
 @Component({
   selector: 'app-categories',
@@ -19,6 +19,7 @@ import { AddEditCategoryComponent } from '../../components/add-edit-category/add
     CardModule,
     PrimeDataTableComponent,
     PrimeTitleToolBarComponent,
+    TranslatePipe,
   ],
   templateUrl: './categories.component.html',
   styleUrl: './categories.component.css',

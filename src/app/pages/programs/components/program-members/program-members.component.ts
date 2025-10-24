@@ -10,6 +10,7 @@ import { TableOptions } from '../../../../shared/interfaces';
 import { BaseListComponent } from '../../../../base/components/base-list-component';
 import { AddEditProgramMemberComponent } from '../add-edit-program-member/add-edit-program-member.component';
 import { ProgramIdService } from '../../program-id.service';
+import { TranslatePipe } from '@ngx-translate/core';
 
 @Component({
   selector: 'app-programs',
@@ -19,6 +20,7 @@ import { ProgramIdService } from '../../program-id.service';
     CardModule,
     PrimeDataTableComponent,
     PrimeTitleToolBarComponent,
+    TranslatePipe,
   ],
   templateUrl: './program-members.component.html',
   styleUrl: './program-members.component.css',
@@ -114,6 +116,4 @@ export class ProgramMembersComponent extends BaseListComponent {
       row: { rowData },
     });
   }
-
-  /* when leaving the component */
 }

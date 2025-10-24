@@ -9,6 +9,7 @@ import {
 import { TableOptions } from '../../../../shared/interfaces';
 import { BaseListComponent } from '../../../../base/components/base-list-component';
 import { AddEditCenterComponent } from '../../components/add-edit-center/add-edit-center.component';
+import { TranslatePipe } from '@ngx-translate/core';
 
 @Component({
   selector: 'app-centers',
@@ -18,6 +19,7 @@ import { AddEditCenterComponent } from '../../components/add-edit-center/add-edi
     CardModule,
     PrimeDataTableComponent,
     PrimeTitleToolBarComponent,
+    TranslatePipe,
   ],
   templateUrl: './centers.component.html',
   styleUrl: './centers.component.css',

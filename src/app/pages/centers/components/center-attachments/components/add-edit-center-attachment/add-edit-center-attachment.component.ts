@@ -4,9 +4,7 @@ import { BaseEditComponent } from '../../../../../../base/components/base-edit-c
 import { CardModule } from 'primeng/card';
 import { FormsModule, ReactiveFormsModule, Validators } from '@angular/forms';
 import {
-  ActionsService,
   CenterAttachmentsService,
-  PrimeInputTextComponent,
   SubmitButtonsComponent,
 } from '../../../../../../shared';
 import { DialogService } from 'primeng/dynamicdialog';
@@ -19,7 +17,6 @@ import { ActivatedRoute } from '@angular/router';
     FormsModule,
     ReactiveFormsModule,
     SubmitButtonsComponent,
-    PrimeInputTextComponent,
   ],
   templateUrl: './add-edit-center-attachment.component.html',
   styleUrl: './add-edit-center-attachment.component.css',

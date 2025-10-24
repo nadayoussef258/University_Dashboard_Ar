@@ -9,11 +9,10 @@ import {
   SubmitButtonsComponent,
 } from '../../../../shared';
 import { DialogService } from 'primeng/dynamicdialog';
-import { ActivatedRoute, NavigationEnd } from '@angular/router';
+import { ActivatedRoute } from '@angular/router';
 import { ToggleSwitch } from 'primeng/toggleswitch';
 import { NgClass } from '@angular/common';
 import { ManagmentIdService } from '../../managment-id.service';
-import { filter } from 'rxjs';
 
 @Component({
   selector: 'app-add-edit-management-member',

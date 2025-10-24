@@ -9,7 +9,7 @@ import {
   UnitsService,
 } from '../../../../shared';
 import { DialogService } from 'primeng/dynamicdialog';
-import { ActivatedRoute, NavigationEnd } from '@angular/router';
+import { ActivatedRoute } from '@angular/router';
 import { ToggleSwitch } from 'primeng/toggleswitch';
 import { NgClass } from '@angular/common';
 import { UnitIdService } from '../../unit-id.service';

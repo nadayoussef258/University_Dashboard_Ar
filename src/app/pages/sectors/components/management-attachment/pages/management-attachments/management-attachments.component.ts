@@ -4,13 +4,12 @@ import { CardModule } from 'primeng/card';
 import {
   PrimeDataTableComponent,
   PrimeTitleToolBarComponent,
-  ActionsService,
   ManagementAttachmentService,
 } from '../../../../../../shared';
 import { TableOptions } from '../../../../../../shared/interfaces';
 import { BaseListComponent } from '../../../../../../base/components/base-list-component';
-import { takeUntil } from 'rxjs';
 import { AddEditManagementAttachmentComponent } from '../../components/add-edit-management-attachment/add-edit-management-attachment.component';
+import { TranslatePipe } from '@ngx-translate/core';
 
 @Component({
   selector: 'app-management-attachments',
@@ -20,6 +19,7 @@ import { AddEditManagementAttachmentComponent } from '../../components/add-edit-
     CardModule,
     PrimeDataTableComponent,
     PrimeTitleToolBarComponent,
+    TranslatePipe,
   ],
   templateUrl: './management-attachments.component.html',
   styleUrl: './management-attachments.component.css',
@@ -119,6 +119,4 @@ export class ManagementAttachmentsComponent extends BaseListComponent {
       },
     );
   }
-
-  /* when leaving the component */
 }

@@ -3,11 +3,7 @@ import { Component, inject, OnInit } from '@angular/core';
 import { BaseEditComponent } from '../../../../../../base/components/base-edit-component';
 import { CardModule } from 'primeng/card';
 import { FormsModule, ReactiveFormsModule, Validators } from '@angular/forms';
-import {
-  ActionsService,
-  PrimeInputTextComponent,
-  SubmitButtonsComponent,
-} from '../../../../../../shared';
+import { SubmitButtonsComponent } from '../../../../../../shared';
 import { DialogService } from 'primeng/dynamicdialog';
 import { ActivatedRoute } from '@angular/router';
 
@@ -18,7 +14,6 @@ import { ActivatedRoute } from '@angular/router';
     FormsModule,
     ReactiveFormsModule,
     SubmitButtonsComponent,
-    PrimeInputTextComponent,
   ],
   templateUrl: './add-edit-management-attachment.component.html',
   styleUrl: './add-edit-management-attachment.component.css',

@@ -10,6 +10,7 @@ import { TableOptions } from '../../../../shared/interfaces';
 import { BaseListComponent } from '../../../../base/components/base-list-component';
 import { AddEditSectorMemberComponent } from '../add-edit-sector-member/add-edit-sector-member.component';
 import { SectorIdService } from '../../sector-id.service';
+import { TranslatePipe } from '@ngx-translate/core';
 
 @Component({
   selector: 'app-sector-member',
@@ -19,6 +20,7 @@ import { SectorIdService } from '../../sector-id.service';
     CardModule,
     PrimeDataTableComponent,
     PrimeTitleToolBarComponent,
+    TranslatePipe,
   ],
   templateUrl: './sector-members.component.html',
   styleUrl: './sector-members.component.css',
@@ -115,6 +117,4 @@ export class SectorMembersComponent extends BaseListComponent {
       row: { rowData },
     });
   }
-
-  /* when leaving the component */
 }

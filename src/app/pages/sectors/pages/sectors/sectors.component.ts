@@ -8,6 +8,7 @@ import {
 import { TableOptions } from '../../../../shared/interfaces';
 import { BaseListComponent } from '../../../../base/components/base-list-component';
 import { SectorsService } from '../../../../shared/services/pages/sectors/sectors/sectors.service';
+import { TranslatePipe } from '@ngx-translate/core';
 
 @Component({
   selector: 'app-sectors',
@@ -17,6 +18,7 @@ import { SectorsService } from '../../../../shared/services/pages/sectors/sector
     CardModule,
     PrimeDataTableComponent,
     PrimeTitleToolBarComponent,
+    TranslatePipe,
   ],
   templateUrl: './sectors.component.html',
   styleUrl: './sectors.component.css',
@@ -108,6 +110,4 @@ export class SectorsComponent extends BaseListComponent {
       },
     ];
   }
-
-  /* when leaving the component */
 }

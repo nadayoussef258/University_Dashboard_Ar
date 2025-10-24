@@ -22,9 +22,7 @@
   [lazy]="true"
   [showCurrentPageReport]="true"
   [paginatorLocale]="language == 'ar' ? 'ar-EG' : 'en-US'"
-  [currentPageReportTemplate]="
-    'Showing {first} to {last} of {totalRecords} entries'
-  "
+  [currentPageReportTemplate]="'PAGINATION' | translate"
   [paginator]="true"
   [rowsPerPageOptions]="[5, 10, 15, 20]"
   [rows]="pageSizeSignal()"
@@ -275,7 +273,7 @@
         class="p-4"
       >
         <div
-          class="flex text-center w-full min-h-[100px] justify-center items-center break-words overflow-hidden"
+          class="flex text-center w-full min-h-[100px] justify-center items-center wrap-break-word overflow-hidden"
         >
           <div class="max-w-full px-4">
             <i class="mb-3 text-4xl text-gray-600 pi pi-inbox block"></i>

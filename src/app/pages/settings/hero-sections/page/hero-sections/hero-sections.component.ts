@@ -4,13 +4,12 @@ import { CardModule } from 'primeng/card';
 import {
   PrimeDataTableComponent,
   PrimeTitleToolBarComponent,
-  ContactsService,
   HeroSectionsService,
 } from '../../../../../shared';
 import { TableOptions } from '../../../../../shared/interfaces';
 import { BaseListComponent } from '../../../../../base/components/base-list-component';
-import { takeUntil } from 'rxjs';
 import { AddEditHeroSectionComponent } from '../../components/add-edit-hero-section/add-edit-hero-section.component';
+import { TranslatePipe } from '@ngx-translate/core';
 
 @Component({
   selector: 'app-hero-sections',
@@ -20,6 +19,7 @@ import { AddEditHeroSectionComponent } from '../../components/add-edit-hero-sect
     CardModule,
     PrimeDataTableComponent,
     PrimeTitleToolBarComponent,
+    TranslatePipe,
   ],
   templateUrl: './hero-sections.component.html',
   styleUrl: './hero-sections.component.css',
@@ -116,6 +116,4 @@ export class HeroSectionsComponent extends BaseListComponent {
       row: { rowData },
     });
   }
-
-  /* when leaving the component */
 }

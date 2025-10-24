@@ -10,6 +10,7 @@ import { TableOptions } from '../../../../shared/interfaces';
 import { BaseListComponent } from '../../../../base/components/base-list-component';
 import { AddEditLeaderComponent } from '../../components/add-edit-leader/add-edit-leader.component';
 import { LeadersService } from '../../../../shared/services/pages/leaders/leaders.service';
+import { TranslatePipe } from '@ngx-translate/core';
 
 @Component({
   selector: 'app-leaders',
@@ -19,6 +20,7 @@ import { LeadersService } from '../../../../shared/services/pages/leaders/leader
     CardModule,
     PrimeDataTableComponent,
     PrimeTitleToolBarComponent,
+    TranslatePipe,
   ],
   templateUrl: './leaders.component.html',
   styleUrl: './leaders.component.css',
@@ -113,6 +115,4 @@ export class LeaderComponent extends BaseListComponent {
       row: { rowData },
     });
   }
-
-  /* when leaving the component */
 }

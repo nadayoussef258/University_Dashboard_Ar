@@ -8,8 +8,8 @@ import {
 } from '../../../../../shared';
 import { TableOptions } from '../../../../../shared/interfaces';
 import { BaseListComponent } from '../../../../../base/components/base-list-component';
-import { takeUntil } from 'rxjs';
 import { AddEditContactComponent } from '../../components/add-edit-contact/add-edit-contact.component';
+import { TranslatePipe } from '@ngx-translate/core';
 
 @Component({
   selector: 'app-actions',
@@ -19,6 +19,7 @@ import { AddEditContactComponent } from '../../components/add-edit-contact/add-e
     CardModule,
     PrimeDataTableComponent,
     PrimeTitleToolBarComponent,
+    TranslatePipe,
   ],
   templateUrl: './contacts.component.html',
   styleUrl: './contacts.component.css',
@@ -168,6 +169,4 @@ export class ContactsComponent extends BaseListComponent {
       row: { rowData },
     });
   }
-
-  /* when leaving the component */
 }

@@ -8,8 +8,8 @@ import {
 } from '../../../../../shared';
 import { TableOptions } from '../../../../../shared/interfaces';
 import { BaseListComponent } from '../../../../../base/components/base-list-component';
-import { takeUntil } from 'rxjs';
 import { AddEditServiceComponent } from '../../components/add-edit-service/add-edit-service.component';
+import { TranslatePipe } from '@ngx-translate/core';
 
 @Component({
   selector: 'app-services',
@@ -19,6 +19,7 @@ import { AddEditServiceComponent } from '../../components/add-edit-service/add-e
     CardModule,
     PrimeDataTableComponent,
     PrimeTitleToolBarComponent,
+    TranslatePipe,
   ],
   templateUrl: './services.component.html',
   styleUrl: './services.component.css',
@@ -115,6 +116,4 @@ export class ServicesComponent extends BaseListComponent {
       row: { rowData },
     });
   }
-
-  /* when leaving the component */
 }

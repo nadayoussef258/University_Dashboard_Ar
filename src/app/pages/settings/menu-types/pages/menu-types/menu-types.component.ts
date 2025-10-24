@@ -9,6 +9,7 @@ import {
 import { TableOptions } from '../../../../../shared/interfaces';
 import { BaseListComponent } from '../../../../../base/components/base-list-component';
 import { AddEditMenuTypeComponent } from '../../components/add-edit-menu-type/add-edit-menu-type.component';
+import { TranslatePipe } from '@ngx-translate/core';
 
 @Component({
   selector: 'app-menu-types',
@@ -18,6 +19,7 @@ import { AddEditMenuTypeComponent } from '../../components/add-edit-menu-type/ad
     CardModule,
     PrimeDataTableComponent,
     PrimeTitleToolBarComponent,
+    TranslatePipe,
   ],
   templateUrl: './menu-types.component.html',
   styleUrl: './menu-types.component.css',
@@ -102,6 +104,4 @@ export class MenuTypesComponent extends BaseListComponent {
       row: { rowData },
     });
   }
-
-  /* when leaving the component */
 }

@@ -6,9 +6,9 @@ import {
   DestroyRef,
 } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
-import { takeUntilDestroyed } from '@angular/core/rxjs-interop'; // ✅ لإدارة الاشتراكات تلقائيًا
 import { AlertService } from '../../core';
 import { ExportExcelService } from '../../shared/services/export-excel/export-excel.service';
+import { TranslationService } from '../../shared';
 
 @Directive()
 export abstract class BaseComponent implements OnInit, OnDestroy {
@@ -20,6 +20,7 @@ export abstract class BaseComponent implements OnInit, OnDestroy {
 
   protected alert = inject(AlertService);
   protected router = inject(Router);
+  localize = inject(TranslationService);
   protected excel = inject(ExportExcelService);
 
   constructor(protected activatedRoute: ActivatedRoute) {}

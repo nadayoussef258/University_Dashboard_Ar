@@ -1,5 +1,5 @@
-import { Component, inject, effect } from '@angular/core';
-import { ActivatedRoute, NavigationEnd, RouterModule } from '@angular/router';
+import { Component, inject } from '@angular/core';
+import { ActivatedRoute, RouterModule } from '@angular/router';
 import { CardModule } from 'primeng/card';
 import {
   PrimeDataTableComponent,
@@ -10,6 +10,7 @@ import { TableOptions } from '../../../../shared/interfaces';
 import { BaseListComponent } from '../../../../base/components/base-list-component';
 import { ToggleSwitchModule } from 'primeng/toggleswitch';
 import { ManagmentIdService } from '../../managment-id.service';
+import { TranslatePipe } from '@ngx-translate/core';
 
 @Component({
   selector: 'app-management-details',
@@ -19,6 +20,7 @@ import { ManagmentIdService } from '../../managment-id.service';
     PrimeDataTableComponent,
     PrimeTitleToolBarComponent,
     ToggleSwitchModule,
+    TranslatePipe,
   ],
   templateUrl: './management-details.component.html',
   styleUrl: './management-details.component.css',

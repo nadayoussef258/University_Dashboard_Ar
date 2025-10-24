@@ -1,4 +1,4 @@
-import { Component, inject, Input, OnChanges } from '@angular/core';
+import { Component, effect, inject, Input, OnChanges } from '@angular/core';
 import { ActivatedRoute, RouterModule } from '@angular/router';
 import { CardModule } from 'primeng/card';
 import {
@@ -8,17 +8,17 @@ import {
 } from '../../../../../shared';
 import { TableOptions } from '../../../../../shared/interfaces';
 import { BaseListComponent } from '../../../../../base/components/base-list-component';
-import { takeUntil } from 'rxjs';
 import { AddEditActionComponent } from '../../components/add-edit-action/add-edit-action.component';
+import { TranslatePipe } from '@ngx-translate/core';
 
 @Component({
   selector: 'app-actions',
-
   imports: [
     RouterModule,
     CardModule,
     PrimeDataTableComponent,
     PrimeTitleToolBarComponent,
+    TranslatePipe,
   ],
   templateUrl: './actions.component.html',
   styleUrl: './actions.component.css',
@@ -31,9 +31,16 @@ export class ActionsComponent extends BaseListComponent {
     super(activatedRoute);
   }
 
+  // 👇 هنا بيتابع اللغة ويعيد بناء الجدول لما تتغير
+  private languageEffect = effect(() => {
+    const lang = this.localize.currentLanguage();
+    console.log('🌐 اللغة الحالية:', lang);
+    this.initializeTableOptions();
+  });
+
   override ngOnInit(): void {
     this.initializeTableOptions();
-    // super.ngOnInit();
+    super.ngOnInit();
   }
 
   initializeTableOptions() {
@@ -108,6 +115,4 @@ export class ActionsComponent extends BaseListComponent {
       row: { rowData },
     });
   }
-
-  /* when leaving the component */
 }

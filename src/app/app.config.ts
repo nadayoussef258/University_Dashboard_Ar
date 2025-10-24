@@ -1,6 +1,5 @@
 import {
   ApplicationConfig,
-  importProvidersFrom,
   inject,
   provideAppInitializer,
   provideBrowserGlobalErrorListeners,
@@ -24,6 +23,13 @@ import {
 import { provideHttpClient, withInterceptors } from '@angular/common/http';
 import { provideAnimationsAsync } from '@angular/platform-browser/animations/async';
 import { provideToastr } from 'ngx-toastr';
+import {
+  provideTranslateService,
+  provideTranslateLoader,
+} from '@ngx-translate/core';
+import { provideTranslateHttpLoader } from '@ngx-translate/http-loader';
+import { environment } from '../environments/environment';
+import { CustomTranslateLoader } from './shared/services/translation/custom-translate-loader.service';
 
 const initializerConfigFn = (): any => {
   const configService = inject(ConfigService);
@@ -44,7 +50,7 @@ export const appConfig: ApplicationConfig = {
         loadingInterceptor,
         errorInterceptor,
         LoadingNgxSpinnerInterceptor,
-      ])
+      ]),
     ),
     provideRouter(routes),
     providePrimeNG({
@@ -64,6 +70,11 @@ export const appConfig: ApplicationConfig = {
       timeOut: 3000,
       positionClass: 'toast-bottom-right',
       preventDuplicates: true,
+    }),
+    provideTranslateService({
+      loader: provideTranslateLoader(CustomTranslateLoader),
+      fallbackLang: environment.defaultLanguage,
+      lang: environment.defaultLanguage,
     }),
   ],
 };

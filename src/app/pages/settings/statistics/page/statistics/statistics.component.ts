@@ -8,8 +8,9 @@ import {
 } from '../../../../../shared';
 import { TableOptions } from '../../../../../shared/interfaces';
 import { BaseListComponent } from '../../../../../base/components/base-list-component';
-import { takeUntil } from 'rxjs';
+
 import { AddEditStatisticComponent } from '../../components/add-edit-statistic/add-edit-statistic.component';
+import { TranslatePipe } from '@ngx-translate/core';
 
 @Component({
   selector: 'app-statistics',
@@ -19,6 +20,7 @@ import { AddEditStatisticComponent } from '../../components/add-edit-statistic/a
     CardModule,
     PrimeDataTableComponent,
     PrimeTitleToolBarComponent,
+    TranslatePipe,
   ],
   templateUrl: './statistics.component.html',
   styleUrl: './statistics.component.css',
@@ -121,6 +123,4 @@ export class StatisticsComponent extends BaseListComponent {
       row: { rowData },
     });
   }
-
-  /* when leaving the component */
 }
