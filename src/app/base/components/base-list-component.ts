@@ -654,7 +654,9 @@ export abstract class BaseListComponent
           this.totalCount.set(res.totalCount ?? 0);
         },
         error: () => {
-          this.alert.error('VALIDATION.GET_ERROR');
+          this.alert.error(
+            this.localize.translate.instant('VALIDATION.GET_ERROR'),
+          );
         },
       });
   }
@@ -764,8 +766,12 @@ export abstract class BaseListComponent
   deleteData(id: string) {
     this.dataTableService
       .delete(this.tableOptions.inputUrl.delete, id)
-      .subscribe(() => {
-        this.loadDataFromServer(); // ✅ إعادة التحميل
+      .subscribe({
+        next: () => {
+          (this.localize.translate.instant('VALIDATION.DELETE_SUCCESS'),
+            this.loadDataFromServer()); // ✅ إعادة التحميل
+        },
+        error: () => this.localize.translate.instant('VALIDATION.GET_ERROR'),
       });
   }
 
@@ -776,12 +782,18 @@ export abstract class BaseListComponent
     this.dataTableService
       .deleteRange(this.tableOptions.inputUrl.delete, ids)
       .subscribe({
-        next: () => {
-          this.alert.success('VALIDATION.DELETE_SUCCESS');
+        next: (res) => {
+          // this.data.set(res.data)
+          // this.totalCount.set(res.totalCount)
+          this.alert.success(
+            this.localize.translate.instant('VALIDATION.DELETE_SUCCESS'),
+          );
           this.loadDataFromServer();
         },
         error: () => {
-          this.alert.error('VALIDATION.GET_ERROR');
+          this.alert.error(
+            this.localize.translate.instant('VALIDATION.GET_ERROR'),
+          );
         },
       });
   }

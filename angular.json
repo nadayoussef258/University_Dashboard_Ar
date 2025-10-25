@@ -27,6 +27,7 @@
               "node_modules/primeicons/primeicons.css",
               "node_modules/ngx-spinner/animations/square-jelly-box.css",
               "node_modules/ngx-spinner/animations/square-loader.css",
+                "node_modules/ngx-toastr/toastr.css" ,
               "src/assets/scss/style.scss",
               "src/styles.css"
             ],"stylePreprocessorOptions": {

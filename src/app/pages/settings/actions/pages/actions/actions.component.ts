@@ -104,15 +104,23 @@ export class ActionsComponent extends BaseListComponent {
   }
 
   openAdd() {
-    this.openDialog(AddEditActionComponent, 'اضافة حدث', {
-      pageType: 'add',
-    });
+    this.openDialog(
+      AddEditActionComponent,
+      this.localize.translate.instant('اضافة حدث'),
+      {
+        pageType: 'add',
+      },
+    );
   }
 
   openEdit(rowData: any) {
-    this.openDialog(AddEditActionComponent, 'تعديل حدث', {
-      pageType: 'edit',
-      row: { rowData },
-    });
+    this.openDialog(
+      AddEditActionComponent,
+      this.localize.translate.instant('تعديل حدث'),
+      {
+        pageType: 'edit',
+        row: { rowData },
+      },
+    );
   }
 }
