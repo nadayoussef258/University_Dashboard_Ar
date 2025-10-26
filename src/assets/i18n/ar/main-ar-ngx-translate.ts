@@ -1,20 +1,14 @@
 // src/app/i18n/ar.translate.ts
+
+import { AR_PAGES_SETTINGS } from './pages-ar';
+
 export const AR_TRANSLATIONS = {
+  ...AR_PAGES_SETTINGS,
   TITLE: {
     PART_ONE: 'جامعة الأقصر',
     PART_TWO: '',
   },
-  PAGES: {
-    HOME: {
-      TITLE: 'الرئيسية',
-    },
-    DASHBOARD: {
-      TITLE: 'الإحصائيات',
-    },
-    SETTINGS: {
-      TITLE: 'إدارة الترميزات',
-    },
-  },
+
   COMMON: {
     ENGLISH_NAME: 'الاسم الانجليزى',
     ARABIC_NAME: 'الاسم العربي',

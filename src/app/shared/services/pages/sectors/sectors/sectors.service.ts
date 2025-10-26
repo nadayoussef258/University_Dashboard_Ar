@@ -26,7 +26,7 @@ export class SectorsService extends HttpService {
   getDropDown(body: GetPagedBody<any>): Observable<any> {
     return this.dropdownPost<any, any>(
       { apiName: `getdropdown`, showAlert: true },
-      body
+      body,
     );
   }
 

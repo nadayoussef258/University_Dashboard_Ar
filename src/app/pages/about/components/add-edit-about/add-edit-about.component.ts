@@ -6,14 +6,13 @@ import {
   AboutService,
   PagesService,
   PrimeAutoCompleteComponent,
-  PrimeDropDownComponent,
   PrimeInputTextComponent,
-  PrimeRadioButtonComponent,
   SubmitButtonsComponent,
 } from '../../../../shared';
 import { DialogService } from 'primeng/dynamicdialog';
 import { ActivatedRoute } from '@angular/router';
 import { ToggleSwitchModule } from 'primeng/toggleswitch';
+import { TranslatePipe } from '@ngx-translate/core';
 
 @Component({
   selector: 'app-add-edit-about',
@@ -25,6 +24,7 @@ import { ToggleSwitchModule } from 'primeng/toggleswitch';
     PrimeInputTextComponent,
     ToggleSwitchModule,
     PrimeAutoCompleteComponent,
+    TranslatePipe,
   ],
   templateUrl: './add-edit-about.component.html',
   styleUrl: './add-edit-about.component.css',

@@ -8,7 +8,6 @@ import {
 } from '../../../../shared';
 import { TableOptions } from '../../../../shared/interfaces';
 import { BaseListComponent } from '../../../../base/components/base-list-component';
-import { AddEditCenterComponent } from '../../components/add-edit-center/add-edit-center.component';
 import { TranslatePipe } from '@ngx-translate/core';
 
 @Component({

@@ -14,8 +14,8 @@ import { Language, Languages } from '../../../core/enums/languages';
   providedIn: 'root',
 })
 export class TranslationService {
-  // 🔤 اللغة الافتراضية
-  private defaultLang: Language = Languages.EN;
+  //! 🔤 اللغة الافتراضية
+  private defaultLang: Language = Languages.AR;
 
   // 🧠 إشارة تمثل اللغة الحالية (signal بدل BehaviorSubject)
   private _currentLanguage: WritableSignal<Language> = signal(this.defaultLang);
@@ -35,10 +35,8 @@ export class TranslationService {
     private rendererFactory: RendererFactory2,
   ) {
     this.renderer = this.rendererFactory.createRenderer(null, null);
-
     // ✅ تنفيذ الإعدادات الأولية عند إنشاء الخدمة
     this.initLanguage();
-
     effect(() => {
       const lang = this._currentLanguage();
       this.applyLanguage(lang);

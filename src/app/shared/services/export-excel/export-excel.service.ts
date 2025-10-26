@@ -18,7 +18,7 @@ export class ExportExcelService {
     // اعمل Blob من ال CSV
     const blob = new Blob([csv], { type: CSV_TYPE });
 
-    // نزّل الملف
+    //? نزّل الملف
     this._fileSaverService.save(blob, csvFileName + CSV_EXTENSION);
   }
 }

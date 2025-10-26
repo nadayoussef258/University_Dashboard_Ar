@@ -34,6 +34,7 @@ export class AboutComponent extends BaseListComponent {
   }
 
   override ngOnInit(): void {
+    super.ngOnInit();
     this.initializeTableOptions();
   }
 
@@ -68,31 +69,31 @@ export class AboutComponent extends BaseListComponent {
     return [
       {
         field: 'pageName',
-        header: 'عنوان الصفحة',
+        header: 'PAGES.ABOUT.FORM.PAGE',
         filter: true,
         filterMode: 'text',
       },
       {
         field: 'content',
-        header: 'المحتوي',
+        header: 'PAGES.ABOUT.FORM.CONTENT',
         filter: true,
         filterMode: 'text',
       },
       {
         field: 'mission',
-        header: 'الرسالة',
+        header: 'PAGES.ABOUT.FORM.MISSION',
         filter: true,
         filterMode: 'text',
       },
       {
         field: 'vision',
-        header: 'الرؤية',
+        header: 'PAGES.ABOUT.FORM.VISION',
         filter: true,
         filterMode: 'text',
       },
       {
         field: 'history',
-        header: 'نبذة تاريخة',
+        header: 'PAGES.ABOUT.FORM.HISTORY',
         filter: true,
         filterMode: 'text',
       },
@@ -122,15 +123,23 @@ export class AboutComponent extends BaseListComponent {
   }
 
   openAdd() {
-    this.openDialog(AddEditAboutComponent, 'اضافة نبذة عنا', {
-      pageType: 'add',
-    });
+    this.openDialog(
+      AddEditAboutComponent,
+      this.localize.translate.instant('PAGES.ABOUT.ADD.PAGE_TITLE'),
+      {
+        pageType: 'add',
+      },
+    );
   }
 
   openEdit(rowData: any) {
-    this.openDialog(AddEditAboutComponent, 'تعديل نبذة عنا', {
-      pageType: 'edit',
-      row: { rowData },
-    });
+    this.openDialog(
+      AddEditAboutComponent,
+      this.localize.translate.instant('PAGES.ABOUT.EDIT.PAGE_TITLE'),
+      {
+        pageType: 'edit',
+        row: { rowData },
+      },
+    );
   }
 }

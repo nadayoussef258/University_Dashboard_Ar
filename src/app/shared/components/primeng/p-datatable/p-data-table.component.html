@@ -41,7 +41,7 @@
 
       @for (col of columns; track $index) {
         <th [pSortableColumn]="col.field">
-          {{ col.header }}
+          {{ col.header | translate }}
           <p-sortIcon [field]="col.field"></p-sortIcon>
         </th>
       }
@@ -73,7 +73,7 @@
                     class="form-control search-box"
                     type="text"
                     (input)="filter($event, col.field)"
-                    placeholder="{{ col.header }}"
+                    placeholder="{{ col.header | translate }}"
                   />
                 </div>
               }
@@ -83,7 +83,7 @@
                     class="form-control search-box"
                     type="date"
                     (input)="filter($event, col.field)"
-                    placeholder="{{ col.header }}"
+                    placeholder="{{ col.header | translate }}"
                   />
                 </div>
               }
@@ -93,7 +93,7 @@
                     class="form-control search-box"
                     type="text"
                     (input)="filter($event, col.field)"
-                    placeholder="{{ col.header }}"
+                    placeholder="{{ col.header | translate }}"
                   />
                 </div>
               }

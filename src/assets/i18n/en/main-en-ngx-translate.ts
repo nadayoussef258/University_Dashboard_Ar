@@ -1,19 +1,12 @@
+import { EN_PAGES_SETTINGS } from './pages-en';
+
 export const EN_TRANSLATIONS = {
+  ...EN_PAGES_SETTINGS,
   TITLE: {
     PART_ONE: 'Luxor University',
     PART_TWO: '',
   },
-  PAGES: {
-    HOME: {
-      TITLE: 'Home',
-    },
-    DASHBOARD: {
-      TITLE: 'Dashboard',
-    },
-    SETTINGS: {
-      TITLE: 'Settings',
-    },
-  },
+
   COMMON: {
     ENGLISH_NAME: 'English Name',
     ARABIC_NAME: 'Arabic Name',

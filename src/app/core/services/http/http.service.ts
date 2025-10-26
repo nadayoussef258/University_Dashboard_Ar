@@ -192,6 +192,7 @@ export abstract class HttpService extends HttpServiceBaseService {
           }
           break;
         }
+
         case NumberedHttpStatus.InternalServerError: {
           this.alertService.error(
             event.message
