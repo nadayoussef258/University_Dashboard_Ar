@@ -63,21 +63,29 @@ export class ServicesComponent extends BaseListComponent {
     return [
       {
         field: 'title',
-        header: 'العنوان',
+        header: 'SETTINGS.SERVICES.FORM.TITLE',
         filter: true,
         filterMode: 'text',
       },
       {
         field: 'description',
-        header: 'الوصف',
+        header: 'SETTINGS.SERVICES.FORM.DESCRIPTION',
         filter: true,
         filterMode: 'text',
       },
       {
         field: 'iconPath',
-        header: ' رمز الأيقونة',
+        header: 'SETTINGS.SERVICES.FORM.ICON_PATH',
         filter: true,
         filterMode: 'text',
+      },
+      {
+        field: 'isActive',
+        header: 'SETTINGS.SERVICES.FORM.IS_ACTIVE.TITLE',
+        filter: true,
+        filterMode: 'boolean',
+        trueText: 'SETTINGS.SERVICES.FORM.IS_ACTIVE.ACTIVE',
+        falseText: 'SETTINGS.SERVICES.FORM.IS_ACTIVE.IN_ACTIVE',
       },
     ];
   }
@@ -105,15 +113,23 @@ export class ServicesComponent extends BaseListComponent {
   }
 
   openAdd() {
-    this.openDialog(AddEditServiceComponent, 'اضافة خدمة', {
-      pageType: 'add',
-    });
+    this.openDialog(
+      AddEditServiceComponent,
+      this.localize.translate.instant('SETTINGS.SERVICES.ADD.PAGE_TITLE'),
+      {
+        pageType: 'add',
+      },
+    );
   }
 
   openEdit(rowData: any) {
-    this.openDialog(AddEditServiceComponent, 'تعديل خدمة', {
-      pageType: 'edit',
-      row: { rowData },
-    });
+    this.openDialog(
+      AddEditServiceComponent,
+      this.localize.translate.instant('SETTINGS.SERVICES.EDIT.PAGE_TITLE'),
+      {
+        pageType: 'edit',
+        row: { rowData },
+      },
+    );
   }
 }

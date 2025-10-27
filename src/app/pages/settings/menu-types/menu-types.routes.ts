@@ -5,9 +5,12 @@ export const menuTypesRoutes: Routes = [
     path: '',
     loadComponent: () =>
       import('./pages/menu-types/menu-types.component').then(
-        (c) => c.MenuTypesComponent
+        (c) => c.MenuTypesComponent,
       ),
-    data: { pageTitle: 'أنواع القوائم', pageType: 'list' },
+    data: {
+      pageTitle: 'SETTINGS.MENU_TYPES.MAIN.PAGE_TITLE',
+      pageType: 'list',
+    },
   },
   {
     path: 'add',
@@ -15,7 +18,7 @@ export const menuTypesRoutes: Routes = [
       import(
         './components/add-edit-menu-type/add-edit-menu-type.component'
       ).then((c) => c.AddEditMenuTypeComponent),
-    data: { pageTitle: 'اضافة حدث القائمة', pageType: 'add' },
+    data: { pageTitle: 'SETTINGS.MENU_TYPES.ADD.PAGE_TITLE', pageType: 'add' },
   },
   {
     path: 'edit/:id',
@@ -23,6 +26,9 @@ export const menuTypesRoutes: Routes = [
       import(
         './components/add-edit-menu-type/add-edit-menu-type.component'
       ).then((c) => c.AddEditMenuTypeComponent),
-    data: { pageTitle: 'تعديل نوع القائمة', pageType: 'edit' },
+    data: {
+      pageTitle: 'SETTINGS.MENU_TYPES.EDIT.PAGE_TITLE',
+      pageType: 'edit',
+    },
   },
 ];

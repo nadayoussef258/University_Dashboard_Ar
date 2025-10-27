@@ -1,10 +1,12 @@
 <div class="flex-column h-100 page-wrapper d-flex card">
-  <app-prime-title-toolbar [pageTitle]="pageTitle"></app-prime-title-toolbar>
+  <app-prime-title-toolbar
+    [pageTitle]="pageTitle || 'SETTINGS.ACTIONS.MAIN.PAGE_TITLE' | translate"
+  ></app-prime-title-toolbar>
 
   <div class="dataBox">
     <a class="addLink">
       <button
-        class="border-radius-2 mt-2 text-sm py-3 me-3 px-4 main-btn align-self-center main sm:mt-0"
+        class="border-radius-2 mt-2 text-sm py-3 px-4 main-btn align-self-center main me-3 sm:mt-0"
         (click)="openAdd()"
         type="button"
         pButton

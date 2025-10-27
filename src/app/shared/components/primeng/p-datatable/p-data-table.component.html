@@ -173,10 +173,10 @@
                   class="rounded-md font-semibold text-center min-w-[100px] py-2 px-3 inline-block"
                 >
                   @if (getCellData(row, col) === true) {
-                    {{ col.trueText ? col.trueText : "✅" }}
+                    {{ col.trueText ? (col.trueText | translate) : "✅" }}
                   }
                   @if (getCellData(row, col) === false) {
-                    {{ col.falseText ? col.falseText : "❌" }}
+                    {{ col.falseText ? (col.falseText | translate) : "❌" }}
                   }
                   @if (
                     getCellData(row, col) === null ||

@@ -11,6 +11,7 @@ import { DialogService } from 'primeng/dynamicdialog';
 import { ActivatedRoute } from '@angular/router';
 import { ToggleSwitchModule } from 'primeng/toggleswitch';
 import { NgClass } from '@angular/common';
+import { TranslatePipe } from '@ngx-translate/core';
 
 @Component({
   selector: 'app-add-edit-service',
@@ -22,6 +23,7 @@ import { NgClass } from '@angular/common';
     PrimeInputTextComponent,
     ToggleSwitchModule,
     NgClass,
+    TranslatePipe,
   ],
   templateUrl: './add-edit-service.component.html',
   styleUrl: './add-edit-service.component.css',

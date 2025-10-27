@@ -63,7 +63,7 @@ export class MenuTypesComponent extends BaseListComponent {
     return [
       {
         field: 'type',
-        header: 'نوع القائمة',
+        header: 'SETTINGS.MENU_TYPES.FORM.TYPE',
         filter: true,
         filterMode: 'text',
       },
@@ -93,15 +93,23 @@ export class MenuTypesComponent extends BaseListComponent {
   }
 
   openAdd() {
-    this.openDialog(AddEditMenuTypeComponent, 'اضافة نوع قائمة', {
-      pageType: 'add',
-    });
+    this.openDialog(
+      AddEditMenuTypeComponent,
+      this.localize.translate.instant('SETTINGS.MENU_TYPES.ADD.PAGE_TITLE'),
+      {
+        pageType: 'add',
+      },
+    );
   }
 
   openEdit(rowData: any) {
-    this.openDialog(AddEditMenuTypeComponent, 'تعديل نوع القائمة', {
-      pageType: 'edit',
-      row: { rowData },
-    });
+    this.openDialog(
+      AddEditMenuTypeComponent,
+      this.localize.translate.instant('SETTINGS.MENU_TYPES.EDIT.PAGE_TITLE'),
+      {
+        pageType: 'edit',
+        row: { rowData },
+      },
+    );
   }
 }

@@ -5,24 +5,24 @@ export const actionsRoutes: Routes = [
     path: '',
     loadComponent: () =>
       import('./pages/actions/actions.component').then(
-        (c) => c.ActionsComponent
+        (c) => c.ActionsComponent,
       ),
-    data: { pageTitle: 'الأحداث', pageType: 'list' },
+    data: { pageTitle: 'SETTINGS.ACTION.MAIN.PAGE_TITLE', pageType: 'list' },
   },
   {
     path: 'add',
     loadComponent: () =>
       import('./components/add-edit-action/add-edit-action.component').then(
-        (c) => c.AddEditActionComponent
+        (c) => c.AddEditActionComponent,
       ),
-    data: { pageTitle: 'اضافة حدث', pageType: 'add' },
+    data: { pageTitle: 'SETTINGS.ACTION.ADD.PAGE_TITLE', pageType: 'add' },
   },
   {
     path: 'edit/:id',
     loadComponent: () =>
       import('./components/add-edit-action/add-edit-action.component').then(
-        (c) => c.AddEditActionComponent
+        (c) => c.AddEditActionComponent,
       ),
-    data: { pageTitle: 'تعديل حدث', pageType: 'edit' },
+    data: { pageTitle: 'SETTINGS.ACTION.EDIT.PAGE_TITLE', pageType: 'edit' },
   },
 ];

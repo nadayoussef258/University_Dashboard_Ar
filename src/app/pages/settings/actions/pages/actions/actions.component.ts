@@ -39,8 +39,8 @@ export class ActionsComponent extends BaseListComponent {
   });
 
   override ngOnInit(): void {
-    this.initializeTableOptions();
     super.ngOnInit();
+    this.initializeTableOptions();
   }
 
   initializeTableOptions() {
@@ -68,13 +68,13 @@ export class ActionsComponent extends BaseListComponent {
     return [
       {
         field: 'code',
-        header: 'الكــود',
+        header: 'SETTINGS.ACTION.FORM.CODE',
         filter: true,
         filterMode: 'text',
       },
       {
         field: 'name',
-        header: 'الاســم',
+        header: 'SETTINGS.ACTION.FORM.NAME',
         filter: true,
         filterMode: 'text',
       },
@@ -106,7 +106,7 @@ export class ActionsComponent extends BaseListComponent {
   openAdd() {
     this.openDialog(
       AddEditActionComponent,
-      this.localize.translate.instant('اضافة حدث'),
+      this.localize.translate.instant('SETTINGS.ACTION.ADD.PAGE_TITLE'),
       {
         pageType: 'add',
       },
@@ -116,7 +116,7 @@ export class ActionsComponent extends BaseListComponent {
   openEdit(rowData: any) {
     this.openDialog(
       AddEditActionComponent,
-      this.localize.translate.instant('تعديل حدث'),
+      this.localize.translate.instant('SETTINGS.ACTION.EDIT.PAGE_TITLE'),
       {
         pageType: 'edit',
         row: { rowData },

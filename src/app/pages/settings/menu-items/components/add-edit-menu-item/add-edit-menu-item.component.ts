@@ -11,6 +11,7 @@ import {
 } from '../../../../../shared';
 import { DialogService } from 'primeng/dynamicdialog';
 import { ActivatedRoute } from '@angular/router';
+import { TranslatePipe } from '@ngx-translate/core';
 
 @Component({
   selector: 'app-add-edit-menu-item',
@@ -21,6 +22,7 @@ import { ActivatedRoute } from '@angular/router';
     SubmitButtonsComponent,
     PrimeInputTextComponent,
     PrimeAutoCompleteComponent,
+    TranslatePipe,
   ],
   templateUrl: './add-edit-menu-item.component.html',
   styleUrl: './add-edit-menu-item.component.css',

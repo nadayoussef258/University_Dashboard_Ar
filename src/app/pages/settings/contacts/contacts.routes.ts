@@ -5,24 +5,24 @@ export const contactsRoutes: Routes = [
     path: '',
     loadComponent: () =>
       import('./page/contacts/contacts.component').then(
-        (c) => c.ContactsComponent
+        (c) => c.ContactsComponent,
       ),
-    data: { pageTitle: 'تفاصيل الأتصال', pageType: 'list' },
+    data: { pageTitle: 'SETTINGS.CONTACTS.MAIN.PAGE_TITLE', pageType: 'list' },
   },
   {
     path: 'add',
     loadComponent: () =>
       import('./components/add-edit-contact/add-edit-contact.component').then(
-        (c) => c.AddEditContactComponent
+        (c) => c.AddEditContactComponent,
       ),
-    data: { pageTitle: 'اضافة تفاصيل الاتصال', pageType: 'add' },
+    data: { pageTitle: 'SETTINGS.CONTACTS.ADD.PAGE_TITLE', pageType: 'add' },
   },
   {
     path: 'edit/:id',
     loadComponent: () =>
       import('./components/add-edit-contact/add-edit-contact.component').then(
-        (c) => c.AddEditContactComponent
+        (c) => c.AddEditContactComponent,
       ),
-    data: { pageTitle: 'تعديل تفاصيل الاتصال', pageType: 'edit' },
+    data: { pageTitle: 'SETTINGS.CONTACTS.EDIT.PAGE_TITLE', pageType: 'edit' },
   },
 ];

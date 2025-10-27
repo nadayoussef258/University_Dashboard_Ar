@@ -35,6 +35,7 @@ export class CategoriesComponent extends BaseListComponent {
   }
 
   override ngOnInit(): void {
+    super.ngOnInit();
     this.initializeTableOptions();
   }
 
@@ -63,13 +64,13 @@ export class CategoriesComponent extends BaseListComponent {
     return [
       {
         field: 'code',
-        header: 'الكــود',
+        header: 'SETTINGS.CATEGORIES.FORM.CODE',
         filter: true,
         filterMode: 'text',
       },
       {
         field: 'name',
-        header: 'اسم التصنيف',
+        header: 'SETTINGS.CATEGORIES.FORM.NAME',
         filter: true,
         filterMode: 'text',
       },
@@ -99,15 +100,23 @@ export class CategoriesComponent extends BaseListComponent {
   }
 
   openAdd() {
-    this.openDialog(AddEditCategoryComponent, 'اضافة تصنيف', {
-      pageType: 'add',
-    });
+    this.openDialog(
+      AddEditCategoryComponent,
+      this.localize.translate.instant('SETTINGS.CATEGORIES.ADD.PAGE_TITLE'),
+      {
+        pageType: 'add',
+      },
+    );
   }
 
   openEdit(rowData: any) {
-    this.openDialog(AddEditCategoryComponent, 'تعديل تصنيف', {
-      pageType: 'edit',
-      row: { rowData },
-    });
+    this.openDialog(
+      AddEditCategoryComponent,
+      this.localize.translate.instant('SETTINGS.CATEGORIES.EDIT.PAGE_TITLE'),
+      {
+        pageType: 'edit',
+        row: { rowData },
+      },
+    );
   }
 }

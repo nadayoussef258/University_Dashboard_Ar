@@ -1,56 +1,99 @@
-<p-card class="m-0 p-2 ">
+<p-card class="m-0 p-2">
   @if (form) {
-  <form method="post" class="grid gap-4 grid-cols-12" [formGroup]="form">
-    <div class="col-span-12">
-      <app-prime-input-text [formGroup]="form" controlName="address" [label]="'العنوان بالتفصيل'"
-        [inputType]="'textarea'">
-      </app-prime-input-text>
-    </div>
+    <form method="post" class="grid gap-4 grid-cols-12" [formGroup]="form">
+      <div class="col-span-12">
+        <app-prime-input-text
+          [formGroup]="form"
+          controlName="address"
+          [label]="'SETTINGS.CONTACTS.FORM.ADDRESS'"
+          [inputType]="'textarea'"
+        >
+        </app-prime-input-text>
+      </div>
 
-    <div class="form-col">
-      <app-prime-input-text [formGroup]="form" controlName="phone" [label]="'رقم الهاتف'">
-      </app-prime-input-text>
-    </div>
-    <div class="form-col">
-      <app-prime-input-text [formGroup]="form" controlName="email" [label]="'البريد الإلكتروني'">
-      </app-prime-input-text>
-    </div>
-    <div class="form-col">
-      <app-prime-input-text [formGroup]="form" controlName="facebook" [label]="'فيسبوك'">
-      </app-prime-input-text>
-    </div>
-    <div class="form-col">
-      <app-prime-input-text [formGroup]="form" controlName="twitter" [label]="'تويتر'">
-      </app-prime-input-text>
-    </div>
-    <div class="form-col">
-      <app-prime-input-text [formGroup]="form" controlName="instagram" [label]="'انستجرام'">
-      </app-prime-input-text>
-    </div>
-    <div class="form-col">
-      <app-prime-input-text [formGroup]="form" controlName="linkedIn" [label]="'لينكد إن'">
-      </app-prime-input-text>
-    </div>
-    <div class="form-col">
-      <app-prime-input-text [formGroup]="form" controlName="youTube" [label]="'يوتيوب'">
-      </app-prime-input-text>
-    </div>
-    <div class="form-col">
-      <app-prime-input-text [formGroup]="form" controlName="whatsApp" [label]="'واتساب'">
-      </app-prime-input-text>
-    </div>
-    <div class="form-col">
-      <app-prime-input-text [formGroup]="form" controlName="mapLocation" [label]="'موقع الجامعة'">
-      </app-prime-input-text>
-    </div>
-  </form>
+      <div class="form-col">
+        <app-prime-input-text
+          [formGroup]="form"
+          controlName="phone"
+          [label]="'SETTINGS.CONTACTS.FORM.PHONE'"
+        >
+        </app-prime-input-text>
+      </div>
+      <div class="form-col">
+        <app-prime-input-text
+          [formGroup]="form"
+          controlName="email"
+          [label]="'SETTINGS.CONTACTS.FORM.EMAIL'"
+        >
+        </app-prime-input-text>
+      </div>
+      <div class="form-col">
+        <app-prime-input-text
+          [formGroup]="form"
+          controlName="facebook"
+          [label]="'SETTINGS.CONTACTS.FORM.FACEBOOK'"
+        >
+        </app-prime-input-text>
+      </div>
+      <div class="form-col">
+        <app-prime-input-text
+          [formGroup]="form"
+          controlName="twitter"
+          [label]="'SETTINGS.CONTACTS.FORM.TWITTER'"
+        >
+        </app-prime-input-text>
+      </div>
+      <div class="form-col">
+        <app-prime-input-text
+          [formGroup]="form"
+          controlName="instagram"
+          [label]="'SETTINGS.CONTACTS.FORM.INSTAGRAM'"
+        >
+        </app-prime-input-text>
+      </div>
+      <div class="form-col">
+        <app-prime-input-text
+          [formGroup]="form"
+          controlName="linkedIn"
+          [label]="'SETTINGS.CONTACTS.FORM.LINKEDIN'"
+        >
+        </app-prime-input-text>
+      </div>
+      <div class="form-col">
+        <app-prime-input-text
+          [formGroup]="form"
+          controlName="youTube"
+          [label]="'SETTINGS.CONTACTS.FORM.YOUTUBE'"
+        >
+        </app-prime-input-text>
+      </div>
+      <div class="form-col">
+        <app-prime-input-text
+          [formGroup]="form"
+          controlName="whatsApp"
+          [label]="'SETTINGS.CONTACTS.FORM.WHATSAPP'"
+        >
+        </app-prime-input-text>
+      </div>
+      <div class="form-col">
+        <app-prime-input-text
+          [formGroup]="form"
+          controlName="mapLocation"
+          [label]="'SETTINGS.CONTACTS.FORM.MAPLOCATION'"
+        >
+        </app-prime-input-text>
+      </div>
+    </form>
   }
 </p-card>
 
-
-
 @if (form) {
-<app-submit-buttons [isSubmitDisabled]="form.invalid" [submitButtonText]="pageType === 'add' ? 'Submit' : 'Save'"
-  [buttonText]="pageType === 'add' ? 'اضافة' : 'حفظ'" (submit)="submit()" (cancel)="closeDialog()">
-</app-submit-buttons>
+  <app-submit-buttons
+    [isSubmitDisabled]="form.invalid"
+    [submitButtonText]="pageType === 'add' ? 'Submit' : 'Save'"
+    [buttonText]="pageType === 'add' ? 'اضافة' : 'حفظ'"
+    (submit)="submit()"
+    (cancel)="closeDialog()"
+  >
+  </app-submit-buttons>
 }

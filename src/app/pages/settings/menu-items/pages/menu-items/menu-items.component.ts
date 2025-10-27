@@ -54,7 +54,15 @@ export class MenuItemsComponent extends BaseListComponent {
       bodyOptions: {
         filter: {},
       },
-      responsiveDisplayedProperties: ['title', 'target', 'fragment', 'icon'],
+      responsiveDisplayedProperties: [
+        'title',
+        'target',
+        'fragment',
+        'icon',
+        'order',
+        'menuType',
+        'parentMenuItem',
+      ],
     };
   }
 
@@ -62,25 +70,43 @@ export class MenuItemsComponent extends BaseListComponent {
     return [
       {
         field: 'title',
-        header: 'العنوان',
+        header: 'SETTINGS.MENU_ITEMS.FORM.TITLE',
         filter: true,
         filterMode: 'text',
       },
       {
         field: 'target',
-        header: 'الهدف',
+        header: 'SETTINGS.MENU_ITEMS.FORM.TARGET',
         filter: true,
         filterMode: 'text',
       },
       {
         field: 'fragment',
-        header: 'الجزء',
+        header: 'SETTINGS.MENU_ITEMS.FORM.FRAGMENT',
         filter: true,
         filterMode: 'text',
       },
       {
         field: 'icon',
-        header: 'الايقونة',
+        header: 'SETTINGS.MENU_ITEMS.FORM.ICON',
+        filter: true,
+        filterMode: 'text',
+      },
+      {
+        field: 'order',
+        header: 'SETTINGS.MENU_ITEMS.FORM.ORDER',
+        filter: true,
+        filterMode: 'text',
+      },
+      {
+        field: 'menuType',
+        header: 'SETTINGS.MENU_ITEMS.FORM.MENU_TYPE',
+        filter: true,
+        filterMode: 'text',
+      },
+      {
+        field: 'parentMenuItem',
+        header: 'SETTINGS.MENU_ITEMS.FORM.PARENT_MENU_ITEM',
         filter: true,
         filterMode: 'text',
       },
@@ -110,15 +136,23 @@ export class MenuItemsComponent extends BaseListComponent {
   }
 
   openAdd() {
-    this.openDialog(AddEditMenuItemComponent, 'اضافة حدث', {
-      pageType: 'add',
-    });
+    this.openDialog(
+      AddEditMenuItemComponent,
+      this.localize.translate.instant('SETTINGS.MENU_ITEMS.ADD.PAGE_TITLE'),
+      {
+        pageType: 'add',
+      },
+    );
   }
 
   openEdit(rowData: any) {
-    this.openDialog(AddEditMenuItemComponent, 'تعديل حدث', {
-      pageType: 'edit',
-      row: { rowData },
-    });
+    this.openDialog(
+      AddEditMenuItemComponent,
+      this.localize.translate.instant('SETTINGS.MENU_ITEMS.EDIT.PAGE_TITLE'),
+      {
+        pageType: 'edit',
+        row: { rowData },
+      },
+    );
   }
 }

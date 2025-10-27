@@ -1,16 +1,25 @@
 <p-card class="m-0 p-2">
   @if (form) {
-  <form method="post" class="grid grid-cols-12 gap-4" [formGroup]="form">
-    <div class="form-col">
-      <app-prime-input-text [formGroup]="form" controlName="type" [label]="'نوع القائمة'">
-      </app-prime-input-text>
-    </div>
-  </form>
+    <form method="post" class="grid gap-4 grid-cols-12" [formGroup]="form">
+      <div class="form-col">
+        <app-prime-input-text
+          [formGroup]="form"
+          controlName="type"
+          [label]="'SETTINGS.MENU_TYPES.FORM.TYPE'"
+        >
+        </app-prime-input-text>
+      </div>
+    </form>
   }
 </p-card>
 
 @if (form) {
-<app-submit-buttons [isSubmitDisabled]="form.invalid" [submitButtonText]="pageType === 'add' ? 'Submit' : 'Save'"
-  [buttonText]="pageType === 'add' ? 'اضافة' : 'حفظ'" (submit)="submit()" (cancel)="closeDialog()">
-</app-submit-buttons>
+  <app-submit-buttons
+    [isSubmitDisabled]="form.invalid"
+    [submitButtonText]="pageType === 'add' ? 'Submit' : 'Save'"
+    [buttonText]="pageType === 'add' ? 'اضافة' : 'حفظ'"
+    (submit)="submit()"
+    (cancel)="closeDialog()"
+  >
+  </app-submit-buttons>
 }

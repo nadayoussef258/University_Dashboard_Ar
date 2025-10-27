@@ -5,24 +5,30 @@ export const categoriesRoutes: Routes = [
     path: '',
     loadComponent: () =>
       import('./pages/categories/categories.component').then(
-        (c) => c.CategoriesComponent
+        (c) => c.CategoriesComponent,
       ),
-    data: { pageTitle: 'التصنيفات', pageType: 'list' },
+    data: {
+      pageTitle: 'SETTINGS.CATEGORIES.MAIN.PAGE_TITLE',
+      pageType: 'list',
+    },
   },
   {
     path: 'add',
     loadComponent: () =>
       import('./components/add-edit-category/add-edit-category.component').then(
-        (c) => c.AddEditCategoryComponent
+        (c) => c.AddEditCategoryComponent,
       ),
-    data: { pageTitle: 'اضافة تصنيف', pageType: 'add' },
+    data: { pageTitle: 'SETTINGS.CATEGORIES.ADD.PAGE_TITLE', pageType: 'add' },
   },
   {
     path: 'edit/:id',
     loadComponent: () =>
       import('./components/add-edit-category/add-edit-category.component').then(
-        (c) => c.AddEditCategoryComponent
+        (c) => c.AddEditCategoryComponent,
       ),
-    data: { pageTitle: 'تعديل تصنيف', pageType: 'edit' },
+    data: {
+      pageTitle: 'SETTINGS.CATEGORIES.EDIT.PAGE_TITLE',
+      pageType: 'edit',
+    },
   },
 ];

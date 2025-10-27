@@ -74,61 +74,61 @@ export class ContactsComponent extends BaseListComponent {
     return [
       {
         field: 'address',
-        header: 'العنوان',
+        header: 'SETTINGS.CONTACTS.FORM.ADDRESS',
         filter: true,
         filterMode: 'text',
       },
       {
         field: 'phone',
-        header: 'رقم الهاتف',
+        header: 'SETTINGS.CONTACTS.FORM.PHONE',
         filter: true,
         filterMode: 'text',
       },
       {
         field: 'email',
-        header: 'البريد الإلكتروني',
+        header: 'SETTINGS.CONTACTS.FORM.EMAIL',
         filter: true,
         filterMode: 'text',
       },
       {
         field: 'facebook',
-        header: 'فيسبوك',
+        header: 'SETTINGS.CONTACTS.FORM.FACEBOOK',
         filter: true,
         filterMode: 'text',
       },
       {
         field: 'twitter',
-        header: 'تويتر',
+        header: 'SETTINGS.CONTACTS.FORM.TWITTER',
         filter: true,
         filterMode: 'text',
       },
       {
         field: 'instagram',
-        header: 'انستجرام',
+        header: 'SETTINGS.CONTACTS.FORM.INSTAGRAM',
         filter: true,
         filterMode: 'text',
       },
       {
         field: 'linkedIn',
-        header: 'لينكد إن',
+        header: 'SETTINGS.CONTACTS.FORM.LINKEDIN',
         filter: true,
         filterMode: 'text',
       },
       {
         field: 'youTube',
-        header: 'يوتيوب',
+        header: 'SETTINGS.CONTACTS.FORM.YOUTUBE',
         filter: true,
         filterMode: 'text',
       },
       {
         field: 'whatsApp',
-        header: 'واتساب',
+        header: 'SETTINGS.CONTACTS.FORM.WHATSAPP',
         filter: true,
         filterMode: 'text',
       },
       {
         field: 'mapLocation',
-        header: 'موقع الخريطة',
+        header: 'SETTINGS.CONTACTS.FORM.MAPLOCATION',
         filter: true,
         filterMode: 'text',
       },
@@ -158,15 +158,23 @@ export class ContactsComponent extends BaseListComponent {
   }
 
   openAdd() {
-    this.openDialog(AddEditContactComponent, 'اضافة تفاصيل الاتصال', {
-      pageType: 'add',
-    });
+    this.openDialog(
+      AddEditContactComponent,
+      this.localize.translate.instant('SETTINGS.CONTACTS.ADD.PAGE_TITLE'),
+      {
+        pageType: 'add',
+      },
+    );
   }
 
   openEdit(rowData: any) {
-    this.openDialog(AddEditContactComponent, 'تعديل تفاصيل الاتصال', {
-      pageType: 'edit',
-      row: { rowData },
-    });
+    this.openDialog(
+      AddEditContactComponent,
+      this.localize.translate.instant('SETTINGS.CONTACTS.EDIT.PAGE_TITLE'),
+      {
+        pageType: 'edit',
+        row: { rowData },
+      },
+    );
   }
 }
