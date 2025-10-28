@@ -1,16 +1,16 @@
 export const EN_PAGES_SETTINGS = {
   PAGES: {
     SHARE_FORM: {
-      PAGE: 'The Page',
-      ABOUT: 'About University',
-      UNIT: 'The Unit',
-      MANAGEMENT: 'The Management',
-      PROGRAM: 'The Program',
-      SECTOR: 'The Sector',
-      CENTER: 'The Center',
+      PAGE: 'Page',
+      ABOUT: 'About the University',
+      UNIT: 'Unit',
+      MANAGEMENT: 'Management',
+      PROGRAM: 'Program',
+      SECTOR: 'Sector',
+      CENTER: 'Center',
       IS_LEADER: {
-        TITLE: 'Status',
-        LEADER: 'Admin',
+        TITLE: 'Role',
+        LEADER: 'Administrator',
         PERSON: 'User',
       },
     },
@@ -32,7 +32,7 @@ export const EN_PAGES_SETTINGS = {
       },
       FORM: {
         CODE: 'Code',
-        NAME: 'Name',
+        NAME: 'Action Name',
       },
     },
     CATEGORIES: {
@@ -79,9 +79,9 @@ export const EN_PAGES_SETTINGS = {
         PAGE_TITLE: 'Edit Page',
       },
       FORM: {
-        TITLE: 'Page Title',
+        TITLE: 'Title',
         CONTENT: 'Content',
-        STATUS: 'Page Status',
+        STATUS: 'Status',
       },
     },
     LEADERS: {
@@ -97,18 +97,18 @@ export const EN_PAGES_SETTINGS = {
       FORM: {
         FULL_NAME: 'Full Name',
         POSITION: 'Position',
-        MEMBER: 'Member Of Academic Staff',
+        MEMBER: 'Academic Staff Member',
       },
     },
     MEMBERS: {
       MAIN: {
-        PAGE_TITLE: 'Members Of Academic Staff',
+        PAGE_TITLE: 'Academic Staff Members',
       },
       ADD: {
-        PAGE_TITLE: 'Add Member Of Academic Staff',
+        PAGE_TITLE: 'Add Academic Staff Member',
       },
       EDIT: {
-        PAGE_TITLE: 'Edit Member Of Academic Staff',
+        PAGE_TITLE: 'Edit Academic Staff Member',
       },
       FORM: {
         FULL_NAME: 'Full Name',
@@ -116,13 +116,13 @@ export const EN_PAGES_SETTINGS = {
         SPECIALIZATION: 'Specialization',
         IS_PRESIDENT: {
           QUESTION: 'Is he the university president ?',
-          TITLE: 'Status',
+          TITLE: 'Role',
           PRESIDENT: 'University President',
-          MEMBER: 'Members Of Academic Staff',
+          MEMBER: 'Academic Staff Member',
         },
       },
     },
-    MANAGEMENT: {
+    MANAGEMENTS: {
       MAIN: {
         PAGE_TITLE: 'Managements',
       },
@@ -132,33 +132,32 @@ export const EN_PAGES_SETTINGS = {
       EDIT: {
         PAGE_TITLE: 'Edit Management',
       },
-      //! SHARE_FORM في الـــ FORM الــ
     },
     MANAGEMENT_DETAILS: {
       MAIN: {
-        PAGE_TITLE: 'Managements Details',
+        PAGE_TITLE: 'Management Details',
       },
       ADD: {
         PAGE_TITLE: 'Add Management Detail',
       },
       EDIT: {
-        PAGE_TITLE: 'EDIT Management Detail',
+        PAGE_TITLE: 'Edit Management Detail',
       },
       FORM: {
-        TITLE: 'Management Detail Title',
+        TITLE: 'Title',
         DESCRIPTION: 'Description',
         CONTENT: 'Content',
       },
     },
     MANAGEMENT_MEMBERS: {
       MAIN: {
-        PAGE_TITLE: 'Managements Members',
+        PAGE_TITLE: 'Management Members',
       },
       ADD: {
         PAGE_TITLE: 'Add Management Member',
       },
       EDIT: {
-        PAGE_TITLE: 'EDIT Management Member',
+        PAGE_TITLE: 'Edit Management Member',
       },
       FORM: {
         QUESTION: 'Do you want to modify the management ?',
@@ -169,16 +168,15 @@ export const EN_PAGES_SETTINGS = {
         PAGE_TITLE: 'Units',
       },
       ADD: {
-        PAGE_TITLE: 'Add unit',
+        PAGE_TITLE: 'Add Unit',
       },
       EDIT: {
         PAGE_TITLE: 'Edit Unit',
       },
-      //! SHARE_FORM في الـــ FORM الــ
     },
     UNIT_DETAILS: {
       MAIN: {
-        PAGE_TITLE: 'Units Details',
+        PAGE_TITLE: 'Unit Details',
       },
       ADD: {
         PAGE_TITLE: 'Add Unit Detail',
@@ -187,14 +185,14 @@ export const EN_PAGES_SETTINGS = {
         PAGE_TITLE: 'Edit Unit Detail',
       },
       FORM: {
-        TITLE: 'Unit Detail Title',
+        TITLE: 'Title',
         DESCRIPTION: 'Description',
-        UNIT_PLACE: 'Unit Place',
+        UNIT_PLACE: 'Unit Location',
       },
     },
     UNIT_MEMBERS: {
       MAIN: {
-        PAGE_TITLE: 'Units Members',
+        PAGE_TITLE: 'Unit Members',
       },
       ADD: {
         PAGE_TITLE: 'Add Unit Member',
@@ -211,25 +209,24 @@ export const EN_PAGES_SETTINGS = {
         PAGE_TITLE: 'Programs',
       },
       ADD: {
-        PAGE_TITLE: 'Add Programs',
+        PAGE_TITLE: 'Add Program',
       },
       EDIT: {
-        PAGE_TITLE: 'Edit Programs',
+        PAGE_TITLE: 'Edit Program',
       },
-      //! SHARE_FORM في الـــ FORM الــ
     },
     PROGRAM_DETAILS: {
       MAIN: {
-        PAGE_TITLE: 'Programs Details',
+        PAGE_TITLE: 'Program Details',
       },
       ADD: {
-        PAGE_TITLE: 'Add Program Details',
+        PAGE_TITLE: 'Add Program Detail',
       },
       EDIT: {
-        PAGE_TITLE: 'Edit Program Details',
+        PAGE_TITLE: 'Edit Program Detail',
       },
       FORM: {
-        TITLE: 'Program Detail Title',
+        TITLE: 'Title',
         PROGRAM_CATEGORY: 'Program Category',
         CONTENT: 'Content',
         FACULTY: 'Faculty',
@@ -237,7 +234,7 @@ export const EN_PAGES_SETTINGS = {
     },
     PROGRAM_MEMBERS: {
       MAIN: {
-        PAGE_TITLE: 'Programs Members',
+        PAGE_TITLE: 'Program Members',
       },
       ADD: {
         PAGE_TITLE: 'Add Program Member',
@@ -271,7 +268,7 @@ export const EN_PAGES_SETTINGS = {
         INSTAGRAM: 'Instagram',
         LINKEDIN: 'LinkedIn',
         YOUTUBE: 'Youtube',
-        WHATSAPP: 'Whatsapp',
+        WHATSAPP: 'WhatsApp',
         MAPLOCATION: 'Map Location',
       },
     },
@@ -292,7 +289,7 @@ export const EN_PAGES_SETTINGS = {
         ICON: 'Icon',
         ORDER: 'Order',
         MENU_TYPE: 'Menu Type',
-        PARENT_MENU_ITEM: 'Main Menu ',
+        PARENT_MENU_ITEM: 'Main Menu',
       },
     },
     MENU_TYPES: {
