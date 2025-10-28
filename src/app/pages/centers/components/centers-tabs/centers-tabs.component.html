@@ -3,27 +3,31 @@
     <p-tab
       [value]="`.`"
       [routerLink]="['.']"
-      class="flex text-inherit items-center !gap-2"
+      class="flex text-inherit items-center gap-2!"
     >
       <i class="pi pi-user-plus"></i>
       <span>
-        @if (pageType === 'edit') { تعديل المركز }@else{ اضافة المركز}
+        @if (pageType === "edit") {
+          {{ "PAGES.CENTERS.EDIT.PAGE_TITLE" | translate }}
+        } @else {
+          {{ "PAGES.CENTERS.ADD.PAGE_TITLE" | translate }}
+        }
       </span>
     </p-tab>
 
-    @if (pageType === 'edit') {
-    <!--  -->
-    @for(tab of tabs; track tab.route){
-    <p-tab
-      [value]="tab.route"
-      [routerLink]="tab.route"
-      class="flex text-inherit items-center !gap-2"
-    >
-      <i [class]="tab.icon"></i>
-      <span>{{ tab.label }}</span>
-    </p-tab>
-    }
-    <!--  -->
+    @if (pageType === "edit") {
+      <!--  -->
+      @for (tab of tabs; track tab.route) {
+        <p-tab
+          [value]="tab.route"
+          [routerLink]="tab.route"
+          class="flex text-inherit items-center gap-2!"
+        >
+          <i [class]="tab.icon"></i>
+          <span>{{ tab.label | translate }}</span>
+        </p-tab>
+      }
+      <!--  -->
     }
   </p-tablist>
   <p-tabpanels>

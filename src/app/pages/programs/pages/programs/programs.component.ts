@@ -61,13 +61,13 @@ export class ProgramsComponent extends BaseListComponent {
     return [
       {
         field: 'pageId',
-        header: 'الصفحة',
+        header: 'PAGES.SHARE_FORM.PAGE',
         filter: true,
         filterMode: 'text',
       },
       {
         field: 'aboutId',
-        header: 'عن الجامعة',
+        header: 'PAGES.SHARE_FORM.ABOUT',
         filter: true,
         filterMode: 'text',
       },

@@ -148,4 +148,8 @@ export const AR_TRANSLATIONS = {
     MAX_FILES_MSG: 'العدد الأقصى للملفات المسموح برفعها: ',
   },
   PAGINATION: 'اظهار {first} إلى {last} من {totalRecords} مدخلات',
+  FOOTER: {
+    COPYRIGHT: 'جميع الحقوق محفوظة © ',
+    NAME: 'جامعة الأقصر',
+  },
 };

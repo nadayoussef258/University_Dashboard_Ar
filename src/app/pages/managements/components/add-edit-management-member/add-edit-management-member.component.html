@@ -10,7 +10,9 @@
           >
           </p-toggleswitch>
           <label class="font-medium text-sm">
-            {{ "PAGES.MANAGEMENT_MEMBERS.FORM.QUESTION" | translate }}
+            {{
+              "PAGES.MANAGEMENT_MEMBERS.FORM.QUESTION_ALLOW_EDIT" | translate
+            }}
           </label>
         </div>
       }
@@ -69,10 +71,8 @@
 @if (form) {
   <app-submit-buttons
     [isSubmitDisabled]="form.invalid"
-    [submitButtonText]="pageType === 'add' ? 'Submit' : 'Save'"
-    [buttonText]="pageType === 'add' ? 'اضافة' : 'حفظ'"
+    [submitBtnLabel]="pageType === 'add' ? 'ACTIONS.SUBMIT' : 'ACTIONS.SEND'"
     (submit)="submit()"
-    (cancel)="closeDialog()"
-  >
-  </app-submit-buttons>
+    (cancel)="redirect()"
+  />
 }

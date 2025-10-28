@@ -15,6 +15,7 @@ import {
 import { DialogService } from 'primeng/dynamicdialog';
 import { ActivatedRoute } from '@angular/router';
 import { CenterIdService } from '../../center-id.service';
+import { TranslatePipe } from '@ngx-translate/core';
 
 @Component({
   selector: 'app-add-edit-center',
@@ -25,6 +26,7 @@ import { CenterIdService } from '../../center-id.service';
     SubmitButtonsComponent,
     PrimeInputTextComponent,
     PrimeAutoCompleteComponent,
+    TranslatePipe,
   ],
   templateUrl: './add-edit-center.component.html',
   styleUrl: './add-edit-center.component.css',

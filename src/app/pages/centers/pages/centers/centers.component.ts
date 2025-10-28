@@ -53,7 +53,7 @@ export class CentersComponent extends BaseListComponent {
       bodyOptions: {
         filter: {},
       },
-      responsiveDisplayedProperties: ['subTitle', 'place'],
+      responsiveDisplayedProperties: ['subTitle', 'place', 'pageId', 'aboutId'],
     };
   }
 
@@ -61,13 +61,25 @@ export class CentersComponent extends BaseListComponent {
     return [
       {
         field: 'subTitle',
-        header: 'العنوان الفرعي',
+        header: 'PAGES.CENTERS.FORM.SUB_TITLE',
         filter: true,
         filterMode: 'text',
       },
       {
         field: 'place',
-        header: 'المكان',
+        header: 'PAGES.CENTERS.FORM.PLACE',
+        filter: true,
+        filterMode: 'text',
+      },
+      {
+        field: 'pageId',
+        header: 'PAGES.SHARE_FORM.PAGE',
+        filter: true,
+        filterMode: 'text',
+      },
+      {
+        field: 'aboutId',
+        header: 'PAGES.SHARE_FORM.ABOUT',
         filter: true,
         filterMode: 'text',
       },

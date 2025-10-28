@@ -67,15 +67,15 @@ export class CenterMembersComponent extends BaseListComponent {
     return [
       {
         field: 'isLeader',
-        header: 'الحالة',
-        trueText: 'ادمن',
-        falseText: 'مستخدم',
+        header: 'PAGES.SHARE_FORM.IS_LEADER.TITLE',
+        trueText: 'PAGES.SHARE_FORM.IS_LEADER.LEADER',
+        falseText: 'PAGES.SHARE_FORM.IS_LEADER.PERSON',
         filter: true,
         filterMode: 'boolean',
       },
       {
         field: 'centerId',
-        header: 'المركز',
+        header: 'PAGES.SHARE_FORM.CENTER',
         filter: true,
         filterMode: 'text',
       },
@@ -105,16 +105,18 @@ export class CenterMembersComponent extends BaseListComponent {
   }
 
   openAdd() {
-    this.openDialog(AddEditCenterMemberComponent, 'اضافة عضو للمركز', {
-      pageType: 'add',
-      row: { centerId: this.centerId },
-    });
+    this.openDialog(
+      AddEditCenterMemberComponent,
+      this.localize.translate.instant('PAGES.CENTER_MEMBERS.ADD.PAGE_TITLE'),
+      { pageType: 'add', row: { centerId: this.centerId } },
+    );
   }
 
   openEdit(rowData: any) {
-    this.openDialog(AddEditCenterMemberComponent, 'تعديل عضو', {
-      pageType: 'edit',
-      row: { rowData },
-    });
+    this.openDialog(
+      AddEditCenterMemberComponent,
+      this.localize.translate.instant('PAGES.CENTER_MEMBERS.ADD.PAGE_TITLE'),
+      { pageType: 'edit', row: { rowData } },
+    );
   }
 }

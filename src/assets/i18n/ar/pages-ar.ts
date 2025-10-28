@@ -14,6 +14,7 @@ export const AR_PAGES_SETTINGS = {
         PERSON: 'المستخدم',
       },
     },
+
     HOME: {
       TITLE: 'الصفحة الرئيسية',
     },
@@ -115,7 +116,7 @@ export const AR_PAGES_SETTINGS = {
         POSITION: 'المنصب',
         SPECIALIZATION: 'التخصص',
         IS_PRESIDENT: {
-          QUESTION: 'هل هو رئيس الجامعة؟',
+          QUESTION_ALLOW_EDIT: 'هل هو رئيس الجامعة؟',
           TITLE: 'الدور',
           PRESIDENT: 'رئيس الجامعة',
           MEMBER: 'عضو هيئة تدريس',
@@ -160,7 +161,7 @@ export const AR_PAGES_SETTINGS = {
         PAGE_TITLE: 'تعديل عضو الإدارة',
       },
       FORM: {
-        QUESTION: 'هل ترغب في تعديل الإدارة؟',
+        QUESTION_ALLOW_EDIT: 'هل ترغب في تعديل الإدارة؟',
       },
     },
     UNITS: {
@@ -201,7 +202,7 @@ export const AR_PAGES_SETTINGS = {
         PAGE_TITLE: 'تعديل عضو الوحدة',
       },
       FORM: {
-        QUESTION: 'هل ترغب في تعديل الوحدة؟',
+        QUESTION_ALLOW_EDIT: 'هل ترغب في تعديل الوحدة؟',
       },
     },
     PROGRAMS: {
@@ -243,7 +244,52 @@ export const AR_PAGES_SETTINGS = {
         PAGE_TITLE: 'تعديل عضو البرنامج',
       },
       FORM: {
-        QUESTION: 'هل ترغب في تعديل البرنامج؟',
+        QUESTION_ALLOW_EDIT: 'هل ترغب في تعديل البرنامج؟',
+      },
+    },
+    CENTERS: {
+      MAIN: {
+        PAGE_TITLE: 'المراكز',
+      },
+      ADD: {
+        PAGE_TITLE: 'إضافة مركز',
+      },
+      EDIT: {
+        PAGE_TITLE: 'تعديل مركز',
+      },
+      FORM: {
+        SUB_TITLE: 'العنوان الفرعي',
+        PLACE: 'المكان',
+      },
+    },
+    CENTER_DETAILS: {
+      MAIN: {
+        PAGE_TITLE: 'تفاصيل المراكز',
+      },
+      ADD: {
+        PAGE_TITLE: 'إضافة تفاصيل للمركز',
+      },
+      EDIT: {
+        PAGE_TITLE: 'تعديل تفاصيل المركز',
+      },
+      FORM: {
+        TITLE: 'عنوان التفاصيل',
+        DESCRIPTION: 'الوصف المختصر',
+        CONTENT: 'المحتوى التفصيلي',
+      },
+    },
+    CENTER_MEMBERS: {
+      MAIN: {
+        PAGE_TITLE: 'أعضاء المراكز',
+      },
+      ADD: {
+        PAGE_TITLE: 'إضافة عضو للمركز',
+      },
+      EDIT: {
+        PAGE_TITLE: 'تعديل عضو المركز',
+      },
+      FORM: {
+        QUESTION_ALLOW_EDIT: 'هل ترغب في تعديل المركز',
       },
     },
   },

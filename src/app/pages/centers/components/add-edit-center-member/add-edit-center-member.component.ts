@@ -13,6 +13,7 @@ import { ActivatedRoute } from '@angular/router';
 import { ToggleSwitch } from 'primeng/toggleswitch';
 import { NgClass } from '@angular/common';
 import { CenterIdService } from '../../center-id.service';
+import { TranslatePipe } from '@ngx-translate/core';
 
 @Component({
   selector: 'app-add-edit-center-member',
@@ -24,6 +25,7 @@ import { CenterIdService } from '../../center-id.service';
     PrimeAutoCompleteComponent,
     ToggleSwitch,
     NgClass,
+    TranslatePipe,
   ],
   templateUrl: './add-edit-center-member.component.html',
   styleUrl: './add-edit-center-member.component.css',

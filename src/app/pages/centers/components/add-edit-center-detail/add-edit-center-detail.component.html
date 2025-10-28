@@ -1,37 +1,60 @@
 <p-card class="m-0 p-2">
   @if (form) {
-  <form method="post" class="grid gap-4 grid-cols-12" [formGroup]="form">
-    <div class="form-col">
-      <app-prime-input-text [formGroup]="form" controlName="title" [label]="'عنوان التفاصيل'">
-      </app-prime-input-text>
-    </div>
+    <form method="post" class="grid gap-4 grid-cols-12" [formGroup]="form">
+      <div class="form-col">
+        <app-prime-input-text
+          [formGroup]="form"
+          controlName="title"
+          [label]="'PAGES.CENTER_DETAILS.FORM.TITLE'"
+        >
+        </app-prime-input-text>
+      </div>
 
-    <div class="form-col">
-      <app-prime-input-text [formGroup]="form" controlName="description" [label]="'الوصف المختصر'">
-      </app-prime-input-text>
-    </div>
+      <div class="form-col">
+        <app-prime-input-text
+          [formGroup]="form"
+          controlName="description"
+          [label]="'PAGES.CENTER_DETAILS.FORM.DESCRIPTION'"
+        >
+        </app-prime-input-text>
+      </div>
 
-    <div class="col-span-12">
-      <app-prime-input-text [formGroup]="form" controlName="content" [label]="'المحتوى التفصيلي'"
-        [inputType]="'textarea'">
-      </app-prime-input-text>
-    </div>
+      <div class="col-span-12">
+        <app-prime-input-text
+          [formGroup]="form"
+          controlName="content"
+          [label]="'PAGES.CENTER_DETAILS.FORM.CONTENT'"
+          [inputType]="'textarea'"
+        >
+        </app-prime-input-text>
+      </div>
 
-    @if (pageType !== 'add' && centerId || !centerId ) {
-    <div class="form-col">
-      <label class="text-middle mb-2">{{ "المركز" }}</label>
-      <app-prime-autocomplete [disabled]="!!centerId" [field]="'pageId'" [selectedOption]="selectedCenter"
-        [suggestions]="filteredCenters" [formGroup]="form" (onSelect)="onCenterSelect($event)" [lazy]="false"
-        (handleMethod)="getCenters($event)"></app-prime-autocomplete>
-    </div>
-    }
-  </form>
-
+      @if ((pageType !== "add" && centerId) || !centerId) {
+        <div class="form-col">
+          <label class="text-middle mb-2">
+            {{ "PAGES.SHARE_FORM.CENTER" | translate }}
+          </label>
+          <app-prime-autocomplete
+            [disabled]="!!centerId"
+            [field]="'pageId'"
+            [selectedOption]="selectedCenter"
+            [suggestions]="filteredCenters"
+            [formGroup]="form"
+            (onSelect)="onCenterSelect($event)"
+            [lazy]="false"
+            (handleMethod)="getCenters($event)"
+          ></app-prime-autocomplete>
+        </div>
+      }
+    </form>
   }
 </p-card>
 
 @if (form) {
-<app-submit-buttons [isSubmitDisabled]="form.invalid" [submitButtonText]="pageType === 'add' ? 'Submit' : 'Save'"
-  [buttonText]="pageType === 'add' ? 'اضافة' : 'حفظ'" (submit)="submit()" (cancel)="redirect()">
-</app-submit-buttons>
+  <app-submit-buttons
+    [isSubmitDisabled]="form.invalid"
+    [submitBtnLabel]="pageType === 'add' ? 'ACTIONS.SUBMIT' : 'ACTIONS.SEND'"
+    (submit)="submit()"
+    (cancel)="redirect()"
+  />
 }

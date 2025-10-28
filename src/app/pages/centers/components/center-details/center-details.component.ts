@@ -58,7 +58,12 @@ export class CenterDetailsComponent extends BaseListComponent {
       bodyOptions: {
         filter: { centerId: this.centerId },
       },
-      responsiveDisplayedProperties: ['title', 'description', 'content'],
+      responsiveDisplayedProperties: [
+        'title',
+        'description',
+        'content',
+        'centerId',
+      ],
     };
   }
 
@@ -66,19 +71,25 @@ export class CenterDetailsComponent extends BaseListComponent {
     return [
       {
         field: 'title',
-        header: 'العنوان',
+        header: 'PAGES.CENTER_DETAILS.FORM.TITLE',
         filter: true,
         filterMode: 'text',
       },
       {
         field: 'description',
-        header: 'الوصف',
+        header: 'PAGES.CENTER_DETAILS.FORM.DESCRIPTION',
         filter: true,
         filterMode: 'text',
       },
       {
         field: 'content',
-        header: 'المحتوي',
+        header: 'PAGES.CENTER_DETAILS.FORM.CONTENT',
+        filter: true,
+        filterMode: 'text',
+      },
+      {
+        field: 'centerId',
+        header: 'PAGES.SHARE_FORM.CENTER',
         filter: true,
         filterMode: 'text',
       },

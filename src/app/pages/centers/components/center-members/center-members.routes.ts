@@ -6,25 +6,31 @@ export const centerMembersRoutes: Routes = [
     path: '',
     loadComponent: () =>
       import('./center-members.component').then(
-        (c) => c.CenterMembersComponent
+        (c) => c.CenterMembersComponent,
       ),
-    data: { pageTitle: 'أعضاء المراكز', pageType: 'list' },
+    data: {
+      pageTitle: 'PAGES.CENTER_MEMBERS.MAIN.PAGE_TITLE',
+      pageType: 'list',
+    },
     canActivate: [clearCenterIdGuard],
   },
   {
     path: 'add',
     loadComponent: () =>
       import('../add-edit-center-member/add-edit-center-member.component').then(
-        (c) => c.AddEditCenterMemberComponent
+        (c) => c.AddEditCenterMemberComponent,
       ),
-    data: { pageTitle: 'اضافة عضو للمركز', pageType: 'add' },
+    data: { pageTitle: 'PAGES.CENTER_MEMBERS.ADD.PAGE_TITLE', pageType: 'add' },
   },
   {
     path: 'edit/:id',
     loadComponent: () =>
       import('../add-edit-center-member/add-edit-center-member.component').then(
-        (c) => c.AddEditCenterMemberComponent
+        (c) => c.AddEditCenterMemberComponent,
       ),
-    data: { pageTitle: 'تعديل عضو', pageType: 'edit' },
+    data: {
+      pageTitle: 'PAGES.CENTER_MEMBERS.EDIT.PAGE_TITLE',
+      pageType: 'edit',
+    },
   },
 ];

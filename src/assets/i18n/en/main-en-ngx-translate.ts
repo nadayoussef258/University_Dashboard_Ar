@@ -143,4 +143,8 @@ export const EN_TRANSLATIONS = {
     MaxFilesMsg: 'Max number of files: ',
   },
   PAGINATION: 'Showing {first} to {last} of {totalRecords} entries',
+  FOOTER: {
+    COPYRIGHT: 'All Rights Reserved ©',
+    NAME: 'Luxor University',
+  },
 };

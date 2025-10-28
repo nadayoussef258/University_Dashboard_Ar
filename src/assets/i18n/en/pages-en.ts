@@ -115,7 +115,7 @@ export const EN_PAGES_SETTINGS = {
         POSITION: 'Position',
         SPECIALIZATION: 'Specialization',
         IS_PRESIDENT: {
-          QUESTION: 'Is he the university president ?',
+          QUESTION_ALLOW_EDIT: 'Is he the university president ?',
           TITLE: 'Role',
           PRESIDENT: 'University President',
           MEMBER: 'Academic Staff Member',
@@ -160,7 +160,7 @@ export const EN_PAGES_SETTINGS = {
         PAGE_TITLE: 'Edit Management Member',
       },
       FORM: {
-        QUESTION: 'Do you want to modify the management ?',
+        QUESTION_ALLOW_EDIT: 'Do you want to modify the management ?',
       },
     },
     UNITS: {
@@ -201,7 +201,7 @@ export const EN_PAGES_SETTINGS = {
         PAGE_TITLE: 'Edit Unit Member',
       },
       FORM: {
-        QUESTION: 'Do you want to modify the unit ?',
+        QUESTION_ALLOW_EDIT: 'Do you want to modify the unit ?',
       },
     },
     PROGRAMS: {
@@ -243,7 +243,52 @@ export const EN_PAGES_SETTINGS = {
         PAGE_TITLE: 'Edit Program Member',
       },
       FORM: {
-        QUESTION: 'Do you want to modify the program ?',
+        QUESTION_ALLOW_EDIT: 'Do you want to modify the program ?',
+      },
+    },
+    CENTERS: {
+      MAIN: {
+        PAGE_TITLE: 'Centers',
+      },
+      ADD: {
+        PAGE_TITLE: 'Add Center',
+      },
+      EDIT: {
+        PAGE_TITLE: 'Edit Center',
+      },
+      FORM: {
+        SUB_TITLE: 'SubTitle',
+        PLACE: 'Place',
+      },
+    },
+    CENTER_DETAILS: {
+      MAIN: {
+        PAGE_TITLE: 'Centers Details',
+      },
+      ADD: {
+        PAGE_TITLE: 'Add Center Detail',
+      },
+      EDIT: {
+        PAGE_TITLE: 'Edit Center Detail',
+      },
+      FORM: {
+        TITLE: 'Title',
+        DESCRIPTION: 'Description',
+        CONTENT: 'Content',
+      },
+    },
+    CENTER_MEMBERS: {
+      MAIN: {
+        PAGE_TITLE: 'Centers Members',
+      },
+      ADD: {
+        PAGE_TITLE: 'Add Center Member',
+      },
+      EDIT: {
+        PAGE_TITLE: 'Edit Center Member',
+      },
+      FORM: {
+        QUESTION_ALLOW_EDIT: 'Do you want to modify the Center ?',
       },
     },
   },

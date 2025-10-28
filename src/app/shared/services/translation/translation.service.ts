@@ -15,7 +15,7 @@ import { Language, Languages } from '../../../core/enums/languages';
 })
 export class TranslationService {
   //! 🔤 اللغة الافتراضية
-  private defaultLang: Language = Languages.EN;
+  private defaultLang: Language = Languages.AR;
 
   // 🧠 إشارة تمثل اللغة الحالية (signal بدل BehaviorSubject)
   private _currentLanguage: WritableSignal<Language> = signal(this.defaultLang);
@@ -41,6 +41,7 @@ export class TranslationService {
       const lang = this._currentLanguage();
       this.applyLanguage(lang);
     });
+    localStorage.setItem('currentLang', this._currentLanguage());
   }
 
   // 🗝️ استرجاع اللغة المخزنة في localStorage (إن وجدت)

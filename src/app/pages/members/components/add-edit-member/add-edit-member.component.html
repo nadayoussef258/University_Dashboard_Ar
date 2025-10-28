@@ -3,7 +3,9 @@
     <form method="post" class="grid gap-4 grid-cols-12" [formGroup]="form">
       <div class="col-span-12">
         <label class="text-middle mb-3">
-          {{ "PAGES.MEMBERS.FORM.IS_PRESIDENT.QUESTION" | translate }}
+          {{
+            "PAGES.MEMBERS.FORM.IS_PRESIDENT.QUESTION_ALLOW_EDIT" | translate
+          }}
         </label>
         <div class="flex gap-3 items-center">
           <p-toggleswitch formControlName="isPresident"></p-toggleswitch>
@@ -155,10 +157,8 @@
 @if (form) {
   <app-submit-buttons
     [isSubmitDisabled]="form.invalid"
-    [submitButtonText]="pageType === 'add' ? 'Submit' : 'Save'"
-    [buttonText]="pageType === 'add' ? 'اضافة' : 'حفظ'"
+    [submitBtnLabel]="pageType === 'add' ? 'ACTIONS.SUBMIT' : 'ACTIONS.SEND'"
     (submit)="submit()"
     (cancel)="redirect()"
-  >
-  </app-submit-buttons>
+  />
 }

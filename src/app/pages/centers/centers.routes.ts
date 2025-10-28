@@ -9,25 +9,25 @@ export const centersRoutes: Routes = [
     path: '',
     loadComponent: () =>
       import('./pages/centers/centers.component').then(
-        (c) => c.CentersComponent
+        (c) => c.CentersComponent,
       ),
-    data: { pageTitle: 'المراكز', pageType: 'list' },
+    data: { pageTitle: 'PAGES.CENTERS.MAIN.PAGE_TITLE', pageType: 'list' },
   },
   {
     path: 'add',
     loadComponent: () =>
       import('./components/centers-tabs/centers-tabs.component').then(
-        (c) => c.CentersTabsComponent
+        (c) => c.CentersTabsComponent,
       ),
-    data: { pageTitle: 'إضافة مركز', pageType: 'add' },
+    data: { pageTitle: 'PAGES.CENTERS.ADD.PAGE_TITLE', pageType: 'add' },
     children: [
       {
         path: '',
         loadComponent: () =>
           import('./components/add-edit-center/add-edit-center.component').then(
-            (c) => c.AddEditCenterComponent
+            (c) => c.AddEditCenterComponent,
           ),
-        data: { pageTitle: 'إضافة مركز', pageType: 'add' },
+        data: { pageTitle: 'PAGES.CENTERS.ADD.PAGE_TITLE', pageType: 'add' },
       },
     ],
   },
@@ -35,36 +35,42 @@ export const centersRoutes: Routes = [
     path: 'edit/:id',
     loadComponent: () =>
       import('./components/centers-tabs/centers-tabs.component').then(
-        (c) => c.CentersTabsComponent
+        (c) => c.CentersTabsComponent,
       ),
-    data: { pageTitle: 'تعديل مركز', pageType: 'edit' },
+    data: { pageTitle: 'PAGES.CENTERS.EDIT.PAGE_TITLE', pageType: 'edit' },
     children: [
       {
         path: '',
         canActivate: [validateCenterIdGuard],
         loadComponent: () =>
           import('./components/add-edit-center/add-edit-center.component').then(
-            (c) => c.AddEditCenterComponent
+            (c) => c.AddEditCenterComponent,
           ),
-        data: { pageTitle: 'تعديل مركز', pageType: 'edit' },
+        data: { pageTitle: 'PAGES.CENTERS.EDIT.PAGE_TITLE', pageType: 'edit' },
       },
       {
         path: 'center-detail',
         canActivate: [redirectOnDirectCenterAccessGuard],
         loadChildren: () =>
           import('./components/center-details/center-details.routes').then(
-            (c) => c.centerDetailsRoutes
+            (c) => c.centerDetailsRoutes,
           ),
-        data: { pageTitle: 'تفاصيل المركز', pageType: 'list' },
+        data: {
+          pageTitle: 'PAGES.CENTER_DETAILS.MAIN.PAGE_TITLE',
+          pageType: 'list',
+        },
       },
       {
         path: 'center-member',
         canActivate: [redirectOnDirectCenterAccessGuard],
         loadChildren: () =>
           import('./components/center-members/center-members.routes').then(
-            (c) => c.centerMembersRoutes
+            (c) => c.centerMembersRoutes,
           ),
-        data: { pageTitle: 'اعضاء المركز', pageType: 'list' },
+        data: {
+          pageTitle: 'PAGES.CENTER_MEMBERS.MAIN.PAGE_TITLE',
+          pageType: 'list',
+        },
       },
     ],
   },
