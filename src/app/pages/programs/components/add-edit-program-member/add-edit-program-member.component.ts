@@ -13,6 +13,7 @@ import { ActivatedRoute } from '@angular/router';
 import { ToggleSwitch } from 'primeng/toggleswitch';
 import { NgClass } from '@angular/common';
 import { ProgramIdService } from '../../program-id.service';
+import { TranslatePipe } from '@ngx-translate/core';
 
 @Component({
   selector: 'app-add-edit-program-member',
@@ -24,6 +25,7 @@ import { ProgramIdService } from '../../program-id.service';
     PrimeAutoCompleteComponent,
     ToggleSwitch,
     NgClass,
+    TranslatePipe,
   ],
   templateUrl: './add-edit-program-member.component.html',
   styleUrl: './add-edit-program-member.component.css',

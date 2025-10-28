@@ -1,9 +1,9 @@
 import { CanActivateChildFn } from '@angular/router';
 import { inject } from '@angular/core';
-import { ManagmentIdService } from '../../managements/managment-id.service';
+import { ManagementIdService } from '../../managements/management-id.service';
 
 export const clearManagementIdGuard: CanActivateChildFn = (route, state) => {
-  const managmentIdService = inject(ManagmentIdService);
+  const managementIdService = inject(ManagementIdService);
 
   const clearManagementIdRoutes = [
     '/management-details',
@@ -12,7 +12,7 @@ export const clearManagementIdGuard: CanActivateChildFn = (route, state) => {
   // console.log('Target URL:', state.url);
 
   if (clearManagementIdRoutes.some((route) => state.url.includes(route))) {
-    managmentIdService.setManagementId('');
+    managementIdService.setManagementId('');
     // console.log('🧹 Cleared managementId!');
   }
 

@@ -62,19 +62,19 @@ export class LeaderComponent extends BaseListComponent {
     return [
       {
         field: 'fullName',
-        header: 'الاسم بالكامل',
+        header: 'PAGES.LEADERS.FORM.FULL_NAME',
         filter: true,
         filterMode: 'text',
       },
       {
         field: 'position',
-        header: 'المنصب',
+        header: 'PAGES.LEADERS.FORM.POSITION',
         filter: true,
         filterMode: 'text',
       },
       {
         field: 'mamberName',
-        header: 'اسم عضو هيئة التدريس',
+        header: 'PAGES.LEADERS.FORM.MEMBER',
         filter: true,
         filterMode: 'text',
       },
@@ -104,15 +104,18 @@ export class LeaderComponent extends BaseListComponent {
   }
 
   openAdd() {
-    this.openDialog(AddEditLeaderComponent, 'اضافة بيانات القائد', {
-      pageType: 'add',
-    });
+    this.openDialog(
+      AddEditLeaderComponent,
+      this.localize.translate.instant('PAGES.LEADERS.ADD.PAGE_TITLE'),
+      { pageType: 'add' },
+    );
   }
 
   openEdit(rowData: any) {
-    this.openDialog(AddEditLeaderComponent, 'تعديل بيانات القائد', {
-      pageType: 'edit',
-      row: { rowData },
-    });
+    this.openDialog(
+      AddEditLeaderComponent,
+      this.localize.translate.instant('PAGES.LEADERS.EDIT.PAGE_TITLE'),
+      { pageType: 'edit', row: { rowData } },
+    );
   }
 }

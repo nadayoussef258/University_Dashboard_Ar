@@ -88,12 +88,12 @@ export class AppMenu {
             items: [
               {
                 label: 'الإدارات الرئيسية',
-
+                icon: 'pi pi-angle-left',
                 routerLink: ['/pages/managements'],
               },
               {
                 label: 'تفاصيل الإدارات',
-
+                icon: 'pi pi-angle-left',
                 routerLink: ['/pages/management-details'],
               },
               {
@@ -110,17 +110,20 @@ export class AppMenu {
             items: [
               {
                 label: 'الوحدات الرئيسية',
-                icon: 'pi pi-building',
+                // icon: 'pi pi-building',
+                icon: 'pi pi-angle-left',
                 routerLink: ['/pages/units'],
               },
               {
                 label: 'تفاصيل الوحدات',
-                icon: 'pi pi-list',
+                // icon: 'pi pi-list',
+                icon: 'pi pi-angle-left',
                 routerLink: ['/pages/unit-details'],
               },
               {
                 label: 'أعضاء الوحدات',
-                icon: 'pi pi-users',
+                // icon: 'pi pi-users',
+                icon: 'pi pi-angle-left',
                 routerLink: ['/pages/unit-members'],
               },
             ],
@@ -131,17 +134,20 @@ export class AppMenu {
             items: [
               {
                 label: 'المراكز الرئيسية',
-                icon: 'pi pi-building',
+                // icon: 'pi pi-building',
+                icon: 'pi pi-angle-left',
                 routerLink: ['/pages/centers'],
               },
               {
                 label: 'تفاصيل المراكز',
-                icon: 'pi pi-info-circle',
+                // icon: 'pi pi-info-circle',
+                icon: 'pi pi-angle-left',
                 routerLink: ['/pages/center-details'],
               },
               {
                 label: 'أعضاء المراكز',
-                icon: 'pi pi-users',
+                // icon: 'pi pi-users',
+                icon: 'pi pi-angle-left',
                 routerLink: ['/pages/center-members'],
               },
             ],
@@ -152,17 +158,20 @@ export class AppMenu {
             items: [
               {
                 label: 'البرامج الرئيسية',
-                icon: 'pi pi-th-large',
+                // icon: 'pi pi-th-large',
+                icon: 'pi pi-angle-left',
                 routerLink: ['/pages/programs'],
               },
               {
                 label: 'تفاصيل البرامج',
-                icon: 'pi pi-file',
+                // icon: 'pi pi-file',
+                icon: 'pi pi-angle-left',
                 routerLink: ['/pages/program-details'],
               },
               {
                 label: 'أعضاء البرامج',
-                icon: 'pi pi-user',
+                // icon: 'pi pi-user',
+                icon: 'pi pi-angle-left',
                 routerLink: ['/pages/program-members'],
               },
             ],
@@ -173,37 +182,44 @@ export class AppMenu {
             items: [
               {
                 label: 'القطاعات الرئيسية',
-                icon: 'pi pi-building',
+                // icon: 'pi pi-building',
+                icon: 'pi pi-angle-left',
                 routerLink: ['/pages/sectors'],
               },
               {
                 label: 'تفاصيل القطاعات',
-                icon: 'pi pi-list',
+                // icon: 'pi pi-list',
+                icon: 'pi pi-angle-left',
                 routerLink: ['/pages/sector-details'],
               },
               {
                 label: 'أعضاء القطاعات',
-                icon: 'pi pi-users',
+                // icon: 'pi pi-users',
+                icon: 'pi pi-angle-left',
                 routerLink: ['/pages/sector-members'],
               },
               {
                 label: 'منشورات القطاعات',
-                icon: 'pi pi-send',
+                // icon: 'pi pi-send',
+                icon: 'pi pi-angle-left',
                 routerLink: ['/pages/sector-posts'],
               },
               {
                 label: 'برامج القطاعات',
-                icon: 'pi pi-sliders-h',
+                // icon: 'pi pi-sliders-h',
+                icon: 'pi pi-angle-left',
                 routerLink: ['/pages/sector-programs'],
               },
               {
                 label: 'وحدات القطاعات',
-                icon: 'pi pi-building',
+                // icon: 'pi pi-building',
+                icon: 'pi pi-angle-left',
                 routerLink: ['/pages/sector-units'],
               },
               {
                 label: 'خدمات القطاعات',
-                icon: 'pi  pi-cog',
+                // icon: 'pi  pi-cog',
+                icon: 'pi pi-angle-left',
                 routerLink: ['/pages/sector-services'],
               },
             ],
@@ -214,7 +230,7 @@ export class AppMenu {
             routerLink: ['/pages/posts'],
           },
           {
-            label: 'اعضاء هيئة التدريس',
+            label: 'أعضاء هيئة التدريس',
             icon: 'pi pi-user-edit',
             routerLink: ['/pages/members'],
           },

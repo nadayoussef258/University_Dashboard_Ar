@@ -1,90 +1,164 @@
 <p-card class="m-0 p-2">
   @if (form) {
-  <form method="post" class="grid gap-4 grid-cols-12" [formGroup]="form">
-    <div class="col-span-12 ">
-      <label class="text-middle mb-3">هل هو رئيس الجامعة؟</label>
-      <div class="flex gap-3 items-center">
-        <p-toggleswitch formControlName="isPresident"></p-toggleswitch>
-        <span
-          class="border rounded-full font-semibold text-sm py-1 px-3 transition-all gap-2 duration-300 inline-flex items-center"
-          [ngClass]="
-            form.get('isPresident')?.value
-              ? 'bg-blue-100 text-blue-700 border-blue-300'
-              : 'bg-gray-100 text-gray-600 border-gray-300'
-          ">
-          <i class="text-base" [ngClass]="
-              form.get('isLeader')?.value
-                ? 'pi pi-star text-blue-500'
-                : 'pi pi-user text-gray-500'
-            "></i>
-          {{ form.get("isLeader")?.value ? "عضو بالجامعة" : "رئيس جامعة" }}
-        </span>
+    <form method="post" class="grid gap-4 grid-cols-12" [formGroup]="form">
+      <div class="col-span-12">
+        <label class="text-middle mb-3">
+          {{ "PAGES.MEMBERS.FORM.IS_PRESIDENT.QUESTION" | translate }}
+        </label>
+        <div class="flex gap-3 items-center">
+          <p-toggleswitch formControlName="isPresident"></p-toggleswitch>
+          <span
+            class="border rounded-full font-semibold text-sm py-1 px-3 transition-all gap-2 duration-300 inline-flex items-center"
+            [ngClass]="
+              form.get('isPresident')?.value
+                ? 'bg-blue-100 text-blue-700 border-blue-300'
+                : 'bg-gray-100 text-gray-600 border-gray-300'
+            "
+          >
+            <i
+              class="text-base"
+              [ngClass]="
+                form.get('isPresident')?.value
+                  ? 'pi pi-star text-blue-500'
+                  : 'pi pi-user text-gray-500'
+              "
+            ></i>
+            {{
+              form.get("isPresident")?.value
+                ? ("PAGES.MEMBERS.FORM.IS_PRESIDENT.PRESIDENT" | translate)
+                : ("PAGES.MEMBERS.FORM.IS_PRESIDENT.MEMBER" | translate)
+            }}
+          </span>
+        </div>
       </div>
-    </div>
 
-    <div class="form-col">
-      <app-prime-input-text [formGroup]="form" controlName="fullName" [label]="'الاسم بالكامل'">
-      </app-prime-input-text>
-    </div>
+      <div class="form-col">
+        <app-prime-input-text
+          [formGroup]="form"
+          controlName="fullName"
+          [label]="'PAGES.MEMBERS.FORM.FULL_NAME'"
+        >
+        </app-prime-input-text>
+      </div>
 
-    <div class="form-col">
-      <app-prime-input-text [formGroup]="form" controlName="position" [label]="'المنصب'">
-      </app-prime-input-text>
-    </div>
+      <div class="form-col">
+        <app-prime-input-text
+          [formGroup]="form"
+          controlName="position"
+          [label]="'PAGES.MEMBERS.FORM.POSITION'"
+        >
+        </app-prime-input-text>
+      </div>
 
-    <div class="col-span-12">
-      <app-prime-input-text [formGroup]="form" controlName="specialization" [label]="'التخصص'">
-      </app-prime-input-text>
-    </div>
+      <div class="col-span-12">
+        <app-prime-input-text
+          [formGroup]="form"
+          controlName="specialization"
+          [label]="'PAGES.MEMBERS.FORM.SPECIALIZATION'"
+        >
+        </app-prime-input-text>
+      </div>
 
-    <div class="form-col ">
-      <label class="text-middle mb-2">{{ 'الصفحة' }}</label>
-      <app-prime-autocomplete [field]="'title'" [selectedOption]="selectedPage" [suggestions]="filteredPages"
-        [formGroup]="form" (onSelect)="onPageSelect($event)" [lazy]="false"
-        (handleMethod)="getPages($event)"></app-prime-autocomplete>
-    </div>
+      <div class="form-col">
+        <label class="text-middle mb-2">
+          {{ "PAGES.SHARE_FORM.PAGE" | translate }}
+        </label>
+        <app-prime-autocomplete
+          [field]="'title'"
+          [selectedOption]="selectedPage"
+          [suggestions]="filteredPages"
+          [formGroup]="form"
+          (onSelect)="onPageSelect($event)"
+          [lazy]="false"
+          (handleMethod)="getPages($event)"
+        ></app-prime-autocomplete>
+      </div>
 
-    <div class="form-col ">
-      <label class="text-middle mb-2">{{ 'القطاع' }}</label>
-      <app-prime-autocomplete [field]="'id'" [selectedOption]="selectedSectorMember"
-        [suggestions]="filteredSectorMembers" [formGroup]="form" (onSelect)="onSectorMemberSelect($event)"
-        [lazy]="false" (handleMethod)="getSectorMembers($event)"></app-prime-autocomplete>
-    </div>
+      <div class="form-col">
+        <label class="text-middle mb-2">
+          {{ "PAGES.SHARE_FORM.SECTOR" | translate }}
+        </label>
+        <app-prime-autocomplete
+          [field]="'id'"
+          [selectedOption]="selectedSectorMember"
+          [suggestions]="filteredSectorMembers"
+          [formGroup]="form"
+          (onSelect)="onSectorMemberSelect($event)"
+          [lazy]="false"
+          (handleMethod)="getSectorMembers($event)"
+        ></app-prime-autocomplete>
+      </div>
 
-    <div class="form-col ">
-      <label class="text-middle mb-2">{{ 'البرنامج' }}</label>
-      <app-prime-autocomplete [field]="'id'" [selectedOption]="selectedProgramMember"
-        [suggestions]="filteredProgramMembers" [formGroup]="form" (onSelect)="onProgramMemberSelect($event)"
-        [lazy]="false" (handleMethod)="getProgramMembers($event)"></app-prime-autocomplete>
-    </div>
+      <div class="form-col">
+        <label class="text-middle mb-2">
+          {{ "PAGES.SHARE_FORM.PROGRAM" | translate }}
+        </label>
+        <app-prime-autocomplete
+          [field]="'id'"
+          [selectedOption]="selectedProgramMember"
+          [suggestions]="filteredProgramMembers"
+          [formGroup]="form"
+          (onSelect)="onProgramMemberSelect($event)"
+          [lazy]="false"
+          (handleMethod)="getProgramMembers($event)"
+        ></app-prime-autocomplete>
+      </div>
 
-    <div class="form-col ">
-      <label class="text-middle mb-2">{{ 'الإدارة' }}</label>
-      <app-prime-autocomplete [field]="'id'" [selectedOption]="selectedManagementMember"
-        [suggestions]="filteredManagementMembers" [formGroup]="form" (onSelect)="onManagementMemberSelect($event)"
-        [lazy]="false" (handleMethod)="getManagementMembers($event)"></app-prime-autocomplete>
-    </div>
+      <div class="form-col">
+        <label class="text-middle mb-2">
+          {{ "PAGES.SHARE_FORM.MANAGEMENT" | translate }}
+        </label>
+        <app-prime-autocomplete
+          [field]="'id'"
+          [selectedOption]="selectedManagementMember"
+          [suggestions]="filteredManagementMembers"
+          [formGroup]="form"
+          (onSelect)="onManagementMemberSelect($event)"
+          [lazy]="false"
+          (handleMethod)="getManagementMembers($event)"
+        ></app-prime-autocomplete>
+      </div>
 
-    <div class="form-col ">
-      <label class="text-middle mb-2">{{ 'المركز' }}</label>
-      <app-prime-autocomplete [field]="'id'" [selectedOption]="selectedCenterMember"
-        [suggestions]="filteredCenterMembers" [formGroup]="form" (onSelect)="onCenterMemberSelect($event)"
-        [lazy]="false" (handleMethod)="getCenterMembers($event)"></app-prime-autocomplete>
-    </div>
+      <div class="form-col">
+        <label class="text-middle mb-2">
+          {{ "PAGES.SHARE_FORM.CENTER" | translate }}
+        </label>
+        <app-prime-autocomplete
+          [field]="'id'"
+          [selectedOption]="selectedCenterMember"
+          [suggestions]="filteredCenterMembers"
+          [formGroup]="form"
+          (onSelect)="onCenterMemberSelect($event)"
+          [lazy]="false"
+          (handleMethod)="getCenterMembers($event)"
+        ></app-prime-autocomplete>
+      </div>
 
-    <div class="form-col ">
-      <label class="text-middle mb-2">{{ 'الوحدة' }}</label>
-      <app-prime-autocomplete [field]="'id'" [selectedOption]="selectedUnitMember" [suggestions]="filteredUnitMembers"
-        [formGroup]="form" (onSelect)="onUnitMemberSelect($event)" [lazy]="false"
-        (handleMethod)="getUnitMembers($event)"></app-prime-autocomplete>
-    </div>
-
-  </form>
+      <div class="form-col">
+        <label class="text-middle mb-2">
+          {{ "PAGES.SHARE_FORM.UNIT" | translate }}
+        </label>
+        <app-prime-autocomplete
+          [field]="'id'"
+          [selectedOption]="selectedUnitMember"
+          [suggestions]="filteredUnitMembers"
+          [formGroup]="form"
+          (onSelect)="onUnitMemberSelect($event)"
+          [lazy]="false"
+          (handleMethod)="getUnitMembers($event)"
+        ></app-prime-autocomplete>
+      </div>
+    </form>
   }
 </p-card>
 
 @if (form) {
-<app-submit-buttons [isSubmitDisabled]="form.invalid" [submitButtonText]="pageType === 'add' ? 'Submit' : 'Save'" [buttonText]="pageType === 'add' ? 'اضافة' : 'حفظ'"
-   (submit)="submit()" (cancel)="redirect()">
-</app-submit-buttons>
+  <app-submit-buttons
+    [isSubmitDisabled]="form.invalid"
+    [submitButtonText]="pageType === 'add' ? 'Submit' : 'Save'"
+    [buttonText]="pageType === 'add' ? 'اضافة' : 'حفظ'"
+    (submit)="submit()"
+    (cancel)="redirect()"
+  >
+  </app-submit-buttons>
 }

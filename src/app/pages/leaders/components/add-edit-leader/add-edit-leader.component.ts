@@ -16,6 +16,7 @@ import { DialogService } from 'primeng/dynamicdialog';
 import { ActivatedRoute } from '@angular/router';
 import { ToggleSwitchModule } from 'primeng/toggleswitch';
 import { LeadersService } from '../../../../shared/services/pages/leaders/leaders.service';
+import { TranslatePipe } from '@ngx-translate/core';
 
 @Component({
   selector: 'app-add-edit-leader',
@@ -27,6 +28,7 @@ import { LeadersService } from '../../../../shared/services/pages/leaders/leader
     PrimeInputTextComponent,
     ToggleSwitchModule,
     PrimeAutoCompleteComponent,
+    TranslatePipe,
   ],
   templateUrl: './add-edit-leader.component.html',
   styleUrl: './add-edit-leader.component.css',

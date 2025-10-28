@@ -67,15 +67,15 @@ export class UnitMembersComponent extends BaseListComponent {
     return [
       {
         field: 'isLeader',
-        header: 'الحالة',
-        trueText: 'ادمن',
-        falseText: 'مستخدم',
+        header: 'PAGES.SHARE_FORM.IS_LEADER.TITLE',
+        trueText: 'PAGES.SHARE_FORM.IS_LEADER.LEADER',
+        falseText: 'PAGES.SHARE_FORM.IS_LEADER.PERSON',
         filter: true,
         filterMode: 'boolean',
       },
       {
         field: 'unitId',
-        header: 'الوحدة',
+        header: 'PAGES.SHARE_FORM.UNIT',
         filter: true,
         filterMode: 'text',
       },
@@ -105,16 +105,24 @@ export class UnitMembersComponent extends BaseListComponent {
   }
 
   openAdd() {
-    this.openDialog(AddEditUnitMemberComponent, 'اضافة عضو للوحدة', {
-      pageType: 'add',
-      row: { unitId: this.unitId },
-    });
+    this.openDialog(
+      AddEditUnitMemberComponent,
+      this.localize.translate.instant('PAGES.UNIT_MEMBERS.ADD.PAGE_TITLE'),
+      {
+        pageType: 'add',
+        row: { unitId: this.unitId },
+      },
+    );
   }
 
   openEdit(rowData: any) {
-    this.openDialog(AddEditUnitMemberComponent, 'تعديل عضو الوحدة', {
-      pageType: 'edit',
-      row: { rowData },
-    });
+    this.openDialog(
+      AddEditUnitMemberComponent,
+      this.localize.translate.instant('PAGES.UNIT_MEMBERS.EDIT.PAGE_TITLE'),
+      {
+        pageType: 'edit',
+        row: { rowData },
+      },
+    );
   }
 }

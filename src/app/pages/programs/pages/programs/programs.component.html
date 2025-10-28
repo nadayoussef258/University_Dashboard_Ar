@@ -1,5 +1,7 @@
 <div class="flex-column h-100 page-wrapper d-flex card">
-  <app-prime-title-toolbar [pageTitle]="'البرامج'"></app-prime-title-toolbar>
+  <app-prime-title-toolbar
+    [pageTitle]="pageTitle || 'PAGES.PROGRAMS.MAIN.PAGE_TITLE'"
+  ></app-prime-title-toolbar>
 
   <div class="dataBox">
     <a class="addLink" [routerLink]="['add']">

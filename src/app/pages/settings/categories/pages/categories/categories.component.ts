@@ -64,13 +64,13 @@ export class CategoriesComponent extends BaseListComponent {
     return [
       {
         field: 'code',
-        header: 'SETTINGS.CATEGORIES.FORM.CODE',
+        header: 'PAGES.CATEGORIES.FORM.CODE',
         filter: true,
         filterMode: 'text',
       },
       {
         field: 'name',
-        header: 'SETTINGS.CATEGORIES.FORM.NAME',
+        header: 'PAGES.CATEGORIES.FORM.NAME',
         filter: true,
         filterMode: 'text',
       },
@@ -102,7 +102,7 @@ export class CategoriesComponent extends BaseListComponent {
   openAdd() {
     this.openDialog(
       AddEditCategoryComponent,
-      this.localize.translate.instant('SETTINGS.CATEGORIES.ADD.PAGE_TITLE'),
+      this.localize.translate.instant('PAGES.CATEGORIES.ADD.PAGE_TITLE'),
       {
         pageType: 'add',
       },
@@ -112,7 +112,7 @@ export class CategoriesComponent extends BaseListComponent {
   openEdit(rowData: any) {
     this.openDialog(
       AddEditCategoryComponent,
-      this.localize.translate.instant('SETTINGS.CATEGORIES.EDIT.PAGE_TITLE'),
+      this.localize.translate.instant('PAGES.CATEGORIES.EDIT.PAGE_TITLE'),
       {
         pageType: 'edit',
         row: { rowData },

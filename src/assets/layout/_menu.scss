@@ -116,7 +116,7 @@
       &.active-route {
         font-weight: 700;
         color: var(--secondary-color);
-        background: white;
+        background: oklch(1 0 0 / 0.18);
       }
 
       &:hover {

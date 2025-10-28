@@ -116,9 +116,7 @@ export class ServicesComponent extends BaseListComponent {
     this.openDialog(
       AddEditServiceComponent,
       this.localize.translate.instant('SETTINGS.SERVICES.ADD.PAGE_TITLE'),
-      {
-        pageType: 'add',
-      },
+      { pageType: 'add' },
     );
   }
 
@@ -126,10 +124,7 @@ export class ServicesComponent extends BaseListComponent {
     this.openDialog(
       AddEditServiceComponent,
       this.localize.translate.instant('SETTINGS.SERVICES.EDIT.PAGE_TITLE'),
-      {
-        pageType: 'edit',
-        row: { rowData },
-      },
+      { pageType: 'edit', row: { rowData } },
     );
   }
 }

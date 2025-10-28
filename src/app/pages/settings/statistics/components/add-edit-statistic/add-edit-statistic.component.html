@@ -1,34 +1,75 @@
 <p-card class="m-0 p-2">
   @if (form) {
-  <form method="post" class="row" [formGroup]="form">
+    <form method="post" class="grid gap-4 grid-cols-12" [formGroup]="form">
+      <div class="form-col">
+        <app-prime-input-text
+          [formGroup]="form"
+          controlName="title"
+          [label]="'SETTINGS.STATISTICS.FORM.TITLE'"
+        >
+        </app-prime-input-text>
+      </div>
 
-    <div class="col-lg-6">
-      <app-prime-input-text [formGroup]="form" controlName="title" [label]="'العنوان'">
-      </app-prime-input-text>
-    </div>
+      <div class="form-col">
+        <app-prime-input-text
+          [formGroup]="form"
+          controlName="value"
+          [label]="'SETTINGS.STATISTICS.FORM.VALUE'"
+        >
+        </app-prime-input-text>
+      </div>
 
-    <div class="col-lg-6">
-      <app-prime-input-text [formGroup]="form" controlName="value" [label]="'القيمة'">
-      </app-prime-input-text>
-    </div>
+      <div class="form-col">
+        <app-prime-input-text
+          [formGroup]="form"
+          controlName="iconPath"
+          [label]="'SETTINGS.STATISTICS.FORM.ICON_PATH'"
+        >
+        </app-prime-input-text>
+      </div>
 
-    <div class="col-lg-6">
-      <app-prime-input-text [formGroup]="form" controlName="iconPath" [label]="'مسار الأيقونة'">
-      </app-prime-input-text>
-    </div>
+      <div class="col-span-12">
+        <label class="text-middle mb-3">
+          {{ "SETTINGS.SERVICES.FORM.IS_ACTIVE.TITLE" | translate }}
+        </label>
 
-    <div class="col-12 mt-2">
-      <label class="font-semibold d-block mb-2">الحالة</label>
-      <p-toggleswitch formControlName="isActive"></p-toggleswitch>
-      <span class="ms-2">{{ form.get('isActive')?.value ? 'نشط' : 'غير نشط' }}</span>
-    </div>
+        <div class="flex gap-3 items-center">
+          <p-toggleswitch formControlName="isActive"></p-toggleswitch>
 
-  </form>
+          <span
+            class="border rounded-full font-semibold text-sm py-1 px-3 transition-all gap-2 duration-300 inline-flex items-center"
+            [ngClass]="
+              form.get('isActive')?.value
+                ? 'bg-green-100 text-green-700 border-green-300'
+                : 'bg-red-100 text-red-700 border-red-300'
+            "
+          >
+            <i
+              class="text-base"
+              [ngClass]="
+                form.get('isActive')?.value
+                  ? 'pi pi-check-circle text-green-500'
+                  : 'pi pi-times-circle text-red-500'
+              "
+            ></i>
+            {{
+              form.get("isActive")?.value
+                ? ("SETTINGS.SERVICES.FORM.IS_ACTIVE.ACTIVE" | translate)
+                : ("SETTINGS.SERVICES.FORM.IS_ACTIVE.IN_ACTIVE" | translate)
+            }}
+          </span>
+        </div>
+      </div>
+    </form>
   }
 </p-card>
 
 @if (form) {
-<app-submit-buttons [isSubmitDisabled]="form.invalid" [submitButtonText]="pageType === 'add' ? 'إضافة' : 'حفظ'"
-  (submit)="submit()" (cancel)="closeDialog()">
-</app-submit-buttons>
+  <app-submit-buttons
+    [isSubmitDisabled]="form.invalid"
+    [submitButtonText]="pageType === 'add' ? 'إضافة' : 'حفظ'"
+    (submit)="submit()"
+    (cancel)="closeDialog()"
+  >
+  </app-submit-buttons>
 }

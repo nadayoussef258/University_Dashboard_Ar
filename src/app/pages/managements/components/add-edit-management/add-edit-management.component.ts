@@ -12,7 +12,8 @@ import {
 import { DialogService } from 'primeng/dynamicdialog';
 import { ActivatedRoute } from '@angular/router';
 import { TabsModule } from 'primeng/tabs';
-import { ManagmentIdService } from '../../managment-id.service';
+import { ManagementIdService } from '../../management-id.service';
+import { TranslatePipe } from '@ngx-translate/core';
 
 @Component({
   selector: 'app-add-edit-management',
@@ -23,6 +24,7 @@ import { ManagmentIdService } from '../../managment-id.service';
     ReactiveFormsModule,
     SubmitButtonsComponent,
     PrimeAutoCompleteComponent,
+    TranslatePipe,
   ],
   templateUrl: './add-edit-management.component.html',
   styleUrl: './add-edit-management.component.css',
@@ -42,7 +44,7 @@ export class AddEditManagementComponent
   managementsService: ManagementsService = inject(ManagementsService);
   pagesService: PagesService = inject(PagesService);
   aboutService: AboutService = inject(AboutService);
-  managementIdServices = inject(ManagmentIdService);
+  managementIdServices = inject(ManagementIdService);
 
   dialogService: DialogService = inject(DialogService);
 

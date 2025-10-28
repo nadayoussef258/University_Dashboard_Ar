@@ -8,7 +8,7 @@ export const categoriesRoutes: Routes = [
         (c) => c.CategoriesComponent,
       ),
     data: {
-      pageTitle: 'SETTINGS.CATEGORIES.MAIN.PAGE_TITLE',
+      pageTitle: 'PAGES.CATEGORIES.MAIN.PAGE_TITLE',
       pageType: 'list',
     },
   },
@@ -18,7 +18,7 @@ export const categoriesRoutes: Routes = [
       import('./components/add-edit-category/add-edit-category.component').then(
         (c) => c.AddEditCategoryComponent,
       ),
-    data: { pageTitle: 'SETTINGS.CATEGORIES.ADD.PAGE_TITLE', pageType: 'add' },
+    data: { pageTitle: 'PAGES.CATEGORIES.ADD.PAGE_TITLE', pageType: 'add' },
   },
   {
     path: 'edit/:id',
@@ -27,7 +27,7 @@ export const categoriesRoutes: Routes = [
         (c) => c.AddEditCategoryComponent,
       ),
     data: {
-      pageTitle: 'SETTINGS.CATEGORIES.EDIT.PAGE_TITLE',
+      pageTitle: 'PAGES.CATEGORIES.EDIT.PAGE_TITLE',
       pageType: 'edit',
     },
   },

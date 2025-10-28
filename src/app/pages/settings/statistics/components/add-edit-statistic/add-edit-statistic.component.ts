@@ -10,6 +10,8 @@ import {
 import { DialogService } from 'primeng/dynamicdialog';
 import { ActivatedRoute } from '@angular/router';
 import { ToggleSwitchModule } from 'primeng/toggleswitch';
+import { TranslatePipe } from '@ngx-translate/core';
+import { NgClass } from '@angular/common';
 
 @Component({
   selector: 'app-add-edit-statistic',
@@ -20,6 +22,8 @@ import { ToggleSwitchModule } from 'primeng/toggleswitch';
     SubmitButtonsComponent,
     PrimeInputTextComponent,
     ToggleSwitchModule,
+    NgClass,
+    TranslatePipe,
   ],
   templateUrl: './add-edit-statistic.component.html',
   styleUrl: './add-edit-statistic.component.css',

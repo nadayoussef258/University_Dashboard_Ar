@@ -2,12 +2,13 @@ import { Component, OnInit } from '@angular/core';
 import { BaseEditComponent } from '../../../../base/components/base-edit-component';
 import { RouterLink, RouterOutlet } from '@angular/router';
 import { TabsModule } from 'primeng/tabs';
+import { TranslatePipe } from '@ngx-translate/core';
 
 @Component({
-  selector: 'app-add-edit-main-info-managments',
-  imports: [TabsModule, RouterLink, RouterOutlet],
-  templateUrl: './add-edit-main-info-managments.component.html',
-  styleUrls: ['./add-edit-main-info-managments.component.css'],
+  selector: 'app-add-edit-main-info-managements',
+  imports: [TabsModule, RouterLink, RouterOutlet, TranslatePipe],
+  templateUrl: './managements-tabs.component.html',
+  styleUrls: ['./managements-tabs.component.css'],
 })
 //
 export class AddEditMainInfoManagementComponent
@@ -19,9 +20,13 @@ export class AddEditMainInfoManagementComponent
   tabs = [
     {
       route: 'management-detail',
-      label: 'تفاصيل الادارة',
+      label: 'PAGES.MANAGEMENT_DETAILS.MAIN.PAGE_TITLE',
       icon: 'pi pi-chart-line',
     },
-    { route: 'management-member', label: 'عضو الادارة', icon: 'pi pi-users' },
+    {
+      route: 'management-member',
+      label: 'PAGES.MANAGEMENT_MEMBERS.MAIN.PAGE_TITLE',
+      icon: 'pi pi-users',
+    },
   ];
 }

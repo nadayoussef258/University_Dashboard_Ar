@@ -68,13 +68,13 @@ export class ActionsComponent extends BaseListComponent {
     return [
       {
         field: 'code',
-        header: 'SETTINGS.ACTION.FORM.CODE',
+        header: 'PAGES.ACTIONS.FORM.CODE',
         filter: true,
         filterMode: 'text',
       },
       {
         field: 'name',
-        header: 'SETTINGS.ACTION.FORM.NAME',
+        header: 'PAGES.ACTIONS.FORM.NAME',
         filter: true,
         filterMode: 'text',
       },
@@ -106,7 +106,7 @@ export class ActionsComponent extends BaseListComponent {
   openAdd() {
     this.openDialog(
       AddEditActionComponent,
-      this.localize.translate.instant('SETTINGS.ACTION.ADD.PAGE_TITLE'),
+      this.localize.translate.instant('PAGES.ACTIONS.ADD.PAGE_TITLE'),
       {
         pageType: 'add',
       },
@@ -116,7 +116,7 @@ export class ActionsComponent extends BaseListComponent {
   openEdit(rowData: any) {
     this.openDialog(
       AddEditActionComponent,
-      this.localize.translate.instant('SETTINGS.ACTION.EDIT.PAGE_TITLE'),
+      this.localize.translate.instant('PAGES.ACTIONS.EDIT.PAGE_TITLE'),
       {
         pageType: 'edit',
         row: { rowData },

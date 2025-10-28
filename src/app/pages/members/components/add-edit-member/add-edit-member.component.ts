@@ -18,6 +18,7 @@ import { ActivatedRoute } from '@angular/router';
 import { ToggleSwitch } from 'primeng/toggleswitch';
 import { NgClass } from '@angular/common';
 import { MemberIdService } from '../../member-id.service';
+import { TranslatePipe } from '@ngx-translate/core';
 @Component({
   selector: 'app-add-edit-member',
   imports: [
@@ -29,6 +30,7 @@ import { MemberIdService } from '../../member-id.service';
     ToggleSwitch,
     PrimeAutoCompleteComponent,
     NgClass,
+    TranslatePipe,
   ],
   templateUrl: './add-edit-member.component.html',
   styleUrl: './add-edit-member.component.css',

@@ -5,9 +5,12 @@ export const managementDetailsRoutes: Routes = [
     path: '',
     loadComponent: () =>
       import('./management-details.component').then(
-        (c) => c.ManagementDetailsComponent
+        (c) => c.ManagementDetailsComponent,
       ),
-    data: { pageTitle: 'تفاصيل الإدارات', pageType: 'list' },
+    data: {
+      pageTitle: 'PAGES.MANAGEMENT_DETAILS.MAIN.PAGE_TITLE',
+      pageType: 'list',
+    },
     canActivate: [clearManagementIdGuard],
   },
   {
@@ -16,7 +19,10 @@ export const managementDetailsRoutes: Routes = [
       import(
         '../add-edit-management-detail/add-edit-management-detail.component'
       ).then((c) => c.AddEditManagementDetailComponent),
-    data: { pageTitle: 'اضافة تفاصيل للإدارة', pageType: 'add' },
+    data: {
+      pageTitle: 'PAGES.MANAGEMENT_DETAILS.ADD.PAGE_TITLE',
+      pageType: 'add',
+    },
   },
   {
     path: 'edit/:id',
@@ -24,6 +30,9 @@ export const managementDetailsRoutes: Routes = [
       import(
         '../add-edit-management-detail/add-edit-management-detail.component'
       ).then((c) => c.AddEditManagementDetailComponent),
-    data: { pageTitle: 'تعديل تفاصيل الإدارة', pageType: 'edit' },
+    data: {
+      pageTitle: 'PAGES.MANAGEMENT_DETAILS.EDIT.PAGE_TITLE',
+      pageType: 'edit',
+    },
   },
 ];

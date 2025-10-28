@@ -9,17 +9,17 @@ export const programsRoutes: Routes = [
     path: '',
     loadComponent: () =>
       import('./pages/programs/programs.component').then(
-        (c) => c.ProgramsComponent
+        (c) => c.ProgramsComponent,
       ),
-    data: { pageTitle: 'البرامج', pageType: 'list' },
+    data: { pageTitle: 'PAGES.PROGRAMS.MAIN.PAGE_TITLE', pageType: 'list' },
   },
   {
     path: 'add',
     loadComponent: () =>
       import('./components/programs-tabs/programs-tabs.component').then(
-        (c) => c.ProgramsTabsComponent
+        (c) => c.ProgramsTabsComponent,
       ),
-    data: { pageTitle: 'إضافة برنامج', pageType: 'add' },
+    data: { pageTitle: 'PAGES.PROGRAMS.ADD.PAGE_TITLE', pageType: 'add' },
     children: [
       {
         path: '',
@@ -27,7 +27,7 @@ export const programsRoutes: Routes = [
           import(
             './components/add-edit-program/add-edit-program.component'
           ).then((c) => c.AddEditProgramComponent),
-        data: { pageTitle: 'إضافة برنامج', pageType: 'add' },
+        data: { pageTitle: 'PAGES.PROGRAMS.ADD.PAGE_TITLE', pageType: 'add' },
       },
     ],
   },
@@ -35,9 +35,9 @@ export const programsRoutes: Routes = [
     path: 'edit/:id',
     loadComponent: () =>
       import('./components/programs-tabs/programs-tabs.component').then(
-        (c) => c.ProgramsTabsComponent
+        (c) => c.ProgramsTabsComponent,
       ),
-    data: { pageTitle: 'تعديل برنامج', pageType: 'edit' },
+    data: { pageTitle: 'PAGES.PROGRAMS.EDIT.PAGE_TITLE', pageType: 'edit' },
     children: [
       {
         path: '',
@@ -46,25 +46,31 @@ export const programsRoutes: Routes = [
           import(
             './components/add-edit-program/add-edit-program.component'
           ).then((c) => c.AddEditProgramComponent),
-        data: { pageTitle: 'تعديل برنامج', pageType: 'edit' },
+        data: { pageTitle: 'PAGES.PROGRAMS.EDIT.PAGE_TITLE', pageType: 'edit' },
       },
       {
         path: 'program-detail',
         canActivate: [redirectOnDirectProgramAccessGuard],
         loadChildren: () =>
           import('./components/program-details/program-details.routes').then(
-            (c) => c.programDetailsRoutes
+            (c) => c.programDetailsRoutes,
           ),
-        data: { pageTitle: 'تفاصيل برنامج', pageType: 'list' },
+        data: {
+          pageTitle: 'PAGES.PROGRAM_DETAIL.MAIN.PAGE_TITLE',
+          pageType: 'list',
+        },
       },
       {
         path: 'program-member',
         canActivate: [redirectOnDirectProgramAccessGuard],
         loadChildren: () =>
           import('./components/program-members/program-members.routes').then(
-            (c) => c.programMembersRoutes
+            (c) => c.programMembersRoutes,
           ),
-        data: { pageTitle: 'اعضاء برنامج', pageType: 'list' },
+        data: {
+          pageTitle: 'PAGES.PROGRAM_MEMBER.MAIN.PAGE_TITLE',
+          pageType: 'list',
+        },
       },
     ],
   },

@@ -7,7 +7,7 @@ export const leadersRoutes: Routes = [
       import('./pages/leaders/leaders.component').then(
         (c) => c.LeaderComponent,
       ),
-    data: { pageTitle: 'القادة', pageType: 'list' },
+    data: { pageTitle: 'PAGES.LEADERS.MAIN.PAGE_TITLE', pageType: 'list' },
   },
   {
     path: 'add',
@@ -15,7 +15,7 @@ export const leadersRoutes: Routes = [
       import('./components/add-edit-leader/add-edit-leader.component').then(
         (c) => c.AddEditLeaderComponent,
       ),
-    data: { pageTitle: 'اضافة بيانات القائد', pageType: 'add' },
+    data: { pageTitle: 'PAGES.LEADERS.ADD.PAGE_TITLE', pageType: 'add' },
   },
   {
     path: 'edit/:id',
@@ -23,6 +23,6 @@ export const leadersRoutes: Routes = [
       import('./components/add-edit-leader/add-edit-leader.component').then(
         (c) => c.AddEditLeaderComponent,
       ),
-    data: { pageTitle: 'تعديل بيانات القائد', pageType: 'edit' },
+    data: { pageTitle: 'PAGES.LEADERS.EDIT.PAGE_TITLE', pageType: 'edit' },
   },
 ];

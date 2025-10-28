@@ -9,7 +9,7 @@ import {
 import { TableOptions } from '../../../../shared/interfaces';
 import { BaseListComponent } from '../../../../base/components/base-list-component';
 import { AddEditManagementMemberComponent } from '../add-edit-management-member/add-edit-management-member.component';
-import { ManagmentIdService } from '../../managment-id.service';
+import { ManagementIdService } from '../../management-id.service';
 import { TranslatePipe } from '@ngx-translate/core';
 
 @Component({
@@ -30,19 +30,19 @@ export class ManagementMembersComponent extends BaseListComponent {
   isEnglish = false;
   tableOptions!: TableOptions;
   service = inject(ManagementMembersService);
-  managmentIdService = inject(ManagmentIdService);
+  managementIdService = inject(ManagementIdService);
 
   constructor(activatedRoute: ActivatedRoute) {
     super(activatedRoute);
   }
 
   override ngOnInit(): void {
-    this.managementId = this.managmentIdService.ManagmentId();
+    this.managementId = this.managementIdService.ManagementId();
 
     this.initializeTableOptions();
     super.ngOnInit();
 
-    this.managementId = this.managmentIdService.ManagmentId();
+    this.managementId = this.managementIdService.ManagementId();
   }
 
   initializeTableOptions() {
@@ -70,15 +70,15 @@ export class ManagementMembersComponent extends BaseListComponent {
     return [
       {
         field: 'isLeader',
-        header: 'الحالة',
-        trueText: 'ادمن',
-        falseText: 'مستخدم',
+        header: 'PAGES.SHARE_FORM.IS_LEADER.TITLE',
+        trueText: 'PAGES.SHARE_FORM.IS_LEADER.LEADER',
+        falseText: 'PAGES.SHARE_FORM.IS_LEADER.PERSON',
         filter: true,
         filterMode: 'boolean',
       },
       {
         field: 'managementId',
-        header: 'الادارة',
+        header: 'PAGES.SHARE_FORM.MANAGEMENT',
         filter: true,
         filterMode: 'text',
       },
@@ -108,16 +108,22 @@ export class ManagementMembersComponent extends BaseListComponent {
   }
 
   openAdd() {
-    this.openDialog(AddEditManagementMemberComponent, 'اضافة عضو للإدارة', {
-      pageType: 'add',
-      row: { managementId: this.managementId },
-    });
+    this.openDialog(
+      AddEditManagementMemberComponent,
+      this.localize.translate.instant(
+        'PAGES.MANAGEMENT_MEMBERS.ADD.PAGE_TITLE',
+      ),
+      { pageType: 'add', row: { managementId: this.managementId } },
+    );
   }
 
   openEdit(rowData: any) {
-    this.openDialog(AddEditManagementMemberComponent, 'تعديل عضو الإدارة', {
-      pageType: 'edit',
-      row: { rowData },
-    });
+    this.openDialog(
+      AddEditManagementMemberComponent,
+      this.localize.translate.instant(
+        'PAGES.MANAGEMENT_MEMBERS.EDIT.PAGE_TITLE',
+      ),
+      { pageType: 'edit', row: { rowData } },
+    );
   }
 }

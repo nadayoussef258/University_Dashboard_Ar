@@ -58,7 +58,13 @@ export class ProgramDetailsComponent extends BaseListComponent {
       bodyOptions: {
         filter: { programId: this.programId },
       },
-      responsiveDisplayedProperties: ['title', 'programCategory', 'content'],
+      responsiveDisplayedProperties: [
+        'title',
+        'programCategory',
+        'content',
+        'facultyId',
+        'programId',
+      ],
     };
   }
 
@@ -66,19 +72,31 @@ export class ProgramDetailsComponent extends BaseListComponent {
     return [
       {
         field: 'title',
-        header: 'العنوان',
+        header: 'PAGES.PROGRAM_DETAILS.FORM.TITLE',
         filter: true,
         filterMode: 'text',
       },
       {
         field: 'programCategory',
-        header: 'نوع البرنامج',
+        header: 'PAGES.PROGRAM_DETAILS.FORM.PROGRAM_CATEGORY',
         filter: true,
         filterMode: 'text',
       },
       {
         field: 'content',
-        header: 'المحتوي',
+        header: 'PAGES.PROGRAM_DETAILS.FORM.CONTENT',
+        filter: true,
+        filterMode: 'text',
+      },
+      {
+        field: 'facultyId',
+        header: 'PAGES.PROGRAM_DETAILS.FORM.FACULTY',
+        filter: true,
+        filterMode: 'text',
+      },
+      {
+        field: 'programId',
+        header: 'PAGES.SHARE_FORM.PROGRAM',
         filter: true,
         filterMode: 'text',
       },

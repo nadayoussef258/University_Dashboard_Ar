@@ -9,7 +9,7 @@ import {
 import { TableOptions } from '../../../../shared/interfaces';
 import { BaseListComponent } from '../../../../base/components/base-list-component';
 import { ToggleSwitchModule } from 'primeng/toggleswitch';
-import { ManagmentIdService } from '../../managment-id.service';
+import { ManagementIdService } from '../../management-id.service';
 import { TranslatePipe } from '@ngx-translate/core';
 
 @Component({
@@ -31,18 +31,17 @@ export class ManagementDetailsComponent extends BaseListComponent {
   tableOptions!: TableOptions;
 
   service = inject(ManagementDetailsService);
-  managmentIdService = inject(ManagmentIdService);
+  managementIdService = inject(ManagementIdService);
 
   constructor(activatedRoute: ActivatedRoute) {
     super(activatedRoute);
-    // this.managementId = this.managmentIdService.ManagmentId();
+    // this.managementId = this.managementIdService.ManagementId();
   }
 
   override ngOnInit(): void {
-    this.managementId = this.managmentIdService.ManagmentId();
+    this.managementId = this.managementIdService.ManagementId();
     this.initializeTableOptions();
     super.ngOnInit();
-    console.log('searchEffect:', this['searchEffec']);
   }
 
   initializeTableOptions() {
@@ -70,19 +69,25 @@ export class ManagementDetailsComponent extends BaseListComponent {
     return [
       {
         field: 'title',
-        header: 'العنوان',
+        header: 'PAGES.MANAGEMENT_DETAILS.FORM.TITLE',
         filter: true,
         filterMode: 'text',
       },
       {
         field: 'description',
-        header: 'الوصف',
+        header: 'PAGES.MANAGEMENT_DETAILS.FORM.DESCRIPTION',
         filter: true,
         filterMode: 'text',
       },
       {
         field: 'content',
-        header: 'المحتوي',
+        header: 'PAGES.MANAGEMENT_DETAILS.FORM.CONTENT',
+        filter: true,
+        filterMode: 'text',
+      },
+      {
+        field: 'managementId',
+        header: 'PAGES.SHARE_FORM.MANAGEMENT',
         filter: true,
         filterMode: 'text',
       },

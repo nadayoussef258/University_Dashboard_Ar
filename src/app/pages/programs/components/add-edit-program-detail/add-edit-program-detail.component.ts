@@ -12,6 +12,7 @@ import {
 import { DialogService } from 'primeng/dynamicdialog';
 import { ActivatedRoute } from '@angular/router';
 import { ProgramIdService } from '../../program-id.service';
+import { TranslatePipe } from '@ngx-translate/core';
 
 @Component({
   selector: 'app-add-edit-program-detail',
@@ -22,6 +23,7 @@ import { ProgramIdService } from '../../program-id.service';
     SubmitButtonsComponent,
     PrimeInputTextComponent,
     PrimeAutoCompleteComponent,
+    TranslatePipe,
   ],
   templateUrl: './add-edit-program-detail.component.html',
   styleUrl: './add-edit-program-detail.component.css',

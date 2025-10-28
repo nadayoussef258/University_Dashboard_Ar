@@ -8,15 +8,15 @@
       <i class="pi pi-user-plus"></i>
       <span>
         @if (pageType === "edit") {
-          {{ "PAGES.PROGRAMS.EDIT.PAGE_TITLE" | translate }}
+          {{ "PAGES.MANAGEMENTS.EDIT.PAGE_TITLE" | translate }}
         } @else {
-          {{ "PAGES.PROGRAMS.ADD.PAGE_TITLE" | translate }}
+          {{ "PAGES.MANAGEMENTS.ADD.PAGE_TITLE" | translate }}
         }
       </span>
     </p-tab>
 
     @if (pageType === "edit") {
-      <!--  -->
+      <!-- <p-tab value="mangment-attachments">{{ 'مرفقات' }}</p-tab> -->
       @for (tab of tabs; track tab.route) {
         <p-tab
           [value]="tab.route"
@@ -27,7 +27,6 @@
           <span>{{ tab.label | translate }}</span>
         </p-tab>
       }
-      <!--  -->
     }
   </p-tablist>
   <p-tabpanels>

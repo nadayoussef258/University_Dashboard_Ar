@@ -1,36 +1,62 @@
 <p-card class="m-0 p-2">
   @if (form) {
-  <form method="post" class="grid gap-4 grid-cols-12" [formGroup]="form">
-    <div class="form-col">
-      <app-prime-input-text [formGroup]="form" controlName="title" [label]="'عنوان التفاصيل'">
-      </app-prime-input-text>
-    </div>
+    <form method="post" class="grid gap-4 grid-cols-12" [formGroup]="form">
+      <div class="form-col">
+        <app-prime-input-text
+          [formGroup]="form"
+          controlName="title"
+          [label]="'PAGES.MANAGEMENT_DETAILS.FORM.TITLE'"
+        >
+        </app-prime-input-text>
+      </div>
 
-    <div class="form-col">
-      <app-prime-input-text [formGroup]="form" controlName="description" [label]="'الوصف المختصر'">
-      </app-prime-input-text>
-    </div>
+      <div class="form-col">
+        <app-prime-input-text
+          [formGroup]="form"
+          controlName="description"
+          [label]="'PAGES.MANAGEMENT_DETAILS.FORM.DESCRIPTION'"
+        >
+        </app-prime-input-text>
+      </div>
 
-    <div class="col-span-12">
-      <app-prime-input-text [formGroup]="form" controlName="content" [label]="'المحتوى التفصيلي'"
-        [inputType]="'textarea'">
-      </app-prime-input-text>
-    </div>
+      <div class="col-span-12">
+        <app-prime-input-text
+          [formGroup]="form"
+          controlName="content"
+          [label]="'PAGES.MANAGEMENT_DETAILS.FORM.CONTENT'"
+          [inputType]="'textarea'"
+        >
+        </app-prime-input-text>
+      </div>
 
-    @if (pageType !== 'add' && managementId || !managementId ) {
-    <div class="form-col">
-      <label class="text-middle mb-2">{{ "الادارة" }}</label>
-      <app-prime-autocomplete [disabled]="!!managementId" [field]="'pageId'" [selectedOption]="selectedManagement"
-        [suggestions]="filteredManagements" [formGroup]="form" (onSelect)="onManagementSelect($event)" [lazy]="false"
-        (handleMethod)="getManagements($event)"></app-prime-autocomplete>
-    </div>
-    }
-  </form>
+      @if ((pageType !== "add" && managementId) || !managementId) {
+        <div class="form-col">
+          <label class="text-middle mb-2">
+            {{ "PAGES.SHARE_FORM.MANAGEMENT" | translate }}
+          </label>
+          <app-prime-autocomplete
+            [disabled]="!!managementId"
+            [field]="'pageId'"
+            [selectedOption]="selectedManagement"
+            [suggestions]="filteredManagements"
+            [formGroup]="form"
+            (onSelect)="onManagementSelect($event)"
+            [lazy]="false"
+            (handleMethod)="getManagements($event)"
+          ></app-prime-autocomplete>
+        </div>
+      }
+    </form>
   }
 </p-card>
 
 @if (form) {
-<app-submit-buttons [isSubmitDisabled]="form.invalid" [submitButtonText]="pageType === 'add' ? 'Submit' : 'Save'"
-  [buttonText]="pageType === 'add' ? 'اضافة' : 'حفظ'" (submit)="submit()" (cancel)="redirect()">
-</app-submit-buttons>
+  <app-submit-buttons
+    [isSubmitDisabled]="form.invalid"
+    [submitButtonText]="pageType === 'add' ? 'Submit' : 'Save'"
+    [buttonText]="pageType === 'add' ? 'اضافة' : 'حفظ'"
+    (submit)="submit()"
+    (cancel)="redirect()"
+  >
+  </app-submit-buttons>
 }

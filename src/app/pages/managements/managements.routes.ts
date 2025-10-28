@@ -9,17 +9,17 @@ export const managementsRoutes: Routes = [
     path: '',
     loadComponent: () =>
       import('./pages/management/managements.component').then(
-        (c) => c.ManagementsComponent
+        (c) => c.ManagementsComponent,
       ),
-    data: { pageTitle: 'ادارة الصفحات والتعريف', pageType: 'list' },
+    data: { pageTitle: 'PAGES.MANAGEMENTS.MAIN.PAGE_TITLE', pageType: 'list' },
   },
   {
     path: 'add',
     loadComponent: () =>
-      import(
-        './components/add-edit-main-info-managments/add-edit-main-info-managments.component'
-      ).then((c) => c.AddEditMainInfoManagementComponent),
-    data: { pageTitle: 'اضافة ادارة', pageType: 'add' },
+      import('./components/managements-tabs/managements-tabs.component').then(
+        (c) => c.AddEditMainInfoManagementComponent,
+      ),
+    data: { pageTitle: 'PAGES.MANAGEMENTS.ADD.PAGE_TITLE', pageType: 'add' },
     children: [
       {
         path: '',
@@ -27,17 +27,20 @@ export const managementsRoutes: Routes = [
           import(
             './components/add-edit-management/add-edit-management.component'
           ).then((c) => c.AddEditManagementComponent),
-        data: { pageTitle: 'اضافة ادارة', pageType: 'add' },
+        data: {
+          pageTitle: 'PAGES.MANAGEMENTS.ADD.PAGE_TITLE',
+          pageType: 'add',
+        },
       },
     ],
   },
   {
     path: 'edit/:id',
     loadComponent: () =>
-      import(
-        './components/add-edit-main-info-managments/add-edit-main-info-managments.component'
-      ).then((c) => c.AddEditMainInfoManagementComponent),
-    data: { pageTitle: 'تعديل ادارة', pageType: 'edit' },
+      import('./components/managements-tabs/managements-tabs.component').then(
+        (c) => c.AddEditMainInfoManagementComponent,
+      ),
+    data: { pageTitle: 'PAGES.MANAGEMENTS.EDIT.PAGE_TITLE', pageType: 'edit' },
     children: [
       {
         path: '',
@@ -46,7 +49,10 @@ export const managementsRoutes: Routes = [
           import(
             './components/add-edit-management/add-edit-management.component'
           ).then((c) => c.AddEditManagementComponent),
-        data: { pageTitle: 'تعديل ادارة', pageType: 'edit' },
+        data: {
+          pageTitle: 'PAGES.MANAGEMENTS.EDIT.PAGE_TITLE',
+          pageType: 'edit',
+        },
       },
       {
         path: 'management-detail',
@@ -55,7 +61,10 @@ export const managementsRoutes: Routes = [
           import(
             './components/management-detail/management-details.routes'
           ).then((c) => c.managementDetailsRoutes),
-        data: { pageTitle: 'تفاصيل الإدارة', pageType: 'list' },
+        data: {
+          pageTitle: 'PAGES.MANAGEMENT_DETAILS.MAIN.PAGE_TITLE',
+          pageType: 'list',
+        },
       },
       {
         path: 'management-member',
@@ -64,7 +73,10 @@ export const managementsRoutes: Routes = [
           import(
             './components/management-member/management-members.routes'
           ).then((c) => c.managementMembersRoutes),
-        data: { pageTitle: 'اعضاء الإدارة', pageType: 'list' },
+        data: {
+          pageTitle: 'PAGES.MANAGEMENT_MEMBERS.MAIN.PAGE_TITLE',
+          pageType: 'list',
+        },
       },
     ],
   },

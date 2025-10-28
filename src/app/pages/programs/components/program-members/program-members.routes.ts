@@ -6,9 +6,12 @@ export const programMembersRoutes: Routes = [
     path: '',
     loadComponent: () =>
       import('./program-members.component').then(
-        (c) => c.ProgramMembersComponent
+        (c) => c.ProgramMembersComponent,
       ),
-    data: { pageTitle: 'أعضاء البرامج', pageType: 'list' },
+    data: {
+      pageTitle: 'PAGES.PROGRAM_MEMBERS.MAIN.PAGE_TITLE',
+      pageType: 'list',
+    },
     canActivate: [clearProgramIdGuard],
   },
   {
@@ -17,7 +20,10 @@ export const programMembersRoutes: Routes = [
       import(
         '../add-edit-program-member/add-edit-program-member.component'
       ).then((c) => c.AddEditProgramMemberComponent),
-    data: { pageTitle: 'اضافة عضو للبرنامج', pageType: 'add' },
+    data: {
+      pageTitle: 'PAGES.PROGRAM_MEMBERS.ADD.PAGE_TITLE',
+      pageType: 'add',
+    },
   },
   {
     path: 'edit/:id',
@@ -25,6 +31,9 @@ export const programMembersRoutes: Routes = [
       import(
         '../add-edit-program-member/add-edit-program-member.component'
       ).then((c) => c.AddEditProgramMemberComponent),
-    data: { pageTitle: 'تعديل عضو', pageType: 'edit' },
+    data: {
+      pageTitle: 'PAGES.PROGRAM_MEMBERS.ADD.PAGE_TITLE',
+      pageType: 'edit',
+    },
   },
 ];

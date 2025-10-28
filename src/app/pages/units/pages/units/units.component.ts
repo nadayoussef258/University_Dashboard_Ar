@@ -61,13 +61,13 @@ export class UnitsComponent extends BaseListComponent {
     return [
       {
         field: 'page.title',
-        header: 'اسم الصفحة',
+        header: 'PAGES.SHARE_FORM.PAGE',
         filter: true,
         filterMode: 'text',
       },
       {
         field: 'about.content',
-        header: 'عنوان التعريف',
+        header: 'PAGES.SHARE_FORM.ABOUT',
         filter: true,
         filterMode: 'text',
       },

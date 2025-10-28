@@ -62,19 +62,19 @@ export class PagesComponent extends BaseListComponent {
     return [
       {
         field: 'title',
-        header: 'عنوان الصفحة',
+        header: 'PAGES.PAGE.FORM.TITLE',
         filter: true,
         filterMode: 'text',
       },
       {
         field: 'content',
-        header: 'المحتوي',
+        header: 'PAGES.PAGE.FORM.CONTENT',
         filter: true,
         filterMode: 'text',
       },
       {
         field: 'status',
-        header: 'حالة الصفحة',
+        header: 'PAGES.PAGE.FORM.STATUS',
         filter: true,
         filterMode: 'text',
       },
@@ -104,15 +104,18 @@ export class PagesComponent extends BaseListComponent {
   }
 
   openAdd() {
-    this.openDialog(AddEditPageComponent, 'اضافة صفحة', {
-      pageType: 'add',
-    });
+    this.openDialog(
+      AddEditPageComponent,
+      this.localize.translate.instant('PAGES.PAGE.ADD.PAGE_TITLE'),
+      { pageType: 'add' },
+    );
   }
 
   openEdit(rowData: any) {
-    this.openDialog(AddEditPageComponent, 'تعديل صفحة', {
-      pageType: 'edit',
-      row: { rowData },
-    });
+    this.openDialog(
+      AddEditPageComponent,
+      this.localize.translate.instant('PAGES.PAGE.EDIT.PAGE_TITLE'),
+      { pageType: 'edit', row: { rowData } },
+    );
   }
 }

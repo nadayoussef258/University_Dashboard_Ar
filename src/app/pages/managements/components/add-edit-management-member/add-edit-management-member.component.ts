@@ -12,7 +12,8 @@ import { DialogService } from 'primeng/dynamicdialog';
 import { ActivatedRoute } from '@angular/router';
 import { ToggleSwitch } from 'primeng/toggleswitch';
 import { NgClass } from '@angular/common';
-import { ManagmentIdService } from '../../managment-id.service';
+import { ManagementIdService } from '../../management-id.service';
+import { TranslatePipe } from '@ngx-translate/core';
 
 @Component({
   selector: 'app-add-edit-management-member',
@@ -25,6 +26,7 @@ import { ManagmentIdService } from '../../managment-id.service';
     ToggleSwitch,
     NgClass,
     ToggleSwitch,
+    TranslatePipe,
   ],
   templateUrl: './add-edit-management-member.component.html',
   styleUrl: './add-edit-management-member.component.css',
@@ -42,7 +44,7 @@ export class AddEditManagementMemberComponent
     ManagementMembersService,
   );
   managementsService: ManagementsService = inject(ManagementsService);
-  managmentIdService: ManagmentIdService = inject(ManagmentIdService);
+  managementIdService: ManagementIdService = inject(ManagementIdService);
   dialogService: DialogService = inject(DialogService);
 
   constructor(override activatedRoute: ActivatedRoute) {
@@ -52,7 +54,7 @@ export class AddEditManagementMemberComponent
 
   override ngOnInit(): void {
     super.ngOnInit();
-    this.managementId = this.managmentIdService.ManagmentId();
+    this.managementId = this.managementIdService.ManagementId();
 
     this.dialogService.dialogComponentRefMap.forEach((element) => {
       this.pageType = element.instance.ddconfig.data.pageType;

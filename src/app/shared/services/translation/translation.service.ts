@@ -15,7 +15,7 @@ import { Language, Languages } from '../../../core/enums/languages';
 })
 export class TranslationService {
   //! 🔤 اللغة الافتراضية
-  private defaultLang: Language = Languages.AR;
+  private defaultLang: Language = Languages.EN;
 
   // 🧠 إشارة تمثل اللغة الحالية (signal بدل BehaviorSubject)
   private _currentLanguage: WritableSignal<Language> = signal(this.defaultLang);

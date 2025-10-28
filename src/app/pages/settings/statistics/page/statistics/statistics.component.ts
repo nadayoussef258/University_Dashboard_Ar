@@ -64,19 +64,13 @@ export class StatisticsComponent extends BaseListComponent {
     return [
       {
         field: 'title',
-        header: 'العنوان',
-        filter: true,
-        filterMode: 'text',
-      },
-      {
-        field: 'phone',
-        header: 'رقم الهاتف',
+        header: 'SETTINGS.STATISTICS.FORM.TITLE',
         filter: true,
         filterMode: 'text',
       },
       {
         field: 'value',
-        header: 'القيمة',
+        header: 'SETTINGS.STATISTICS.FORM.VALUE',
         filter: true,
         filterMode: 'text',
       },
@@ -85,6 +79,14 @@ export class StatisticsComponent extends BaseListComponent {
         header: 'رمز الايقونة',
         filter: true,
         filterMode: 'text',
+      },
+      {
+        field: 'phone',
+        header: 'SETTINGS.STATISTICS.FORM.IS_ACTIVE.TITLE',
+        filter: true,
+        filterMode: 'boolean',
+        trueText: 'SETTINGS.STATISTICS.FORM.IS_ACTIVE.ACTIVE',
+        falseText: 'SETTINGS.STATISTICS.FORM.IS_ACTIVE.IN_ACTIVE',
       },
     ];
   }
@@ -112,15 +114,23 @@ export class StatisticsComponent extends BaseListComponent {
   }
 
   openAdd() {
-    this.openDialog(AddEditStatisticComponent, 'اضافة احصائية', {
-      pageType: 'add',
-    });
+    this.openDialog(
+      AddEditStatisticComponent,
+      this.localize.translate.instant('SETTINGS.STATISTICS.ADD.PAGE_TITLE'),
+      {
+        pageType: 'add',
+      },
+    );
   }
 
   openEdit(rowData: any) {
-    this.openDialog(AddEditStatisticComponent, 'تعديل احصائية', {
-      pageType: 'edit',
-      row: { rowData },
-    });
+    this.openDialog(
+      AddEditStatisticComponent,
+      this.localize.translate.instant('SETTINGS.STATISTICS.EDIT.PAGE_TITLE'),
+      {
+        pageType: 'edit',
+        row: { rowData },
+      },
+    );
   }
 }

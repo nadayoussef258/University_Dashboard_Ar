@@ -5,9 +5,12 @@ export const statisticsRoutes: Routes = [
     path: '',
     loadComponent: () =>
       import('./page/statistics/statistics.component').then(
-        (c) => c.StatisticsComponent
+        (c) => c.StatisticsComponent,
       ),
-    data: { pageTitle: 'الأحصائيات', pageType: 'list' },
+    data: {
+      pageTitle: 'SETTINGS.STATISTICS.MAIN.PAGE_TITLE',
+      pageType: 'list',
+    },
   },
   {
     path: 'add',
@@ -15,7 +18,7 @@ export const statisticsRoutes: Routes = [
       import(
         './components/add-edit-statistic/add-edit-statistic.component'
       ).then((c) => c.AddEditStatisticComponent),
-    data: { pageTitle: 'اضافة احصائية', pageType: 'add' },
+    data: { pageTitle: 'SETTINGS.STATISTICS.ADD.PAGE_TITLE', pageType: 'add' },
   },
   {
     path: 'edit/:id',
@@ -23,6 +26,9 @@ export const statisticsRoutes: Routes = [
       import(
         './components/add-edit-statistic/add-edit-statistic.component'
       ).then((c) => c.AddEditStatisticComponent),
-    data: { pageTitle: 'تعديل  احصائية', pageType: 'edit' },
+    data: {
+      pageTitle: 'SETTINGS.STATISTICS.EDIT.PAGE_TITLE',
+      pageType: 'edit',
+    },
   },
 ];

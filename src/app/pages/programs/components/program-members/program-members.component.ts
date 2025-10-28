@@ -67,15 +67,15 @@ export class ProgramMembersComponent extends BaseListComponent {
     return [
       {
         field: 'isLeader',
-        header: 'الحالة',
-        trueText: 'ادمن',
-        falseText: 'مستخدم',
+        header: 'PAGES.SHARE_FORM.IS_LEADER.TITLE',
+        trueText: 'PAGES.SHARE_FORM.IS_LEADER.LEADER',
+        falseText: 'PAGES.SHARE_FORM.IS_LEADER.ADMIN',
         filter: true,
         filterMode: 'boolean',
       },
       {
         field: 'programId',
-        header: 'البرنامج',
+        header: 'PAGES.SHARE_FORM.PROGRAM',
         filter: true,
         filterMode: 'text',
       },
@@ -105,15 +105,23 @@ export class ProgramMembersComponent extends BaseListComponent {
   }
 
   openAdd() {
-    this.openDialog(AddEditProgramMemberComponent, 'اضافة عضو للبرنامج', {
-      pageType: 'add',
-    });
+    this.openDialog(
+      AddEditProgramMemberComponent,
+      this.localize.translate.instant('PAGES.PROGRAM_MEMBERS.ADD.PAGE_TITLE'),
+      {
+        pageType: 'add',
+      },
+    );
   }
 
   openEdit(rowData: any) {
-    this.openDialog(AddEditProgramMemberComponent, 'تعديل عضو', {
-      pageType: 'edit',
-      row: { rowData },
-    });
+    this.openDialog(
+      AddEditProgramMemberComponent,
+      this.localize.translate.instant('PAGES.PROGRAM_MEMBERS.EDIT.PAGE_TITLE'),
+      {
+        pageType: 'edit',
+        row: { rowData },
+      },
+    );
   }
 }

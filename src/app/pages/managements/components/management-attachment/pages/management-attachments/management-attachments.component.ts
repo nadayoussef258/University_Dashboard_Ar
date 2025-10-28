@@ -27,7 +27,7 @@ import { TranslatePipe } from '@ngx-translate/core';
   styleUrl: './management-attachments.component.css',
 })
 export class ManagementAttachmentsComponent extends BaseListComponent {
-  @Input() managmentId: string = '';
+  @Input() managementId: string = '';
   isEnglish = false;
   tableOptions!: TableOptions;
   service = inject(ManagementAttachmentService);
@@ -55,7 +55,7 @@ export class ManagementAttachmentsComponent extends BaseListComponent {
         listOfPermissions: [],
       },
       bodyOptions: {
-        filter: { managmentId: this.managmentId },
+        filter: { managementId: this.managementId },
       },
       responsiveDisplayedProperties: ['code', 'name'],
     };
@@ -106,7 +106,7 @@ export class ManagementAttachmentsComponent extends BaseListComponent {
       'اضافة مرفق الادارة',
       {
         pageType: 'add',
-        row: { managmentId: this.managmentId },
+        row: { managementId: this.managementId },
       },
     );
   }

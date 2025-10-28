@@ -6,9 +6,12 @@ export const programDetailsRoutes: Routes = [
     path: '',
     loadComponent: () =>
       import('./program-details.component').then(
-        (c) => c.ProgramDetailsComponent
+        (c) => c.ProgramDetailsComponent,
       ),
-    data: { pageTitle: 'تفاصيل البرامج', pageType: 'list' },
+    data: {
+      pageTitle: 'PAGES.PROGRAM_DETAILS.MAIN.PAGE_TITLE',
+      pageType: 'list',
+    },
     canActivate: [clearProgramIdGuard],
   },
   {
@@ -17,7 +20,10 @@ export const programDetailsRoutes: Routes = [
       import(
         '../add-edit-program-detail/add-edit-program-detail.component'
       ).then((c) => c.AddEditProgramDetailComponent),
-    data: { pageTitle: 'اضافة تفاصيل للبرنامج', pageType: 'add' },
+    data: {
+      pageTitle: 'PAGES.PROGRAM_DETAILS.ADD.PAGE_TITLE',
+      pageType: 'add',
+    },
   },
   {
     path: 'edit/:id',
@@ -25,6 +31,9 @@ export const programDetailsRoutes: Routes = [
       import(
         '../add-edit-program-detail/add-edit-program-detail.component'
       ).then((c) => c.AddEditProgramDetailComponent),
-    data: { pageTitle: 'تعديل تفاصيل البرنامج', pageType: 'edit' },
+    data: {
+      pageTitle: 'PAGES.PROGRAM_DETAILS.EDIT.PAGE_TITLE',
+      pageType: 'edit',
+    },
   },
 ];

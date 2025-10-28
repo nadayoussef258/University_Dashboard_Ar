@@ -5,7 +5,7 @@
         <app-prime-input-text
           [formGroup]="form"
           controlName="fullName"
-          [label]="'الاسم بالكامل'"
+          [label]="'PAGES.LEADERS.FORM.FULL_NAME'"
         >
         </app-prime-input-text>
       </div>
@@ -14,13 +14,15 @@
         <app-prime-input-text
           [formGroup]="form"
           controlName="position"
-          [label]="'المنصب'"
+          [label]="'PAGES.LEADERS.FORM.POSITION'"
         >
         </app-prime-input-text>
       </div>
 
       <div class="form-col">
-        <label class="text-middle mb-2">{{ "عضو هيئة التدريس" }}</label>
+        <label class="text-middle mb-2">
+          {{ "PAGES.LEADERS.FORM.MEMBER" | translate }}
+        </label>
         <app-prime-autocomplete
           [field]="'title'"
           [selectedOption]="selectedMember"

@@ -6,9 +6,12 @@ export const managementMembersRoutes: Routes = [
     path: '',
     loadComponent: () =>
       import('./management-members.component').then(
-        (c) => c.ManagementMembersComponent
+        (c) => c.ManagementMembersComponent,
       ),
-    data: { pageTitle: 'أعضاء الإدارات', pageType: 'list' },
+    data: {
+      pageTitle: 'PAGES.MANAGEMENT_MEMBERS.MAIN.PAGE_TITLE',
+      pageType: 'list',
+    },
     canActivate: [clearManagementIdGuard],
   },
   {
@@ -17,7 +20,10 @@ export const managementMembersRoutes: Routes = [
       import(
         '../add-edit-management-member/add-edit-management-member.component'
       ).then((c) => c.AddEditManagementMemberComponent),
-    data: { pageTitle: 'اضافة عضو للإدارة', pageType: 'add' },
+    data: {
+      pageTitle: 'PAGES.MANAGEMENT_MEMBERS.ADD.PAGE_TITLE',
+      pageType: 'add',
+    },
   },
   {
     path: 'edit/:id',
@@ -25,6 +31,9 @@ export const managementMembersRoutes: Routes = [
       import(
         '../add-edit-management-member/add-edit-management-member.component'
       ).then((c) => c.AddEditManagementMemberComponent),
-    data: { pageTitle: 'تعديل عضو الإدارة', pageType: 'edit' },
+    data: {
+      pageTitle: 'PAGES.MANAGEMENT_MEMBERS.EDIT.PAGE_TITLE',
+      pageType: 'edit',
+    },
   },
 ];

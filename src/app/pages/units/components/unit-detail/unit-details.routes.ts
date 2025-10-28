@@ -6,23 +6,29 @@ export const unitDetailsRoutes: Routes = [
     path: '',
     loadComponent: () =>
       import('./unit-details.component').then((c) => c.UnitDetailsComponent),
-    data: { pageTitle: 'تفاصيل الوحدات', pageType: 'list' },
+    data: {
+      pageTitle: 'PAGES.UNIT_DETAILS.MAIN.PAGE_TITLE',
+      pageType: 'list',
+    },
     canActivate: [clearUnitIdGuard],
   },
   {
     path: 'add',
     loadComponent: () =>
       import('../add-edit-unit-detail/add-edit-unit-detail.component').then(
-        (c) => c.AddEditUnitDetailComponent
+        (c) => c.AddEditUnitDetailComponent,
       ),
-    data: { pageTitle: 'اضافة تفاصيل الوحدة', pageType: 'add' },
+    data: { pageTitle: 'PAGES.UNIT_DETAILS.ADD.PAGE_TITLE', pageType: 'add' },
   },
   {
     path: 'edit/:id',
     loadComponent: () =>
       import('../add-edit-unit-detail/add-edit-unit-detail.component').then(
-        (c) => c.AddEditUnitDetailComponent
+        (c) => c.AddEditUnitDetailComponent,
       ),
-    data: { pageTitle: 'تعديل تفاصيل الوحدة', pageType: 'edit' },
+    data: {
+      pageTitle: 'PAGES.UNIT_DETAILS.EDIT.PAGE_TITLE',
+      pageType: 'edit',
+    },
   },
 ];

@@ -13,6 +13,7 @@ import { ActivatedRoute } from '@angular/router';
 import { ToggleSwitch } from 'primeng/toggleswitch';
 import { NgClass } from '@angular/common';
 import { UnitIdService } from '../../unit-id.service';
+import { TranslatePipe } from '@ngx-translate/core';
 
 @Component({
   selector: 'app-add-edit-unit-member',
@@ -25,6 +26,7 @@ import { UnitIdService } from '../../unit-id.service';
     ToggleSwitch,
     NgClass,
     ToggleSwitch,
+    TranslatePipe,
   ],
   templateUrl: './add-edit-unit-member.component.html',
   styleUrl: './add-edit-unit-member.component.css',
@@ -82,7 +84,7 @@ export class AddEditUnitMemberComponent
         );
       },
       error: (err) => {
-        this.alert.error('خطأ فى جلب الادارات');
+        this.alert.error('خطأ فى جلب الوحدات');
       },
     });
   }

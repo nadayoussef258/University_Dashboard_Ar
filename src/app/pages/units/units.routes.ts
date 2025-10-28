@@ -8,7 +8,7 @@ export const unitsRoutes: Routes = [
     path: '',
     loadComponent: () =>
       import('./pages/units/units.component').then((c) => c.UnitsComponent),
-    data: { pageTitle: 'الوحدات', pageType: 'list' },
+    data: { pageTitle: 'PAGES.UNITS.MAIN.PAGE_TITLE', pageType: 'list' },
   },
   {
     path: 'add',
@@ -16,7 +16,7 @@ export const unitsRoutes: Routes = [
       import(
         './components/add-edit-main-info-unit/add-edit-main-info-unit.component'
       ).then((c) => c.AddEditMainInfoUnitComponent),
-    data: { pageTitle: 'اضافة وحدة', pageType: 'add' },
+    data: { pageTitle: 'PAGES.UNITS.ADD.PAGE_TITLE', pageType: 'add' },
     children: [
       {
         path: '',
@@ -24,7 +24,7 @@ export const unitsRoutes: Routes = [
           import(
             './components/add-edit-main-unit/add-edit-main-unit.component'
           ).then((c) => c.AddEditUnitComponent),
-        data: { pageTitle: 'اضافة وحدة', pageType: 'add' },
+        data: { pageTitle: 'PAGES.UNITS.EDIT.PAGE_TITLE', pageType: 'add' },
       },
     ],
   },
@@ -34,7 +34,7 @@ export const unitsRoutes: Routes = [
       import(
         './components/add-edit-main-info-unit/add-edit-main-info-unit.component'
       ).then((c) => c.AddEditMainInfoUnitComponent),
-    data: { pageTitle: 'تعديل الوحدة', pageType: 'edit' },
+    data: { pageTitle: 'PAGES.UNITS.EDIT.PAGE_TITLE', pageType: 'edit' },
     children: [
       {
         path: '',
@@ -49,7 +49,7 @@ export const unitsRoutes: Routes = [
         canActivate: [redirectOnDirectUnitsAccessGuard],
         loadChildren: () =>
           import('./components/unit-detail/unit-details.routes').then(
-            (c) => c.unitDetailsRoutes
+            (c) => c.unitDetailsRoutes,
           ),
       },
       {
@@ -57,7 +57,7 @@ export const unitsRoutes: Routes = [
         canActivate: [redirectOnDirectUnitsAccessGuard],
         loadChildren: () =>
           import('./components/unit-member/unit-members.routes').then(
-            (c) => c.unitMembersRoutes
+            (c) => c.unitMembersRoutes,
           ),
       },
     ],

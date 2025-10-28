@@ -11,7 +11,8 @@ import {
 } from '../../../../shared';
 import { DialogService } from 'primeng/dynamicdialog';
 import { ActivatedRoute } from '@angular/router';
-import { ManagmentIdService } from '../../managment-id.service';
+import { ManagementIdService } from '../../management-id.service';
+import { TranslatePipe } from '@ngx-translate/core';
 
 @Component({
   selector: 'app-add-edit-management-detail',
@@ -22,6 +23,7 @@ import { ManagmentIdService } from '../../managment-id.service';
     SubmitButtonsComponent,
     PrimeInputTextComponent,
     PrimeAutoCompleteComponent,
+    TranslatePipe,
   ],
   templateUrl: './add-edit-management-detail.component.html',
   styleUrl: './add-edit-management-detail.component.css',
@@ -37,7 +39,7 @@ export class AddEditManagementDetailComponent
 
   manageDetailsService: ManageDetailsService = inject(ManageDetailsService);
   managementsService: ManagementsService = inject(ManagementsService);
-  managmentIdService: ManagmentIdService = inject(ManagmentIdService);
+  managementIdService: ManagementIdService = inject(ManagementIdService);
   dialogService: DialogService = inject(DialogService);
 
   constructor(override activatedRoute: ActivatedRoute) {
@@ -46,7 +48,7 @@ export class AddEditManagementDetailComponent
 
   override ngOnInit(): void {
     super.ngOnInit();
-    this.managementId = this.managmentIdService.ManagmentId();
+    this.managementId = this.managementIdService.ManagementId();
     this.id.set(this.activatedRoute.snapshot.paramMap.get('id') as string);
 
     if (this.pageType === 'edit') {

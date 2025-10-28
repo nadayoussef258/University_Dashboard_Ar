@@ -1,19 +1,32 @@
 <p-tabs [value]="`.`">
   <p-tablist>
-    <p-tab [value]="`.`" [routerLink]="['.']" class="flex text-inherit items-center !gap-2">
+    <p-tab
+      [value]="`.`"
+      [routerLink]="['.']"
+      class="flex text-inherit items-center gap-2!"
+    >
       <i class="pi pi-user-plus"></i>
       <span>
-        @if (pageType === 'edit') { تعديل وحدة }@else{ اضافة وحدة}
-      </span> </p-tab>
-
-    @if (pageType === 'edit') {
-    <!--  -->
-    @for(tab of tabs; track tab.route){
-    <p-tab [value]="tab.route" [routerLink]="tab.route" class="flex text-inherit items-center !gap-2">
-      <i [class]="tab.icon"></i>
-      <span>{{ tab.label }}</span>
+        @if (pageType === "edit") {
+          {{ "PAGES.UNITS.ADD.PAGE_TITLE" | translate }}
+        } @else {
+          {{ "PAGES.UNITS.EDIT.PAGE_TITLE" | translate }}
+        }
+      </span>
     </p-tab>
-    }
+
+    @if (pageType === "edit") {
+      <!--  -->
+      @for (tab of tabs; track tab.route) {
+        <p-tab
+          [value]="tab.route"
+          [routerLink]="tab.route"
+          class="flex text-inherit items-center gap-2!"
+        >
+          <i [class]="tab.icon"></i>
+          <span>{{ tab.label | translate }}</span>
+        </p-tab>
+      }
     }
   </p-tablist>
   <p-tabpanels>

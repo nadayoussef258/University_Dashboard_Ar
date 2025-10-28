@@ -60,7 +60,7 @@ export class UnitDetailsComponent extends BaseListComponent {
       bodyOptions: {
         filter: { unitId: this.unitId },
       },
-      responsiveDisplayedProperties: ['title', 'unitPlace', 'content'],
+      responsiveDisplayedProperties: ['title', 'unitPlace', 'description'],
     };
   }
 
@@ -68,19 +68,19 @@ export class UnitDetailsComponent extends BaseListComponent {
     return [
       {
         field: 'title',
-        header: 'العنوان',
+        header: 'PAGES.UNIT_DETAILS.FORM.TITLE',
         filter: true,
         filterMode: 'text',
       },
       {
         field: 'unitPlace',
-        header: 'مكان الوحدة',
+        header: 'PAGES.UNIT_DETAILS.FORM.UNIT_PLACE',
         filter: true,
         filterMode: 'text',
       },
       {
-        field: 'content',
-        header: 'المحتوي',
+        field: 'description',
+        header: 'PAGES.UNIT_DETAILS.FORM.DESCRIPTION',
         filter: true,
         filterMode: 'text',
       },

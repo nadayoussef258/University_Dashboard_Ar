@@ -7,7 +7,7 @@ export const actionsRoutes: Routes = [
       import('./pages/actions/actions.component').then(
         (c) => c.ActionsComponent,
       ),
-    data: { pageTitle: 'SETTINGS.ACTION.MAIN.PAGE_TITLE', pageType: 'list' },
+    data: { pageTitle: 'PAGES.ACTIONS.MAIN.PAGE_TITLE', pageType: 'list' },
   },
   {
     path: 'add',
@@ -15,7 +15,7 @@ export const actionsRoutes: Routes = [
       import('./components/add-edit-action/add-edit-action.component').then(
         (c) => c.AddEditActionComponent,
       ),
-    data: { pageTitle: 'SETTINGS.ACTION.ADD.PAGE_TITLE', pageType: 'add' },
+    data: { pageTitle: 'PAGES.ACTIONS.ADD.PAGE_TITLE', pageType: 'add' },
   },
   {
     path: 'edit/:id',
@@ -23,6 +23,6 @@ export const actionsRoutes: Routes = [
       import('./components/add-edit-action/add-edit-action.component').then(
         (c) => c.AddEditActionComponent,
       ),
-    data: { pageTitle: 'SETTINGS.ACTION.EDIT.PAGE_TITLE', pageType: 'edit' },
+    data: { pageTitle: 'PAGES.ACTIONS.EDIT.PAGE_TITLE', pageType: 'edit' },
   },
 ];
