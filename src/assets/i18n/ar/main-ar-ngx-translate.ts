@@ -68,6 +68,7 @@ export const AR_TRANSLATIONS = {
   EMPTY: {
     NO_ITEMS: 'لا يوجد خيارات',
     NO_DEFAULT_VALUES: 'لا يوجد قيم افتراضية حتي الان',
+    NO_DATA_TO_DISPLAY_TABLE: 'لا توجد بيانات لعرضها',
   },
   VALIDATION: {
     REQUIRED: 'حقل مطلوب',

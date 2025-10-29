@@ -65,6 +65,7 @@ export const EN_TRANSLATIONS = {
   EMPTY: {
     NO_ITEMS: "There's no options",
     NO_DEFAULT_VALUES: "There's' no Document Type Field Default Values",
+    NO_DATA_TO_DISPLAY_TABLE: 'No Data To Display',
   },
   VALIDATION: {
     REQUIRED: 'Required Field',
