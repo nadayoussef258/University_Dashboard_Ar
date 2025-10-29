@@ -1,23 +1,5 @@
 @use "mixins" as *;
 
-@keyframes slideInRight {
-  from {
-    transform: translateX(100%);
-  }
-  to {
-    transform: translateX(0);
-  }
-}
-
-@keyframes slideOutRight {
-  from {
-    transform: translateX(0);
-  }
-  to {
-    transform: translateX(100%);
-  }
-}
-
 .layout-sidebar {
   position: fixed;
   width: 20rem;
@@ -26,21 +8,19 @@
   overflow-y: auto;
   user-select: none;
   top: 6rem;
-  // top: 4.5rem;
-  right: 2rem;
+  left: 2rem;
   transition:
     transform var(--layout-section-transition-duration),
-    right var(--layout-section-transition-duration);
-  // background-image: url(../img/sidBar.jpg);
-  background-repeat: no-repeat;
-  background-size: cover;
-
+    left var(--layout-section-transition-duration);
   border-radius: var(--content-border-radius);
   padding: 0.5rem 1.5rem;
-  animation: slideInRight 0.5s forwards;
 
-  &.hide {
-    animation: slideOutRight 0.5s forwards;
+  html[dir="rtl"] & {
+    left: unset;
+    right: 2rem;
+    transition:
+      transform var(--layout-section-transition-duration),
+      right var(--layout-section-transition-duration);
   }
 }
 
@@ -99,17 +79,13 @@
         background-color var(--element-transition-duration),
         box-shadow var(--element-transition-duration);
 
-      // .layout-menuitem-icon {
-      //     margin-right: 0.5rem;
-      // }
-
-      .layout-menuitem-text {
+      .layout-menuitem-icon {
         margin-right: 0.5rem;
       }
 
       .layout-submenu-toggler {
-        font-size: 0.5rem;
-        margin-right: auto;
+        font-size: 75%;
+        margin-left: auto;
         transition: transform var(--element-transition-duration);
       }
 
@@ -125,42 +101,103 @@
       }
 
       // &:focus {
-      //     @include focused-inset();
+      //   @include focused-inset();
       // }
     }
 
+    /* 📚 التدرج للمستويات الداخلية */
     ul {
       overflow: hidden;
       border-radius: var(--content-border-radius);
 
       li {
         a {
-          margin-right: 1rem;
+          margin-left: 1rem;
         }
 
         li {
           a {
-            margin-right: 2rem;
+            margin-left: 2rem;
           }
 
           li {
             a {
-              margin-right: 2.5rem;
+              margin-left: 2.5rem;
             }
 
             li {
               a {
-                margin-right: 3rem;
+                margin-left: 3rem;
               }
 
               li {
                 a {
-                  margin-right: 3.5rem;
+                  margin-left: 3.5rem;
                 }
 
                 li {
                   a {
-                    margin-right: 4rem;
+                    margin-left: 4rem;
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+
+  /* 🌍 عندما يكون الاتجاه RTL */
+  html[dir="rtl"] & {
+    ul a {
+      .layout-menuitem-icon {
+        margin-right: unset;
+        margin-left: 0.5rem;
+      }
+
+      .layout-submenu-toggler {
+        margin-left: unset;
+        margin-right: auto;
+      }
+
+      /* عكس المسافات للمستويات */
+      ul {
+        li {
+          a {
+            margin-left: unset;
+            margin-right: 1rem;
+          }
+
+          li {
+            a {
+              margin-left: unset;
+              margin-right: 2rem;
+            }
+
+            li {
+              a {
+                margin-left: unset;
+                margin-right: 2.5rem;
+              }
+
+              li {
+                a {
+                  margin-left: unset;
+                  margin-right: 3rem;
+                }
+
+                li {
+                  a {
+                    margin-left: unset;
+                    margin-right: 3.5rem;
+                  }
+
+                  li {
+                    a {
+                      margin-left: unset;
+                      margin-right: 4rem;
+                    }
                   }
                 }
               }

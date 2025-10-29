@@ -6,7 +6,7 @@ export const EN_TRANSLATIONS = {
   ...EN_MENU_LABELS,
   TITLE: {
     PART_ONE: 'Luxor University',
-    PART_TWO: '',
+    PART_TWO: 'Information Management System',
   },
 
   COMMON: {

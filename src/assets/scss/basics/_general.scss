@@ -19,16 +19,30 @@ h6 {
 body {
   text-align: start;
 
-  .cdk-global-overlay-wrapper {
+  &.ltr .cdk-global-overlay-wrapper {
+    direction: ltr !important;
+  }
+
+  &.rtl .cdk-global-overlay-wrapper {
     direction: rtl !important;
   }
-  .p-overlay.p-component {
+
+  &.ltr .p-overlay.p-component {
+    left: auto;
+    right: auto;
+  }
+
+  &.rtl .p-overlay.p-component {
     right: auto;
   }
 }
 
-[dir="rtl"] * {
+body.rtl * {
   direction: rtl;
+}
+
+body.ltr * {
+  direction: ltr;
 }
 
 .rtl {
@@ -54,6 +68,29 @@ body {
   }
 }
 
+.ltr {
+  .p-datepicker {
+    .p-datepicker-header {
+      .p-datepicker-title {
+        margin: auto 0 0 0;
+      }
+    }
+  }
+
+  .dropdown-toggle::after {
+    margin-right: unset;
+    margin-left: 0.255em;
+  }
+
+  .p-virtualscroller {
+    .p-autocomplete-list,
+    .p-virtualscroller-content {
+      left: 0 !important;
+      right: unset !important;
+    }
+  }
+}
+
 /**MG**/
 /**this one fix the padding that make the drop down option in drop down has extra white space on left or right **/
 ol,
@@ -67,10 +104,14 @@ ul {
 
 /** dialog **/
 .p-dialog {
-  direction: rtl !important;
+  direction: ltr !important;
   background-color: var(--primary-color) !important;
   color: var(--white-color) !important;
   border: none !important;
+
+  body.rtl & {
+    direction: rtl !important;
+  }
   .p-dialog-header {
     padding: 0.3rem 1rem;
   }
@@ -124,7 +165,11 @@ ul {
 }
 
 .p-autocomplete-option {
-  direction: rtl !important;
+  direction: ltr !important;
+
+  body.rtl & {
+    direction: rtl !important;
+  }
 
   &.p-autocomplete-option-selected {
     background-color: var(--secondary-color) !important;

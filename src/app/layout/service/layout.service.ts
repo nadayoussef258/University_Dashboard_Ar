@@ -67,7 +67,7 @@ export class LayoutService {
   isSidebarActive = computed(
     () =>
       this.layoutState().overlayMenuActive ||
-      this.layoutState().staticMenuMobileActive
+      this.layoutState().staticMenuMobileActive,
   );
 
   isDarkTheme = computed(() => this.layoutConfig().darkTheme);

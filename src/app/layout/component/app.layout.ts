@@ -11,7 +11,7 @@ import { LayoutService } from '../service/layout.service';
   selector: 'app-layout',
 
   imports: [CommonModule, AppTopbar, AppSidebar, RouterModule, AppFooter],
-  template: `<div class="layout-wrapper" dir="rtl" [ngClass]="containerClass">
+  template: `<div class="layout-wrapper" [ngClass]="containerClass">
     <app-topbar></app-topbar>
     <app-sidebar></app-sidebar>
     <div class="layout-main-container">

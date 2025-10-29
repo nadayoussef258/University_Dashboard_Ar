@@ -12,11 +12,17 @@
   z-index: 1000;
   background: linear-gradient(135deg, #1f2937 0%, #374151 100%);
   border-bottom: 1px solid rgba(255, 255, 255, 0.1);
-  box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.1), 0 1px 2px 0 rgba(0, 0, 0, 0.06),
+  box-shadow:
+    0 1px 3px 0 rgba(0, 0, 0, 0.1),
+    0 1px 2px 0 rgba(0, 0, 0, 0.06),
     0 0 0 1px rgba(255, 255, 255, 0.05);
   backdrop-filter: blur(10px);
   -webkit-backdrop-filter: blur(10px);
   transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+
+  // Works for both RTL and LTR
+  left: 0;
+  right: 0;
 }
 
 /* Add subtle animation on scroll */
@@ -26,8 +32,10 @@
     rgba(31, 41, 55, 0.95) 0%,
     rgba(55, 65, 81, 0.95) 100%
   );
-  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1),
-    0 2px 4px -1px rgba(0, 0, 0, 0.06), 0 0 0 1px rgba(255, 255, 255, 0.05);
+  box-shadow:
+    0 4px 6px -1px rgba(0, 0, 0, 0.1),
+    0 2px 4px -1px rgba(0, 0, 0, 0.06),
+    0 0 0 1px rgba(255, 255, 255, 0.05);
 }
 
 .topbar-container {
@@ -163,6 +171,10 @@
   color: #ffffff;
   transition: all 0.2s ease;
   outline: none;
+
+  body.rtl & {
+    padding: 0 2.5rem 0 1rem;
+  }
 }
 
 .search-input:focus {
@@ -183,6 +195,11 @@
   color: rgba(255, 255, 255, 0.6);
   font-size: 0.875rem;
   pointer-events: none;
+
+  body.rtl & {
+    left: auto;
+    right: 0.75rem;
+  }
 }
 
 /* Right Section */
@@ -296,6 +313,11 @@
   justify-content: center;
   border: 2px solid #ffffff;
   animation: pulse 2s infinite;
+
+  body.ltr & {
+    right: auto;
+    left: 0.25rem;
+  }
 }
 
 .message-badge {
@@ -306,6 +328,11 @@
 .user-profile {
   position: relative;
   margin-left: 0.5rem;
+
+  body.ltr & {
+    margin-left: unset;
+    margin-right: 0.5rem;
+  }
 }
 
 .user-btn {
@@ -344,6 +371,10 @@
   flex-direction: column;
   gap: 0.125rem;
   text-align: right;
+
+  body.ltr & {
+    text-align: left;
+  }
 }
 
 .user-name {
@@ -378,13 +409,19 @@
   background: #ffffff;
   border: 1px solid #e2e8f0;
   border-radius: 1rem;
-  box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1),
+  box-shadow:
+    0 10px 15px -3px rgba(0, 0, 0, 0.1),
     0 4px 6px -2px rgba(0, 0, 0, 0.05);
   opacity: 0;
   visibility: hidden;
   transform: translateY(-0.5rem);
   transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
   z-index: 1001;
+
+  body.ltr & {
+    right: auto;
+    left: 0;
+  }
 }
 
 .user-dropdown.show {
@@ -428,6 +465,10 @@
   flex-direction: column;
   gap: 0.125rem;
   text-align: right;
+
+  body.ltr & {
+    text-align: left;
+  }
 }
 
 .profile-name {
@@ -706,7 +747,11 @@
 /* Professional Badge Styling */
 .notification-badge,
 .message-badge {
-  font-family: "Inter", -apple-system, BlinkMacSystemFont, sans-serif;
+  font-family:
+    "Inter",
+    -apple-system,
+    BlinkMacSystemFont,
+    sans-serif;
   font-weight: 700;
   letter-spacing: -0.025em;
   text-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);

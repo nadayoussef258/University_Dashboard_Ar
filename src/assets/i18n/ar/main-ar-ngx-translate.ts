@@ -8,7 +8,7 @@ export const AR_TRANSLATIONS = {
   ...AR_MENU_LABELS,
   TITLE: {
     PART_ONE: 'جامعة الأقصر',
-    PART_TWO: '',
+    PART_TWO: 'نظام إدارة المعلومات',
   },
 
   COMMON: {

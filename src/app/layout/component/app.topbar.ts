@@ -5,14 +5,21 @@ import { CommonModule } from '@angular/common';
 import { StyleClassModule } from 'primeng/styleclass';
 import { AppConfigurator } from './app.configurator';
 import { LayoutService } from '../service/layout.service';
+import { TranslatePipe } from '@ngx-translate/core';
 
 @Component({
   selector: 'app-topbar',
   standalone: true,
-  imports: [RouterModule, CommonModule, StyleClassModule, AppConfigurator],
+  imports: [
+    RouterModule,
+    CommonModule,
+    StyleClassModule,
+    AppConfigurator,
+    TranslatePipe,
+  ],
   styleUrls: ['./topbar.css'],
   template: `
-    <div class="modern-topbar" dir="rtl">
+    <div class="modern-topbar">
       <div class="topbar-container">
         <!-- Left Section: Logo & Menu Toggle -->
         <div class="topbar-left">
@@ -31,8 +38,8 @@ import { LayoutService } from '../service/layout.service';
                 class="logo-img"
               />
               <div class="logo-content">
-                <span class="logo-title">جامعة الأقصر</span>
-                <span class="logo-subtitle">نظام إدارة المعلومات</span>
+                <span class="logo-title">{{'TITLE.PART_ONE' | translate}}</span>
+                <span class="logo-subtitle"> {{'TITLE.PART_TWO' | translate}}</span>
               </div>
             </div>
           </a>
@@ -71,7 +78,7 @@ import { LayoutService } from '../service/layout.service';
             <!-- Settings -->
             <div class="relative">
               <button
-                class="action-btn settings-btn"
+                class="action-btn settings-btn "
                 pStyleClass="@next"
                 enterFromClass="hidden"
                 enterActiveClass="animate-scalein"
@@ -82,7 +89,7 @@ import { LayoutService } from '../service/layout.service';
                 <div class="hover-shine"></div>
                 <i class="pi pi-cog"></i>
               </button>
-              <app-configurator />
+              <app-configurator  class="mt-1 -start-63! "/>
             </div>
 
             <!-- User Profile -->
@@ -109,7 +116,7 @@ import { LayoutService } from '../service/layout.service';
 
               <!-- Dropdown Menu -->
               <div
-                class="bg-white border rounded-lg border-gray-200 top-full shadow-lg mt-2 w-64 z-50 user-dropdown hidden absolute right-[-11rem]! md:right-[-8rem]! dark:bg-surface-800 dark:border-surface-700"
+                class="bg-white border rounded-lg border-gray-200 top-full shadow-lg mt-2 w-64 z-50 user-dropdown hidden absolute -start-44! md:-start-32! dark:bg-surface-800 dark:border-surface-700"
               >
                 <div
                   class="border-b p-4 dropdown-header dark:border-surface-700"

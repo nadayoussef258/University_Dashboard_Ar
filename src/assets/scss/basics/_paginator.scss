@@ -97,6 +97,14 @@
   &.rtl {
     direction: rtl;
   }
+
+  body.rtl & {
+    direction: rtl;
+  }
+
+  body.ltr & {
+    direction: ltr;
+  }
 }
 /** new paginator selectors in angular v19+ to set the current active page background and color */
 .p-paginator-page.p-paginator-page-selected {
