@@ -61,13 +61,13 @@ export class ManagementsComponent extends BaseListComponent {
     return [
       {
         field: 'pageTitle',
-        header: 'PAGES.FORM_SHARED.PAGE',
+        header: 'PAGES.SHARE_FORM.PAGE',
         filter: true,
         filterMode: 'text',
       },
       {
         field: 'about.content',
-        header: 'PAGES.FORM_SHARED.ABOUT',
+        header: 'PAGES.SHARE_FORM.ABOUT',
         filter: true,
         filterMode: 'text',
       },

@@ -1,25 +1,27 @@
 <p-card class="m-0 p-2">
   @if (form) {
-    <form method="post" class="grid grid-cols-12 gap-4" [formGroup]="form">
+    <form method="post" class="grid gap-4 grid-cols-12" [formGroup]="form">
       @if (pageType !== "add" && !sectorId) {
         <div class="flex gap-2 col-span-12 items-center">
           <p-toggleswitch
-            [(ngModel)]="allowEdit"
+            [(ngModel)]="allowEditValue"
             [ngModelOptions]="{ standalone: true }"
             (onChange)="toggleEditBtn('sectorId')"
           >
           </p-toggleswitch>
-          <label class="font-medium text-sm"
-            >هل تريد التعديل علي القطاع ؟</label
-          >
+          <label class="font-medium text-sm">
+            {{ "PAGES.SECTORS.QUESTION_ALLOW_EDIT" | translate }}
+          </label>
         </div>
       }
       <!--  -->
       @if ((pageType !== "add" && sectorId) || !sectorId) {
         <div class="form-col">
-          <label class="text-middle mb-2">{{ "القطاع" }}</label>
+          <label class="text-middle mb-2">
+            {{ "PAGES.SHARE_FORM.SECTOR" | translate }}
+          </label>
           <app-prime-autocomplete
-            [disabled]="pageType === 'edit' && !allowEdit"
+            [disabled]="pageType === 'edit' && !allowEdit()"
             [field]="'name'"
             [selectedOption]="selectedSector"
             [suggestions]="filteredSectors"
@@ -32,7 +34,9 @@
       }
 
       <div class="form-col">
-        <label class="text-middle mb-2">{{ "المنشور" }}</label>
+        <label class="text-middle mb-2">
+          {{ "PAGES.SHARE_FORM.POST" | translate }}
+        </label>
         <app-prime-autocomplete
           [field]="'title'"
           [selectedOption]="selectedPost"

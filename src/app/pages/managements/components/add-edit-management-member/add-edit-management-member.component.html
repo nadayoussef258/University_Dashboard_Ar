@@ -4,7 +4,7 @@
       @if (pageType !== "add" && !managementId) {
         <div class="flex gap-2 col-span-12 items-center">
           <p-toggleswitch
-            [(ngModel)]="allowEdit"
+            [(ngModel)]="allowEditValue"
             [ngModelOptions]="{ standalone: true }"
             (onChange)="toggleEditBtn('managementId')"
           >
@@ -23,7 +23,7 @@
             {{ "PAGES.SHARE_FORM.MANAGEMENT" | translate }}
           </label>
           <app-prime-autocomplete
-            [disabled]="pageType === 'edit' && !allowEdit"
+            [disabled]="pageType === 'edit' && !allowEdit()"
             [field]="'pageId'"
             [selectedOption]="selectedManagement"
             [suggestions]="filteredManagements"
@@ -71,8 +71,8 @@
 @if (form) {
   <app-submit-buttons
     [isSubmitDisabled]="form.invalid"
-    [submitBtnLabel]="pageType === 'add' ? 'ACTIONS.SUBMIT' : 'ACTIONS.SEND'"
+    [submitBtnLabel]="pageType === 'add' ? 'ACTIONS.SUBMIT' : 'ACTIONS.SAVE'"
     (submit)="submit()"
-    (cancel)="redirect()"
+    (cancel)="closeDialog()"
   />
 }

@@ -4,7 +4,7 @@
       @if (pageType !== "add" && !unitId) {
         <div class="flex gap-2 col-span-12 items-center">
           <p-toggleswitch
-            [(ngModel)]="allowEdit"
+            [(ngModel)]="allowEditValue"
             [ngModelOptions]="{ standalone: true }"
             (onChange)="toggleEditBtn('unitId')"
           >
@@ -21,7 +21,7 @@
             {{ "PAGES.SHARE_FORM.UNIT" | translate }}
           </label>
           <app-prime-autocomplete
-            [disabled]="pageType === 'edit' && !allowEdit"
+            [disabled]="pageType === 'edit' && !allowEdit()"
             [field]="'pageId'"
             [selectedOption]="selectedUnit"
             [suggestions]="filteredUnits"
@@ -70,8 +70,8 @@
 @if (form) {
   <app-submit-buttons
     [isSubmitDisabled]="form.invalid"
-    [submitBtnLabel]="pageType === 'add' ? 'ACTIONS.SUBMIT' : 'ACTIONS.SEND'"
+    [submitBtnLabel]="pageType === 'add' ? 'ACTIONS.SUBMIT' : 'ACTIONS.SAVE'"
     (submit)="submit()"
-    (cancel)="redirect()"
+    (cancel)="closeDialog()"
   />
 }

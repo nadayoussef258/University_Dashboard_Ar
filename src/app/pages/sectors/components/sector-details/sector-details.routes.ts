@@ -6,25 +6,31 @@ export const sectorDetailsRoutes: Routes = [
     path: '',
     loadComponent: () =>
       import('./sector-details.component').then(
-        (c) => c.SectorDetailsComponent
+        (c) => c.SectorDetailsComponent,
       ),
-    data: { pageTitle: 'تفاصيل القطاعات', pageType: 'list' },
+    data: {
+      pageTitle: 'PAGES.SECTOR_DETAILS.MAIN.PAGE_TITLE',
+      pageType: 'list',
+    },
     canActivate: [clearSectorIdGuard],
   },
   {
     path: 'add',
     loadComponent: () =>
       import('../add-edit-sector-detail/add-edit-sector-detail.component').then(
-        (c) => c.AddEditSectorDetailComponent
+        (c) => c.AddEditSectorDetailComponent,
       ),
-    data: { pageTitle: 'اضافة تفاصيل للقطاع', pageType: 'add' },
+    data: { pageTitle: 'PAGES.SECTOR_DETAILS.ADD.PAGE_TITLE', pageType: 'add' },
   },
   {
     path: 'edit/:id',
     loadComponent: () =>
       import('../add-edit-sector-detail/add-edit-sector-detail.component').then(
-        (c) => c.AddEditSectorDetailComponent
+        (c) => c.AddEditSectorDetailComponent,
       ),
-    data: { pageTitle: 'تعديل تفاصيل القطاع', pageType: 'edit' },
+    data: {
+      pageTitle: 'PAGES.SECTOR_DETAILS.EDIT.PAGE_TITLE',
+      pageType: 'edit',
+    },
   },
 ];

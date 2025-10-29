@@ -51,7 +51,7 @@
 @if (form) {
   <app-submit-buttons
     [isSubmitDisabled]="form.invalid"
-    [submitBtnLabel]="pageType === 'add' ? 'ACTIONS.SUBMIT' : 'ACTIONS.SEND'"
+    [submitBtnLabel]="pageType === 'add' ? 'ACTIONS.SUBMIT' : 'ACTIONS.SAVE'"
     (submit)="submit()"
     (cancel)="redirect()"
   />

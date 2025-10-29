@@ -6,23 +6,23 @@ export const sectorPostsRoutes: Routes = [
     path: '',
     loadComponent: () =>
       import('./sector-posts.component').then((c) => c.SectorPostsComponent),
-    data: { pageTitle: 'منشورات القطاعات', pageType: 'list' },
+    data: { pageTitle: 'PAGES.SECTOR_POSTS.MAIN.PAGE_TITLE', pageType: 'list' },
     canActivate: [clearSectorIdGuard],
   },
   {
     path: 'add',
     loadComponent: () =>
       import('../add-edit-sector-post/add-edit-sector-post.component').then(
-        (c) => c.AddEditSectorPostComponent
+        (c) => c.AddEditSectorPostComponent,
       ),
-    data: { pageTitle: 'اضافة منشور', pageType: 'add' },
+    data: { pageTitle: 'PAGES.SECTOR_POSTS.ADD.PAGE_TITLE', pageType: 'add' },
   },
   {
     path: 'edit/:id',
     loadComponent: () =>
       import('../add-edit-sector-post/add-edit-sector-post.component').then(
-        (c) => c.AddEditSectorPostComponent
+        (c) => c.AddEditSectorPostComponent,
       ),
-    data: { pageTitle: 'تعديل  منشور', pageType: 'edit' },
+    data: { pageTitle: 'PAGES.SECTOR_POSTS.EDIT.PAGE_TITLE', pageType: 'edit' },
   },
 ];

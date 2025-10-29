@@ -6,9 +6,12 @@ export const sectorProgramsRoutes: Routes = [
     path: '',
     loadComponent: () =>
       import('./sector-programs.component').then(
-        (c) => c.SectorProgramsComponent
+        (c) => c.SectorProgramsComponent,
       ),
-    data: { pageTitle: 'اعضاء القطاعات', pageType: 'list' },
+    data: {
+      pageTitle: 'PAGES.SECTOR_PROGRAMS.MAIN.PAGE_TITLE',
+      pageType: 'list',
+    },
     canActivate: [clearSectorIdGuard],
   },
   {
@@ -17,7 +20,10 @@ export const sectorProgramsRoutes: Routes = [
       import(
         '../add-edit-sector-program/add-edit-sector-program.component'
       ).then((c) => c.AddEditSectorProgramComponent),
-    data: { pageTitle: 'اضافة برنامج', pageType: 'add' },
+    data: {
+      pageTitle: 'PAGES.SECTOR_PROGRAMS.ADD.PAGE_TITLE',
+      pageType: 'add',
+    },
   },
   {
     path: 'edit/:id',
@@ -25,6 +31,9 @@ export const sectorProgramsRoutes: Routes = [
       import(
         '../add-edit-sector-program/add-edit-sector-program.component'
       ).then((c) => c.AddEditSectorProgramComponent),
-    data: { pageTitle: 'تعديل برنامج', pageType: 'edit' },
+    data: {
+      pageTitle: 'PAGES.SECTOR_PROGRAMS.EDIT.PAGE_TITLE',
+      pageType: 'edit',
+    },
   },
 ];

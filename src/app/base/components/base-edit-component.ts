@@ -6,6 +6,7 @@ import {
   DestroyRef,
   effect,
   signal,
+  WritableSignal,
 } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { FormBuilder, FormGroup } from '@angular/forms';
@@ -35,7 +36,15 @@ export abstract class BaseEditComponent
   role = signal<any>({});
 
   /** تحكم في صلاحية التعديل */
-  allowEdit = signal(false);
+  allowEdit: WritableSignal<boolean> = signal(false);
+
+  /** Property for ngModel binding */
+  get allowEditValue(): boolean {
+    return this.allowEdit();
+  }
+  set allowEditValue(value: boolean) {
+    this.allowEdit.set(value);
+  }
 
   /** Dependency Injection */
   fb = inject(FormBuilder);

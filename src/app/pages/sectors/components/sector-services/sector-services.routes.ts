@@ -6,9 +6,12 @@ export const sectorServicesRoutes: Routes = [
     path: '',
     loadComponent: () =>
       import('./sector-services.component').then(
-        (c) => c.SectorServicesComponent
+        (c) => c.SectorServicesComponent,
       ),
-    data: { pageTitle: 'خدمات القطاعات', pageType: 'list' },
+    data: {
+      pageTitle: 'PAGES.SECTOR_SERVICES.MAIN.PAGE_TITLE',
+      pageType: 'list',
+    },
     canActivate: [clearSectorIdGuard],
   },
   {
@@ -17,7 +20,10 @@ export const sectorServicesRoutes: Routes = [
       import(
         '../add-edit-sector-service/add-edit-sector-service.component'
       ).then((c) => c.AddEditSectorServiceComponent),
-    data: { pageTitle: 'اضافة خدمات للقطاع', pageType: 'add' },
+    data: {
+      pageTitle: 'PAGES.SECTOR_SERVICES.ADD.PAGE_TITLE',
+      pageType: 'add',
+    },
   },
   {
     path: 'edit/:id',
@@ -25,6 +31,9 @@ export const sectorServicesRoutes: Routes = [
       import(
         '../add-edit-sector-service/add-edit-sector-service.component'
       ).then((c) => c.AddEditSectorServiceComponent),
-    data: { pageTitle: 'تعديل خدمات القطاع', pageType: 'edit' },
+    data: {
+      pageTitle: 'PAGES.SECTOR_SERVICES.EDIT.PAGE_TITLE',
+      pageType: 'edit',
+    },
   },
 ];

@@ -20,7 +20,7 @@ import { LayoutService } from '../service/layout.service';
       </div>
       <app-footer></app-footer>
     </div>
-    <div class="layout-mask animate-fadein"></div>
+    <div class="animate-fadein layout-mask"></div>
   </div> `,
 })
 export class AppLayout {
@@ -35,7 +35,7 @@ export class AppLayout {
   constructor(
     public layoutService: LayoutService,
     public renderer: Renderer2,
-    public router: Router
+    public router: Router,
   ) {
     this.overlayMenuOpenSubscription =
       this.layoutService.overlayOpen$.subscribe(() => {
@@ -47,7 +47,7 @@ export class AppLayout {
               if (this.isOutsideClicked(event)) {
                 this.hideMenu();
               }
-            }
+            },
           );
         }
 
@@ -105,9 +105,9 @@ export class AppLayout {
       document.body.className = document.body.className.replace(
         new RegExp(
           '(^|\\b)' + 'blocked-scroll'.split(' ').join('|') + '(\\b|$)',
-          'gi'
+          'gi',
         ),
-        ' '
+        ' ',
       );
     }
   }

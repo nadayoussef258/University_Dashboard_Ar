@@ -9,25 +9,25 @@ export const sectorsRoutes: Routes = [
     path: '',
     loadComponent: () =>
       import('./pages/sectors/sectors.component').then(
-        (c) => c.SectorsComponent
+        (c) => c.SectorsComponent,
       ),
-    data: { pageTitle: 'القطاعات', pageType: 'list' },
+    data: { pageTitle: 'PAGES.SECTORS.MAIN.PAGE_TITLE', pageType: 'list' },
   },
   {
     path: 'add',
     loadComponent: () =>
       import('./components/sectors-tabs/sectors-tabs.component').then(
-        (c) => c.SectorsTabsComponent
+        (c) => c.SectorsTabsComponent,
       ),
-    data: { pageTitle: 'اضافة قطاع', pageType: 'add' },
+    data: { pageTitle: 'PAGES.SECTORS.ADD.PAGE_TITLE', pageType: 'add' },
     children: [
       {
         path: '',
         loadComponent: () =>
           import('./components/add-edit-sector/add-edit-sector.component').then(
-            (c) => c.AddEditSectorComponent
+            (c) => c.AddEditSectorComponent,
           ),
-        data: { pageTitle: 'اضافة قطاع', pageType: 'add' },
+        data: { pageTitle: 'PAGES.SECTORS.ADD.PAGE_TITLE', pageType: 'add' },
       },
     ],
   },
@@ -35,24 +35,25 @@ export const sectorsRoutes: Routes = [
     path: 'edit/:id',
     loadComponent: () =>
       import('./components/sectors-tabs/sectors-tabs.component').then(
-        (c) => c.SectorsTabsComponent
+        (c) => c.SectorsTabsComponent,
       ),
-    data: { pageTitle: 'تعديل ادارة', pageType: 'edit' },
+    data: { pageTitle: 'PAGES.SECTORS.EDIT.PAGE_TITLE', pageType: 'edit' },
     children: [
       {
         path: '',
         canActivate: [validateSectorIdGuard],
         loadComponent: () =>
           import('./components/add-edit-sector/add-edit-sector.component').then(
-            (c) => c.AddEditSectorComponent
+            (c) => c.AddEditSectorComponent,
           ),
+        data: { pageTitle: 'PAGES.SECTORS.EDIT.PAGE_TITLE', pageType: 'edit' },
       },
       {
         path: 'sector-detail',
         canActivate: [redirectOnDirectSectorAccessGuard],
         loadChildren: () =>
           import('./components/sector-details/sector-details.routes').then(
-            (c) => c.sectorDetailsRoutes
+            (c) => c.sectorDetailsRoutes,
           ),
       },
       {
@@ -60,7 +61,7 @@ export const sectorsRoutes: Routes = [
         canActivate: [redirectOnDirectSectorAccessGuard],
         loadChildren: () =>
           import('./components/sector-member/sector-members.routes').then(
-            (c) => c.sectorMembersRoutes
+            (c) => c.sectorMembersRoutes,
           ),
       },
       {
@@ -68,7 +69,7 @@ export const sectorsRoutes: Routes = [
         canActivate: [redirectOnDirectSectorAccessGuard],
         loadChildren: () =>
           import('./components/sector-posts/sector-posts.routes').then(
-            (c) => c.sectorPostsRoutes
+            (c) => c.sectorPostsRoutes,
           ),
       },
       {
@@ -76,7 +77,7 @@ export const sectorsRoutes: Routes = [
         canActivate: [redirectOnDirectSectorAccessGuard],
         loadChildren: () =>
           import('./components/sector-programs/sector-programs.routes').then(
-            (c) => c.sectorProgramsRoutes
+            (c) => c.sectorProgramsRoutes,
           ),
       },
       {
@@ -84,7 +85,7 @@ export const sectorsRoutes: Routes = [
         canActivate: [redirectOnDirectSectorAccessGuard],
         loadChildren: () =>
           import('./components/sector-services/sector-services.routes').then(
-            (c) => c.sectorServicesRoutes
+            (c) => c.sectorServicesRoutes,
           ),
       },
       {
@@ -92,7 +93,7 @@ export const sectorsRoutes: Routes = [
         canActivate: [redirectOnDirectSectorAccessGuard],
         loadChildren: () =>
           import('./components/sector-units/sector-units.routes').then(
-            (c) => c.sectorUnitsRoutes
+            (c) => c.sectorUnitsRoutes,
           ),
       },
     ],

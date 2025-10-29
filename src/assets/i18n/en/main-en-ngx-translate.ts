@@ -1,7 +1,9 @@
+import { EN_MENU_LABELS } from './menu-labels-en';
 import { EN_PAGES_SETTINGS } from './pages-en';
 
 export const EN_TRANSLATIONS = {
   ...EN_PAGES_SETTINGS,
+  ...EN_MENU_LABELS,
   TITLE: {
     PART_ONE: 'Luxor University',
     PART_TWO: '',

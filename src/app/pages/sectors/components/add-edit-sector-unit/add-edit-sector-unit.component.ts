@@ -12,6 +12,7 @@ import {
 import { DialogService } from 'primeng/dynamicdialog';
 import { ActivatedRoute } from '@angular/router';
 import { SectorIdService } from '../../sector-id.service';
+import { TranslatePipe } from '@ngx-translate/core';
 
 @Component({
   selector: 'app-add-edit-sector-unit',
@@ -22,6 +23,7 @@ import { SectorIdService } from '../../sector-id.service';
     SubmitButtonsComponent,
     PrimeInputTextComponent,
     PrimeAutoCompleteComponent,
+    TranslatePipe,
   ],
   templateUrl: './add-edit-sector-unit.component.html',
   styleUrl: './add-edit-sector-unit.component.css',

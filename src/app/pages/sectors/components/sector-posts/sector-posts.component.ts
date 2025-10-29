@@ -67,13 +67,13 @@ export class SectorPostsComponent extends BaseListComponent {
     return [
       {
         field: 'sectorId',
-        header: 'القطاع',
+        header: 'PAGES.SHARE_FORM.SECTOR',
         filter: true,
         filterMode: 'text',
       },
       {
         field: 'postId',
-        header: 'المنشور',
+        header: 'PAGES.SHARE_FORM.POST',
         filter: true,
         filterMode: 'text',
       },
@@ -103,16 +103,18 @@ export class SectorPostsComponent extends BaseListComponent {
   }
 
   openAdd() {
-    this.openDialog(AddEditSectorPostComponent, 'اضافة منشور', {
-      pageType: 'add',
-      row: { sectorId: this.sectorId },
-    });
+    this.openDialog(
+      AddEditSectorPostComponent,
+      this.localize.translate.instant('PAGES.SECTOR_POSTS.ADD.PAGE_TITLE'),
+      { pageType: 'add', row: { sectorId: this.sectorId } },
+    );
   }
 
   openEdit(rowData: any) {
-    this.openDialog(AddEditSectorPostComponent, 'تعديل منشور', {
-      pageType: 'edit',
-      row: { rowData },
-    });
+    this.openDialog(
+      AddEditSectorPostComponent,
+      this.localize.translate.instant('PAGES.SECTOR_POSTS.EDIT.PAGE_TITLE'),
+      { pageType: 'edit', row: { rowData } },
+    );
   }
 }

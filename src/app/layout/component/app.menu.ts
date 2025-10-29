@@ -23,81 +23,81 @@ export class AppMenu {
   ngOnInit() {
     this.model = [
       {
-        label: 'الرئيسية',
+        label: 'MENU_LABELS.HOME',
         items: [
           {
-            label: 'لوحة التحكم',
+            label: 'MENU_LABELS.DASHBOARD',
             icon: 'pi pi-home',
             routerLink: ['/'],
           },
         ],
       },
       {
-        label: 'الاعدادات',
+        label: 'MENU_LABELS.SETTINGS',
         icon: 'pi pi-cog',
         items: [
           {
-            label: 'معلومات التواصل',
+            label: 'MENU_LABELS.CONTACT_INFO',
             icon: 'pi pi-envelope',
             routerLink: ['/pages/settings/contacts'],
           },
           {
-            label: 'خدمات الجامعة',
+            label: 'MENU_LABELS.UNIVERSITY_SERVICES',
             icon: 'pi pi-globe',
             routerLink: ['/pages/settings/services'],
           },
           {
-            label: 'شعار الجامعة',
+            label: 'MENU_LABELS.UNIVERSITY_LOGO',
             icon: 'pi pi-image',
             routerLink: ['/pages/settings/logos'],
           },
           {
-            label: 'صور رئيسية',
+            label: 'MENU_LABELS.HERO_IMAGES',
             icon: 'pi pi-images',
             routerLink: ['/pages/settings/hero-sections'],
           },
           {
-            label: 'الاحصائيات',
+            label: 'MENU_LABELS.STATISTICS',
             icon: 'pi pi-chart-bar',
             routerLink: ['/pages/settings/statistics'],
           },
           {
-            label: 'أنواع القوائم',
+            label: 'MENU_LABELS.MENU_TYPES',
             icon: 'pi pi-sitemap',
             routerLink: ['/pages/settings/menu-types'],
           },
           {
-            label: 'القوائم',
+            label: 'MENU_LABELS.MENUS',
             icon: 'pi pi-bars',
             routerLink: ['/pages/settings/menu-items'],
           },
         ],
       },
       {
-        label: 'الشاشات',
+        label: 'MENU_LABELS.SCREENS',
         icon: 'pi pi-desktop',
         items: [
           {
-            label: 'القادة',
+            label: 'MENU_LABELS.LEADERS',
             icon: 'pi pi-star',
             routerLink: ['/pages/leaders'],
           },
           {
-            label: 'الادارات',
+            label: 'MENU_LABELS.MANAGEMENTS',
             icon: 'pi pi-sitemap',
             items: [
               {
-                label: 'الإدارات الرئيسية',
+                label: 'MENU_LABELS.MAIN_MANAGEMENTS',
                 icon: 'pi pi-angle-left',
                 routerLink: ['/pages/managements'],
               },
               {
-                label: 'تفاصيل الإدارات',
+                label: 'MENU_LABELS.MANAGEMENT_DETAILS',
                 icon: 'pi pi-angle-left',
                 routerLink: ['/pages/management-details'],
               },
               {
-                label: 'أعضاء الإدارات',
+                label: 'MENU_LABELS.MANAGEMENT_MEMBERS',
                 icon: 'pi pi-angle-left',
                 routerLink: ['/pages/management-members'],
               },
@@ -105,23 +105,23 @@ export class AppMenu {
           },
 
           {
-            label: 'الوحدات',
+            label: 'MENU_LABELS.UNITS',
             icon: 'pi pi-users',
             items: [
               {
-                label: 'الوحدات الرئيسية',
+                label: 'MENU_LABELS.MAIN_UNITS',
                 // icon: 'pi pi-building',
                 icon: 'pi pi-angle-left',
                 routerLink: ['/pages/units'],
               },
               {
-                label: 'تفاصيل الوحدات',
+                label: 'MENU_LABELS.UNIT_DETAILS',
                 // icon: 'pi pi-list',
                 icon: 'pi pi-angle-left',
                 routerLink: ['/pages/unit-details'],
               },
               {
-                label: 'أعضاء الوحدات',
+                label: 'MENU_LABELS.UNIT_MEMBERS',
                 // icon: 'pi pi-users',
                 icon: 'pi pi-angle-left',
                 routerLink: ['/pages/unit-members'],
@@ -129,23 +129,23 @@ export class AppMenu {
             ],
           },
           {
-            label: 'المراكز',
+            label: 'MENU_LABELS.CENTERS',
             icon: 'pi pi-sitemap',
             items: [
               {
-                label: 'المراكز الرئيسية',
+                label: 'MENU_LABELS.MAIN_CENTERS',
                 // icon: 'pi pi-building',
                 icon: 'pi pi-angle-left',
                 routerLink: ['/pages/centers'],
               },
               {
-                label: 'تفاصيل المراكز',
+                label: 'MENU_LABELS.CENTER_DETAILS',
                 // icon: 'pi pi-info-circle',
                 icon: 'pi pi-angle-left',
                 routerLink: ['/pages/center-details'],
               },
               {
-                label: 'أعضاء المراكز',
+                label: 'MENU_LABELS.CENTER_MEMBERS',
                 // icon: 'pi pi-users',
                 icon: 'pi pi-angle-left',
                 routerLink: ['/pages/center-members'],
@@ -153,23 +153,23 @@ export class AppMenu {
             ],
           },
           {
-            label: 'البرامج',
+            label: 'MENU_LABELS.PROGRAMS',
             icon: 'pi pi-briefcase',
             items: [
               {
-                label: 'البرامج الرئيسية',
+                label: 'MENU_LABELS.MAIN_PROGRAMS',
                 // icon: 'pi pi-th-large',
                 icon: 'pi pi-angle-left',
                 routerLink: ['/pages/programs'],
               },
               {
-                label: 'تفاصيل البرامج',
+                label: 'MENU_LABELS.PROGRAM_DETAILS',
                 // icon: 'pi pi-file',
                 icon: 'pi pi-angle-left',
                 routerLink: ['/pages/program-details'],
               },
               {
-                label: 'أعضاء البرامج',
+                label: 'MENU_LABELS.PROGRAM_MEMBERS',
                 // icon: 'pi pi-user',
                 icon: 'pi pi-angle-left',
                 routerLink: ['/pages/program-members'],
@@ -177,47 +177,47 @@ export class AppMenu {
             ],
           },
           {
-            label: 'القطاعات',
+            label: 'MENU_LABELS.SECTORS',
             icon: 'pi pi-th-large',
             items: [
               {
-                label: 'القطاعات الرئيسية',
+                label: 'MENU_LABELS.MAIN_SECTORS',
                 // icon: 'pi pi-building',
                 icon: 'pi pi-angle-left',
                 routerLink: ['/pages/sectors'],
               },
               {
-                label: 'تفاصيل القطاعات',
+                label: 'MENU_LABELS.SECTOR_DETAILS',
                 // icon: 'pi pi-list',
                 icon: 'pi pi-angle-left',
                 routerLink: ['/pages/sector-details'],
               },
               {
-                label: 'أعضاء القطاعات',
+                label: 'MENU_LABELS.SECTOR_MEMBERS',
                 // icon: 'pi pi-users',
                 icon: 'pi pi-angle-left',
                 routerLink: ['/pages/sector-members'],
               },
               {
-                label: 'منشورات القطاعات',
+                label: 'MENU_LABELS.SECTOR_POSTS',
                 // icon: 'pi pi-send',
                 icon: 'pi pi-angle-left',
                 routerLink: ['/pages/sector-posts'],
               },
               {
-                label: 'برامج القطاعات',
+                label: 'MENU_LABELS.SECTOR_PROGRAMS',
                 // icon: 'pi pi-sliders-h',
                 icon: 'pi pi-angle-left',
                 routerLink: ['/pages/sector-programs'],
               },
               {
-                label: 'وحدات القطاعات',
+                label: 'MENU_LABELS.SECTOR_UNITS',
                 // icon: 'pi pi-building',
                 icon: 'pi pi-angle-left',
                 routerLink: ['/pages/sector-units'],
               },
               {
-                label: 'خدمات القطاعات',
+                label: 'MENU_LABELS.SECTOR_SERVICES',
                 // icon: 'pi  pi-cog',
                 icon: 'pi pi-angle-left',
                 routerLink: ['/pages/sector-services'],
@@ -225,32 +225,32 @@ export class AppMenu {
             ],
           },
           {
-            label: 'الاخبار والاحدات',
+            label: 'MENU_LABELS.NEWS_EVENTS',
             icon: 'pi pi-calendar',
             routerLink: ['/pages/posts'],
           },
           {
-            label: 'أعضاء هيئة التدريس',
+            label: 'MENU_LABELS.FACULTY_MEMBERS',
             icon: 'pi pi-user-edit',
             routerLink: ['/pages/members'],
           },
           {
-            label: 'عن الجامعة',
+            label: 'MENU_LABELS.ABOUT_UNIVERSITY',
             icon: 'pi pi-university',
             routerLink: ['/pages/about'],
           },
           {
-            label: 'الأحداث',
+            label: 'MENU_LABELS.ACTIONS',
             icon: 'pi pi-calendar-plus',
             routerLink: ['/pages/settings/actions'],
           },
           {
-            label: 'التصنيفات',
+            label: 'MENU_LABELS.CATEGORIES',
             icon: 'pi pi-tags',
             routerLink: ['/pages/settings/categories'],
           },
           {
-            label: 'الصفحات',
+            label: 'MENU_LABELS.PAGES',
             icon: 'pi pi-file',
             routerLink: ['/pages/page-s'],
           },

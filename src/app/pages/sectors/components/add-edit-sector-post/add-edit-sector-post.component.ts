@@ -13,6 +13,7 @@ import { DialogService } from 'primeng/dynamicdialog';
 import { ActivatedRoute } from '@angular/router';
 import { ToggleSwitch } from 'primeng/toggleswitch';
 import { SectorIdService } from '../../sector-id.service';
+import { TranslatePipe } from '@ngx-translate/core';
 
 @Component({
   selector: 'app-add-edit-sector-post',
@@ -24,6 +25,7 @@ import { SectorIdService } from '../../sector-id.service';
     PrimeAutoCompleteComponent,
     ToggleSwitch,
     ToggleSwitch,
+    TranslatePipe,
   ],
   templateUrl: './add-edit-sector-post.component.html',
   styleUrl: './add-edit-sector-post.component.css',

@@ -60,7 +60,12 @@ export class SectorDetailsComponent extends BaseListComponent {
       bodyOptions: {
         filter: { sectorId: this.sectorId },
       },
-      responsiveDisplayedProperties: ['title', 'description', 'content'],
+      responsiveDisplayedProperties: [
+        'title',
+        'description',
+        'content',
+        'sectorId',
+      ],
     };
   }
 
@@ -68,13 +73,25 @@ export class SectorDetailsComponent extends BaseListComponent {
     return [
       {
         field: 'title',
-        header: 'العنوان',
+        header: 'PAGES.SECTOR_DETAILS.FORM.TITLE',
+        filter: true,
+        filterMode: 'text',
+      },
+      {
+        field: 'description',
+        header: 'PAGES.SECTOR_DETAILS.FORM.DESCRIPTION',
         filter: true,
         filterMode: 'text',
       },
       {
         field: 'content',
-        header: 'المحتوي',
+        header: 'PAGES.SECTOR_DETAILS.FORM.CONTENT',
+        filter: true,
+        filterMode: 'text',
+      },
+      {
+        field: 'sectorId',
+        header: 'PAGES.SHARE_FORM.SECTOR',
         filter: true,
         filterMode: 'text',
       },

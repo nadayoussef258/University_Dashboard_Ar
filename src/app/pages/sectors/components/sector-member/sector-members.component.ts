@@ -67,15 +67,15 @@ export class SectorMembersComponent extends BaseListComponent {
     return [
       {
         field: 'isLeader',
-        header: 'الحالة',
-        trueText: 'ادمن',
-        falseText: 'مستخدم',
+        header: 'PAGES.SHARE_FORM.IS_LEADER.TITLE',
+        trueText: 'PAGES.SHARE_FORM.IS_LEADER.LEADER',
+        falseText: 'PAGES.SHARE_FORM.IS_LEADER.PERSON',
         filter: true,
         filterMode: 'boolean',
       },
       {
         field: 'sectorId',
-        header: 'القطاع',
+        header: 'PAGES.SHARE_FORM.SECTOR',
         filter: true,
         filterMode: 'text',
       },
@@ -105,16 +105,18 @@ export class SectorMembersComponent extends BaseListComponent {
   }
 
   openAdd() {
-    this.openDialog(AddEditSectorMemberComponent, 'اضافة عضو للقطاع', {
-      pageType: 'add',
-      row: { sectorId: this.sectorId },
-    });
+    this.openDialog(
+      AddEditSectorMemberComponent,
+      this.localize.translate.instant('PAGES.SECTOR_MEMBERS.ADD.PAGE_TITLE'),
+      { pageType: 'add', row: { sectorId: this.sectorId } },
+    );
   }
 
   openEdit(rowData: any) {
-    this.openDialog(AddEditSectorMemberComponent, 'تعديل عضو في القطاع', {
-      pageType: 'edit',
-      row: { rowData },
-    });
+    this.openDialog(
+      AddEditSectorMemberComponent,
+      this.localize.translate.instant('PAGES.SECTOR_MEMBERS.EDIT.PAGE_TITLE'),
+      { pageType: 'edit', row: { rowData } },
+    );
   }
 }

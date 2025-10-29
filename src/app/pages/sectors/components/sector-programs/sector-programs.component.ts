@@ -67,13 +67,13 @@ export class SectorProgramsComponent extends BaseListComponent {
     return [
       {
         field: 'name',
-        header: 'اسم البرمامج',
+        header: 'PAGES.SECTOR_PROGRAMS.FORM.NAME',
         filter: true,
         filterMode: 'text',
       },
       {
         field: 'sectorId',
-        header: 'القطاع',
+        header: 'PAGES.SHARE_FORM.SECTOR',
         filter: true,
         filterMode: 'text',
       },
@@ -103,16 +103,18 @@ export class SectorProgramsComponent extends BaseListComponent {
   }
 
   openAdd() {
-    this.openDialog(AddEditSectorProgramComponent, 'اضافة برنامج', {
-      pageType: 'add',
-      row: { sectorId: this.sectorId },
-    });
+    this.openDialog(
+      AddEditSectorProgramComponent,
+      this.localize.translate.instant('PAGES.SECTOR_PROGRAMS.ADD.PAGE_TITLE'),
+      { pageType: 'add', row: { sectorId: this.sectorId } },
+    );
   }
 
   openEdit(rowData: any) {
-    this.openDialog(AddEditSectorProgramComponent, 'تعديل برنامج', {
-      pageType: 'edit',
-      row: { rowData },
-    });
+    this.openDialog(
+      AddEditSectorProgramComponent,
+      this.localize.translate.instant('PAGES.SECTOR_PROGRAMS.ADD.PAGE_TITLE'),
+      { pageType: 'edit', row: { rowData } },
+    );
   }
 }

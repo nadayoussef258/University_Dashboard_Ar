@@ -732,19 +732,49 @@ export abstract class BaseListComponent
     // Add closable parameter with default value
     this.dialogRef = this.dialogService.open(component, {
       header: pageTitle,
-      width: '65%',
-      modal: true,
-      breakpoints: {
-        '1199px': '75vw',
-        '575px': '90vw',
-      },
       data: data,
+
+      width: '60vw',
+      height: 'auto',
+      position: 'center',
+
+      breakpoints: {
+        '1400px': '70vw',
+        '1199px': '75vw',
+        '991px': '85vw',
+        '575px': '95vw',
+      },
+      styleClass: 'custom-dynamic-dialog',
+      maskStyleClass: 'custom-dialog-mask dark-overlay',
+
+      contentStyle: {
+        padding: '1.5rem',
+        'font-size': '0.95rem',
+      },
+      style: {
+        'border-radius': '12px',
+        'box-shadow': '0 8px 24px rgba(0, 0, 0, 0.15)',
+        overflow: 'hidden',
+      },
+
+      // ⚙️ السلوكيات
+      modal: true,
+      closable: closable,
+      closeOnEscape: true,
+      dismissableMask: false,
+      resizable: false,
+      draggable: false,
+      maximizable: false,
+      focusTrap: true,
       focusOnShow: false,
       autoZIndex: true,
       baseZIndex: 10000,
-      dismissableMask: true,
-      closable: closable, // Set the closable property
+      keepInViewport: true,
+      appendTo: 'body',
+
+      transitionOptions: '150ms cubic-bezier(0.4, 0, 0.2, 1)',
     });
+    //
     this.dialogRef?.onDestroy.subscribe(() => {
       this.loadDataFromServer();
     });

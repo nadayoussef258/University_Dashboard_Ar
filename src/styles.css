@@ -102,3 +102,37 @@
 .layout-sidebar {
   @apply bg-gray-800;
 }
+/* شكل الحاوية */
+.custom-dynamic-dialog {
+  border-radius: 12px !important;
+  overflow: hidden;
+  /* box-shadow: 0 8px 24px rgba(0, 0, 0, 0.15) !important; */
+  /* background-color: #fff; */
+}
+
+/* الهيدر */
+.custom-dynamic-dialog .p-dialog-header {
+  font-weight: 600;
+  padding: 1rem 1.5rem;
+}
+
+/* الأزرار داخل الهيدر */
+.custom-dynamic-dialog .p-dialog-header .p-dialog-header-icon {
+  color: #fff !important;
+}
+
+/* محتوى الحوار */
+.custom-dynamic-dialog .p-dialog-content {
+  padding: 1.5rem;
+  font-size: 0.95rem;
+}
+
+.custom-dialog-mask {
+  backdrop-filter: blur(5px);
+  background-color: rgba(0, 0, 0, 0.4) !important;
+}
+
+/* لو حابب تعمل نسخة داكنة */
+/* .dark-overlay {
+  background-color: rgba(10, 10, 10, 0.6) !important;
+} */

@@ -5,15 +5,15 @@
         <app-prime-input-text
           [formGroup]="form"
           controlName="title"
-          [label]="'عنوان القطاع'"
+          [label]="'PAGES.SECTOR_DETAILS.FORM.TITLE'"
         >
         </app-prime-input-text>
       </div>
       @if ((pageType !== "add" && sectorId) || !sectorId) {
         <div class="form-col">
-          <label class="font-bold font-14 text-middle mb-2">{{
-            "القطاع"
-          }}</label>
+          <label class="font-bold font-14 text-middle mb-2">
+            {{ "PAGES.SHARE_FORM.SECTOR" | translate }}
+          </label>
           <app-prime-autocomplete
             [disabled]="!!sectorId"
             [field]="'name'"
@@ -31,7 +31,7 @@
         <app-prime-input-text
           [formGroup]="form"
           controlName="content"
-          [label]="'محتوي القطاع'"
+          [label]="'PAGES.SECTOR_DETAILS.FORM.CONTENT'"
           [inputType]="'textarea'"
         >
         </app-prime-input-text>
@@ -43,7 +43,7 @@
 @if (form) {
   <app-submit-buttons
     [isSubmitDisabled]="form.invalid"
-    [submitBtnLabel]="pageType === 'add' ? 'ACTIONS.SUBMIT' : 'ACTIONS.SEND'"
+    [submitBtnLabel]="pageType === 'add' ? 'ACTIONS.SUBMIT' : 'ACTIONS.SAVE'"
     (submit)="submit()"
     (cancel)="redirect()"
   />

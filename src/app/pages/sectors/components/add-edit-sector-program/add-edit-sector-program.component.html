@@ -3,24 +3,25 @@
     <form method="post" class="grid gap-4 grid-cols-12" [formGroup]="form">
       @if (pageType !== "add" && !sectorId) {
         <div class="flex gap-2 col-span-12 items-center">
-          <label class="text-middle mb-3">الحالة</label>
           <p-toggleswitch
-            [(ngModel)]="allowEdit"
+            [(ngModel)]="allowEditValue"
             [ngModelOptions]="{ standalone: true }"
             (onChange)="toggleEditBtn('sectorId')"
           >
           </p-toggleswitch>
-          <label class="font-medium text-sm"
-            >هل تريد التعديل علي القطاع ؟</label
-          >
+          <label class="font-medium text-sm">
+            {{ "PAGES.SECTORS.QUESTION_ALLOW_EDIT" | translate }}
+          </label>
         </div>
       }
       <!--  -->
       @if ((pageType !== "add" && sectorId) || !sectorId) {
         <div class="form-col">
-          <label class="text-middle mb-2">{{ "القطاع" }}</label>
+          <label class="text-middle mb-2">
+            {{ "PAGES.SHARE_FORM.SECTOR" | translate }}
+          </label>
           <app-prime-autocomplete
-            [disabled]="pageType === 'edit' && !allowEdit"
+            [disabled]="pageType === 'edit' && !allowEdit()"
             [field]="'name'"
             [selectedOption]="selectedSector"
             [suggestions]="filteredSectors"
@@ -36,7 +37,7 @@
         <app-prime-input-text
           [formGroup]="form"
           controlName="name"
-          [label]="'اسم البرنامج'"
+          [label]="'PAGES.SECTOR_PROGRAM.FORM.NAME'"
         >
         </app-prime-input-text>
       </div>
@@ -47,8 +48,8 @@
 @if (form) {
   <app-submit-buttons
     [isSubmitDisabled]="form.invalid"
-    [submitBtnLabel]="pageType === 'add' ? 'ACTIONS.SUBMIT' : 'ACTIONS.SEND'"
+    [submitBtnLabel]="pageType === 'add' ? 'ACTIONS.SUBMIT' : 'ACTIONS.SAVE'"
     (submit)="submit()"
-    (cancel)="redirect()"
+    (cancel)="closeDialog()"
   />
 }

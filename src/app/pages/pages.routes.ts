@@ -142,7 +142,7 @@ export const pagesRoutes: Routes = [
   {
     path: 'programs',
     loadChildren: () =>
-      import('./programs/programs.routes').then((m) => m.programsRoutes),
+      import('./programs/centers.routes').then((m) => m.programsRoutes),
   },
   {
     path: 'program-details',

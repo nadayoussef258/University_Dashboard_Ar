@@ -1,3 +1,5 @@
+// PAGES.
+// SETTINGS.
 export const AR_PAGES_SETTINGS = {
   PAGES: {
     SHARE_FORM: {
@@ -8,6 +10,7 @@ export const AR_PAGES_SETTINGS = {
       PROGRAM: 'البرنامج',
       SECTOR: 'القطاع',
       CENTER: 'المركز',
+      POST: 'المنشور',
       IS_LEADER: {
         TITLE: 'الدور',
         LEADER: 'المسؤول',
@@ -289,7 +292,122 @@ export const AR_PAGES_SETTINGS = {
         PAGE_TITLE: 'تعديل عضو المركز',
       },
       FORM: {
-        QUESTION_ALLOW_EDIT: 'هل ترغب في تعديل المركز',
+        QUESTION_ALLOW_EDIT: 'هل ترغب في تعديل المركز ؟',
+      },
+    },
+    SECTORS: {
+      MAIN: {
+        PAGE_TITLE: 'القطاعات',
+      },
+      ADD: {
+        PAGE_TITLE: 'إضافة قطاع',
+      },
+      EDIT: {
+        PAGE_TITLE: 'تعديل القطاع',
+      },
+      FORM: {
+        NAME: 'اسم القطاع',
+        SUB_TITLE: 'عنوان فرعي للقطاع',
+      },
+      QUESTION_ALLOW_EDIT: 'هل ترغب في تعديل القطاع ؟',
+    },
+    SECTOR_DETAILS: {
+      MAIN: {
+        PAGE_TITLE: 'تفاصيل القطاعات',
+      },
+      ADD: {
+        PAGE_TITLE: 'إضافة تفاصيل للقطاع',
+      },
+      EDIT: {
+        PAGE_TITLE: 'تعديل تفاصيل القطاع',
+      },
+      FORM: {
+        TITLE: 'عنوان التفاصيل',
+        DESCRIPTION: 'الوصف المختصر',
+        CONTENT: 'المحتوى التفصيلي',
+      },
+    },
+    SECTOR_MEMBERS: {
+      MAIN: {
+        PAGE_TITLE: 'أعضاء القطاعات',
+      },
+      ADD: {
+        PAGE_TITLE: 'إضافة عضو للقطاع',
+      },
+      EDIT: {
+        PAGE_TITLE: 'تعديل عضو القطاع',
+      },
+    },
+    SECTOR_PROGRAMS: {
+      MAIN: {
+        PAGE_TITLE: 'برامج القطاعات',
+      },
+      ADD: {
+        PAGE_TITLE: 'إضافة برنامج للقطاع',
+      },
+      EDIT: {
+        PAGE_TITLE: 'تعديل برنامج القطاع',
+      },
+      FORM: {
+        NAME: 'اسم البرنامج',
+      },
+    },
+    SECTOR_POSTS: {
+      MAIN: {
+        PAGE_TITLE: 'منشورات القطاعات',
+      },
+      ADD: {
+        PAGE_TITLE: 'إضافة منشور للقطاع',
+      },
+      EDIT: {
+        PAGE_TITLE: 'تعديل منشور القطاع',
+      },
+    },
+    SECTOR_SERVICES: {
+      MAIN: {
+        PAGE_TITLE: 'خدمات القطاعات',
+      },
+      ADD: {
+        PAGE_TITLE: 'إضافة خدمة للقطاع',
+      },
+      EDIT: {
+        PAGE_TITLE: 'تعديل خدمة القطاع',
+      },
+      FORM: {
+        NAME: 'اسم الخدمة',
+        DETAILS: 'تفاصيل الخدمة',
+        DURATION: 'المدة',
+        CATEGORY: 'الفئة',
+        FEES: 'الرسوم',
+        APPLICATION_URL: 'رابط التقديم الإلكتروني',
+        DOWNLOAD_URL: 'رابط التحميل',
+        CONTACT_PERSON: 'اسم مسؤول التواصل',
+        CONTACT_PHONE: 'رقم الهاتف',
+        IS_ONLINE: {
+          TITLE: 'الخدمة متاحة اون لاين',
+          ONLINE: 'متاحة اون لاين',
+          OFFLINE: 'غير متاحة اون لاين',
+        },
+      },
+    },
+    SECTOR_UNITS: {
+      MAIN: {
+        PAGE_TITLE: 'وحدات القطاعات',
+      },
+      ADD: {
+        PAGE_TITLE: 'إضافة وحدة للقطاع',
+      },
+      EDIT: {
+        PAGE_TITLE: 'تعديل وحدة القطاع',
+      },
+      FORM: {
+        UNIT_NAME: 'اسم الوحدة',
+        UNIT_DESCRIPTION: 'وصف الوحدة',
+        MANAGER: 'اسم مدير الوحدة',
+        EMAIL: 'البريد الإلكتروني',
+        EMPLOYEES_COUNT: 'عدد الموظفين',
+        LOCATION: 'موقع الوحدة',
+        UNIT_PHONE: 'رقم هاتف الوحدة',
       },
     },
   },

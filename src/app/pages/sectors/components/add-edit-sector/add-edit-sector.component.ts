@@ -9,11 +9,11 @@ import {
   PrimeInputTextComponent,
   SubmitButtonsComponent,
 } from '../../../../shared';
-import { DialogService } from 'primeng/dynamicdialog';
 import { ActivatedRoute } from '@angular/router';
 import { TabsModule } from 'primeng/tabs';
 import { SectorIdService } from '../../sector-id.service';
 import { SectorsService } from '../../../../shared';
+import { TranslatePipe } from '@ngx-translate/core';
 
 @Component({
   selector: 'app-add-edit-sector',
@@ -25,6 +25,7 @@ import { SectorsService } from '../../../../shared';
     PrimeAutoCompleteComponent,
     PrimeInputTextComponent,
     SubmitButtonsComponent,
+    TranslatePipe,
   ],
   templateUrl: './add-edit-sector.component.html',
   styleUrl: './add-edit-sector.component.css',

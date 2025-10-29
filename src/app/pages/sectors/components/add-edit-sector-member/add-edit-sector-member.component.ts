@@ -13,6 +13,7 @@ import { ActivatedRoute } from '@angular/router';
 import { ToggleSwitch } from 'primeng/toggleswitch';
 import { NgClass } from '@angular/common';
 import { SectorIdService } from '../../sector-id.service';
+import { TranslatePipe } from '@ngx-translate/core';
 
 @Component({
   selector: 'app-add-edit-sector-member',
@@ -25,6 +26,7 @@ import { SectorIdService } from '../../sector-id.service';
     ToggleSwitch,
     NgClass,
     ToggleSwitch,
+    TranslatePipe,
   ],
   templateUrl: './add-edit-sector-member.component.html',
   styleUrl: './add-edit-sector-member.component.css',

@@ -5,17 +5,7 @@
         <app-prime-input-text
           [formGroup]="form"
           controlName="unitNameAr"
-          [label]="'اسم الوحدة بالعربية'"
-        >
-        </app-prime-input-text>
-      </div>
-
-      <div class="col-span-12">
-        <app-prime-input-text
-          [formGroup]="form"
-          controlName="unitDescriptionAr"
-          [label]="'وصف الوحدة بالعربية'"
-          [inputType]="'textarea'"
+          [label]="'PAGES.SECTOR_UNITS.FORM.UNIT_NAME'"
         >
         </app-prime-input-text>
       </div>
@@ -24,7 +14,7 @@
         <app-prime-input-text
           [formGroup]="form"
           controlName="manager"
-          [label]="'اسم المدير'"
+          [label]="'PAGES.SECTOR_UNITS.FORM.MANAGER'"
         >
         </app-prime-input-text>
       </div>
@@ -33,7 +23,7 @@
         <app-prime-input-text
           [formGroup]="form"
           controlName="email"
-          [label]="'البريد الإلكتروني'"
+          [label]="'PAGES.SECTOR_UNITS.FORM.EMAIL'"
         >
         </app-prime-input-text>
       </div>
@@ -43,7 +33,7 @@
           [formGroup]="form"
           controlName="employeesCount"
           contentType="number"
-          [label]="'عدد الموظفين'"
+          [label]="'PAGES.SECTOR_UNITS.FORM.EMPLOYEES_COUNT'"
         >
         </app-prime-input-text>
       </div>
@@ -52,7 +42,7 @@
         <app-prime-input-text
           [formGroup]="form"
           controlName="location"
-          [label]="'الموقع'"
+          [label]="'PAGES.SECTOR_UNITS.FORM.LOCATION'"
         >
         </app-prime-input-text>
       </div>
@@ -61,14 +51,26 @@
         <app-prime-input-text
           [formGroup]="form"
           controlName="unitPhone"
-          [label]="'رقم الهاتف'"
+          [label]="'PAGES.SECTOR_UNITS.FORM.UNIT_PHONE'"
+        >
+        </app-prime-input-text>
+      </div>
+
+      <div class="col-span-12">
+        <app-prime-input-text
+          [formGroup]="form"
+          controlName="unitDescriptionAr"
+          [label]="'PAGES.SECTOR_UNITS.FORM.UNIT_DESCRIPTION'"
+          [inputType]="'textarea'"
         >
         </app-prime-input-text>
       </div>
 
       @if ((pageType !== "add" && sectorId) || !sectorId) {
         <div class="form-col">
-          <label class="text-middle mb-2">{{ "القطاع" }}</label>
+          <label class="text-middle mb-2">
+            {{ "PAGES.SHARE_FORM.SECTOR" | translate }}
+          </label>
           <app-prime-autocomplete
             [disabled]="!!sectorId"
             [field]="'name'"
@@ -88,7 +90,7 @@
 @if (form) {
   <app-submit-buttons
     [isSubmitDisabled]="form.invalid"
-    [submitBtnLabel]="pageType === 'add' ? 'ACTIONS.SUBMIT' : 'ACTIONS.SEND'"
+    [submitBtnLabel]="pageType === 'add' ? 'ACTIONS.SUBMIT' : 'ACTIONS.SAVE'"
     (submit)="submit()"
     (cancel)="redirect()"
   />

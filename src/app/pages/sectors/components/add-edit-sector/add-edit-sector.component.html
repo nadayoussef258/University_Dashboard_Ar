@@ -4,7 +4,7 @@
       <app-prime-input-text
         [formGroup]="form"
         controlName="name"
-        [label]="'اسم القطاع'"
+        [label]="'PAGES.SECTORS.FORM.NAME'"
       >
       </app-prime-input-text>
     </div>
@@ -13,13 +13,15 @@
       <app-prime-input-text
         [formGroup]="form"
         controlName="subTitle"
-        [label]="'عنوان فرعي للقطاع'"
+        [label]="'PAGES.SECTORS.FORM.SUB_TITLE'"
       >
       </app-prime-input-text>
     </div>
 
     <div class="form-col">
-      <label class="text-middle mb-2 form-col">{{ "عنوان الصفحة" }}</label>
+      <label class="text-middle mb-2 form-col">
+        {{ "PAGES.SHARE_FORM.PAGE" | translate }}
+      </label>
       <app-prime-autocomplete
         [field]="'title'"
         [selectedOption]="selectedPage"
@@ -31,7 +33,9 @@
       ></app-prime-autocomplete>
     </div>
     <div class="form-col">
-      <label class="text-middle mb-2">{{ "عن الجامعة" }}</label>
+      <label class="text-middle mb-2">
+        {{ "PAGES.SHARE_FORM.ABOUT" | translate }}
+      </label>
       <app-prime-autocomplete
         [field]="'content'"
         [selectedOption]="selectedAbout"
@@ -47,7 +51,7 @@
 @if (form) {
   <app-submit-buttons
     [isSubmitDisabled]="form.invalid"
-    [submitBtnLabel]="pageType === 'add' ? 'ACTIONS.SUBMIT' : 'ACTIONS.SEND'"
+    [submitBtnLabel]="pageType === 'add' ? 'ACTIONS.SUBMIT' : 'ACTIONS.SAVE'"
     (submit)="submit()"
     (cancel)="redirect()"
   />

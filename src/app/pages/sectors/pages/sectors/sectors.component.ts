@@ -66,25 +66,25 @@ export class SectorsComponent extends BaseListComponent {
     return [
       {
         field: 'name',
-        header: 'اسم القطاع',
+        header: 'PAGES.SECTORS.FORM.NAME',
         filter: true,
         filterMode: 'text',
       },
       {
         field: 'subTitle',
-        header: 'عنوان فرعي',
+        header: 'PAGES.SECTORS.FORM.SUB_TITLE',
         filter: true,
         filterMode: 'text',
       },
       {
         field: 'pageTitle',
-        header: 'اسم الصفحة',
+        header: 'PAGES.SHARE_FORM.PAGE',
         filter: true,
         filterMode: 'text',
       },
       {
         field: 'about.content',
-        header: 'عنوان التعريف',
+        header: 'PAGES.SHARE_FORM.ABOUT',
         filter: true,
         filterMode: 'text',
       },

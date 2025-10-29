@@ -8,6 +8,7 @@ export const EN_PAGES_SETTINGS = {
       PROGRAM: 'Program',
       SECTOR: 'Sector',
       CENTER: 'Center',
+      POST: 'Post',
       IS_LEADER: {
         TITLE: 'Role',
         LEADER: 'Administrator',
@@ -289,6 +290,126 @@ export const EN_PAGES_SETTINGS = {
       },
       FORM: {
         QUESTION_ALLOW_EDIT: 'Do you want to modify the Center ?',
+      },
+    },
+    SECTORS: {
+      MAIN: {
+        PAGE_TITLE: 'Sectors',
+      },
+      ADD: {
+        PAGE_TITLE: 'Add Sector',
+      },
+      EDIT: {
+        PAGE_TITLE: 'Edit Sector',
+      },
+      FORM: {
+        NAME: 'Sector Name',
+        SUB_TITLE: 'Sector Subtitle',
+      },
+      QUESTION_ALLOW_EDIT: 'Do you want to modify the sector ?',
+    },
+
+    SECTOR_DETAILS: {
+      MAIN: {
+        PAGE_TITLE: 'Sector Details',
+      },
+      ADD: {
+        PAGE_TITLE: 'Add Sector Detail',
+      },
+      EDIT: {
+        PAGE_TITLE: 'Edit Sector Detail',
+      },
+      FORM: {
+        TITLE: 'Detail Title',
+        DESCRIPTION: 'Short Description',
+        CONTENT: 'Detailed Content',
+      },
+    },
+
+    SECTOR_MEMBERS: {
+      MAIN: {
+        PAGE_TITLE: 'Sector Members',
+      },
+      ADD: {
+        PAGE_TITLE: 'Add Sector Member',
+      },
+      EDIT: {
+        PAGE_TITLE: 'Edit Sector Member',
+      },
+    },
+
+    SECTOR_PROGRAMS: {
+      MAIN: {
+        PAGE_TITLE: 'Sector Programs',
+      },
+      ADD: {
+        PAGE_TITLE: 'Add Sector Program',
+      },
+      EDIT: {
+        PAGE_TITLE: 'Edit Sector Program',
+      },
+      FORM: {
+        NAME: 'Program Name',
+      },
+    },
+
+    SECTOR_POSTS: {
+      MAIN: {
+        PAGE_TITLE: 'Sector Posts',
+      },
+      ADD: {
+        PAGE_TITLE: 'Add Sector Post',
+      },
+      EDIT: {
+        PAGE_TITLE: 'Edit Sector Post',
+      },
+    },
+
+    SECTOR_SERVICES: {
+      MAIN: {
+        PAGE_TITLE: 'Sector Services',
+      },
+      ADD: {
+        PAGE_TITLE: 'Add Sector Service',
+      },
+      EDIT: {
+        PAGE_TITLE: 'Edit Sector Service',
+      },
+      FORM: {
+        NAME: 'Service Name',
+        DETAILS: 'Service Details',
+        DURATION: 'Duration',
+        CATEGORY: 'Category',
+        FEES: 'Fees',
+        APPLICATION_URL: 'Online Application Link',
+        DOWNLOAD_URL: 'Download Link',
+        CONTACT_NAME: 'Contact Person Name',
+        CONTACT_PHONE: 'Contact Phone Number',
+      },
+      SECTOR_UNITS: {
+        MAIN: {
+          PAGE_TITLE: 'Sector Units',
+        },
+        ADD: {
+          PAGE_TITLE: 'Add Sector Unit',
+        },
+        EDIT: {
+          PAGE_TITLE: 'Edit Sector Unit',
+        },
+        FORM: {
+          UNIT_NAME: 'Unit Name',
+          UNIT_DESCRIPTION: 'Unit Description',
+          MANAGER: 'Unit Manager Name',
+          EMAIL: 'Email Address',
+          EMPLOYEES_COUNT: 'Number of Employees',
+          LOCATION: 'Unit Location',
+          UNIT_PHONE: 'Unit Phone Number',
+          IS_ONLINE: {
+            TITLE: 'Service Availability Online',
+            ONLINE: 'Available Online',
+            OFFLINE: 'Not Available Online',
+          },
+        },
       },
     },
   },

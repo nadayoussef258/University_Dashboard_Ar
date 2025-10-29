@@ -68,6 +68,7 @@ export class SectorUnitsComponent extends BaseListComponent {
         'employeesCount',
         'location',
         'unitPhone',
+        'sectorId',
       ],
     };
   }
@@ -76,43 +77,49 @@ export class SectorUnitsComponent extends BaseListComponent {
     return [
       {
         field: 'unitNameAr',
-        header: 'اسم الوحدة',
+        header: 'PAGES.SECTOR_UNITS.FORM.UNIT_NAME',
         filter: true,
         filterMode: 'text',
       },
       {
         field: 'unitDescriptionAr',
-        header: 'وصف الوحدة',
+        header: 'PAGES.SECTOR_UNITS.FORM.UNIT_DESCRIPTION',
         filter: true,
         filterMode: 'text',
       },
       {
         field: 'manager',
-        header: 'اسم المدير',
+        header: 'PAGES.SECTOR_UNITS.FORM.MANAGER',
         filter: true,
         filterMode: 'text',
       },
       {
         field: 'email',
-        header: 'البريد الإلكتروني',
+        header: 'PAGES.SECTOR_UNITS.FORM.EMAIL',
         filter: true,
         filterMode: 'text',
       },
       {
         field: 'employeesCount',
-        header: 'عدد الموظفين',
+        header: 'PAGES.SECTOR_UNITS.FORM.EMPLOYEES_COUNT',
         filter: true,
         filterMode: 'numeric',
       },
       {
         field: 'location',
-        header: 'الموقع',
+        header: 'PAGES.SECTOR_UNITS.FORM.LOCATION',
         filter: true,
         filterMode: 'text',
       },
       {
         field: 'unitPhone',
-        header: 'رقم الهاتف',
+        header: 'PAGES.SECTOR_UNITS.FORM.UNIT_PHONE',
+        filter: true,
+        filterMode: 'text',
+      },
+      {
+        field: 'sectorId',
+        header: 'PAGES.SHARE_FORM.SECTOR',
         filter: true,
         filterMode: 'text',
       },

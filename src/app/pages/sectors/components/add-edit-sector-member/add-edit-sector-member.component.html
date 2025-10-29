@@ -4,20 +4,24 @@
       @if (pageType !== "add" && !sectorId) {
         <div class="flex gap-2 col-span-12 items-center">
           <p-toggleswitch
-            [(ngModel)]="allowEdit"
+            [(ngModel)]="allowEditValue"
             [ngModelOptions]="{ standalone: true }"
             (onChange)="toggleEditBtn('sectorId')"
           >
           </p-toggleswitch>
-          <label class="font-medium text-sm">هل تريد تعديل القطاع ؟</label>
+          <label class="font-medium text-sm">
+            {{ "PAGES.SECTORS.QUESTION_ALLOW_EDIT" | translate }}
+          </label>
         </div>
       }
       <!--  -->
       @if ((pageType !== "add" && sectorId) || !sectorId) {
         <div class="form-col">
-          <label class="text-middle mb-3">{{ "القطاع" }}</label>
+          <label class="text-middle mb-3">
+            {{ "PAGES.SHARE_FORM.SECTOR" | translate }}
+          </label>
           <app-prime-autocomplete
-            [disabled]="pageType === 'edit' && !allowEdit"
+            [disabled]="pageType === 'edit' && !allowEdit()"
             [field]="'name'"
             [selectedOption]="selectedSector"
             [suggestions]="filteredSectors"
@@ -30,7 +34,9 @@
       }
 
       <div class="col-span-12 lg:col-span-3">
-        <label class="text-middle mb-3">الحالة</label>
+        <label class="text-middle mb-3">
+          {{ "PAGES.SHARE_FORM.IS_LEADER.TITLE" | translate }}
+        </label>
         <div class="flex gap-3 items-center">
           <p-toggleswitch formControlName="isLeader"></p-toggleswitch>
           <span
@@ -49,7 +55,11 @@
                   : 'pi pi-user text-gray-500'
               "
             ></i>
-            {{ form.get("isLeader")?.value ? "ادمن" : "مستخدم" }}
+            {{
+              form.get("isLeader")?.value
+                ? ("PAGES.SHARE_FORM.IS_LEADER.LEADER" | translate)
+                : ("PAGES.SHARE_FORM.IS_LEADER.PERSON" | translate)
+            }}
           </span>
         </div>
       </div>
@@ -60,8 +70,8 @@
 @if (form) {
   <app-submit-buttons
     [isSubmitDisabled]="form.invalid"
-    [submitBtnLabel]="pageType === 'add' ? 'ACTIONS.SUBMIT' : 'ACTIONS.SEND'"
+    [submitBtnLabel]="pageType === 'add' ? 'ACTIONS.SUBMIT' : 'ACTIONS.SAVE'"
     (submit)="submit()"
-    (cancel)="redirect()"
+    (cancel)="closeDialog()"
   />
 }

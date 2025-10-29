@@ -5,17 +5,7 @@
         <app-prime-input-text
           [formGroup]="form"
           controlName="name"
-          [label]="'اسم الخدمة'"
-        >
-        </app-prime-input-text>
-      </div>
-
-      <div class="col-span-12">
-        <app-prime-input-text
-          [formGroup]="form"
-          controlName="details"
-          [label]="'تفاصيل الخدمة'"
-          [inputType]="'textarea'"
+          [label]="'PAGES.SECTOR_SERVICES.FORM.NAME'"
         >
         </app-prime-input-text>
       </div>
@@ -24,7 +14,7 @@
         <app-prime-input-text
           [formGroup]="form"
           controlName="duration"
-          [label]="'المدة'"
+          [label]="'PAGES.SECTOR_SERVICES.FORM.DURATION'"
         >
         </app-prime-input-text>
       </div>
@@ -33,7 +23,7 @@
         <app-prime-input-text
           [formGroup]="form"
           controlName="category"
-          [label]="'الفئة'"
+          [label]="'PAGES.SECTOR_SERVICES.FORM.CATEGORY'"
         >
         </app-prime-input-text>
       </div>
@@ -43,7 +33,7 @@
           [formGroup]="form"
           controlName="fees"
           contentType="number"
-          [label]="'الرسوم (جنيه)'"
+          [label]="'PAGES.SECTOR_SERVICES.FORM.FEES'"
         >
         </app-prime-input-text>
       </div>
@@ -52,7 +42,7 @@
         <app-prime-input-text
           [formGroup]="form"
           controlName="applicationUrl"
-          [label]="'رابط التقديم الإلكتروني'"
+          [label]="'PAGES.SECTOR_SERVICES.FORM.APPLICATION_URL'"
         >
         </app-prime-input-text>
       </div>
@@ -61,7 +51,7 @@
         <app-prime-input-text
           [formGroup]="form"
           controlName="downloadUrl"
-          [label]="'رابط التحميل'"
+          [label]="'PAGES.SECTOR_SERVICES.FORM.DOWNLOAD_URL'"
         >
         </app-prime-input-text>
       </div>
@@ -70,7 +60,7 @@
         <app-prime-input-text
           [formGroup]="form"
           controlName="contactPerson"
-          [label]="'اسم مسؤول التواصل'"
+          [label]="'PAGES.SECTOR_SERVICES.FORM.CONTACT_PERSON'"
         >
         </app-prime-input-text>
       </div>
@@ -79,14 +69,26 @@
         <app-prime-input-text
           [formGroup]="form"
           controlName="contactPhone"
-          [label]="'رقم الهاتف'"
+          [label]="'PAGES.SECTOR_SERVICES.FORM.CONTACT_PHONE'"
+        >
+        </app-prime-input-text>
+      </div>
+
+      <div class="col-span-12">
+        <app-prime-input-text
+          [formGroup]="form"
+          controlName="details"
+          [label]="'PAGES.SECTOR_SERVICES.FORM.DETAILS'"
+          [inputType]="'textarea'"
         >
         </app-prime-input-text>
       </div>
 
       @if ((pageType !== "add" && sectorId) || !sectorId) {
         <div class="form-col">
-          <label class="text-middle mb-2">{{ "القطاع" }}</label>
+          <label class="text-middle mb-2">
+            {{ "PAGES.SHARE_FORM.SECTOR" | translate }}
+          </label>
           <app-prime-autocomplete
             [disabled]="!!sectorId"
             [field]="'name'"
@@ -99,10 +101,12 @@
           ></app-prime-autocomplete>
         </div>
 
-        <div class="form-col">
-          <label class="text-middle mb-3">الخدمة متاحة اون لاين</label>
+        <div class="form-col ms-0! md:ms-10!">
+          <label class="text-middle mb-3">
+            {{ "PAGES.SECTOR_SERVICES.FORM.IS_ONLINE.TITLE" | translate }}
+          </label>
           <div class="flex gap-3 items-center">
-            <p-toggleswitch formControlName="isLeader"></p-toggleswitch>
+            <p-toggleswitch formControlName="isOnline"></p-toggleswitch>
             <span
               class="border rounded-full font-semibold text-sm py-1 px-3 transition-all gap-2 duration-300 inline-flex items-center"
               [ngClass]="
@@ -120,9 +124,9 @@
                 "
               ></i>
               {{
-                form.get("isLeader")?.value
-                  ? "متاحة اون لاين"
-                  : "غير متاحة اون لاين"
+                form.get("isOnline")?.value
+                  ? ("PAGES.SECTOR_SERVICES.FORM.IS_ONLINE.ONLINE" | translate)
+                  : ("PAGES.SECTOR_SERVICES.FORM.IS_ONLINE.OFFLINE" | translate)
               }}
             </span>
           </div>
@@ -135,7 +139,7 @@
 @if (form) {
   <app-submit-buttons
     [isSubmitDisabled]="form.invalid"
-    [submitBtnLabel]="pageType === 'add' ? 'ACTIONS.SUBMIT' : 'ACTIONS.SEND'"
+    [submitBtnLabel]="pageType === 'add' ? 'ACTIONS.SUBMIT' : 'ACTIONS.SAVE'"
     (submit)="submit()"
     (cancel)="redirect()"
   />

@@ -1,9 +1,17 @@
 <p-tabs [value]="`.`">
   <p-tablist>
-    <p-tab [value]="`.`" [routerLink]="['.']" class="flex text-inherit items-center !gap-2">
+    <p-tab
+      [value]="`.`"
+      [routerLink]="['.']"
+      class="flex text-inherit items-center gap-2!"
+    >
       <i class="pi pi-user-plus"></i>
       <span>
-        @if (pageType === 'edit') { تعديل العضو بالجامعة }@else{ اضافة عضو بالجامعة}
+        @if (pageType === "edit") {
+          تعديل العضو بالجامعة
+        } @else {
+          اضافة عضو بالجامعة
+        }
       </span>
     </p-tab>
 
