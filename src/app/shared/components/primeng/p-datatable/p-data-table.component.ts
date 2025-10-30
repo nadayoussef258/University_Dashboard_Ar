@@ -1,14 +1,4 @@
-import {
-  Component,
-  Input,
-  Output,
-  EventEmitter,
-  inject,
-  signal,
-  WritableSignal,
-  effect,
-  OnDestroy,
-} from '@angular/core';
+import { Component, Input, Output, EventEmitter, inject, signal, WritableSignal, effect, OnDestroy } from '@angular/core';
 import { Router, RouterModule } from '@angular/router';
 import { Subject, debounceTime, takeUntil } from 'rxjs';
 import { ExportExcelService } from '../../../services/export-excel/export-excel.service';
@@ -24,17 +14,9 @@ import { TranslatePipe } from '@ngx-translate/core';
 @Component({
   selector: 'app-prime-data-table',
   standalone: true,
-  imports: [
-    TableModule,
-    NgClass,
-    RouterModule,
-    PrimeDeleteDialogComponent,
-    DatePipe,
-    ButtonModule,
-    TranslatePipe,
-  ],
+  imports: [TableModule, NgClass, RouterModule, PrimeDeleteDialogComponent, DatePipe, ButtonModule, TranslatePipe],
   templateUrl: './p-data-table.component.html',
-  styleUrls: ['./p-data-table.component.scss'],
+  styleUrls: ['./p-data-table.component.scss']
 })
 export class PrimeDataTableComponent implements OnDestroy {
   // 🧩 Inputs
@@ -82,10 +64,7 @@ export class PrimeDataTableComponent implements OnDestroy {
   currentRoute: string;
 
   constructor() {
-    this.currentRoute = this.router.url.substring(
-      0,
-      this.router.url.length - 3,
-    );
+    this.currentRoute = this.router.url.substring(0, this.router.url.length - 3);
   }
 
   /** Setter & Getter for input data */
@@ -139,15 +118,13 @@ export class PrimeDataTableComponent implements OnDestroy {
 
     if (!this.filterSubjects[column]) {
       this.filterSubjects[column] = new Subject<string>();
-      this.filterSubjects[column]
-        .pipe(debounceTime(500), takeUntil(this.destroy$))
-        .subscribe((debouncedValue) => {
-          this.event.emit({
-            eventType: 'filter',
-            value: { data: debouncedValue },
-            column,
-          });
+      this.filterSubjects[column].pipe(debounceTime(500), takeUntil(this.destroy$)).subscribe((debouncedValue) => {
+        this.event.emit({
+          eventType: 'filter',
+          value: { data: debouncedValue },
+          column
         });
+      });
     }
 
     this.filterSubjects[column].next(inputValue);
@@ -195,17 +172,9 @@ export class PrimeDataTableComponent implements OnDestroy {
     console.log('🖱️ Link clicked:', row, col);
     const perms = this.permissions();
 
-    if (
-      perms.listOfPermissions?.includes(
-        `Permission.${perms.componentName}.Edit`,
-      )
-    ) {
+    if (perms.listOfPermissions?.includes(`Permission.${perms.componentName}.Edit`)) {
       this.router.navigate([col.route + row.id]);
-    } else if (
-      perms.listOfPermissions?.includes(
-        `Permission.${perms.componentName}.View`,
-      )
-    ) {
+    } else if (perms.listOfPermissions?.includes(`Permission.${perms.componentName}.View`)) {
       this.router.navigate([col.viewRoute + row.id]);
     }
   }

@@ -5,14 +5,9 @@ import { debounceTime, distinctUntilChanged, Observable, Subject } from 'rxjs';
 import { ValidationHandlerPipe } from '../../../pipes/validation-handler.pipe';
 @Component({
   selector: 'app-prime-autocomplete',
-  imports: [
-    AutoCompleteModule,
-    FormsModule,
-    ReactiveFormsModule,
-    ValidationHandlerPipe,
-  ],
+  imports: [AutoCompleteModule, FormsModule, ReactiveFormsModule, ValidationHandlerPipe],
   templateUrl: './p-autocomplete.component.html',
-  styleUrl: './p-autocomplete.component.scss',
+  styleUrl: './p-autocomplete.component.scss'
 })
 export class PrimeAutoCompleteComponent {
   @Input() formGroup!: FormGroup;
@@ -43,12 +38,10 @@ export class PrimeAutoCompleteComponent {
   searchSubject = new Subject<string>();
 
   ngOnInit(): void {
-    this.searchSubject
-      .pipe(debounceTime(500), distinctUntilChanged())
-      .subscribe((query) => {
-        this.query = query;
-        this.loadData();
-      });
+    this.searchSubject.pipe(debounceTime(500), distinctUntilChanged()).subscribe((query) => {
+      this.query = query;
+      this.loadData();
+    });
   }
 
   handleCompleteMethod(event: any) {
@@ -70,11 +63,7 @@ export class PrimeAutoCompleteComponent {
 
   onLazyLoad(event: any) {
     const currentLoaded = event.first + event.last;
-    if (
-      currentLoaded >= this.suggestions.length &&
-      this.suggestions.length < this.totalCount &&
-      !this.isFirstLoad
-    ) {
+    if (currentLoaded >= this.suggestions.length && this.suggestions.length < this.totalCount && !this.isFirstLoad) {
       this.loadData();
     }
   }
@@ -87,7 +76,7 @@ export class PrimeAutoCompleteComponent {
       pageNumber: this.pageNumber,
       pageSize: this.pageSize,
       filter: { searchCriteria: this.query },
-      orderByValue: [{ col: 'id', sort: 'asc' }],
+      orderByValue: [{ col: 'id', sort: 'asc' }]
     };
     if (this.getMethod) {
       this.getMethod(body).subscribe((response: any) => {
@@ -99,9 +88,7 @@ export class PrimeAutoCompleteComponent {
         }
         if (this.selectedOption && this.suggestions.length > 0) {
           const selectedOptionId = this.selectedOption.id;
-          const selectedIndex = this.suggestions.findIndex(
-            (item) => item.id === selectedOptionId
-          );
+          const selectedIndex = this.suggestions.findIndex((item) => item.id === selectedOptionId);
           if (selectedIndex > -1 && selectedIndex !== 0) {
             const [selectedItem] = this.suggestions.splice(selectedIndex, 1);
             this.suggestions.unshift(selectedItem);

@@ -1,11 +1,5 @@
 @if (checkbox && selected && selected.length > 0) {
-  <button
-    class="font-14 px-4 main-btn cancel deleteSelected"
-    type="button"
-    (click)="deleteSelected()"
-    [disabled]="!selected || !selected.length"
-    flat-button
-  >
+  <button class="font-14 px-4 main-btn cancel deleteSelected" type="button" (click)="deleteSelected()" [disabled]="!selected || !selected.length" flat-button>
     <div class="d-flex align-items-center">
       <i class="font-18 m-inline-end-1 pi pi-trash"></i>
       <span class="p-inline-end-1">حذف</span>
@@ -46,15 +40,9 @@
         </th>
       }
 
-      @if (
-        (tableOptions.inputActions &&
-          permissions().listOfPermissions.indexOf(
-            "Permission." + permissions().componentName + ".View"
-          ) > -1) ||
-        permissions().allowAll
-      ) {
+      @if ((tableOptions.inputActions && permissions().listOfPermissions.indexOf('Permission.' + permissions().componentName + '.View') > -1) || permissions().allowAll) {
         <th style="width: 10em">
-          {{ "ACTIONS.TITLE" | translate }}
+          {{ 'ACTIONS.TITLE' | translate }}
         </th>
       }
     </tr>
@@ -69,34 +57,19 @@
         @if (col.filter) {
           <th>
             @switch (col.filterMode) {
-              @case ("text") {
+              @case ('text') {
                 <div class="form-group has-search">
-                  <input
-                    class="form-control search-box"
-                    type="text"
-                    (input)="filter($event, col.field)"
-                    placeholder="{{ col.header | translate }}"
-                  />
+                  <input class="form-control search-box" type="text" (input)="filter($event, col.field)" placeholder="{{ col.header | translate }}" />
                 </div>
               }
-              @case ("date") {
+              @case ('date') {
                 <div class="form-group has-search">
-                  <input
-                    class="form-control search-box"
-                    type="date"
-                    (input)="filter($event, col.field)"
-                    placeholder="{{ col.header | translate }}"
-                  />
+                  <input class="form-control search-box" type="date" (input)="filter($event, col.field)" placeholder="{{ col.header | translate }}" />
                 </div>
               }
               @default {
                 <div class="form-group has-search">
-                  <input
-                    class="form-control search-box"
-                    type="text"
-                    (input)="filter($event, col.field)"
-                    placeholder="{{ col.header | translate }}"
-                  />
+                  <input class="form-control search-box" type="text" (input)="filter($event, col.field)" placeholder="{{ col.header | translate }}" />
                 </div>
               }
             }
@@ -106,13 +79,7 @@
         }
       }
 
-      @if (
-        (tableOptions.inputActions &&
-          permissions().listOfPermissions.indexOf(
-            "Permission." + permissions().componentName + ".View"
-          ) > -1) ||
-        permissions().allowAll
-      ) {
+      @if ((tableOptions.inputActions && permissions().listOfPermissions.indexOf('Permission.' + permissions().componentName + '.View') > -1) || permissions().allowAll) {
         <th></th>
       }
     </tr>
@@ -123,7 +90,7 @@
     <tr
       class="tr-body"
       [ngClass]="{
-        'tr-body-background': getCellData(row, { field: 'isLate' }),
+        'tr-body-background': getCellData(row, { field: 'isLate' })
       }"
     >
       @if (checkbox) {
@@ -136,60 +103,50 @@
         <td>
           <ng-container>
             @switch (col.filterMode) {
-              @case ("link") {
-                <a [routerLink]="['edit', row.id]">{{
-                  getCellData(row, col)
-                }}</a>
+              @case ('link') {
+                <a [routerLink]="['edit', row.id]">{{ getCellData(row, col) }}</a>
               }
 
-              @case ("text") {
-                <span
-                  [ngClass]="{ cell: getCellData(row, { field: 'isLate' }) }"
-                >
+              @case ('text') {
+                <span [ngClass]="{ cell: getCellData(row, { field: 'isLate' }) }">
                   {{ getCellData(row, col) }}
                 </span>
               }
 
-              @case ("date") {
-                <span>{{ getCellData(row, col) | date: "dd/MM/yyyy" }}</span>
+              @case ('date') {
+                <span>{{ getCellData(row, col) | date: 'dd/MM/yyyy' }}</span>
               }
 
-              @case ("time") {
-                <span>{{ getCellData(row, col) | date: "hh:mm aa" }}</span>
+              @case ('time') {
+                <span>{{ getCellData(row, col) | date: 'hh:mm aa' }}</span>
               }
 
-              @case ("dateTime") {
-                <span>{{
-                  getCellData(row, col) | date: "dd/MM/yyyy hh:mm aa"
-                }}</span>
+              @case ('dateTime') {
+                <span>{{ getCellData(row, col) | date: 'dd/MM/yyyy hh:mm aa' }}</span>
               }
 
               <!-- ====== BOOLEAN FIELD ====== -->
-              @case ("boolean") {
+              @case ('boolean') {
                 <span
                   [ngClass]="{
-                    'bg-green-100 text-green-700':
-                      getCellData(row, col) === true,
-                    'bg-red-100 text-red-700': getCellData(row, col) === false,
+                    'bg-green-100 text-green-700': getCellData(row, col) === true,
+                    'bg-red-100 text-red-700': getCellData(row, col) === false
                   }"
                   class="rounded-md font-semibold text-center min-w-[100px] py-2 px-3 inline-block"
                 >
                   @if (getCellData(row, col) === true) {
-                    {{ col.trueText ? (col.trueText | translate) : "✅" }}
+                    {{ col.trueText ? (col.trueText | translate) : '✅' }}
                   }
                   @if (getCellData(row, col) === false) {
-                    {{ col.falseText ? (col.falseText | translate) : "❌" }}
+                    {{ col.falseText ? (col.falseText | translate) : '❌' }}
                   }
-                  @if (
-                    getCellData(row, col) === null ||
-                    getCellData(row, col) === undefined
-                  ) {
+                  @if (getCellData(row, col) === null || getCellData(row, col) === undefined) {
                     <span class="text-gray-500 italic">غير محدد</span>
                   }
                 </span>
               }
 
-              @case ("none") {
+              @case ('none') {
                 <span>{{ getCellData(row, col) }}</span>
               }
             }
@@ -198,66 +155,31 @@
       }
 
       <!-- ================= ACTIONS ================= -->
-      @if (
-        (tableOptions.inputActions &&
-          permissions().listOfPermissions.indexOf(
-            "Permission." + permissions().componentName + ".View"
-          ) > -1) ||
-        permissions().allowAll
-      ) {
+      @if ((tableOptions.inputActions && permissions().listOfPermissions.indexOf('Permission.' + permissions().componentName + '.View') > -1) || permissions().allowAll) {
         <td class="actions">
           @for (action of tableOptions.inputActions; track $index) {
             <span>
-              @if (
-                action.isEdit &&
-                (permissions().listOfPermissions.indexOf(
-                  "Permission." + permissions().componentName + ".Edit"
-                ) > -1 ||
-                  action.allowAll)
-              ) {
+              @if (action.isEdit && (permissions().listOfPermissions.indexOf('Permission.' + permissions().componentName + '.Edit') > -1 || action.allowAll)) {
                 <a [routerLink]="action.route + row.id" class="icon-btn">
                   <i class="{{ action.icon }} icon" [title]="action.name"></i>
                 </a>
               }
 
-              @if (
-                action.isDelete &&
-                (permissions().listOfPermissions.indexOf(
-                  "Permission." + permissions().componentName + ".Delete"
-                ) > -1 ||
-                  action.allowAll)
-              ) {
+              @if (action.isDelete && (permissions().listOfPermissions.indexOf('Permission.' + permissions().componentName + '.Delete') > -1 || action.allowAll)) {
                 <a class="icon-btn" (click)="delete(row.id)">
                   <i class="{{ action.icon }} icon" [title]="action.name"></i>
                 </a>
               }
 
-              @if (
-                action.isView &&
-                (permissions().listOfPermissions.indexOf(
-                  "Permission." + permissions().componentName + ".View"
-                ) > -1 ||
-                  action.allowAll)
-              ) {
+              @if (action.isView && (permissions().listOfPermissions.indexOf('Permission.' + permissions().componentName + '.View') > -1 || action.allowAll)) {
                 <a [routerLink]="action.route + row.id" class="icon-btn">
-                  <i
-                    class="{{ action.icon }} icon {{ action.color }}"
-                    [title]="action.name"
-                  ></i>
+                  <i class="{{ action.icon }} icon {{ action.color }}" [title]="action.name"></i>
                 </a>
               }
 
-              @if (
-                action.isCallBack &&
-                (permissions().listOfPermissions.indexOf(action.permission) >
-                  -1 ||
-                  action.allowAll)
-              ) {
+              @if (action.isCallBack && (permissions().listOfPermissions.indexOf(action.permission) > -1 || action.allowAll)) {
                 <a class="icon-btn" (click)="action?.call(row)">
-                  <i
-                    class="{{ action.icon }} icon {{ action.color }}"
-                    [title]="action.name"
-                  ></i>
+                  <i class="{{ action.icon }} icon {{ action.color }}" [title]="action.name"></i>
                 </a>
               }
             </span>
@@ -270,17 +192,12 @@
   <!-- ================= EMPTY MESSAGE ================= -->
   <ng-template pTemplate="emptymessage">
     <tr>
-      <td
-        [attr.colspan]="(tableOptions.inputCols?.length || 0) + 1"
-        class="p-4"
-      >
-        <div
-          class="flex text-center w-full min-h-[100px] justify-center items-center wrap-break-word overflow-hidden"
-        >
+      <td [attr.colspan]="(tableOptions.inputCols?.length || 0) + 1" class="p-4">
+        <div class="flex text-center w-full min-h-[100px] justify-center items-center wrap-break-word overflow-hidden">
           <div class="max-w-full px-4">
             <i class="mb-3 text-4xl text-gray-600 pi pi-inbox block"></i>
             <div class="font-bold text-2xl text-red-500 whitespace-normal">
-              {{ "EMPTY.NO_DATA_TO_DISPLAY_TABLE" | translate }}
+              {{ 'EMPTY.NO_DATA_TO_DISPLAY_TABLE' | translate }}
             </div>
           </div>
         </div>
@@ -290,7 +207,5 @@
 </p-table>
 
 @if (deleteDialog) {
-  <app-prime-delete-dialog
-    (onClose)="modalClosed($event)"
-  ></app-prime-delete-dialog>
+  <app-prime-delete-dialog (onClose)="modalClosed($event)"></app-prime-delete-dialog>
 }
