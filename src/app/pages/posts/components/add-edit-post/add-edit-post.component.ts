@@ -2,29 +2,16 @@ import { Component, inject, OnInit } from '@angular/core';
 import { BaseEditComponent } from '../../../../base/components/base-edit-component';
 import { CardModule } from 'primeng/card';
 import { FormsModule, ReactiveFormsModule, Validators } from '@angular/forms';
-import {
-  PostsService,
-  PrimeInputTextComponent,
-  PrimeRadioButtonComponent,
-  SubmitButtonsComponent,
-} from '../../../../shared';
+import { PostsService, PrimeInputTextComponent, PrimeRadioButtonComponent, SubmitButtonsComponent } from '../../../../shared';
 import { DialogService } from 'primeng/dynamicdialog';
 import { ActivatedRoute } from '@angular/router';
 import { ToggleSwitchModule } from 'primeng/toggleswitch';
 
 @Component({
   selector: 'app-add-edit-post',
-  imports: [
-    CardModule,
-    FormsModule,
-    ReactiveFormsModule,
-    SubmitButtonsComponent,
-    PrimeInputTextComponent,
-    PrimeRadioButtonComponent,
-    ToggleSwitchModule,
-  ],
+  imports: [CardModule, FormsModule, ReactiveFormsModule, SubmitButtonsComponent, PrimeInputTextComponent, PrimeRadioButtonComponent, ToggleSwitchModule],
   templateUrl: './add-edit-post.component.html',
-  styleUrl: './add-edit-post.component.css',
+  styleUrl: './add-edit-post.component.css'
 })
 //
 export class AddEditPostComponent extends BaseEditComponent implements OnInit {
@@ -37,7 +24,7 @@ export class AddEditPostComponent extends BaseEditComponent implements OnInit {
   statusOptions = [
     { id: 1, nameAr: 'مسودة', nameEn: 'Draft' },
     { id: 2, nameAr: 'منشورة', nameEn: 'Published' },
-    { id: 3, nameAr: 'مؤرشفة', nameEn: 'Archived' },
+    { id: 3, nameAr: 'مؤرشفة', nameEn: 'Archived' }
   ];
 
   constructor(override activatedRoute: ActivatedRoute) {
@@ -69,7 +56,7 @@ export class AddEditPostComponent extends BaseEditComponent implements OnInit {
       featuredImageId: [],
       pageAttachments: [[]],
       postCategories: [[]],
-      sectorPosts: [[]],
+      sectorPosts: [[]]
     });
   }
 
@@ -86,9 +73,7 @@ export class AddEditPostComponent extends BaseEditComponent implements OnInit {
   //   }
 
   fetchStatusDetails(page: any) {
-    this.selectedStatus = this.statusOptions.find(
-      (stauts: any) => stauts.nameEn === page.status,
-    );
+    this.selectedStatus = this.statusOptions.find((stauts: any) => stauts.nameEn === page.status);
     this.form.get('stauts')?.setValue(this.selectedStatus?.nameEn);
   }
 
@@ -106,11 +91,9 @@ export class AddEditPostComponent extends BaseEditComponent implements OnInit {
         this.closeDialog();
       });
     if (this.pageType === 'edit')
-      this.postsService
-        .update({ id: this.id, ...this.form.value })
-        .subscribe(() => {
-          this.closeDialog();
-        });
+      this.postsService.update({ id: this.id, ...this.form.value }).subscribe(() => {
+        this.closeDialog();
+      });
   }
 
   closeDialog() {

@@ -5,7 +5,7 @@ import { RadioButtonModule } from 'primeng/radiobutton';
   selector: 'app-prime-radio-button',
   imports: [RadioButtonModule, ReactiveFormsModule, FormsModule],
   templateUrl: './p-radio-button.component.html',
-  styleUrl: './p-radio-button.component.scss',
+  styleUrl: './p-radio-button.component.scss'
 })
 export class PrimeRadioButtonComponent implements OnInit {
   @Input() formGroup!: FormGroup;
@@ -23,9 +23,7 @@ export class PrimeRadioButtonComponent implements OnInit {
   @Input() set disabled(value: boolean) {
     const control = this.formGroup?.get(this.controlName);
     if (control) {
-      value
-        ? control.disable({ emitEvent: false })
-        : control.enable({ emitEvent: false });
+      value ? control.disable({ emitEvent: false }) : control.enable({ emitEvent: false });
     }
   }
   @Input() binary?: boolean;

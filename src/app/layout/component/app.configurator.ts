@@ -1,11 +1,5 @@
 import { CommonModule, isPlatformBrowser } from '@angular/common';
-import {
-  Component,
-  computed,
-  inject,
-  PLATFORM_ID,
-  signal,
-} from '@angular/core';
+import { Component, computed, inject, PLATFORM_ID, signal } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { Router } from '@angular/router';
 import { $t, updatePreset, updateSurfacePalette } from '@primeng/themes';
@@ -19,7 +13,7 @@ import { LayoutService } from '../service/layout.service';
 const presets = {
   Aura,
   Lara,
-  Nora,
+  Nora
 } as const;
 
 declare type KeyOfType<T> = keyof T extends infer U ? U : never;
@@ -51,18 +45,18 @@ declare type SurfacesType = {
         <span class="font-semibold text-sm text-muted-color">Primary</span>
         <div class="flex flex-wrap pt-2 gap-2 justify-start">
           @for (primaryColor of primaryColors(); track primaryColor.name) {
-          <button
-            type="button"
-            [title]="primaryColor.name"
-            (click)="updateColors($event, 'primary', primaryColor)"
-            [ngClass]="{
-              'outline-primary': primaryColor.name === selectedPrimaryColor()
-            }"
-            class="border-none rounded-full cursor-pointer outline-none h-5 outline-offset-1 p-0 w-5"
-            [style]="{
-                                'background-color': primaryColor?.name === 'noir' ? 'var(--text-color)' : primaryColor?.palette?.['500']
-                            }"
-          ></button>
+            <button
+              type="button"
+              [title]="primaryColor.name"
+              (click)="updateColors($event, 'primary', primaryColor)"
+              [ngClass]="{
+                'outline-primary': primaryColor.name === selectedPrimaryColor()
+              }"
+              class="border-none rounded-full cursor-pointer outline-none h-5 outline-offset-1 p-0 w-5"
+              [style]="{
+                'background-color': primaryColor?.name === 'noir' ? 'var(--text-color)' : primaryColor?.palette?.['500']
+              }"
+            ></button>
           }
         </div>
       </div>
@@ -70,51 +64,34 @@ declare type SurfacesType = {
         <span class="font-semibold text-sm text-muted-color">Surface</span>
         <div class="flex flex-wrap pt-2 gap-2 justify-start">
           @for (surface of surfaces; track surface.name) {
-          <button
-            type="button"
-            [title]="surface.name"
-            (click)="updateColors($event, 'surface', surface)"
-            [ngClass]="{
-              'outline-primary': selectedSurfaceColor()
-                ? selectedSurfaceColor() === surface.name
-                : layoutService.layoutConfig().darkTheme
-                ? surface.name === 'zinc'
-                : surface.name === 'slate'
-            }"
-            class="border-none rounded-full cursor-pointer outline-none h-5 outline-offset-1 p-0 w-5"
-            [style]="{
-                                'background-color': surface?.name === 'noir' ? 'var(--text-color)' : surface?.palette?.['500']
-                            }"
-          ></button>
+            <button
+              type="button"
+              [title]="surface.name"
+              (click)="updateColors($event, 'surface', surface)"
+              [ngClass]="{
+                'outline-primary': selectedSurfaceColor() ? selectedSurfaceColor() === surface.name : layoutService.layoutConfig().darkTheme ? surface.name === 'zinc' : surface.name === 'slate'
+              }"
+              class="border-none rounded-full cursor-pointer outline-none h-5 outline-offset-1 p-0 w-5"
+              [style]="{
+                'background-color': surface?.name === 'noir' ? 'var(--text-color)' : surface?.palette?.['500']
+              }"
+            ></button>
           }
         </div>
       </div>
       <div class="flex flex-col gap-2">
         <span class="font-semibold text-sm text-muted-color">Presets</span>
-        <p-selectbutton
-          [options]="presets"
-          [ngModel]="selectedPreset()"
-          (ngModelChange)="onPresetChange($event)"
-          [allowEmpty]="false"
-          size="small"
-        />
+        <p-selectbutton [options]="presets" [ngModel]="selectedPreset()" (ngModelChange)="onPresetChange($event)" [allowEmpty]="false" size="small" />
       </div>
       <div *ngIf="showMenuModeButton()" class="flex flex-col gap-2">
         <span class="font-semibold text-sm text-muted-color">Menu Mode</span>
-        <p-selectbutton
-          [ngModel]="menuMode()"
-          (ngModelChange)="onMenuModeChange($event)"
-          [options]="menuModeOptions"
-          [allowEmpty]="false"
-          size="small"
-        />
+        <p-selectbutton [ngModel]="menuMode()" (ngModelChange)="onMenuModeChange($event)" [options]="menuModeOptions" [allowEmpty]="false" size="small" />
       </div>
     </div>
   `,
   host: {
-    class:
-      'hidden absolute top-[3.25rem] right-0 w-72 p-4 bg-surface-0 dark:bg-surface-900 border border-surface rounded-border origin-top shadow-[0px_3px_5px_rgba(0,0,0,0.02),0px_0px_2px_rgba(0,0,0,0.05),0px_1px_4px_rgba(0,0,0,0.08)]',
-  },
+    class: 'hidden absolute top-[3.25rem] right-0 w-72 p-4 bg-surface-0 dark:bg-surface-900 border border-surface rounded-border origin-top shadow-[0px_3px_5px_rgba(0,0,0,0.02),0px_0px_2px_rgba(0,0,0,0.05),0px_1px_4px_rgba(0,0,0,0.08)]'
+  }
 })
 export class AppConfigurator {
   router = inject(Router);
@@ -133,7 +110,7 @@ export class AppConfigurator {
 
   menuModeOptions = [
     { label: 'Static', value: 'static' },
-    { label: 'Overlay', value: 'overlay' },
+    { label: 'Overlay', value: 'overlay' }
   ];
 
   ngOnInit() {
@@ -157,8 +134,8 @@ export class AppConfigurator {
         700: '#334155',
         800: '#1e293b',
         900: '#0f172a',
-        950: '#020617',
-      },
+        950: '#020617'
+      }
     },
     {
       name: 'gray',
@@ -174,8 +151,8 @@ export class AppConfigurator {
         700: '#374151',
         800: '#1f2937',
         900: '#111827',
-        950: '#030712',
-      },
+        950: '#030712'
+      }
     },
     {
       name: 'zinc',
@@ -191,8 +168,8 @@ export class AppConfigurator {
         700: '#3f3f46',
         800: '#27272a',
         900: '#18181b',
-        950: '#09090b',
-      },
+        950: '#09090b'
+      }
     },
     {
       name: 'neutral',
@@ -208,8 +185,8 @@ export class AppConfigurator {
         700: '#404040',
         800: '#262626',
         900: '#171717',
-        950: '#0a0a0a',
-      },
+        950: '#0a0a0a'
+      }
     },
     {
       name: 'stone',
@@ -225,8 +202,8 @@ export class AppConfigurator {
         700: '#44403c',
         800: '#292524',
         900: '#1c1917',
-        950: '#0c0a09',
-      },
+        950: '#0c0a09'
+      }
     },
     {
       name: 'soho',
@@ -242,8 +219,8 @@ export class AppConfigurator {
         700: '#55565b',
         800: '#3f4046',
         900: '#2c2c34',
-        950: '#16161d',
-      },
+        950: '#16161d'
+      }
     },
     {
       name: 'viva',
@@ -259,8 +236,8 @@ export class AppConfigurator {
         700: '#565a5b',
         800: '#3e4244',
         900: '#262b2c',
-        950: '#0e1315',
-      },
+        950: '#0e1315'
+      }
     },
     {
       name: 'ocean',
@@ -276,54 +253,30 @@ export class AppConfigurator {
         700: '#415B61',
         800: '#29444E',
         900: '#183240',
-        950: '#0c1920',
-      },
-    },
+        950: '#0c1920'
+      }
+    }
   ];
 
   selectedPrimaryColor = computed(() => {
     return this.layoutService.layoutConfig().primary;
   });
 
-  selectedSurfaceColor = computed(
-    () => this.layoutService.layoutConfig().surface
-  );
+  selectedSurfaceColor = computed(() => this.layoutService.layoutConfig().surface);
 
   selectedPreset = computed(() => this.layoutService.layoutConfig().preset);
 
   menuMode = computed(() => this.layoutService.layoutConfig().menuMode);
 
   primaryColors = computed<SurfacesType[]>(() => {
-    const presetPalette =
-      presets[
-        this.layoutService.layoutConfig().preset as KeyOfType<typeof presets>
-      ].primitive;
-    const colors = [
-      'emerald',
-      'green',
-      'lime',
-      'orange',
-      'amber',
-      'yellow',
-      'teal',
-      'cyan',
-      'sky',
-      'blue',
-      'indigo',
-      'violet',
-      'purple',
-      'fuchsia',
-      'pink',
-      'rose',
-    ];
+    const presetPalette = presets[this.layoutService.layoutConfig().preset as KeyOfType<typeof presets>].primitive;
+    const colors = ['emerald', 'green', 'lime', 'orange', 'amber', 'yellow', 'teal', 'cyan', 'sky', 'blue', 'indigo', 'violet', 'purple', 'fuchsia', 'pink', 'rose'];
     const palettes: SurfacesType[] = [{ name: 'noir', palette: {} }];
 
     colors.forEach((color) => {
       palettes.push({
         name: color,
-        palette: presetPalette?.[
-          color as KeyOfType<typeof presetPalette>
-        ] as SurfacesType['palette'],
+        palette: presetPalette?.[color as KeyOfType<typeof presetPalette>] as SurfacesType['palette']
       });
     });
 
@@ -331,10 +284,7 @@ export class AppConfigurator {
   });
 
   getPresetExt() {
-    const color: SurfacesType =
-      this.primaryColors().find(
-        (c) => c.name === this.selectedPrimaryColor()
-      ) || {};
+    const color: SurfacesType = this.primaryColors().find((c) => c.name === this.selectedPrimaryColor()) || {};
     const preset = this.layoutService.layoutConfig().preset;
 
     if (color.name === 'noir') {
@@ -351,7 +301,7 @@ export class AppConfigurator {
             700: '{surface.700}',
             800: '{surface.800}',
             900: '{surface.900}',
-            950: '{surface.950}',
+            950: '{surface.950}'
           },
           colorScheme: {
             light: {
@@ -359,31 +309,31 @@ export class AppConfigurator {
                 color: '{primary.950}',
                 contrastColor: '#ffffff',
                 hoverColor: '{primary.800}',
-                activeColor: '{primary.700}',
+                activeColor: '{primary.700}'
               },
               highlight: {
                 background: '{primary.950}',
                 focusBackground: '{primary.700}',
                 color: '#ffffff',
-                focusColor: '#ffffff',
-              },
+                focusColor: '#ffffff'
+              }
             },
             dark: {
               primary: {
                 color: '{primary.50}',
                 contrastColor: '{primary.950}',
                 hoverColor: '{primary.200}',
-                activeColor: '{primary.300}',
+                activeColor: '{primary.300}'
               },
               highlight: {
                 background: '{primary.50}',
                 focusBackground: '{primary.300}',
                 color: '{primary.950}',
-                focusColor: '{primary.950}',
-              },
-            },
-          },
-        },
+                focusColor: '{primary.950}'
+              }
+            }
+          }
+        }
       };
     } else {
       if (preset === 'Nora') {
@@ -396,31 +346,31 @@ export class AppConfigurator {
                   color: '{primary.600}',
                   contrastColor: '#ffffff',
                   hoverColor: '{primary.700}',
-                  activeColor: '{primary.800}',
+                  activeColor: '{primary.800}'
                 },
                 highlight: {
                   background: '{primary.600}',
                   focusBackground: '{primary.700}',
                   color: '#ffffff',
-                  focusColor: '#ffffff',
-                },
+                  focusColor: '#ffffff'
+                }
               },
               dark: {
                 primary: {
                   color: '{primary.500}',
                   contrastColor: '{surface.900}',
                   hoverColor: '{primary.400}',
-                  activeColor: '{primary.300}',
+                  activeColor: '{primary.300}'
                 },
                 highlight: {
                   background: '{primary.500}',
                   focusBackground: '{primary.400}',
                   color: '{surface.900}',
-                  focusColor: '{surface.900}',
-                },
-              },
-            },
-          },
+                  focusColor: '{surface.900}'
+                }
+              }
+            }
+          }
         };
       } else {
         return {
@@ -432,33 +382,31 @@ export class AppConfigurator {
                   color: '{primary.500}',
                   contrastColor: '#ffffff',
                   hoverColor: '{primary.600}',
-                  activeColor: '{primary.700}',
+                  activeColor: '{primary.700}'
                 },
                 highlight: {
                   background: '{primary.50}',
                   focusBackground: '{primary.100}',
                   color: '{primary.700}',
-                  focusColor: '{primary.800}',
-                },
+                  focusColor: '{primary.800}'
+                }
               },
               dark: {
                 primary: {
                   color: '{primary.400}',
                   contrastColor: '{surface.900}',
                   hoverColor: '{primary.300}',
-                  activeColor: '{primary.200}',
+                  activeColor: '{primary.200}'
                 },
                 highlight: {
-                  background:
-                    'color-mix(in srgb, {primary.400}, transparent 84%)',
-                  focusBackground:
-                    'color-mix(in srgb, {primary.400}, transparent 76%)',
+                  background: 'color-mix(in srgb, {primary.400}, transparent 84%)',
+                  focusBackground: 'color-mix(in srgb, {primary.400}, transparent 76%)',
                   color: 'rgba(255,255,255,.87)',
-                  focusColor: 'rgba(255,255,255,.87)',
-                },
-              },
-            },
-          },
+                  focusColor: 'rgba(255,255,255,.87)'
+                }
+              }
+            }
+          }
         };
       }
     }
@@ -468,12 +416,12 @@ export class AppConfigurator {
     if (type === 'primary') {
       this.layoutService.layoutConfig.update((state) => ({
         ...state,
-        primary: color.name,
+        primary: color.name
       }));
     } else if (type === 'surface') {
       this.layoutService.layoutConfig.update((state) => ({
         ...state,
-        surface: color.name,
+        surface: color.name
       }));
     }
     this.applyTheme(type, color);
@@ -492,23 +440,17 @@ export class AppConfigurator {
   onPresetChange(event: any) {
     this.layoutService.layoutConfig.update((state) => ({
       ...state,
-      preset: event,
+      preset: event
     }));
     const preset = presets[event as KeyOfType<typeof presets>];
-    const surfacePalette = this.surfaces.find(
-      (s) => s.name === this.selectedSurfaceColor()
-    )?.palette;
-    $t()
-      .preset(preset)
-      .preset(this.getPresetExt())
-      .surfacePalette(surfacePalette)
-      .use({ useDefaultOptions: true });
+    const surfacePalette = this.surfaces.find((s) => s.name === this.selectedSurfaceColor())?.palette;
+    $t().preset(preset).preset(this.getPresetExt()).surfacePalette(surfacePalette).use({ useDefaultOptions: true });
   }
 
   onMenuModeChange(event: string) {
     this.layoutService.layoutConfig.update((prev) => ({
       ...prev,
-      menuMode: event,
+      menuMode: event
     }));
   }
 }

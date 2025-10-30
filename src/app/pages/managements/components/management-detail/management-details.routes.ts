@@ -3,36 +3,27 @@ import { clearManagementIdGuard } from '../../../guards/managements/clear-manage
 export const managementDetailsRoutes: Routes = [
   {
     path: '',
-    loadComponent: () =>
-      import('./management-details.component').then(
-        (c) => c.ManagementDetailsComponent,
-      ),
+    loadComponent: () => import('./management-details.component').then((c) => c.ManagementDetailsComponent),
     data: {
       pageTitle: 'PAGES.MANAGEMENT_DETAILS.MAIN.PAGE_TITLE',
-      pageType: 'list',
+      pageType: 'list'
     },
-    canActivate: [clearManagementIdGuard],
+    canActivate: [clearManagementIdGuard]
   },
   {
     path: 'add',
-    loadComponent: () =>
-      import(
-        '../add-edit-management-detail/add-edit-management-detail.component'
-      ).then((c) => c.AddEditManagementDetailComponent),
+    loadComponent: () => import('../add-edit-management-detail/add-edit-management-detail.component').then((c) => c.AddEditManagementDetailComponent),
     data: {
       pageTitle: 'PAGES.MANAGEMENT_DETAILS.ADD.PAGE_TITLE',
-      pageType: 'add',
-    },
+      pageType: 'add'
+    }
   },
   {
     path: 'edit/:id',
-    loadComponent: () =>
-      import(
-        '../add-edit-management-detail/add-edit-management-detail.component'
-      ).then((c) => c.AddEditManagementDetailComponent),
+    loadComponent: () => import('../add-edit-management-detail/add-edit-management-detail.component').then((c) => c.AddEditManagementDetailComponent),
     data: {
       pageTitle: 'PAGES.MANAGEMENT_DETAILS.EDIT.PAGE_TITLE',
-      pageType: 'edit',
-    },
-  },
+      pageType: 'edit'
+    }
+  }
 ];

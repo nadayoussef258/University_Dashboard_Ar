@@ -1,6 +1,6 @@
 export enum Languages {
   EN = 'en',
-  AR = 'ar',
+  AR = 'ar'
 }
 
 export type Language = Languages.AR | Languages.EN;

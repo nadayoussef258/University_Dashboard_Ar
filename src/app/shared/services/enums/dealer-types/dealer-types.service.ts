@@ -3,7 +3,7 @@ import { HttpService } from '../../../../core';
 import { EnumDto } from '../../../interfaces';
 
 @Injectable({
-  providedIn: 'root',
+  providedIn: 'root'
 })
 export class DealerTypesService extends HttpService {
   protected get baseUrl(): string {

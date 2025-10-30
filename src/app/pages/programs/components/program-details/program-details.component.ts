@@ -1,11 +1,7 @@
 import { Component, inject } from '@angular/core';
 import { ActivatedRoute, RouterModule } from '@angular/router';
 import { CardModule } from 'primeng/card';
-import {
-  PrimeDataTableComponent,
-  PrimeTitleToolBarComponent,
-  ProgramDetailsService,
-} from '../../../../shared';
+import { PrimeDataTableComponent, PrimeTitleToolBarComponent, ProgramDetailsService } from '../../../../shared';
 import { TableOptions } from '../../../../shared/interfaces';
 import { BaseListComponent } from '../../../../base/components/base-list-component';
 import { ProgramIdService } from '../../program-id.service';
@@ -14,15 +10,9 @@ import { TranslatePipe } from '@ngx-translate/core';
 @Component({
   selector: 'app-program-details',
 
-  imports: [
-    RouterModule,
-    CardModule,
-    PrimeDataTableComponent,
-    PrimeTitleToolBarComponent,
-    TranslatePipe,
-  ],
+  imports: [RouterModule, CardModule, PrimeDataTableComponent, PrimeTitleToolBarComponent, TranslatePipe],
   templateUrl: './program-details.component.html',
-  styleUrls: ['./program-details.component.css'],
+  styleUrls: ['./program-details.component.css']
 })
 export class ProgramDetailsComponent extends BaseListComponent {
   programId: string = '';
@@ -46,25 +36,19 @@ export class ProgramDetailsComponent extends BaseListComponent {
       inputUrl: {
         getAll: 'v2/programdetail/getPaged',
         getAllMethod: 'POST',
-        delete: 'v2/programdetail/deletesoft',
+        delete: 'v2/programdetail/deletesoft'
       },
       inputCols: this.initializeTableColumns(),
       inputActions: this.initializeTableActions(),
       permissions: {
         componentName: 'PROGRAM-DETAILS',
         allowAll: true,
-        listOfPermissions: [],
+        listOfPermissions: []
       },
       bodyOptions: {
-        filter: { programId: this.programId },
+        filter: { programId: this.programId }
       },
-      responsiveDisplayedProperties: [
-        'title',
-        'programCategory',
-        'content',
-        'facultyId',
-        'programId',
-      ],
+      responsiveDisplayedProperties: ['title', 'programCategory', 'content', 'facultyId', 'programId']
     };
   }
 
@@ -74,32 +58,32 @@ export class ProgramDetailsComponent extends BaseListComponent {
         field: 'title',
         header: 'PAGES.PROGRAM_DETAILS.FORM.TITLE',
         filter: true,
-        filterMode: 'text',
+        filterMode: 'text'
       },
       {
         field: 'programCategory',
         header: 'PAGES.PROGRAM_DETAILS.FORM.PROGRAM_CATEGORY',
         filter: true,
-        filterMode: 'text',
+        filterMode: 'text'
       },
       {
         field: 'content',
         header: 'PAGES.PROGRAM_DETAILS.FORM.CONTENT',
         filter: true,
-        filterMode: 'text',
+        filterMode: 'text'
       },
       {
         field: 'facultyId',
         header: 'PAGES.PROGRAM_DETAILS.FORM.FACULTY',
         filter: true,
-        filterMode: 'text',
+        filterMode: 'text'
       },
       {
         field: 'programId',
         header: 'PAGES.SHARE_FORM.PROGRAM',
         filter: true,
-        filterMode: 'text',
-      },
+        filterMode: 'text'
+      }
     ];
   }
 
@@ -111,15 +95,15 @@ export class ProgramDetailsComponent extends BaseListComponent {
         color: 'text-middle',
         isEdit: true,
         route: '/pages/program-details/edit/',
-        allowAll: true,
+        allowAll: true
       },
       {
         name: 'DELETE',
         icon: 'pi pi-trash',
         color: 'text-error',
         allowAll: true,
-        isDelete: true,
-      },
+        isDelete: true
+      }
     ];
   }
 }

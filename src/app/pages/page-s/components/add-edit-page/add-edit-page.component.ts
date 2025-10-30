@@ -2,12 +2,7 @@ import { Component, inject, OnInit } from '@angular/core';
 import { BaseEditComponent } from '../../../../base/components/base-edit-component';
 import { CardModule } from 'primeng/card';
 import { FormsModule, ReactiveFormsModule, Validators } from '@angular/forms';
-import {
-  PagesService,
-  PrimeInputTextComponent,
-  PrimeRadioButtonComponent,
-  SubmitButtonsComponent,
-} from '../../../../shared';
+import { PagesService, PrimeInputTextComponent, PrimeRadioButtonComponent, SubmitButtonsComponent } from '../../../../shared';
 import { DialogService } from 'primeng/dynamicdialog';
 import { ActivatedRoute } from '@angular/router';
 import { ToggleSwitchModule } from 'primeng/toggleswitch';
@@ -15,18 +10,9 @@ import { TranslatePipe } from '@ngx-translate/core';
 
 @Component({
   selector: 'app-add-edit-page',
-  imports: [
-    CardModule,
-    FormsModule,
-    ReactiveFormsModule,
-    SubmitButtonsComponent,
-    PrimeInputTextComponent,
-    PrimeRadioButtonComponent,
-    ToggleSwitchModule,
-    TranslatePipe,
-  ],
+  imports: [CardModule, FormsModule, ReactiveFormsModule, SubmitButtonsComponent, PrimeInputTextComponent, PrimeRadioButtonComponent, ToggleSwitchModule, TranslatePipe],
   templateUrl: './add-edit-page.component.html',
-  styleUrl: './add-edit-page.component.css',
+  styleUrl: './add-edit-page.component.css'
 })
 //
 export class AddEditPageComponent extends BaseEditComponent implements OnInit {
@@ -39,7 +25,7 @@ export class AddEditPageComponent extends BaseEditComponent implements OnInit {
   statusOptions = [
     { id: 1, nameAr: 'مسودة', nameEn: 'Draft' },
     { id: 2, nameAr: 'منشورة', nameEn: 'Published' },
-    { id: 3, nameAr: 'مؤرشفة', nameEn: 'Archived' },
+    { id: 3, nameAr: 'مؤرشفة', nameEn: 'Archived' }
   ];
 
   constructor(override activatedRoute: ActivatedRoute) {
@@ -68,7 +54,7 @@ export class AddEditPageComponent extends BaseEditComponent implements OnInit {
       status: ['Draft', Validators.required],
       isPublished: [false],
       pageAttachments: [[]],
-      publishedDate: [new Date()],
+      publishedDate: [new Date()]
     });
   }
 
@@ -85,9 +71,7 @@ export class AddEditPageComponent extends BaseEditComponent implements OnInit {
   //   }
 
   fetchStatusDetails(page: any) {
-    this.selectedStatus = this.statusOptions.find(
-      (stauts: any) => stauts.nameEn === page.status,
-    );
+    this.selectedStatus = this.statusOptions.find((stauts: any) => stauts.nameEn === page.status);
     this.form.get('stauts')?.setValue(this.selectedStatus?.nameEn);
   }
 
@@ -105,11 +89,9 @@ export class AddEditPageComponent extends BaseEditComponent implements OnInit {
         this.closeDialog();
       });
     if (this.pageType === 'edit')
-      this.pagesService
-        .update({ id: this.id(), ...this.form.value })
-        .subscribe(() => {
-          this.closeDialog();
-        });
+      this.pagesService.update({ id: this.id(), ...this.form.value }).subscribe(() => {
+        this.closeDialog();
+      });
   }
 
   closeDialog() {

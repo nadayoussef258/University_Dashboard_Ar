@@ -3,7 +3,7 @@ import { HttpClient } from '@angular/common/http';
 import { environment } from '../../../../environments/environment';
 import { firstValueFrom } from 'rxjs';
 @Injectable({
-  providedIn: 'root',
+  providedIn: 'root'
 })
 export class ConfigService {
   private appConfig: any;

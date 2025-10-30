@@ -1,11 +1,7 @@
 import { Component, inject, Input } from '@angular/core';
 import { ActivatedRoute, RouterModule } from '@angular/router';
 import { CardModule } from 'primeng/card';
-import {
-  PrimeDataTableComponent,
-  PrimeTitleToolBarComponent,
-  AboutService,
-} from '../../../../shared';
+import { PrimeDataTableComponent, PrimeTitleToolBarComponent, AboutService } from '../../../../shared';
 import { TableOptions } from '../../../../shared/interfaces';
 import { BaseListComponent } from '../../../../base/components/base-list-component';
 import { AddEditAboutComponent } from '../../components/add-edit-about/add-edit-about.component';
@@ -14,16 +10,10 @@ import { TranslatePipe } from '@ngx-translate/core';
 @Component({
   selector: 'app-about',
 
-  imports: [
-    RouterModule,
-    CardModule,
-    PrimeDataTableComponent,
-    PrimeTitleToolBarComponent,
-    TranslatePipe,
-  ],
+  imports: [RouterModule, CardModule, PrimeDataTableComponent, PrimeTitleToolBarComponent, TranslatePipe],
   providers: [],
   templateUrl: './about.component.html',
-  styleUrl: './about.component.css',
+  styleUrl: './about.component.css'
 })
 export class AboutComponent extends BaseListComponent {
   tableOptions!: TableOptions;
@@ -43,25 +33,19 @@ export class AboutComponent extends BaseListComponent {
       inputUrl: {
         getAll: 'v2/about/getPaged',
         getAllMethod: 'POST',
-        delete: 'v2/about/deletesoft',
+        delete: 'v2/about/deletesoft'
       },
       inputCols: this.initializeTableColumns(),
       inputActions: this.initializeTableActions(),
       permissions: {
         componentName: 'ABOUT',
         allowAll: true,
-        listOfPermissions: [],
+        listOfPermissions: []
       },
       bodyOptions: {
-        filter: {},
+        filter: {}
       },
-      responsiveDisplayedProperties: [
-        'pageTitle',
-        'content',
-        'mission',
-        'vision',
-        'history',
-      ],
+      responsiveDisplayedProperties: ['pageTitle', 'content', 'mission', 'vision', 'history']
     };
   }
 
@@ -71,32 +55,32 @@ export class AboutComponent extends BaseListComponent {
         field: 'pageName',
         header: 'PAGES.ABOUT.FORM.PAGE',
         filter: true,
-        filterMode: 'text',
+        filterMode: 'text'
       },
       {
         field: 'content',
         header: 'PAGES.ABOUT.FORM.CONTENT',
         filter: true,
-        filterMode: 'text',
+        filterMode: 'text'
       },
       {
         field: 'mission',
         header: 'PAGES.ABOUT.FORM.MISSION',
         filter: true,
-        filterMode: 'text',
+        filterMode: 'text'
       },
       {
         field: 'vision',
         header: 'PAGES.ABOUT.FORM.VISION',
         filter: true,
-        filterMode: 'text',
+        filterMode: 'text'
       },
       {
         field: 'history',
         header: 'PAGES.ABOUT.FORM.HISTORY',
         filter: true,
-        filterMode: 'text',
-      },
+        filterMode: 'text'
+      }
     ];
   }
 
@@ -110,36 +94,28 @@ export class AboutComponent extends BaseListComponent {
         call: (row) => {
           this.openEdit(row);
         },
-        allowAll: true,
+        allowAll: true
       },
       {
         name: 'DELETE',
         icon: 'pi pi-trash',
         color: 'text-error',
         allowAll: true,
-        isDelete: true,
-      },
+        isDelete: true
+      }
     ];
   }
 
   openAdd() {
-    this.openDialog(
-      AddEditAboutComponent,
-      this.localize.translate.instant('PAGES.ABOUT.ADD.PAGE_TITLE'),
-      {
-        pageType: 'add',
-      },
-    );
+    this.openDialog(AddEditAboutComponent, this.localize.translate.instant('PAGES.ABOUT.ADD.PAGE_TITLE'), {
+      pageType: 'add'
+    });
   }
 
   openEdit(rowData: any) {
-    this.openDialog(
-      AddEditAboutComponent,
-      this.localize.translate.instant('PAGES.ABOUT.EDIT.PAGE_TITLE'),
-      {
-        pageType: 'edit',
-        row: { rowData },
-      },
-    );
+    this.openDialog(AddEditAboutComponent, this.localize.translate.instant('PAGES.ABOUT.EDIT.PAGE_TITLE'), {
+      pageType: 'edit',
+      row: { rowData }
+    });
   }
 }

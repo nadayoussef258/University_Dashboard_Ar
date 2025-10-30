@@ -1,11 +1,7 @@
 import { Component, inject } from '@angular/core';
 import { ActivatedRoute, RouterModule } from '@angular/router';
 import { CardModule } from 'primeng/card';
-import {
-  PrimeDataTableComponent,
-  PrimeTitleToolBarComponent,
-  SectorProgramsService,
-} from '../../../../shared';
+import { PrimeDataTableComponent, PrimeTitleToolBarComponent, SectorProgramsService } from '../../../../shared';
 import { TableOptions } from '../../../../shared/interfaces';
 import { BaseListComponent } from '../../../../base/components/base-list-component';
 import { AddEditSectorProgramComponent } from '../add-edit-sector-program/add-edit-sector-program.component';
@@ -15,15 +11,9 @@ import { TranslatePipe } from '@ngx-translate/core';
 @Component({
   selector: 'app-sector-programs',
 
-  imports: [
-    RouterModule,
-    CardModule,
-    PrimeDataTableComponent,
-    PrimeTitleToolBarComponent,
-    TranslatePipe,
-  ],
+  imports: [RouterModule, CardModule, PrimeDataTableComponent, PrimeTitleToolBarComponent, TranslatePipe],
   templateUrl: './sector-programs.component.html',
-  styleUrl: './sector-programs.component.css',
+  styleUrl: './sector-programs.component.css'
 })
 export class SectorProgramsComponent extends BaseListComponent {
   sectorId: string = '';
@@ -47,19 +37,19 @@ export class SectorProgramsComponent extends BaseListComponent {
       inputUrl: {
         getAll: 'v2/sectorprograms/getPaged',
         getAllMethod: 'POST',
-        delete: 'v2/sectorprograms/deletesoft',
+        delete: 'v2/sectorprograms/deletesoft'
       },
       inputCols: this.initializeTableColumns(),
       inputActions: this.initializeTableActions(),
       permissions: {
         componentName: 'SECTOR-PROGRAMS',
         allowAll: true,
-        listOfPermissions: [],
+        listOfPermissions: []
       },
       bodyOptions: {
-        filter: { sectorId: this.sectorId },
+        filter: { sectorId: this.sectorId }
       },
-      responsiveDisplayedProperties: ['name', 'sectorId'],
+      responsiveDisplayedProperties: ['name', 'sectorId']
     };
   }
 
@@ -69,14 +59,14 @@ export class SectorProgramsComponent extends BaseListComponent {
         field: 'name',
         header: 'PAGES.SECTOR_PROGRAMS.FORM.NAME',
         filter: true,
-        filterMode: 'text',
+        filterMode: 'text'
       },
       {
         field: 'sectorId',
         header: 'PAGES.SHARE_FORM.SECTOR',
         filter: true,
-        filterMode: 'text',
-      },
+        filterMode: 'text'
+      }
     ];
   }
 
@@ -90,31 +80,23 @@ export class SectorProgramsComponent extends BaseListComponent {
         call: (row) => {
           this.openEdit(row);
         },
-        allowAll: true,
+        allowAll: true
       },
       {
         name: 'DELETE',
         icon: 'pi pi-trash',
         color: 'text-error',
         allowAll: true,
-        isDelete: true,
-      },
+        isDelete: true
+      }
     ];
   }
 
   openAdd() {
-    this.openDialog(
-      AddEditSectorProgramComponent,
-      this.localize.translate.instant('PAGES.SECTOR_PROGRAMS.ADD.PAGE_TITLE'),
-      { pageType: 'add', row: { sectorId: this.sectorId } },
-    );
+    this.openDialog(AddEditSectorProgramComponent, this.localize.translate.instant('PAGES.SECTOR_PROGRAMS.ADD.PAGE_TITLE'), { pageType: 'add', row: { sectorId: this.sectorId } });
   }
 
   openEdit(rowData: any) {
-    this.openDialog(
-      AddEditSectorProgramComponent,
-      this.localize.translate.instant('PAGES.SECTOR_PROGRAMS.ADD.PAGE_TITLE'),
-      { pageType: 'edit', row: { rowData } },
-    );
+    this.openDialog(AddEditSectorProgramComponent, this.localize.translate.instant('PAGES.SECTOR_PROGRAMS.ADD.PAGE_TITLE'), { pageType: 'edit', row: { rowData } });
   }
 }

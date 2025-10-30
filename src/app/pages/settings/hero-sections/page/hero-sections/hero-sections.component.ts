@@ -1,11 +1,7 @@
 import { Component, inject, Input } from '@angular/core';
 import { ActivatedRoute, RouterModule } from '@angular/router';
 import { CardModule } from 'primeng/card';
-import {
-  PrimeDataTableComponent,
-  PrimeTitleToolBarComponent,
-  HeroSectionsService,
-} from '../../../../../shared';
+import { PrimeDataTableComponent, PrimeTitleToolBarComponent, HeroSectionsService } from '../../../../../shared';
 import { TableOptions } from '../../../../../shared/interfaces';
 import { BaseListComponent } from '../../../../../base/components/base-list-component';
 import { AddEditHeroSectionComponent } from '../../components/add-edit-hero-section/add-edit-hero-section.component';
@@ -14,15 +10,9 @@ import { TranslatePipe } from '@ngx-translate/core';
 @Component({
   selector: 'app-hero-sections',
 
-  imports: [
-    RouterModule,
-    CardModule,
-    PrimeDataTableComponent,
-    PrimeTitleToolBarComponent,
-    TranslatePipe,
-  ],
+  imports: [RouterModule, CardModule, PrimeDataTableComponent, PrimeTitleToolBarComponent, TranslatePipe],
   templateUrl: './hero-sections.component.html',
-  styleUrl: './hero-sections.component.css',
+  styleUrl: './hero-sections.component.css'
 })
 export class HeroSectionsComponent extends BaseListComponent {
   @Input() employeeId: string = '';
@@ -43,19 +33,19 @@ export class HeroSectionsComponent extends BaseListComponent {
       inputUrl: {
         getAll: 'v2/herosections/getPaged',
         getAllMethod: 'POST',
-        delete: 'v2/herosections/deletesoft',
+        delete: 'v2/herosections/deletesoft'
       },
       inputCols: this.initializeTableColumns(),
       inputActions: this.initializeTableActions(),
       permissions: {
         componentName: 'HERO-SECTIONS',
         allowAll: true,
-        listOfPermissions: [],
+        listOfPermissions: []
       },
       bodyOptions: {
-        filter: {},
+        filter: {}
       },
-      responsiveDisplayedProperties: ['title', 'subTitle', 'description'],
+      responsiveDisplayedProperties: ['title', 'subTitle', 'description']
     };
   }
 
@@ -65,20 +55,20 @@ export class HeroSectionsComponent extends BaseListComponent {
         field: 'title',
         header: 'العنوان الرئيسي',
         filter: true,
-        filterMode: 'text',
+        filterMode: 'text'
       },
       {
         field: 'subTitle',
         header: 'العنوان الفرعي',
         filter: true,
-        filterMode: 'text',
+        filterMode: 'text'
       },
       {
         field: 'description',
         header: 'الوصف',
         filter: true,
-        filterMode: 'text',
-      },
+        filterMode: 'text'
+      }
     ];
   }
 
@@ -92,28 +82,28 @@ export class HeroSectionsComponent extends BaseListComponent {
         call: (row) => {
           this.openEdit(row);
         },
-        allowAll: true,
+        allowAll: true
       },
       {
         name: 'DELETE',
         icon: 'pi pi-trash',
         color: 'text-error',
         allowAll: true,
-        isDelete: true,
-      },
+        isDelete: true
+      }
     ];
   }
 
   openAdd() {
     this.openDialog(AddEditHeroSectionComponent, 'اضافة الواجهة الرئيسية', {
-      pageType: 'add',
+      pageType: 'add'
     });
   }
 
   openEdit(rowData: any) {
     this.openDialog(AddEditHeroSectionComponent, 'تعديل الواجهة الرئيسية', {
       pageType: 'edit',
-      row: { rowData },
+      row: { rowData }
     });
   }
 }

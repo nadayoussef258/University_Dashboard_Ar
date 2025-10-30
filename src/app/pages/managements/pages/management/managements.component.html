@@ -1,33 +1,19 @@
 <div class="flex-column h-100 page-wrapper d-flex card">
-  <app-prime-title-toolbar
-    [pageTitle]="pageTitle || 'PAGES.MANAGEMENTS.MAIN.PAGE_TITLE'"
-  ></app-prime-title-toolbar>
+  <app-prime-title-toolbar [pageTitle]="pageTitle || 'PAGES.MANAGEMENTS.MAIN.PAGE_TITLE'"></app-prime-title-toolbar>
 
   <div class="dataBox">
     <a [routerLink]="['add']" class="addLink">
-      <button
-        class="border-radius-2 font-14 mt-2 mt-sm-0 py-1 px-2 main-btn align-self-center main"
-        type="button"
-        pButton
-        pRipple
-      >
+      <button class="border-radius-2 font-14 mt-2 mt-sm-0 py-1 px-2 main-btn align-self-center main" type="button" pButton pRipple>
         <div class="d-flex align-items-center">
           <i class="font-18 m-inline-end-1 bx bx-plus"></i>
-          <span class="p-inline-end-1">{{ "ACTIONS.ADD" | translate }}</span>
+          <span class="p-inline-end-1">{{ 'ACTIONS.ADD' | translate }}</span>
         </div>
       </button>
     </a>
 
     @if (tableOptions) {
       <div class="mt-4">
-        <app-prime-data-table
-          (event)="handleEvent($event)"
-          [tableOptions]="tableOptions"
-          [data]="data()"
-          [totalCount]="totalCount()"
-          [pageSize]="dataTableService.opt.pageSize"
-        >
-        </app-prime-data-table>
+        <app-prime-data-table (event)="handleEvent($event)" [tableOptions]="tableOptions" [data]="data()" [totalCount]="totalCount()" [pageSize]="dataTableService.opt.pageSize"> </app-prime-data-table>
       </div>
     }
   </div>

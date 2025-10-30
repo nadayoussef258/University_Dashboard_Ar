@@ -4,7 +4,7 @@ import { Observable } from 'rxjs';
 import { HttpService } from '../../../../../core/services';
 
 @Injectable({
-  providedIn: 'root',
+  providedIn: 'root'
 })
 export class MemberAttachmentsService extends HttpService {
   protected get baseUrl(): string {
@@ -24,10 +24,7 @@ export class MemberAttachmentsService extends HttpService {
   }
 
   getDropDown(body: GetPagedBody<any>): Observable<any> {
-    return this.dropdownPost<any, any>(
-      { apiName: `getdropdown`, showAlert: true },
-      body
-    );
+    return this.dropdownPost<any, any>({ apiName: `getdropdown`, showAlert: true }, body);
   }
 
   add(body: any) {

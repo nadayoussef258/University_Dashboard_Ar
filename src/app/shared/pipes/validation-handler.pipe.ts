@@ -2,7 +2,7 @@ import { Pipe, PipeTransform } from '@angular/core';
 import { Subject, takeUntil } from 'rxjs';
 
 @Pipe({
-  name: 'validationHandler',
+  name: 'validationHandler'
 })
 export class ValidationHandlerPipe implements PipeTransform {
   private destroy$ = new Subject<any>();
@@ -15,10 +15,7 @@ export class ValidationHandlerPipe implements PipeTransform {
     let res = '';
     let customMessage = '';
     const pattern = /"(.*?)"/;
-    const matches =
-      value.match(pattern).length === 0
-        ? value.match(pattern)[0].replace('"', '')
-        : value.match(pattern)[1];
+    const matches = value.match(pattern).length === 0 ? value.match(pattern)[0].replace('"', '') : value.match(pattern)[1];
 
     if (matches === 'maxlength') {
       customMessage = JSON.parse(value).maxlength.requiredLength;
@@ -29,10 +26,7 @@ export class ValidationHandlerPipe implements PipeTransform {
     } else if (matches === 'min') {
       customMessage = JSON.parse(value).min.min;
     }
-    const customTranslate =
-      customErrorMessage && matches === 'required'
-        ? `${matches}_${customErrorMessage}`
-        : matches;
+    const customTranslate = customErrorMessage && matches === 'required' ? `${matches}_${customErrorMessage}` : matches;
     // this.translate
     //   .get(`VALIDATION.${customTranslate.toUpperCase()}`)
     //   .pipe(takeUntil(this.destroy$))

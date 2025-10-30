@@ -1,11 +1,7 @@
 import { Component, effect, inject, Input, OnChanges } from '@angular/core';
 import { ActivatedRoute, RouterModule } from '@angular/router';
 import { CardModule } from 'primeng/card';
-import {
-  PrimeDataTableComponent,
-  PrimeTitleToolBarComponent,
-  ActionsService,
-} from '../../../../../shared';
+import { PrimeDataTableComponent, PrimeTitleToolBarComponent, ActionsService } from '../../../../../shared';
 import { TableOptions } from '../../../../../shared/interfaces';
 import { BaseListComponent } from '../../../../../base/components/base-list-component';
 import { AddEditActionComponent } from '../../components/add-edit-action/add-edit-action.component';
@@ -13,15 +9,9 @@ import { TranslatePipe } from '@ngx-translate/core';
 
 @Component({
   selector: 'app-actions',
-  imports: [
-    RouterModule,
-    CardModule,
-    PrimeDataTableComponent,
-    PrimeTitleToolBarComponent,
-    TranslatePipe,
-  ],
+  imports: [RouterModule, CardModule, PrimeDataTableComponent, PrimeTitleToolBarComponent, TranslatePipe],
   templateUrl: './actions.component.html',
-  styleUrl: './actions.component.css',
+  styleUrl: './actions.component.css'
 })
 export class ActionsComponent extends BaseListComponent {
   tableOptions!: TableOptions;
@@ -48,19 +38,19 @@ export class ActionsComponent extends BaseListComponent {
       inputUrl: {
         getAll: 'v2/actions/getPaged',
         getAllMethod: 'POST',
-        delete: 'v2/actions/deletesoft',
+        delete: 'v2/actions/deletesoft'
       },
       inputCols: this.initializeTableColumns(),
       inputActions: this.initializeTableActions(),
       permissions: {
         componentName: 'ACTIONS',
         allowAll: true,
-        listOfPermissions: [],
+        listOfPermissions: []
       },
       bodyOptions: {
-        filter: {},
+        filter: {}
       },
-      responsiveDisplayedProperties: ['code', 'name'],
+      responsiveDisplayedProperties: ['code', 'name']
     };
   }
 
@@ -70,14 +60,14 @@ export class ActionsComponent extends BaseListComponent {
         field: 'code',
         header: 'PAGES.ACTIONS.FORM.CODE',
         filter: true,
-        filterMode: 'text',
+        filterMode: 'text'
       },
       {
         field: 'name',
         header: 'PAGES.ACTIONS.FORM.NAME',
         filter: true,
-        filterMode: 'text',
-      },
+        filterMode: 'text'
+      }
     ];
   }
 
@@ -91,36 +81,28 @@ export class ActionsComponent extends BaseListComponent {
         call: (row) => {
           this.openEdit(row);
         },
-        allowAll: true,
+        allowAll: true
       },
       {
         name: 'DELETE',
         icon: 'pi pi-trash',
         color: 'text-error',
         allowAll: true,
-        isDelete: true,
-      },
+        isDelete: true
+      }
     ];
   }
 
   openAdd() {
-    this.openDialog(
-      AddEditActionComponent,
-      this.localize.translate.instant('PAGES.ACTIONS.ADD.PAGE_TITLE'),
-      {
-        pageType: 'add',
-      },
-    );
+    this.openDialog(AddEditActionComponent, this.localize.translate.instant('PAGES.ACTIONS.ADD.PAGE_TITLE'), {
+      pageType: 'add'
+    });
   }
 
   openEdit(rowData: any) {
-    this.openDialog(
-      AddEditActionComponent,
-      this.localize.translate.instant('PAGES.ACTIONS.EDIT.PAGE_TITLE'),
-      {
-        pageType: 'edit',
-        row: { rowData },
-      },
-    );
+    this.openDialog(AddEditActionComponent, this.localize.translate.instant('PAGES.ACTIONS.EDIT.PAGE_TITLE'), {
+      pageType: 'edit',
+      row: { rowData }
+    });
   }
 }

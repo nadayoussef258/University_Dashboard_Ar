@@ -1,11 +1,7 @@
 import { Component, inject, Input } from '@angular/core';
 import { ActivatedRoute, RouterModule } from '@angular/router';
 import { CardModule } from 'primeng/card';
-import {
-  PrimeDataTableComponent,
-  PrimeTitleToolBarComponent,
-  ContactsService,
-} from '../../../../../shared';
+import { PrimeDataTableComponent, PrimeTitleToolBarComponent, ContactsService } from '../../../../../shared';
 import { TableOptions } from '../../../../../shared/interfaces';
 import { BaseListComponent } from '../../../../../base/components/base-list-component';
 
@@ -15,15 +11,9 @@ import { TranslatePipe } from '@ngx-translate/core';
 @Component({
   selector: 'app-statistics',
 
-  imports: [
-    RouterModule,
-    CardModule,
-    PrimeDataTableComponent,
-    PrimeTitleToolBarComponent,
-    TranslatePipe,
-  ],
+  imports: [RouterModule, CardModule, PrimeDataTableComponent, PrimeTitleToolBarComponent, TranslatePipe],
   templateUrl: './statistics.component.html',
-  styleUrl: './statistics.component.css',
+  styleUrl: './statistics.component.css'
 })
 export class StatisticsComponent extends BaseListComponent {
   @Input() employeeId: string = '';
@@ -44,19 +34,19 @@ export class StatisticsComponent extends BaseListComponent {
       inputUrl: {
         getAll: 'v2/statistics/getPaged',
         getAllMethod: 'POST',
-        delete: 'v2/statistics/deletesoft',
+        delete: 'v2/statistics/deletesoft'
       },
       inputCols: this.initializeTableColumns(),
       inputActions: this.initializeTableActions(),
       permissions: {
         componentName: 'STATISTICS',
         allowAll: true,
-        listOfPermissions: [],
+        listOfPermissions: []
       },
       bodyOptions: {
-        filter: {},
+        filter: {}
       },
-      responsiveDisplayedProperties: ['title', 'value', 'iconPath'],
+      responsiveDisplayedProperties: ['title', 'value', 'iconPath']
     };
   }
 
@@ -66,19 +56,19 @@ export class StatisticsComponent extends BaseListComponent {
         field: 'title',
         header: 'SETTINGS.STATISTICS.FORM.TITLE',
         filter: true,
-        filterMode: 'text',
+        filterMode: 'text'
       },
       {
         field: 'value',
         header: 'SETTINGS.STATISTICS.FORM.VALUE',
         filter: true,
-        filterMode: 'text',
+        filterMode: 'text'
       },
       {
         field: 'iconPath',
         header: 'رمز الايقونة',
         filter: true,
-        filterMode: 'text',
+        filterMode: 'text'
       },
       {
         field: 'phone',
@@ -86,8 +76,8 @@ export class StatisticsComponent extends BaseListComponent {
         filter: true,
         filterMode: 'boolean',
         trueText: 'SETTINGS.STATISTICS.FORM.IS_ACTIVE.ACTIVE',
-        falseText: 'SETTINGS.STATISTICS.FORM.IS_ACTIVE.IN_ACTIVE',
-      },
+        falseText: 'SETTINGS.STATISTICS.FORM.IS_ACTIVE.IN_ACTIVE'
+      }
     ];
   }
 
@@ -101,36 +91,28 @@ export class StatisticsComponent extends BaseListComponent {
         call: (row) => {
           this.openEdit(row);
         },
-        allowAll: true,
+        allowAll: true
       },
       {
         name: 'DELETE',
         icon: 'pi pi-trash',
         color: 'text-error',
         allowAll: true,
-        isDelete: true,
-      },
+        isDelete: true
+      }
     ];
   }
 
   openAdd() {
-    this.openDialog(
-      AddEditStatisticComponent,
-      this.localize.translate.instant('SETTINGS.STATISTICS.ADD.PAGE_TITLE'),
-      {
-        pageType: 'add',
-      },
-    );
+    this.openDialog(AddEditStatisticComponent, this.localize.translate.instant('SETTINGS.STATISTICS.ADD.PAGE_TITLE'), {
+      pageType: 'add'
+    });
   }
 
   openEdit(rowData: any) {
-    this.openDialog(
-      AddEditStatisticComponent,
-      this.localize.translate.instant('SETTINGS.STATISTICS.EDIT.PAGE_TITLE'),
-      {
-        pageType: 'edit',
-        row: { rowData },
-      },
-    );
+    this.openDialog(AddEditStatisticComponent, this.localize.translate.instant('SETTINGS.STATISTICS.EDIT.PAGE_TITLE'), {
+      pageType: 'edit',
+      row: { rowData }
+    });
   }
 }

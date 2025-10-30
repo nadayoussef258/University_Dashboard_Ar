@@ -1,11 +1,7 @@
 import { Component, inject, Input } from '@angular/core';
 import { ActivatedRoute, RouterModule } from '@angular/router';
 import { CardModule } from 'primeng/card';
-import {
-  PrimeDataTableComponent,
-  PrimeTitleToolBarComponent,
-  ManagementMembersService,
-} from '../../../../shared';
+import { PrimeDataTableComponent, PrimeTitleToolBarComponent, ManagementMembersService } from '../../../../shared';
 import { TableOptions } from '../../../../shared/interfaces';
 import { BaseListComponent } from '../../../../base/components/base-list-component';
 import { AddEditManagementMemberComponent } from '../add-edit-management-member/add-edit-management-member.component';
@@ -15,15 +11,9 @@ import { TranslatePipe } from '@ngx-translate/core';
 @Component({
   selector: 'app-management-member',
 
-  imports: [
-    RouterModule,
-    CardModule,
-    PrimeDataTableComponent,
-    PrimeTitleToolBarComponent,
-    TranslatePipe,
-  ],
+  imports: [RouterModule, CardModule, PrimeDataTableComponent, PrimeTitleToolBarComponent, TranslatePipe],
   templateUrl: './management-members.component.html',
-  styleUrl: './management-members.component.css',
+  styleUrl: './management-members.component.css'
 })
 export class ManagementMembersComponent extends BaseListComponent {
   managementId: string = '';
@@ -50,19 +40,19 @@ export class ManagementMembersComponent extends BaseListComponent {
       inputUrl: {
         getAll: 'v2/managementmember/getPaged',
         getAllMethod: 'POST',
-        delete: 'v2/managementmember/deletesoft',
+        delete: 'v2/managementmember/deletesoft'
       },
       inputCols: this.initializeTableColumns(),
       inputActions: this.initializeTableActions(),
       permissions: {
         componentName: 'MANAGEMENT-MEMBERS',
         allowAll: true,
-        listOfPermissions: [],
+        listOfPermissions: []
       },
       bodyOptions: {
-        filter: { managementId: this.managementId },
+        filter: { managementId: this.managementId }
       },
-      responsiveDisplayedProperties: ['isLeader', 'managementId'],
+      responsiveDisplayedProperties: ['isLeader', 'managementId']
     };
   }
 
@@ -74,14 +64,14 @@ export class ManagementMembersComponent extends BaseListComponent {
         trueText: 'PAGES.SHARE_FORM.IS_LEADER.LEADER',
         falseText: 'PAGES.SHARE_FORM.IS_LEADER.PERSON',
         filter: true,
-        filterMode: 'boolean',
+        filterMode: 'boolean'
       },
       {
         field: 'managementId',
         header: 'PAGES.SHARE_FORM.MANAGEMENT',
         filter: true,
-        filterMode: 'text',
-      },
+        filterMode: 'text'
+      }
     ];
   }
 
@@ -95,35 +85,23 @@ export class ManagementMembersComponent extends BaseListComponent {
         call: (row) => {
           this.openEdit(row);
         },
-        allowAll: true,
+        allowAll: true
       },
       {
         name: 'DELETE',
         icon: 'pi pi-trash',
         color: 'text-error',
         allowAll: true,
-        isDelete: true,
-      },
+        isDelete: true
+      }
     ];
   }
 
   openAdd() {
-    this.openDialog(
-      AddEditManagementMemberComponent,
-      this.localize.translate.instant(
-        'PAGES.MANAGEMENT_MEMBERS.ADD.PAGE_TITLE',
-      ),
-      { pageType: 'add', row: { managementId: this.managementId } },
-    );
+    this.openDialog(AddEditManagementMemberComponent, this.localize.translate.instant('PAGES.MANAGEMENT_MEMBERS.ADD.PAGE_TITLE'), { pageType: 'add', row: { managementId: this.managementId } });
   }
 
   openEdit(rowData: any) {
-    this.openDialog(
-      AddEditManagementMemberComponent,
-      this.localize.translate.instant(
-        'PAGES.MANAGEMENT_MEMBERS.EDIT.PAGE_TITLE',
-      ),
-      { pageType: 'edit', row: { rowData } },
-    );
+    this.openDialog(AddEditManagementMemberComponent, this.localize.translate.instant('PAGES.MANAGEMENT_MEMBERS.EDIT.PAGE_TITLE'), { pageType: 'edit', row: { rowData } });
   }
 }

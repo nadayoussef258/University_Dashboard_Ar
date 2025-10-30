@@ -9,23 +9,13 @@ import { ManagementAttachmentService } from './../../../../../../shared';
 
 @Component({
   selector: 'app-add-edit-management-attachment',
-  imports: [
-    CardModule,
-    FormsModule,
-    ReactiveFormsModule,
-    SubmitButtonsComponent,
-  ],
+  imports: [CardModule, FormsModule, ReactiveFormsModule, SubmitButtonsComponent],
   templateUrl: './add-edit-management-attachment.component.html',
-  styleUrl: './add-edit-management-attachment.component.css',
+  styleUrl: './add-edit-management-attachment.component.css'
 })
 //
-export class AddEditManagementAttachmentComponent
-  extends BaseEditComponent
-  implements OnInit
-{
-  managementAttachmentService: ManagementAttachmentService = inject(
-    ManagementAttachmentService,
-  );
+export class AddEditManagementAttachmentComponent extends BaseEditComponent implements OnInit {
+  managementAttachmentService: ManagementAttachmentService = inject(ManagementAttachmentService);
   dialogService: DialogService = inject(DialogService);
 
   constructor(override activatedRoute: ActivatedRoute) {
@@ -33,11 +23,9 @@ export class AddEditManagementAttachmentComponent
   }
 
   getAllManagementAttachments() {
-    this.managementAttachmentService.managementAttachments.subscribe(
-      (response: any) => {
-        console.log('managementAttachments ::', response);
-      },
-    );
+    this.managementAttachmentService.managementAttachments.subscribe((response: any) => {
+      console.log('managementAttachments ::', response);
+    });
   }
   override ngOnInit(): void {
     super.ngOnInit();
@@ -57,18 +45,16 @@ export class AddEditManagementAttachmentComponent
   initFormGroup() {
     this.form = this.fb.group({
       code: ['', Validators.required],
-      nameAr: ['', Validators.required],
+      nameAr: ['', Validators.required]
     });
     this.getAllManagementAttachments();
   }
 
   getEditManagementAttachment = () => {
-    this.managementAttachmentService
-      .getEditManagementAttachment(this.id())
-      .subscribe((managementAttachment: any) => {
-        this.initFormGroup();
-        this.form.patchValue(managementAttachment);
-      });
+    this.managementAttachmentService.getEditManagementAttachment(this.id()).subscribe((managementAttachment: any) => {
+      this.initFormGroup();
+      this.form.patchValue(managementAttachment);
+    });
   };
 
   submit() {
@@ -77,11 +63,9 @@ export class AddEditManagementAttachmentComponent
         this.closeDialog();
       });
     if (this.pageType === 'edit')
-      this.managementAttachmentService
-        .update({ id: this.id(), ...this.form.value })
-        .subscribe(() => {
-          this.closeDialog();
-        });
+      this.managementAttachmentService.update({ id: this.id(), ...this.form.value }).subscribe(() => {
+        this.closeDialog();
+      });
   }
 
   closeDialog() {

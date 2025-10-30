@@ -6,7 +6,7 @@ export const EN_TRANSLATIONS = {
   ...EN_MENU_LABELS,
   TITLE: {
     PART_ONE: 'Luxor University',
-    PART_TWO: 'Information Management System',
+    PART_TWO: 'Information Management System'
   },
 
   COMMON: {
@@ -20,7 +20,7 @@ export const EN_TRANSLATIONS = {
     DETAILS: 'Details',
     CODE: 'Code',
     RESULT: 'Results',
-    NOTES: 'Notes',
+    NOTES: 'Notes'
   },
   ENUM: {},
   ACTIONS: {
@@ -56,26 +56,24 @@ export const EN_TRANSLATIONS = {
     SEND_EMAIL: 'Send to E-mail',
     CHOOSE_IMAGE: 'Choose an Image',
     REMOVE_IMAGE: 'Remove Image',
-    ADD_POSITION: 'Add Position',
+    ADD_POSITION: 'Add Position'
   },
   ERRORS: {
     404: 'PAGE NOT FOUND',
-    401: 'UNAUTHORIZED',
+    401: 'UNAUTHORIZED'
   },
   EMPTY: {
     NO_ITEMS: "There's no options",
     NO_DEFAULT_VALUES: "There's' no Document Type Field Default Values",
-    NO_DATA_TO_DISPLAY_TABLE: 'No Data To Display',
+    NO_DATA_TO_DISPLAY_TABLE: 'No Data To Display'
   },
   VALIDATION: {
     REQUIRED: 'Required Field',
     ARABIC_WORD: 'Arabic Letters Only',
     ENGLISH_WORD: 'English Letters Only',
     LOGIN_SUCCESS: 'Login Success',
-    INVALID_ENGLISH_NAME:
-      'Name Should Be English Characters Only And More Than 3 And Less Than 100',
-    INVALID_ARABIC_NAME:
-      'Name Should Be Arabic Characters Only And More Than 3 And Less Than 100',
+    INVALID_ENGLISH_NAME: 'Name Should Be English Characters Only And More Than 3 And Less Than 100',
+    INVALID_ARABIC_NAME: 'Name Should Be Arabic Characters Only And More Than 3 And Less Than 100',
     USERNAME_TAKEN: 'User Name Already Taken',
     EMAIL_TAKEN: 'Email Already Taken',
     DELETE_CONFIRMATION: 'Delete Confirmation',
@@ -93,8 +91,7 @@ export const EN_TRANSLATIONS = {
     GET_ERROR: 'Error getting Data From Server',
     GET_BY_ID_ERROR: 'Error getting Data by Id',
     INTERNAL_SERVER_ERROR: 'Internal Server Error',
-    PASSWORD_STRENGTH:
-      'Password should have minimum 8 characters, at least 1 uppercase letter, 1 lowercase letter and 1 number',
+    PASSWORD_STRENGTH: 'Password should have minimum 8 characters, at least 1 uppercase letter, 1 lowercase letter and 1 number',
     PASSWORD_MISMATCH: 'New Password Value Is Not Matched',
     PASSWORD_CHANGED_SUCCESS: 'Password Changed Successfully',
     SERVER_ERROR: 'Server Error',
@@ -107,7 +104,7 @@ export const EN_TRANSLATIONS = {
     ACTION_MESSAGE: 'Are you sure that you want to this action?',
     INVALID_DATE: 'This date is invalid, should change it',
     SEARCH_RESULTS_NOT_FOUND: 'Search Results not found',
-    EMPLOYEE_IS_ALREADY_IN_THIS_SENT: 'This employee is already in this sent',
+    EMPLOYEE_IS_ALREADY_IN_THIS_SENT: 'This employee is already in this sent'
   },
   FIELDS: {
     NAME: 'Name',
@@ -119,7 +116,7 @@ export const EN_TRANSLATIONS = {
     EN: ' (English)',
     AR: ' (Arabic)',
     COMMENTS: 'Comments',
-    NOTES: 'Notes',
+    NOTES: 'Notes'
   },
   ATTACHMENT: {
     ATTACHMENT: 'Attachment',
@@ -138,16 +135,16 @@ export const EN_TRANSLATIONS = {
       REQUIRED: 'Attachment file is required',
       ALLOWED_TYPES: 'The allowed types are ',
       ALLOWED_TYPE: 'The allowed types is ',
-      MB: 'MB',
+      MB: 'MB'
     },
     FAILED: 'Failed to upload the attachment',
     Msg: 'Drag your file here, or',
     SUB_MSG: 'Supports:',
-    MaxFilesMsg: 'Max number of files: ',
+    MaxFilesMsg: 'Max number of files: '
   },
   PAGINATION: 'Showing {first} to {last} of {totalRecords} entries',
   FOOTER: {
     COPYRIGHT: 'All Rights Reserved ©',
-    NAME: 'Luxor University',
-  },
+    NAME: 'Luxor University'
+  }
 };

@@ -8,16 +8,9 @@ import { DatePickerModule } from 'primeng/datepicker';
 @Component({
   selector: 'app-prime-datepicker',
 
-  imports: [
-    TranslateModule,
-    DatePickerModule,
-    FormsModule,
-    ReactiveFormsModule,
-    NgClass,
-    ValidationHandlerPipe,
-  ],
+  imports: [TranslateModule, DatePickerModule, FormsModule, ReactiveFormsModule, NgClass, ValidationHandlerPipe],
   templateUrl: './p-datepicker.component.html',
-  styleUrl: './p-datepicker.component.scss',
+  styleUrl: './p-datepicker.component.scss'
 })
 export class PrimeDatepickerComponent implements OnInit {
   @Input() formGroup!: FormGroup;
@@ -94,14 +87,7 @@ export class PrimeDatepickerComponent implements OnInit {
     if (typeof value === 'string') {
       if (this.mode === 'time') {
         const [hours, minutes, seconds] = value.split(':').map(Number);
-        const dummyDate = new Date(
-          2000,
-          0,
-          1,
-          hours || 0,
-          minutes || 0,
-          seconds || 0
-        );
+        const dummyDate = new Date(2000, 0, 1, hours || 0, minutes || 0, seconds || 0);
         return dummyDate;
       } else if (value.includes('T')) {
         const date = new Date(value);
@@ -110,9 +96,7 @@ export class PrimeDatepickerComponent implements OnInit {
         const parts = value.split('/');
         if (parts.length === 3) {
           const [day, month, year] = parts.map(Number);
-          return this.utcMode
-            ? new Date(Date.UTC(year, month - 1, day))
-            : new Date(year, month - 1, day);
+          return this.utcMode ? new Date(Date.UTC(year, month - 1, day)) : new Date(year, month - 1, day);
         }
         return new Date(value);
       }
@@ -121,25 +105,12 @@ export class PrimeDatepickerComponent implements OnInit {
   }
 
   private convertToUTCDate(date: Date): Date {
-    return new Date(
-      Date.UTC(
-        date.getFullYear(),
-        date.getMonth(),
-        date.getDate(),
-        date.getHours(),
-        date.getMinutes(),
-        date.getSeconds()
-      )
-    );
+    return new Date(Date.UTC(date.getFullYear(), date.getMonth(), date.getDate(), date.getHours(), date.getMinutes(), date.getSeconds()));
   }
 
   private setupValueChanges(): void {
     this.formGroup?.get(this.controlName)?.valueChanges.subscribe((val) => {
-      if (
-        val &&
-        this.utcMode &&
-        (this.mode === 'date' || this.mode === 'datetime')
-      ) {
+      if (val && this.utcMode && (this.mode === 'date' || this.mode === 'datetime')) {
         this.handleTimezoneConversion();
       }
     });
@@ -151,13 +122,7 @@ export class PrimeDatepickerComponent implements OnInit {
 
     const dateValue = this.parseInputDate(control.value);
     if (this.mode === 'date') {
-      const utcDate = new Date(
-        Date.UTC(
-          dateValue.getFullYear(),
-          dateValue.getMonth(),
-          dateValue.getDate()
-        )
-      );
+      const utcDate = new Date(Date.UTC(dateValue.getFullYear(), dateValue.getMonth(), dateValue.getDate()));
       if (control.value?.getTime() !== utcDate.getTime()) {
         control.setValue(utcDate, { emitEvent: false });
         this.currentValue = utcDate;
@@ -196,13 +161,7 @@ export class PrimeDatepickerComponent implements OnInit {
       if (this.utcMode && (this.mode === 'date' || this.mode === 'datetime')) {
         const utcDate = this.convertToUTCDate(selectedDate);
         if (this.mode === 'date') {
-          const dateOnly = new Date(
-            Date.UTC(
-              utcDate.getFullYear(),
-              utcDate.getMonth(),
-              utcDate.getDate()
-            )
-          );
+          const dateOnly = new Date(Date.UTC(utcDate.getFullYear(), utcDate.getMonth(), utcDate.getDate()));
           this.formGroup.get(this.controlName)?.setValue(dateOnly);
           this.currentValue = dateOnly;
         } else {

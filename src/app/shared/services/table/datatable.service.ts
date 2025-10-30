@@ -5,14 +5,14 @@ import { TableOptions } from '../../interfaces';
 import { ConfigService } from '../../../core';
 
 @Injectable({
-  providedIn: 'root',
+  providedIn: 'root'
 })
 export class DataTableService {
   opt: TableOptions['bodyOptions'] = {
     pageNumber: 1,
     pageSize: 5,
     orderByValue: [{ colId: 'id', sort: 'asc' }],
-    filter: {},
+    filter: {}
   };
   hostApi: string;
   public searchNew$: WritableSignal<any> = signal({});

@@ -1,11 +1,7 @@
 import { Component, inject } from '@angular/core';
 import { ActivatedRoute, RouterModule } from '@angular/router';
 import { CardModule } from 'primeng/card';
-import {
-  PrimeDataTableComponent,
-  PrimeTitleToolBarComponent,
-  UnitDetailsService,
-} from '../../../../shared';
+import { PrimeDataTableComponent, PrimeTitleToolBarComponent, UnitDetailsService } from '../../../../shared';
 import { TableOptions } from '../../../../shared/interfaces';
 import { BaseListComponent } from '../../../../base/components/base-list-component';
 import { ToggleSwitchModule } from 'primeng/toggleswitch';
@@ -15,16 +11,9 @@ import { TranslatePipe } from '@ngx-translate/core';
 @Component({
   selector: 'app-unit-details',
 
-  imports: [
-    RouterModule,
-    CardModule,
-    PrimeDataTableComponent,
-    PrimeTitleToolBarComponent,
-    ToggleSwitchModule,
-    TranslatePipe,
-  ],
+  imports: [RouterModule, CardModule, PrimeDataTableComponent, PrimeTitleToolBarComponent, ToggleSwitchModule, TranslatePipe],
   templateUrl: './unit-details.component.html',
-  styleUrl: './unit-details.component.css',
+  styleUrl: './unit-details.component.css'
 })
 export class UnitDetailsComponent extends BaseListComponent {
   unitId: string = '';
@@ -48,19 +37,19 @@ export class UnitDetailsComponent extends BaseListComponent {
       inputUrl: {
         getAll: 'v2/unitdetail/getPaged',
         getAllMethod: 'POST',
-        delete: 'v2/unitdetail/deletesoft',
+        delete: 'v2/unitdetail/deletesoft'
       },
       inputCols: this.initializeTableColumns(),
       inputActions: this.initializeTableActions(),
       permissions: {
         componentName: 'UNIT-DETAILS',
         allowAll: true,
-        listOfPermissions: [],
+        listOfPermissions: []
       },
       bodyOptions: {
-        filter: { unitId: this.unitId },
+        filter: { unitId: this.unitId }
       },
-      responsiveDisplayedProperties: ['title', 'unitPlace', 'description'],
+      responsiveDisplayedProperties: ['title', 'unitPlace', 'description']
     };
   }
 
@@ -70,20 +59,20 @@ export class UnitDetailsComponent extends BaseListComponent {
         field: 'title',
         header: 'PAGES.UNIT_DETAILS.FORM.TITLE',
         filter: true,
-        filterMode: 'text',
+        filterMode: 'text'
       },
       {
         field: 'unitPlace',
         header: 'PAGES.UNIT_DETAILS.FORM.UNIT_PLACE',
         filter: true,
-        filterMode: 'text',
+        filterMode: 'text'
       },
       {
         field: 'description',
         header: 'PAGES.UNIT_DETAILS.FORM.DESCRIPTION',
         filter: true,
-        filterMode: 'text',
-      },
+        filterMode: 'text'
+      }
     ];
   }
 
@@ -95,15 +84,15 @@ export class UnitDetailsComponent extends BaseListComponent {
         color: 'text-middle',
         isEdit: true,
         route: '/pages/unit-details/edit/',
-        allowAll: true,
+        allowAll: true
       },
       {
         name: 'DELETE',
         icon: 'pi pi-trash',
         color: 'text-error',
         allowAll: true,
-        isDelete: true,
-      },
+        isDelete: true
+      }
     ];
   }
 }

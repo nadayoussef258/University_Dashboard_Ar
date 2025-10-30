@@ -1,11 +1,7 @@
 import { Component, inject } from '@angular/core';
 import { ActivatedRoute, RouterModule } from '@angular/router';
 import { CardModule } from 'primeng/card';
-import {
-  PrimeDataTableComponent,
-  PrimeTitleToolBarComponent,
-  ProgramsService,
-} from '../../../../shared';
+import { PrimeDataTableComponent, PrimeTitleToolBarComponent, ProgramsService } from '../../../../shared';
 import { TableOptions } from '../../../../shared/interfaces';
 import { BaseListComponent } from '../../../../base/components/base-list-component';
 import { TranslatePipe } from '@ngx-translate/core';
@@ -13,15 +9,9 @@ import { TranslatePipe } from '@ngx-translate/core';
 @Component({
   selector: 'app-programs',
 
-  imports: [
-    RouterModule,
-    CardModule,
-    PrimeDataTableComponent,
-    PrimeTitleToolBarComponent,
-    TranslatePipe,
-  ],
+  imports: [RouterModule, CardModule, PrimeDataTableComponent, PrimeTitleToolBarComponent, TranslatePipe],
   templateUrl: './programs.component.html',
-  styleUrl: './programs.component.css',
+  styleUrl: './programs.component.css'
 })
 export class ProgramsComponent extends BaseListComponent {
   tableOptions!: TableOptions;
@@ -41,19 +31,19 @@ export class ProgramsComponent extends BaseListComponent {
       inputUrl: {
         getAll: 'v2/program/getPaged',
         getAllMethod: 'POST',
-        delete: 'v2/program/deletesoft',
+        delete: 'v2/program/deletesoft'
       },
       inputCols: this.initializeTableColumns(),
       inputActions: this.initializeTableActions(),
       permissions: {
         componentName: 'PROGRAMS',
         allowAll: true,
-        listOfPermissions: [],
+        listOfPermissions: []
       },
       bodyOptions: {
-        filter: {},
+        filter: {}
       },
-      responsiveDisplayedProperties: ['pageId', 'aboutId'],
+      responsiveDisplayedProperties: ['pageId', 'aboutId']
     };
   }
 
@@ -63,14 +53,14 @@ export class ProgramsComponent extends BaseListComponent {
         field: 'pageId',
         header: 'PAGES.SHARE_FORM.PAGE',
         filter: true,
-        filterMode: 'text',
+        filterMode: 'text'
       },
       {
         field: 'aboutId',
         header: 'PAGES.SHARE_FORM.ABOUT',
         filter: true,
-        filterMode: 'text',
-      },
+        filterMode: 'text'
+      }
     ];
   }
 
@@ -82,15 +72,15 @@ export class ProgramsComponent extends BaseListComponent {
         color: 'text-middle',
         isEdit: true,
         route: 'edit/',
-        allowAll: true,
+        allowAll: true
       },
       {
         name: 'DELETE',
         icon: 'pi pi-trash',
         color: 'text-error',
         allowAll: true,
-        isDelete: true,
-      },
+        isDelete: true
+      }
     ];
   }
 }

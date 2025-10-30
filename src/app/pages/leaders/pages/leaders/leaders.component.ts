@@ -1,11 +1,7 @@
 import { Component, inject, Input } from '@angular/core';
 import { ActivatedRoute, RouterModule } from '@angular/router';
 import { CardModule } from 'primeng/card';
-import {
-  PrimeDataTableComponent,
-  PrimeTitleToolBarComponent,
-  AboutService,
-} from '../../../../shared';
+import { PrimeDataTableComponent, PrimeTitleToolBarComponent, AboutService } from '../../../../shared';
 import { TableOptions } from '../../../../shared/interfaces';
 import { BaseListComponent } from '../../../../base/components/base-list-component';
 import { AddEditLeaderComponent } from '../../components/add-edit-leader/add-edit-leader.component';
@@ -15,15 +11,9 @@ import { TranslatePipe } from '@ngx-translate/core';
 @Component({
   selector: 'app-leaders',
 
-  imports: [
-    RouterModule,
-    CardModule,
-    PrimeDataTableComponent,
-    PrimeTitleToolBarComponent,
-    TranslatePipe,
-  ],
+  imports: [RouterModule, CardModule, PrimeDataTableComponent, PrimeTitleToolBarComponent, TranslatePipe],
   templateUrl: './leaders.component.html',
-  styleUrl: './leaders.component.css',
+  styleUrl: './leaders.component.css'
 })
 export class LeaderComponent extends BaseListComponent {
   tableOptions!: TableOptions;
@@ -42,19 +32,19 @@ export class LeaderComponent extends BaseListComponent {
       inputUrl: {
         getAll: 'v2/leaders/getPaged',
         getAllMethod: 'POST',
-        delete: 'v2/leaders/deletesoft',
+        delete: 'v2/leaders/deletesoft'
       },
       inputCols: this.initializeTableColumns(),
       inputActions: this.initializeTableActions(),
       permissions: {
         componentName: 'ABOUT',
         allowAll: true,
-        listOfPermissions: [],
+        listOfPermissions: []
       },
       bodyOptions: {
-        filter: {},
+        filter: {}
       },
-      responsiveDisplayedProperties: ['fullName', 'position', 'mamberName'],
+      responsiveDisplayedProperties: ['fullName', 'position', 'mamberName']
     };
   }
 
@@ -64,20 +54,20 @@ export class LeaderComponent extends BaseListComponent {
         field: 'fullName',
         header: 'PAGES.LEADERS.FORM.FULL_NAME',
         filter: true,
-        filterMode: 'text',
+        filterMode: 'text'
       },
       {
         field: 'position',
         header: 'PAGES.LEADERS.FORM.POSITION',
         filter: true,
-        filterMode: 'text',
+        filterMode: 'text'
       },
       {
         field: 'mamberName',
         header: 'PAGES.LEADERS.FORM.MEMBER',
         filter: true,
-        filterMode: 'text',
-      },
+        filterMode: 'text'
+      }
     ];
   }
 
@@ -91,31 +81,23 @@ export class LeaderComponent extends BaseListComponent {
         call: (row) => {
           this.openEdit(row);
         },
-        allowAll: true,
+        allowAll: true
       },
       {
         name: 'DELETE',
         icon: 'pi pi-trash',
         color: 'text-error',
         allowAll: true,
-        isDelete: true,
-      },
+        isDelete: true
+      }
     ];
   }
 
   openAdd() {
-    this.openDialog(
-      AddEditLeaderComponent,
-      this.localize.translate.instant('PAGES.LEADERS.ADD.PAGE_TITLE'),
-      { pageType: 'add' },
-    );
+    this.openDialog(AddEditLeaderComponent, this.localize.translate.instant('PAGES.LEADERS.ADD.PAGE_TITLE'), { pageType: 'add' });
   }
 
   openEdit(rowData: any) {
-    this.openDialog(
-      AddEditLeaderComponent,
-      this.localize.translate.instant('PAGES.LEADERS.EDIT.PAGE_TITLE'),
-      { pageType: 'edit', row: { rowData } },
-    );
+    this.openDialog(AddEditLeaderComponent, this.localize.translate.instant('PAGES.LEADERS.EDIT.PAGE_TITLE'), { pageType: 'edit', row: { rowData } });
   }
 }

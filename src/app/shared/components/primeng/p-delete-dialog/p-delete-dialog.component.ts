@@ -6,7 +6,7 @@ import { DialogModule } from 'primeng/dialog';
   selector: 'app-prime-delete-dialog',
   imports: [DialogModule],
   templateUrl: './p-delete-dialog.component.html',
-  styleUrl: './p-delete-dialog.component.scss',
+  styleUrl: './p-delete-dialog.component.scss'
 })
 export class PrimeDeleteDialogComponent implements OnInit {
   deleteMainDialog: boolean = false;
@@ -17,19 +17,15 @@ export class PrimeDeleteDialogComponent implements OnInit {
 
   constructor(
     private _location: Location,
-    private router: Router,
+    private router: Router
   ) {}
 
   ngOnInit(): void {
     this.deleteMainDialog = true;
-    console.log(
-      'delete dialog opened: ',
-      this.router.url.split('/')[this.router.url.split('/').length - 1],
-    );
+    console.log('delete dialog opened: ', this.router.url.split('/')[this.router.url.split('/').length - 1]);
 
     if (this.router.url.split('/')[this.router.url.split('/').length - 1]) {
-      this.splitedId =
-        this.router.url.split('/')[this.router.url.split('/').length - 1];
+      this.splitedId = this.router.url.split('/')[this.router.url.split('/').length - 1];
     }
   }
 

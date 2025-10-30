@@ -1,11 +1,7 @@
 import { Component, inject } from '@angular/core';
 import { ActivatedRoute, RouterModule } from '@angular/router';
 import { CardModule } from 'primeng/card';
-import {
-  PrimeDataTableComponent,
-  PrimeTitleToolBarComponent,
-  SectorsService,
-} from '../../../../shared';
+import { PrimeDataTableComponent, PrimeTitleToolBarComponent, SectorsService } from '../../../../shared';
 import { TableOptions } from '../../../../shared/interfaces';
 import { BaseListComponent } from '../../../../base/components/base-list-component';
 import { AddEditSectorPostComponent } from '../add-edit-sector-post/add-edit-sector-post.component';
@@ -15,15 +11,9 @@ import { TranslatePipe } from '@ngx-translate/core';
 @Component({
   selector: 'app-sector-post',
 
-  imports: [
-    RouterModule,
-    CardModule,
-    PrimeDataTableComponent,
-    PrimeTitleToolBarComponent,
-    TranslatePipe,
-  ],
+  imports: [RouterModule, CardModule, PrimeDataTableComponent, PrimeTitleToolBarComponent, TranslatePipe],
   templateUrl: './sector-posts.component.html',
-  styleUrl: './sector-posts.component.css',
+  styleUrl: './sector-posts.component.css'
 })
 export class SectorPostsComponent extends BaseListComponent {
   sectorId: string = '';
@@ -47,19 +37,19 @@ export class SectorPostsComponent extends BaseListComponent {
       inputUrl: {
         getAll: 'v2/sectorposts/getPaged',
         getAllMethod: 'POST',
-        delete: 'v2/sectorposts/deletesoft',
+        delete: 'v2/sectorposts/deletesoft'
       },
       inputCols: this.initializeTableColumns(),
       inputActions: this.initializeTableActions(),
       permissions: {
         componentName: 'SECTOR-POSTS',
         allowAll: true,
-        listOfPermissions: [],
+        listOfPermissions: []
       },
       bodyOptions: {
-        filter: { sectorId: this.sectorId },
+        filter: { sectorId: this.sectorId }
       },
-      responsiveDisplayedProperties: ['sectorId', 'postId'],
+      responsiveDisplayedProperties: ['sectorId', 'postId']
     };
   }
 
@@ -69,14 +59,14 @@ export class SectorPostsComponent extends BaseListComponent {
         field: 'sectorId',
         header: 'PAGES.SHARE_FORM.SECTOR',
         filter: true,
-        filterMode: 'text',
+        filterMode: 'text'
       },
       {
         field: 'postId',
         header: 'PAGES.SHARE_FORM.POST',
         filter: true,
-        filterMode: 'text',
-      },
+        filterMode: 'text'
+      }
     ];
   }
 
@@ -90,31 +80,23 @@ export class SectorPostsComponent extends BaseListComponent {
         call: (row) => {
           this.openEdit(row);
         },
-        allowAll: true,
+        allowAll: true
       },
       {
         name: 'DELETE',
         icon: 'pi pi-trash',
         color: 'text-error',
         allowAll: true,
-        isDelete: true,
-      },
+        isDelete: true
+      }
     ];
   }
 
   openAdd() {
-    this.openDialog(
-      AddEditSectorPostComponent,
-      this.localize.translate.instant('PAGES.SECTOR_POSTS.ADD.PAGE_TITLE'),
-      { pageType: 'add', row: { sectorId: this.sectorId } },
-    );
+    this.openDialog(AddEditSectorPostComponent, this.localize.translate.instant('PAGES.SECTOR_POSTS.ADD.PAGE_TITLE'), { pageType: 'add', row: { sectorId: this.sectorId } });
   }
 
   openEdit(rowData: any) {
-    this.openDialog(
-      AddEditSectorPostComponent,
-      this.localize.translate.instant('PAGES.SECTOR_POSTS.EDIT.PAGE_TITLE'),
-      { pageType: 'edit', row: { rowData } },
-    );
+    this.openDialog(AddEditSectorPostComponent, this.localize.translate.instant('PAGES.SECTOR_POSTS.EDIT.PAGE_TITLE'), { pageType: 'edit', row: { rowData } });
   }
 }

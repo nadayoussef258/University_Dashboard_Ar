@@ -7,8 +7,7 @@ import { StorageKeys } from '../../enums/storage-keys';
 export const tokenInterceptor: HttpInterceptorFn = (req, next) => {
   const storageService = inject(StorageService);
   const token = storageService.getSession<string>(StorageKeys.AccessToken);
-  const language =
-    storageService.getSession<string>(StorageKeys.CurrentLanguage) || 'ar'; // fallback للغة افتراضية
+  const language = storageService.getSession<string>(StorageKeys.CurrentLanguage) || 'ar'; // fallback للغة افتراضية
 
   // ✅ تعديل الطلب فقط إذا فيه توكن
   if (token) {
@@ -19,8 +18,8 @@ export const tokenInterceptor: HttpInterceptorFn = (req, next) => {
         'Cache-Control': 'no-store, must-revalidate',
         Pragma: 'no-cache',
         Expires: '0',
-        'Accept-Language': language,
-      },
+        'Accept-Language': language
+      }
     });
   } else {
     // ✅ لو مفيش توكن، نضيف باقي الهيدر بدون Authorization
@@ -30,8 +29,8 @@ export const tokenInterceptor: HttpInterceptorFn = (req, next) => {
         'Cache-Control': 'no-store, must-revalidate',
         Pragma: 'no-cache',
         Expires: '0',
-        'Accept-Language': language,
-      },
+        'Accept-Language': language
+      }
     });
   }
 

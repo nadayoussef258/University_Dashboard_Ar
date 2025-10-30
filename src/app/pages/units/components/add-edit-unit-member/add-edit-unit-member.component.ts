@@ -2,12 +2,7 @@ import { Component, inject, OnInit } from '@angular/core';
 import { BaseEditComponent } from '../../../../base/components/base-edit-component';
 import { CardModule } from 'primeng/card';
 import { FormsModule, ReactiveFormsModule, Validators } from '@angular/forms';
-import {
-  PrimeAutoCompleteComponent,
-  SubmitButtonsComponent,
-  UnitMembersService,
-  UnitsService,
-} from '../../../../shared';
+import { PrimeAutoCompleteComponent, SubmitButtonsComponent, UnitMembersService, UnitsService } from '../../../../shared';
 import { DialogService } from 'primeng/dynamicdialog';
 import { ActivatedRoute } from '@angular/router';
 import { ToggleSwitch } from 'primeng/toggleswitch';
@@ -17,25 +12,12 @@ import { TranslatePipe } from '@ngx-translate/core';
 
 @Component({
   selector: 'app-add-edit-unit-member',
-  imports: [
-    CardModule,
-    FormsModule,
-    ReactiveFormsModule,
-    SubmitButtonsComponent,
-    PrimeAutoCompleteComponent,
-    ToggleSwitch,
-    NgClass,
-    ToggleSwitch,
-    TranslatePipe,
-  ],
+  imports: [CardModule, FormsModule, ReactiveFormsModule, SubmitButtonsComponent, PrimeAutoCompleteComponent, ToggleSwitch, NgClass, ToggleSwitch, TranslatePipe],
   templateUrl: './add-edit-unit-member.component.html',
-  styleUrl: './add-edit-unit-member.component.css',
+  styleUrl: './add-edit-unit-member.component.css'
 })
 //
-export class AddEditUnitMemberComponent
-  extends BaseEditComponent
-  implements OnInit
-{
+export class AddEditUnitMemberComponent extends BaseEditComponent implements OnInit {
   unitId: string = '';
   selectedUnit: any;
   filteredUnits: any[] = [];
@@ -71,7 +53,7 @@ export class AddEditUnitMemberComponent
   initFormGroup() {
     this.form = this.fb.group({
       isLeader: [false],
-      unitId: [this.unitId, Validators.required],
+      unitId: [this.unitId, Validators.required]
     });
   }
 
@@ -79,13 +61,11 @@ export class AddEditUnitMemberComponent
     const query = event.query.toLowerCase();
     this.unitsService.units.subscribe({
       next: (res: any) => {
-        this.filteredUnits = res.filter((unit: any) =>
-          unit.pageId.includes(query),
-        );
+        this.filteredUnits = res.filter((unit: any) => unit.pageId.includes(query));
       },
       error: (err) => {
         this.alert.error('خطأ فى جلب الوحدات');
-      },
+      }
     });
   }
 
@@ -96,24 +76,18 @@ export class AddEditUnitMemberComponent
 
   fetchUnitDetails(unitMember: any) {
     this.unitsService.units.subscribe((response: any) => {
-      this.filteredUnits = Array.isArray(response)
-        ? response
-        : response.data || [];
-      this.selectedUnit = this.selectedUnit.find(
-        (unit: any) => unit.id === unitMember.unitId,
-      );
+      this.filteredUnits = Array.isArray(response) ? response : response.data || [];
+      this.selectedUnit = this.selectedUnit.find((unit: any) => unit.id === unitMember.unitId);
       this.form.get('unitId')?.setValue(this.selectedUnit.id);
     });
   }
 
   getEditUnitMember = () => {
-    this.unitMembersService
-      .getEditUnitMember(this.id())
-      .subscribe((unitMember: any) => {
-        this.initFormGroup();
-        this.form.patchValue(unitMember);
-        this.fetchUnitDetails(unitMember);
-      });
+    this.unitMembersService.getEditUnitMember(this.id()).subscribe((unitMember: any) => {
+      this.initFormGroup();
+      this.form.patchValue(unitMember);
+      this.fetchUnitDetails(unitMember);
+    });
   };
 
   submit() {
@@ -122,11 +96,9 @@ export class AddEditUnitMemberComponent
         this.closeDialog();
       });
     if (this.pageType === 'edit')
-      this.unitMembersService
-        .update({ id: this.id(), ...this.form.value })
-        .subscribe(() => {
-          this.closeDialog();
-        });
+      this.unitMembersService.update({ id: this.id(), ...this.form.value }).subscribe(() => {
+        this.closeDialog();
+      });
   }
 
   closeDialog() {

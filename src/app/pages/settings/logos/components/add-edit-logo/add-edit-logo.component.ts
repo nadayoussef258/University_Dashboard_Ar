@@ -2,25 +2,15 @@ import { Component, inject, OnInit } from '@angular/core';
 import { BaseEditComponent } from '../../../../../base/components/base-edit-component';
 import { CardModule } from 'primeng/card';
 import { FormsModule, ReactiveFormsModule, Validators } from '@angular/forms';
-import {
-  LogosService,
-  PrimeInputTextComponent,
-  SubmitButtonsComponent,
-} from '../../../../../shared';
+import { LogosService, PrimeInputTextComponent, SubmitButtonsComponent } from '../../../../../shared';
 import { DialogService } from 'primeng/dynamicdialog';
 import { ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-add-edit-logo',
-  imports: [
-    CardModule,
-    FormsModule,
-    ReactiveFormsModule,
-    SubmitButtonsComponent,
-    PrimeInputTextComponent,
-  ],
+  imports: [CardModule, FormsModule, ReactiveFormsModule, SubmitButtonsComponent, PrimeInputTextComponent],
   templateUrl: './add-edit-logo.component.html',
-  styleUrl: './add-edit-logo.component.css',
+  styleUrl: './add-edit-logo.component.css'
 })
 //
 export class AddEditLogoComponent extends BaseEditComponent implements OnInit {
@@ -58,7 +48,7 @@ export class AddEditLogoComponent extends BaseEditComponent implements OnInit {
       linkedIn: ['', Validators.required],
       youTube: ['', Validators.required],
       whatsApp: ['', Validators.required],
-      mapLocation: ['', Validators.required],
+      mapLocation: ['', Validators.required]
     });
   }
 
@@ -75,11 +65,9 @@ export class AddEditLogoComponent extends BaseEditComponent implements OnInit {
         this.closeDialog();
       });
     if (this.pageType === 'edit')
-      this.logosService
-        .update({ id: this.id(), ...this.form.value })
-        .subscribe(() => {
-          this.closeDialog();
-        });
+      this.logosService.update({ id: this.id(), ...this.form.value }).subscribe(() => {
+        this.closeDialog();
+      });
   }
 
   closeDialog() {

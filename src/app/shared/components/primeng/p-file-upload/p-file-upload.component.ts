@@ -11,18 +11,10 @@ import { MessageService } from 'primeng/api';
 @Component({
   selector: 'app-prime-file-upload',
 
-  imports: [
-    CommonModule,
-    ReactiveFormsModule,
-    FileUpload,
-    ButtonModule,
-    BadgeModule,
-    ProgressBarModule,
-    ToastModule,
-  ],
+  imports: [CommonModule, ReactiveFormsModule, FileUpload, ButtonModule, BadgeModule, ProgressBarModule, ToastModule],
   templateUrl: './p-file-upload.component.html',
   styleUrls: ['./p-file-upload.component.scss'],
-  providers: [MessageService],
+  providers: [MessageService]
 })
 export class PrimeFileUploadComponent implements OnInit {
   @Input() formGroup!: FormGroup;
@@ -53,20 +45,20 @@ export class PrimeFileUploadComponent implements OnInit {
         isPublic: true,
         attachmentDisplaySize: this.formatSize(file.size),
         url: '', // بيتحدّث بعد الرفع من الباك
-        fileObject: file, // مؤقتًا نحتفظ بالأوبجكت لو حبيت ترفعه فعليًا بعدين
+        fileObject: file // مؤقتًا نحتفظ بالأوبجكت لو حبيت ترفعه فعليًا بعدين
       };
     });
 
     this.uploadedFiles = [...this.uploadedFiles, ...newAttachments];
     this.formGroup.patchValue({
-      [this.controlName]: this.uploadedFiles,
+      [this.controlName]: this.uploadedFiles
     });
   }
 
   onRemove(file: any, index: number) {
     this.uploadedFiles.splice(index, 1);
     this.formGroup.patchValue({
-      [this.controlName]: this.uploadedFiles,
+      [this.controlName]: this.uploadedFiles
     });
   }
 
@@ -74,7 +66,7 @@ export class PrimeFileUploadComponent implements OnInit {
     this.messageService.add({
       severity: 'success',
       summary: 'Uploaded',
-      detail: 'Files uploaded successfully!',
+      detail: 'Files uploaded successfully!'
     });
   }
 

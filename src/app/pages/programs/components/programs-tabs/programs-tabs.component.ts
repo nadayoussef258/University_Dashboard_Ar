@@ -8,7 +8,7 @@ import { TranslatePipe } from '@ngx-translate/core';
   selector: 'app-programs-tabs',
   imports: [TabsModule, RouterLink, RouterOutlet, TranslatePipe],
   templateUrl: './programs-tabs.component.html',
-  styleUrls: ['./programs-tabs.component.css'],
+  styleUrls: ['./programs-tabs.component.css']
 })
 //
 export class ProgramsTabsComponent extends BaseEditComponent implements OnInit {
@@ -16,12 +16,12 @@ export class ProgramsTabsComponent extends BaseEditComponent implements OnInit {
     {
       route: 'program-detail',
       label: 'PAGES.PROGRAM_DETAILS.MAIN.PAGE_TITLE',
-      icon: 'pi pi-file',
+      icon: 'pi pi-file'
     },
     {
       route: 'program-member',
       label: 'PAGES.PROGRAM_DETAIL.MAIN.PAGE_TITLE',
-      icon: 'pi pi-user',
-    },
+      icon: 'pi pi-user'
+    }
   ];
 }

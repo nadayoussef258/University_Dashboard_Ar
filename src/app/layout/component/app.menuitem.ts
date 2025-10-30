@@ -1,12 +1,6 @@
 import { Component, HostBinding, Input } from '@angular/core';
 import { NavigationEnd, Router, RouterModule } from '@angular/router';
-import {
-  animate,
-  state,
-  style,
-  transition,
-  trigger,
-} from '@angular/animations';
+import { animate, state, style, transition, trigger } from '@angular/animations';
 import { Subscription } from 'rxjs';
 import { filter } from 'rxjs/operators';
 import { CommonModule } from '@angular/common';
@@ -23,28 +17,16 @@ import { TranslatePipe } from '@ngx-translate/core';
     <ng-container>
       @if (root && item.visible !== false) {
         <div class="layout-menuitem-root-text">
-          <span
-            class="font-bold  underline decoration-white decoration-2 underline-offset-6 "
-          >
+          <span class="font-bold  underline decoration-white decoration-2 underline-offset-6 ">
             {{ item.label | translate }}
           </span>
         </div>
       }
       @if ((!item.routerLink || item.items) && item.visible !== false) {
-        <a
-          [attr.href]="item.url"
-          (click)="itemClick($event)"
-          [ngClass]="item.styleClass"
-          [attr.target]="item.target"
-          tabindex="0"
-          pRipple
-        >
+        <a [attr.href]="item.url" (click)="itemClick($event)" [ngClass]="item.styleClass" [attr.target]="item.target" tabindex="0" pRipple>
           <i [ngClass]="item.icon" class="layout-menuitem-icon"></i>
           <span class="layout-menuitem-text">{{ item.label | translate }}</span>
-          <i
-            class="pi pi-fw pi-angle-down layout-submenu-toggler"
-            *ngIf="item.items"
-          ></i>
+          <i class="pi pi-fw pi-angle-down layout-submenu-toggler" *ngIf="item.items"></i>
         </a>
       }
       @if (item.routerLink && !item.items && item.visible !== false) {
@@ -58,7 +40,7 @@ import { TranslatePipe } from '@ngx-translate/core';
               paths: 'exact',
               queryParams: 'ignored',
               matrixParams: 'ignored',
-              fragment: 'ignored',
+              fragment: 'ignored'
             }
           "
           [fragment]="item.fragment"
@@ -82,13 +64,7 @@ import { TranslatePipe } from '@ngx-translate/core';
       @if (item.items && item.visible !== false) {
         <ul [@children]="submenuAnimation">
           @for (child of item.items; track $index) {
-            <li
-              app-menuitem
-              [item]="child"
-              [index]="$index"
-              [parentKey]="key"
-              [class]="child['badgeClass']"
-            ></li>
+            <li app-menuitem [item]="child" [index]="$index" [parentKey]="key" [class]="child['badgeClass']"></li>
           }
         </ul>
       }
@@ -99,22 +75,19 @@ import { TranslatePipe } from '@ngx-translate/core';
       state(
         'collapsed',
         style({
-          height: '0',
-        }),
+          height: '0'
+        })
       ),
       state(
         'expanded',
         style({
-          height: '*',
-        }),
+          height: '*'
+        })
       ),
-      transition(
-        'collapsed <=> expanded',
-        animate('400ms cubic-bezier(0.86, 0, 0.07, 1)'),
-      ),
-    ]),
+      transition('collapsed <=> expanded', animate('400ms cubic-bezier(0.86, 0, 0.07, 1)'))
+    ])
   ],
-  providers: [LayoutService],
+  providers: [LayoutService]
 })
 export class AppMenuitem {
   @Input() item!: MenuItem;
@@ -135,47 +108,33 @@ export class AppMenuitem {
 
   constructor(
     public router: Router,
-    private layoutService: LayoutService,
+    private layoutService: LayoutService
   ) {
-    this.menuSourceSubscription = this.layoutService.menuSource$.subscribe(
-      (value) => {
-        Promise.resolve(null).then(() => {
-          if (value.routeEvent) {
-            this.active =
-              value.key === this.key || value.key.startsWith(this.key + '-')
-                ? true
-                : false;
-          } else {
-            if (
-              value.key !== this.key &&
-              !value.key.startsWith(this.key + '-')
-            ) {
-              this.active = false;
-            }
+    this.menuSourceSubscription = this.layoutService.menuSource$.subscribe((value) => {
+      Promise.resolve(null).then(() => {
+        if (value.routeEvent) {
+          this.active = value.key === this.key || value.key.startsWith(this.key + '-') ? true : false;
+        } else {
+          if (value.key !== this.key && !value.key.startsWith(this.key + '-')) {
+            this.active = false;
           }
-        });
-      },
-    );
-
-    this.menuResetSubscription = this.layoutService.resetSource$.subscribe(
-      () => {
-        this.active = false;
-      },
-    );
-
-    this.router.events
-      .pipe(filter((event) => event instanceof NavigationEnd))
-      .subscribe((params) => {
-        if (this.item.routerLink) {
-          this.updateActiveStateFromRoute();
         }
       });
+    });
+
+    this.menuResetSubscription = this.layoutService.resetSource$.subscribe(() => {
+      this.active = false;
+    });
+
+    this.router.events.pipe(filter((event) => event instanceof NavigationEnd)).subscribe((params) => {
+      if (this.item.routerLink) {
+        this.updateActiveStateFromRoute();
+      }
+    });
   }
 
   ngOnInit() {
-    this.key = this.parentKey
-      ? this.parentKey + '-' + this.index
-      : String(this.index);
+    this.key = this.parentKey ? this.parentKey + '-' + this.index : String(this.index);
 
     if (this.item.routerLink) {
       this.updateActiveStateFromRoute();
@@ -187,7 +146,7 @@ export class AppMenuitem {
       paths: 'exact',
       queryParams: 'ignored',
       matrixParams: 'ignored',
-      fragment: 'ignored',
+      fragment: 'ignored'
     });
 
     if (activeRoute) {

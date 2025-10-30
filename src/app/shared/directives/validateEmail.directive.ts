@@ -1,10 +1,5 @@
 import { Directive, forwardRef, Input } from '@angular/core';
-import {
-  AbstractControl,
-  NG_ASYNC_VALIDATORS,
-  AsyncValidator,
-  ValidationErrors,
-} from '@angular/forms';
+import { AbstractControl, NG_ASYNC_VALIDATORS, AsyncValidator, ValidationErrors } from '@angular/forms';
 import { Observable } from 'rxjs';
 import { CustomValidationService } from '../../shared/';
 
@@ -15,9 +10,9 @@ import { CustomValidationService } from '../../shared/';
     {
       provide: NG_ASYNC_VALIDATORS,
       useExisting: forwardRef(() => ValidateEmailDirective),
-      multi: true,
-    },
-  ],
+      multi: true
+    }
+  ]
 })
 export class ValidateEmailDirective implements AsyncValidator {
   @Input('appValidateEmail') userId?: string;

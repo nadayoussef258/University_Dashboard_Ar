@@ -1,11 +1,7 @@
 import { Component, inject, Input } from '@angular/core';
 import { ActivatedRoute, RouterModule } from '@angular/router';
 import { CardModule } from 'primeng/card';
-import {
-  PrimeDataTableComponent,
-  PrimeTitleToolBarComponent,
-  AboutService,
-} from '../../../../shared';
+import { PrimeDataTableComponent, PrimeTitleToolBarComponent, AboutService } from '../../../../shared';
 import { TableOptions } from '../../../../shared/interfaces';
 import { BaseListComponent } from '../../../../base/components/base-list-component';
 import { AddEditMemberComponent } from '../../components/add-edit-member/add-edit-member.component';
@@ -14,15 +10,9 @@ import { TranslatePipe } from '@ngx-translate/core';
 @Component({
   selector: 'app-members',
 
-  imports: [
-    RouterModule,
-    CardModule,
-    PrimeDataTableComponent,
-    PrimeTitleToolBarComponent,
-    TranslatePipe,
-  ],
+  imports: [RouterModule, CardModule, PrimeDataTableComponent, PrimeTitleToolBarComponent, TranslatePipe],
   templateUrl: './members.component.html',
-  styleUrl: './members.component.css',
+  styleUrl: './members.component.css'
 })
 export class MembersComponent extends BaseListComponent {
   tableOptions!: TableOptions;
@@ -41,31 +31,19 @@ export class MembersComponent extends BaseListComponent {
       inputUrl: {
         getAll: 'v2/member/getPaged',
         getAllMethod: 'POST',
-        delete: 'v2/member/deletesoft',
+        delete: 'v2/member/deletesoft'
       },
       inputCols: this.initializeTableColumns(),
       inputActions: this.initializeTableActions(),
       permissions: {
         componentName: 'MEMBERS',
         allowAll: true,
-        listOfPermissions: [],
+        listOfPermissions: []
       },
       bodyOptions: {
-        filter: {},
+        filter: {}
       },
-      responsiveDisplayedProperties: [
-        'isPresident',
-        'fullName',
-        'position',
-        'specialization',
-        'pageId',
-        'sectorMemberId',
-        'programMemberId',
-        'managementMemberId',
-        'centerMemberId',
-        'unitMemberId',
-        'memberAttachments',
-      ],
+      responsiveDisplayedProperties: ['isPresident', 'fullName', 'position', 'specialization', 'pageId', 'sectorMemberId', 'programMemberId', 'managementMemberId', 'centerMemberId', 'unitMemberId', 'memberAttachments']
     };
   }
 
@@ -77,62 +55,62 @@ export class MembersComponent extends BaseListComponent {
         filter: true,
         trueText: 'PAGES.MEMBERS.FORM.IS_PRESIDENT.PRESIDENT',
         falseText: 'PAGES.MEMBERS.FORM.IS_PRESIDENT.MEMBER',
-        filterMode: 'text',
+        filterMode: 'text'
       },
       {
         field: 'fullName',
         header: 'PAGES.MEMBERS.FORM.FULL_NAME',
         filter: true,
-        filterMode: 'text',
+        filterMode: 'text'
       },
       {
         field: 'position',
         header: 'PAGES.MEMBERS.FORM.POSITION',
         filter: true,
-        filterMode: 'text',
+        filterMode: 'text'
       },
       {
         field: 'specialization',
         header: 'PAGES.MEMBERS.FORM.SPECIALIZATION',
         filter: true,
-        filterMode: 'text',
+        filterMode: 'text'
       },
       {
         field: 'pageId',
         header: 'PAGES.SHARE_FORM.PAGE',
         filter: true,
-        filterMode: 'text',
+        filterMode: 'text'
       },
       {
         field: 'sectorMemberId',
         header: 'PAGES.SHARE_FORM.SECTOR',
         filter: true,
-        filterMode: 'text',
+        filterMode: 'text'
       },
       {
         field: 'programMemberId',
         header: 'PAGES.SHARE_FORM.PROGRAM',
         filter: true,
-        filterMode: 'text',
+        filterMode: 'text'
       },
       {
         field: 'managementMemberId',
         header: 'PAGES.SHARE_FORM.MANAGEMENT',
         filter: true,
-        filterMode: 'text',
+        filterMode: 'text'
       },
       {
         field: 'centerMemberId',
         header: 'PAGES.SHARE_FORM.CENTER',
         filter: true,
-        filterMode: 'text',
+        filterMode: 'text'
       },
       {
         field: 'unitMemberId',
         header: 'PAGES.SHARE_FORM.UNIT',
         filter: true,
-        filterMode: 'text',
-      },
+        filterMode: 'text'
+      }
     ];
   }
 
@@ -144,15 +122,15 @@ export class MembersComponent extends BaseListComponent {
         color: 'text-middle',
         isEdit: true,
         route: 'edit/',
-        allowAll: true,
+        allowAll: true
       },
       {
         name: 'DELETE',
         icon: 'pi pi-trash',
         color: 'text-error',
         allowAll: true,
-        isDelete: true,
-      },
+        isDelete: true
+      }
     ];
   }
 }

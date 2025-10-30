@@ -23,7 +23,7 @@ interface MenuChangeEvent {
 }
 
 @Injectable({
-  providedIn: 'root',
+  providedIn: 'root'
 })
 export class LayoutService {
   _config: layoutConfig = {
@@ -31,7 +31,7 @@ export class LayoutService {
     primary: 'emerald',
     surface: null,
     darkTheme: false,
-    menuMode: 'static',
+    menuMode: 'static'
   };
 
   _state: LayoutState = {
@@ -39,7 +39,7 @@ export class LayoutService {
     overlayMenuActive: false,
     configSidebarVisible: false,
     staticMenuMobileActive: false,
-    menuHoverActive: false,
+    menuHoverActive: false
   };
 
   layoutConfig = signal<layoutConfig>(this._config);
@@ -64,11 +64,7 @@ export class LayoutService {
 
   theme = computed(() => (this.layoutConfig()?.darkTheme ? 'light' : 'dark'));
 
-  isSidebarActive = computed(
-    () =>
-      this.layoutState().overlayMenuActive ||
-      this.layoutState().staticMenuMobileActive,
-  );
+  isSidebarActive = computed(() => this.layoutState().overlayMenuActive || this.layoutState().staticMenuMobileActive);
 
   isDarkTheme = computed(() => this.layoutConfig().darkTheme);
 
@@ -143,7 +139,7 @@ export class LayoutService {
     if (this.isOverlay()) {
       this.layoutState.update((prev) => ({
         ...prev,
-        overlayMenuActive: !this.layoutState().overlayMenuActive,
+        overlayMenuActive: !this.layoutState().overlayMenuActive
       }));
 
       if (this.layoutState().overlayMenuActive) {
@@ -154,13 +150,12 @@ export class LayoutService {
     if (this.isDesktop()) {
       this.layoutState.update((prev) => ({
         ...prev,
-        staticMenuDesktopInactive:
-          !this.layoutState().staticMenuDesktopInactive,
+        staticMenuDesktopInactive: !this.layoutState().staticMenuDesktopInactive
       }));
     } else {
       this.layoutState.update((prev) => ({
         ...prev,
-        staticMenuMobileActive: !this.layoutState().staticMenuMobileActive,
+        staticMenuMobileActive: !this.layoutState().staticMenuMobileActive
       }));
 
       if (this.layoutState().staticMenuMobileActive) {

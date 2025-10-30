@@ -8,7 +8,7 @@ import { TranslatePipe } from '@ngx-translate/core';
   selector: 'app-centers-tabs',
   imports: [TabsModule, RouterLink, RouterOutlet, TranslatePipe],
   templateUrl: './centers-tabs.component.html',
-  styleUrls: ['./centers-tabs.component.css'],
+  styleUrls: ['./centers-tabs.component.css']
 })
 //
 export class CentersTabsComponent extends BaseEditComponent implements OnInit {
@@ -16,12 +16,12 @@ export class CentersTabsComponent extends BaseEditComponent implements OnInit {
     {
       route: 'center-detail',
       label: 'PAGES.CENTER_DETAILS.MAIN.PAGE_TITLE',
-      icon: 'pi pi-info-circle',
+      icon: 'pi pi-info-circle'
     },
     {
       route: 'center-member',
       label: 'PAGES.CENTER_MEMBERS.MAIN.PAGE_TITLE',
-      icon: 'pi pi-users',
-    },
+      icon: 'pi pi-users'
+    }
   ];
 }

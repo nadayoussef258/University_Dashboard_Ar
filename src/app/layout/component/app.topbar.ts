@@ -10,13 +10,7 @@ import { TranslatePipe } from '@ngx-translate/core';
 @Component({
   selector: 'app-topbar',
   standalone: true,
-  imports: [
-    RouterModule,
-    CommonModule,
-    StyleClassModule,
-    AppConfigurator,
-    TranslatePipe,
-  ],
+  imports: [RouterModule, CommonModule, StyleClassModule, AppConfigurator, TranslatePipe],
   styleUrls: ['./topbar.css'],
   template: `
     <div class="modern-topbar">
@@ -165,7 +159,7 @@ import { TranslatePipe } from '@ngx-translate/core';
         </div>
       </div>
     </div>
-  `,
+  `
 })
 export class AppTopbar {
   items!: MenuItem[];
@@ -175,7 +169,7 @@ export class AppTopbar {
   toggleDarkMode() {
     this.layoutService.layoutConfig.update((state) => ({
       ...state,
-      darkTheme: !state.darkTheme,
+      darkTheme: !state.darkTheme
     }));
   }
 }

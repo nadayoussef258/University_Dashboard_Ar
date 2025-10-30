@@ -1,11 +1,7 @@
 import { Component, inject } from '@angular/core';
 import { ActivatedRoute, RouterModule } from '@angular/router';
 import { CardModule } from 'primeng/card';
-import {
-  PrimeDataTableComponent,
-  PrimeTitleToolBarComponent,
-  ManagementsService,
-} from '../../../../shared';
+import { PrimeDataTableComponent, PrimeTitleToolBarComponent, ManagementsService } from '../../../../shared';
 import { TableOptions } from '../../../../shared/interfaces';
 import { BaseListComponent } from '../../../../base/components/base-list-component';
 import { TranslatePipe } from '@ngx-translate/core';
@@ -13,15 +9,9 @@ import { TranslatePipe } from '@ngx-translate/core';
 @Component({
   selector: 'app-managements',
 
-  imports: [
-    RouterModule,
-    CardModule,
-    PrimeDataTableComponent,
-    PrimeTitleToolBarComponent,
-    TranslatePipe,
-  ],
+  imports: [RouterModule, CardModule, PrimeDataTableComponent, PrimeTitleToolBarComponent, TranslatePipe],
   templateUrl: './managements.component.html',
-  styleUrl: './managements.component.css',
+  styleUrl: './managements.component.css'
 })
 export class ManagementsComponent extends BaseListComponent {
   tableOptions!: TableOptions;
@@ -41,19 +31,19 @@ export class ManagementsComponent extends BaseListComponent {
       inputUrl: {
         getAll: 'v2/management/getPaged',
         getAllMethod: 'POST',
-        delete: 'v2/management/delete',
+        delete: 'v2/management/delete'
       },
       inputCols: this.initializeTableColumns(),
       inputActions: this.initializeTableActions(),
       permissions: {
         componentName: 'MANAGEMENTS',
         allowAll: true,
-        listOfPermissions: [],
+        listOfPermissions: []
       },
       bodyOptions: {
-        filter: {},
+        filter: {}
       },
-      responsiveDisplayedProperties: ['pageTitle', 'about.content'],
+      responsiveDisplayedProperties: ['pageTitle', 'about.content']
     };
   }
 
@@ -63,14 +53,14 @@ export class ManagementsComponent extends BaseListComponent {
         field: 'pageTitle',
         header: 'PAGES.SHARE_FORM.PAGE',
         filter: true,
-        filterMode: 'text',
+        filterMode: 'text'
       },
       {
         field: 'about.content',
         header: 'PAGES.SHARE_FORM.ABOUT',
         filter: true,
-        filterMode: 'text',
-      },
+        filterMode: 'text'
+      }
     ];
   }
 
@@ -82,15 +72,15 @@ export class ManagementsComponent extends BaseListComponent {
         color: 'text-middle',
         isEdit: true,
         route: 'edit/',
-        allowAll: true,
+        allowAll: true
       },
       {
         name: 'DELETE',
         icon: 'pi pi-trash',
         color: 'text-error',
         allowAll: true,
-        isDelete: true,
-      },
+        isDelete: true
+      }
     ];
   }
 }

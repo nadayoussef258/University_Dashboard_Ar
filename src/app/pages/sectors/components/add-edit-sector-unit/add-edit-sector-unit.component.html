@@ -2,74 +2,37 @@
   @if (form) {
     <form method="post" class="grid gap-4 grid-cols-12" [formGroup]="form">
       <div class="form-col">
-        <app-prime-input-text
-          [formGroup]="form"
-          controlName="unitNameAr"
-          [label]="'PAGES.SECTOR_UNITS.FORM.UNIT_NAME'"
-        >
-        </app-prime-input-text>
+        <app-prime-input-text [formGroup]="form" controlName="unitNameAr" [label]="'PAGES.SECTOR_UNITS.FORM.UNIT_NAME'"> </app-prime-input-text>
       </div>
 
       <div class="form-col">
-        <app-prime-input-text
-          [formGroup]="form"
-          controlName="manager"
-          [label]="'PAGES.SECTOR_UNITS.FORM.MANAGER'"
-        >
-        </app-prime-input-text>
+        <app-prime-input-text [formGroup]="form" controlName="manager" [label]="'PAGES.SECTOR_UNITS.FORM.MANAGER'"> </app-prime-input-text>
       </div>
 
       <div class="form-col">
-        <app-prime-input-text
-          [formGroup]="form"
-          controlName="email"
-          [label]="'PAGES.SECTOR_UNITS.FORM.EMAIL'"
-        >
-        </app-prime-input-text>
+        <app-prime-input-text [formGroup]="form" controlName="email" [label]="'PAGES.SECTOR_UNITS.FORM.EMAIL'"> </app-prime-input-text>
       </div>
 
       <div class="form-col">
-        <app-prime-input-text
-          [formGroup]="form"
-          controlName="employeesCount"
-          contentType="number"
-          [label]="'PAGES.SECTOR_UNITS.FORM.EMPLOYEES_COUNT'"
-        >
-        </app-prime-input-text>
+        <app-prime-input-text [formGroup]="form" controlName="employeesCount" contentType="number" [label]="'PAGES.SECTOR_UNITS.FORM.EMPLOYEES_COUNT'"> </app-prime-input-text>
       </div>
 
       <div class="form-col">
-        <app-prime-input-text
-          [formGroup]="form"
-          controlName="location"
-          [label]="'PAGES.SECTOR_UNITS.FORM.LOCATION'"
-        >
-        </app-prime-input-text>
+        <app-prime-input-text [formGroup]="form" controlName="location" [label]="'PAGES.SECTOR_UNITS.FORM.LOCATION'"> </app-prime-input-text>
       </div>
 
       <div class="form-col">
-        <app-prime-input-text
-          [formGroup]="form"
-          controlName="unitPhone"
-          [label]="'PAGES.SECTOR_UNITS.FORM.UNIT_PHONE'"
-        >
-        </app-prime-input-text>
+        <app-prime-input-text [formGroup]="form" controlName="unitPhone" [label]="'PAGES.SECTOR_UNITS.FORM.UNIT_PHONE'"> </app-prime-input-text>
       </div>
 
       <div class="col-span-12">
-        <app-prime-input-text
-          [formGroup]="form"
-          controlName="unitDescriptionAr"
-          [label]="'PAGES.SECTOR_UNITS.FORM.UNIT_DESCRIPTION'"
-          [inputType]="'textarea'"
-        >
-        </app-prime-input-text>
+        <app-prime-input-text [formGroup]="form" controlName="unitDescriptionAr" [label]="'PAGES.SECTOR_UNITS.FORM.UNIT_DESCRIPTION'" [inputType]="'textarea'"> </app-prime-input-text>
       </div>
 
-      @if ((pageType !== "add" && sectorId) || !sectorId) {
+      @if ((pageType !== 'add' && sectorId) || !sectorId) {
         <div class="form-col">
           <label class="text-middle mb-2">
-            {{ "PAGES.SHARE_FORM.SECTOR" | translate }}
+            {{ 'PAGES.SHARE_FORM.SECTOR' | translate }}
           </label>
           <app-prime-autocomplete
             [disabled]="!!sectorId"
@@ -88,10 +51,5 @@
 </p-card>
 
 @if (form) {
-  <app-submit-buttons
-    [isSubmitDisabled]="form.invalid"
-    [submitBtnLabel]="pageType === 'add' ? 'ACTIONS.SUBMIT' : 'ACTIONS.SAVE'"
-    (submit)="submit()"
-    (cancel)="redirect()"
-  />
+  <app-submit-buttons [isSubmitDisabled]="form.invalid" [submitBtnLabel]="pageType === 'add' ? 'ACTIONS.SUBMIT' : 'ACTIONS.SAVE'" (submit)="submit()" (cancel)="redirect()" />
 }

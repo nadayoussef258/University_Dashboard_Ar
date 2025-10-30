@@ -3,7 +3,7 @@ export enum Action {
   Add,
   Update,
   Delete,
-  Anonymous,
+  Anonymous
 }
 
 export class RouteData {
@@ -42,7 +42,7 @@ export class Permission {
       Add: false,
       Update: false,
       Delete: false,
-      View: false,
+      View: false
     });
   }
   public static get FullAccess(): Permission {
@@ -50,7 +50,7 @@ export class Permission {
       Add: true,
       Update: true,
       Delete: true,
-      View: true,
+      View: true
     });
   }
 

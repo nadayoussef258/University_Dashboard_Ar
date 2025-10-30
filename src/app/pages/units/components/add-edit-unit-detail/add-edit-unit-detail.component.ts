@@ -2,13 +2,7 @@ import { Component, inject, OnInit } from '@angular/core';
 import { BaseEditComponent } from '../../../../base/components/base-edit-component';
 import { CardModule } from 'primeng/card';
 import { FormsModule, ReactiveFormsModule, Validators } from '@angular/forms';
-import {
-  PrimeAutoCompleteComponent,
-  PrimeInputTextComponent,
-  SubmitButtonsComponent,
-  UnitDetailsService,
-  UnitsService,
-} from '../../../../shared';
+import { PrimeAutoCompleteComponent, PrimeInputTextComponent, SubmitButtonsComponent, UnitDetailsService, UnitsService } from '../../../../shared';
 import { DialogService } from 'primeng/dynamicdialog';
 import { ActivatedRoute } from '@angular/router';
 import { UnitIdService } from '../../unit-id.service';
@@ -16,23 +10,12 @@ import { TranslatePipe } from '@ngx-translate/core';
 
 @Component({
   selector: 'app-add-edit-unit-detail',
-  imports: [
-    CardModule,
-    FormsModule,
-    ReactiveFormsModule,
-    SubmitButtonsComponent,
-    PrimeInputTextComponent,
-    PrimeAutoCompleteComponent,
-    TranslatePipe,
-  ],
+  imports: [CardModule, FormsModule, ReactiveFormsModule, SubmitButtonsComponent, PrimeInputTextComponent, PrimeAutoCompleteComponent, TranslatePipe],
   templateUrl: './add-edit-unit-detail.component.html',
-  styleUrl: './add-edit-unit-detail.component.css',
+  styleUrl: './add-edit-unit-detail.component.css'
 })
 //
-export class AddEditUnitDetailComponent
-  extends BaseEditComponent
-  implements OnInit
-{
+export class AddEditUnitDetailComponent extends BaseEditComponent implements OnInit {
   unitId: string = '';
   selectedUnit: any;
   filteredUnits: any[] = [];
@@ -63,7 +46,7 @@ export class AddEditUnitDetailComponent
       title: ['', Validators.required],
       description: ['', Validators.required],
       unitPlace: ['', Validators.required],
-      unitId: [this.unitId, Validators.required],
+      unitId: [this.unitId, Validators.required]
     });
   }
 
@@ -71,13 +54,11 @@ export class AddEditUnitDetailComponent
     const query = event.query.toLowerCase();
     this.unitsService.units.subscribe({
       next: (res: any) => {
-        this.filteredUnits = res.filter((unit: any) =>
-          unit.page.title.toLowerCase.includes(query),
-        );
+        this.filteredUnits = res.filter((unit: any) => unit.page.title.toLowerCase.includes(query));
       },
       error: (err) => {
         this.alert.error('خطأ فى جلب الادارات');
-      },
+      }
     });
   }
 
@@ -88,24 +69,18 @@ export class AddEditUnitDetailComponent
 
   fetchUnitDetails(unitDetail: any) {
     this.unitsService.units.subscribe((response: any) => {
-      this.filteredUnits = Array.isArray(response)
-        ? response
-        : response.data || [];
-      this.selectedUnit = this.selectedUnit.find(
-        (unit: any) => unit.id === unitDetail.unitId,
-      );
+      this.filteredUnits = Array.isArray(response) ? response : response.data || [];
+      this.selectedUnit = this.selectedUnit.find((unit: any) => unit.id === unitDetail.unitId);
       this.form.get('unitId')?.setValue(this.selectedUnit.id);
     });
   }
 
   getEditUnitDetail = () => {
-    this.unitDetailsService
-      .getEditUnitDetail(this.id())
-      .subscribe((unitDetail: any) => {
-        this.initFormGroup();
-        this.form.patchValue(unitDetail);
-        this.fetchUnitDetails(unitDetail);
-      });
+    this.unitDetailsService.getEditUnitDetail(this.id()).subscribe((unitDetail: any) => {
+      this.initFormGroup();
+      this.form.patchValue(unitDetail);
+      this.fetchUnitDetails(unitDetail);
+    });
   };
 
   submit() {
@@ -117,7 +92,7 @@ export class AddEditUnitDetailComponent
       this.unitDetailsService
         .update({
           id: this.id(),
-          ...this.form.value,
+          ...this.form.value
         })
         .subscribe(() => {
           this.redirect();

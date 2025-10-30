@@ -15,10 +15,5 @@
 </p-card>
 
 @if (form) {
-  <app-submit-buttons
-    [isSubmitDisabled]="form.invalid"
-    [submitBtnLabel]="pageType === 'add' ? 'ACTIONS.SUBMIT' : 'ACTIONS.SAVE'"
-    (submit)="submit()"
-    (cancel)="closeDialog()"
-  />
+  <app-submit-buttons [isSubmitDisabled]="form.invalid" [submitBtnLabel]="pageType === 'add' ? 'ACTIONS.SUBMIT' : 'ACTIONS.SAVE'" (submit)="submit()" (cancel)="closeDialog()" />
 }

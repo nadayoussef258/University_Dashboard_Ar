@@ -8,9 +8,7 @@ import { map, catchError } from 'rxjs/operators';
  * ✅ يتحقق من وجود unit ID في الـ route
  * وإذا غير صالح أو غير موجود → يعيد التوجيه لصفحة notfound
  */
-export const validateUnitIdGuard: CanActivateFn = (
-  route: ActivatedRouteSnapshot
-): Observable<boolean | import('@angular/router').UrlTree> => {
+export const validateUnitIdGuard: CanActivateFn = (route: ActivatedRouteSnapshot): Observable<boolean | import('@angular/router').UrlTree> => {
   const router = inject(Router);
   const unitsService = inject(UnitsService);
 

@@ -2,46 +2,25 @@
   @if (form) {
     <form method="post" class="grid gap-4 grid-cols-12" [formGroup]="form">
       <div class="form-col">
-        <app-prime-input-text
-          [formGroup]="form"
-          controlName="title"
-          [label]="'PAGES.PROGRAM_DETAILS.FORM.TITLE'"
-        >
-        </app-prime-input-text>
+        <app-prime-input-text [formGroup]="form" controlName="title" [label]="'PAGES.PROGRAM_DETAILS.FORM.TITLE'"> </app-prime-input-text>
       </div>
 
       <div class="form-col">
-        <app-prime-input-text
-          [formGroup]="form"
-          controlName="programCategory"
-          [label]="'PAGES.PROGRAM_DETAILS.FORM.PROGRAM_CATEGORY'"
-        >
-        </app-prime-input-text>
+        <app-prime-input-text [formGroup]="form" controlName="programCategory" [label]="'PAGES.PROGRAM_DETAILS.FORM.PROGRAM_CATEGORY'"> </app-prime-input-text>
       </div>
 
       <div class="col-span-12">
-        <app-prime-input-text
-          [formGroup]="form"
-          controlName="content"
-          [label]="'PAGES.PROGRAM_DETAILS.FORM.CONTENT'"
-          [inputType]="'textarea'"
-        >
-        </app-prime-input-text>
+        <app-prime-input-text [formGroup]="form" controlName="content" [label]="'PAGES.PROGRAM_DETAILS.FORM.CONTENT'" [inputType]="'textarea'"> </app-prime-input-text>
       </div>
 
       <div class="form-col">
-        <app-prime-input-text
-          [formGroup]="form"
-          controlName="facultyId"
-          [label]="'PAGES.PROGRAM_DETAILS.FORM.FACULTY'"
-        >
-        </app-prime-input-text>
+        <app-prime-input-text [formGroup]="form" controlName="facultyId" [label]="'PAGES.PROGRAM_DETAILS.FORM.FACULTY'"> </app-prime-input-text>
       </div>
 
-      @if ((pageType !== "add" && programId) || !programId) {
+      @if ((pageType !== 'add' && programId) || !programId) {
         <div class="form-col">
           <label class="font-bold font-14 text-middle mb-2">
-            {{ "PAGES.SHARE_FORM.PROGRAM" | translate }}
+            {{ 'PAGES.SHARE_FORM.PROGRAM' | translate }}
           </label>
           <app-prime-autocomplete
             [disabled]="!!programId"
@@ -60,10 +39,5 @@
 </p-card>
 
 @if (form) {
-  <app-submit-buttons
-    [isSubmitDisabled]="form.invalid"
-    [submitBtnLabel]="pageType === 'add' ? 'ACTIONS.SUBMIT' : 'ACTIONS.SAVE'"
-    (submit)="submit()"
-    (cancel)="redirect()"
-  />
+  <app-submit-buttons [isSubmitDisabled]="form.invalid" [submitBtnLabel]="pageType === 'add' ? 'ACTIONS.SUBMIT' : 'ACTIONS.SAVE'" (submit)="submit()" (cancel)="redirect()" />
 }

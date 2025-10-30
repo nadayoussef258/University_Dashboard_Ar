@@ -45,26 +45,20 @@ const PRIMENG_MODULES = [
   ProgressBarModule,
   DatePickerModule,
   FileUpload,
-  Select,
+  Select
 ];
 
-const ANGULAR_MODULES = [
-  CommonModule,
-  FormsModule,
-  ReactiveFormsModule,
-  RouterModule,
-  TranslateModule,
-];
+const ANGULAR_MODULES = [CommonModule, FormsModule, ReactiveFormsModule, RouterModule, TranslateModule];
 
 const CUSTOM_PIPES_DIRECTIVES = [
   ValidationHandlerPipe,
-  SpecificLanguageDirective,
+  SpecificLanguageDirective
   // add more here...
 ];
 
 @NgModule({
   imports: [...ANGULAR_MODULES, ...PRIMENG_MODULES, ...CUSTOM_PIPES_DIRECTIVES],
   // Remove declarations!
-  exports: [...ANGULAR_MODULES, ...PRIMENG_MODULES, ...CUSTOM_PIPES_DIRECTIVES],
+  exports: [...ANGULAR_MODULES, ...PRIMENG_MODULES, ...CUSTOM_PIPES_DIRECTIVES]
 })
 export class SharedModule {}

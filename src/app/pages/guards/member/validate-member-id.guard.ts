@@ -8,9 +8,7 @@ import { map, catchError } from 'rxjs/operators';
  * ✅ يتحقق من وجود member ID في الـ route
  * وإذا غير صالح أو غير موجود → يعيد التوجيه لصفحة notfound
  */
-export const validateMemberIdGuard: CanActivateFn = (
-  route: ActivatedRouteSnapshot
-): Observable<boolean | import('@angular/router').UrlTree> => {
+export const validateMemberIdGuard: CanActivateFn = (route: ActivatedRouteSnapshot): Observable<boolean | import('@angular/router').UrlTree> => {
   const router = inject(Router);
   const membersService = inject(MembersService);
 

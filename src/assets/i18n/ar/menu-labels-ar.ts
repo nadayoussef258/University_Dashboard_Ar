@@ -41,6 +41,6 @@ export const AR_MENU_LABELS = {
     ABOUT_UNIVERSITY: 'عن الجامعة',
     ACTIONS: 'الأحداث',
     CATEGORIES: 'التصنيفات',
-    PAGES: 'الصفحات',
-  },
+    PAGES: 'الصفحات'
+  }
 };

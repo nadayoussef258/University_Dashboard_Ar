@@ -2,29 +2,15 @@
   @if (form) {
     <form [formGroup]="form" class="grid gap-3 grid-cols-12" method="post">
       <div class="form-col">
-        <app-prime-input-text
-          [formGroup]="form"
-          controlName="title"
-          [label]="'العنوان الرئيسي'"
-        ></app-prime-input-text>
+        <app-prime-input-text [formGroup]="form" controlName="title" [label]="'العنوان الرئيسي'"></app-prime-input-text>
       </div>
 
       <div class="form-col">
-        <app-prime-input-text
-          [formGroup]="form"
-          controlName="subTitle"
-          [label]="'العنوان الفرعي'"
-        ></app-prime-input-text>
+        <app-prime-input-text [formGroup]="form" controlName="subTitle" [label]="'العنوان الفرعي'"></app-prime-input-text>
       </div>
 
       <div class="col-span-12">
-        <app-prime-input-text
-          [formGroup]="form"
-          controlName="description"
-          [label]="'الوصف'"
-          [inputType]="'textarea'"
-        >
-        </app-prime-input-text>
+        <app-prime-input-text [formGroup]="form" controlName="description" [label]="'الوصف'" [inputType]="'textarea'"> </app-prime-input-text>
       </div>
 
       <div class="gap-2 form-col d-flex align-items-center">
@@ -33,23 +19,12 @@
       </div>
 
       <div class="col-span-12">
-        <app-prime-file-upload
-          [formGroup]="form"
-          controlName="heroAttachments"
-          label="صور الـ Hero Section"
-          [multiple]="true"
-          [uploadUrl]="'https://www.primefaces.org/cdn/api/upload.php'"
-        ></app-prime-file-upload>
+        <app-prime-file-upload [formGroup]="form" controlName="heroAttachments" label="صور الـ Hero Section" [multiple]="true" [uploadUrl]="'https://www.primefaces.org/cdn/api/upload.php'"></app-prime-file-upload>
       </div>
     </form>
   }
 </p-card>
 
 @if (form) {
-  <app-submit-buttons
-    [isSubmitDisabled]="form.invalid"
-    [submitBtnLabel]="pageType === 'add' ? 'ACTIONS.SUBMIT' : 'ACTIONS.SAVE'"
-    (submit)="submit()"
-    (cancel)="closeDialog()"
-  />
+  <app-submit-buttons [isSubmitDisabled]="form.invalid" [submitBtnLabel]="pageType === 'add' ? 'ACTIONS.SUBMIT' : 'ACTIONS.SAVE'" (submit)="submit()" (cancel)="closeDialog()" />
 }

@@ -3,82 +3,42 @@
     <form method="post" class="grid gap-4 grid-cols-12" [formGroup]="form">
       <div class="col-span-12">
         <label class="text-middle mb-3">
-          {{
-            "PAGES.MEMBERS.FORM.IS_PRESIDENT.QUESTION_ALLOW_EDIT" | translate
-          }}
+          {{ 'PAGES.MEMBERS.FORM.IS_PRESIDENT.QUESTION_ALLOW_EDIT' | translate }}
         </label>
         <div class="flex gap-3 items-center">
           <p-toggleswitch formControlName="isPresident"></p-toggleswitch>
           <span
             class="border rounded-full font-semibold text-sm py-1 px-3 transition-all gap-2 duration-300 inline-flex items-center"
-            [ngClass]="
-              form.get('isPresident')?.value
-                ? 'bg-blue-100 text-blue-700 border-blue-300'
-                : 'bg-gray-100 text-gray-600 border-gray-300'
-            "
+            [ngClass]="form.get('isPresident')?.value ? 'bg-blue-100 text-blue-700 border-blue-300' : 'bg-gray-100 text-gray-600 border-gray-300'"
           >
-            <i
-              class="text-base"
-              [ngClass]="
-                form.get('isPresident')?.value
-                  ? 'pi pi-star text-blue-500'
-                  : 'pi pi-user text-gray-500'
-              "
-            ></i>
-            {{
-              form.get("isPresident")?.value
-                ? ("PAGES.MEMBERS.FORM.IS_PRESIDENT.PRESIDENT" | translate)
-                : ("PAGES.MEMBERS.FORM.IS_PRESIDENT.MEMBER" | translate)
-            }}
+            <i class="text-base" [ngClass]="form.get('isPresident')?.value ? 'pi pi-star text-blue-500' : 'pi pi-user text-gray-500'"></i>
+            {{ form.get('isPresident')?.value ? ('PAGES.MEMBERS.FORM.IS_PRESIDENT.PRESIDENT' | translate) : ('PAGES.MEMBERS.FORM.IS_PRESIDENT.MEMBER' | translate) }}
           </span>
         </div>
       </div>
 
       <div class="form-col">
-        <app-prime-input-text
-          [formGroup]="form"
-          controlName="fullName"
-          [label]="'PAGES.MEMBERS.FORM.FULL_NAME'"
-        >
-        </app-prime-input-text>
+        <app-prime-input-text [formGroup]="form" controlName="fullName" [label]="'PAGES.MEMBERS.FORM.FULL_NAME'"> </app-prime-input-text>
       </div>
 
       <div class="form-col">
-        <app-prime-input-text
-          [formGroup]="form"
-          controlName="position"
-          [label]="'PAGES.MEMBERS.FORM.POSITION'"
-        >
-        </app-prime-input-text>
+        <app-prime-input-text [formGroup]="form" controlName="position" [label]="'PAGES.MEMBERS.FORM.POSITION'"> </app-prime-input-text>
       </div>
 
       <div class="col-span-12">
-        <app-prime-input-text
-          [formGroup]="form"
-          controlName="specialization"
-          [label]="'PAGES.MEMBERS.FORM.SPECIALIZATION'"
-        >
-        </app-prime-input-text>
+        <app-prime-input-text [formGroup]="form" controlName="specialization" [label]="'PAGES.MEMBERS.FORM.SPECIALIZATION'"> </app-prime-input-text>
       </div>
 
       <div class="form-col">
         <label class="text-middle mb-2">
-          {{ "PAGES.SHARE_FORM.PAGE" | translate }}
+          {{ 'PAGES.SHARE_FORM.PAGE' | translate }}
         </label>
-        <app-prime-autocomplete
-          [field]="'title'"
-          [selectedOption]="selectedPage"
-          [suggestions]="filteredPages"
-          [formGroup]="form"
-          (onSelect)="onPageSelect($event)"
-          [lazy]="false"
-          (handleMethod)="getPages($event)"
-        ></app-prime-autocomplete>
+        <app-prime-autocomplete [field]="'title'" [selectedOption]="selectedPage" [suggestions]="filteredPages" [formGroup]="form" (onSelect)="onPageSelect($event)" [lazy]="false" (handleMethod)="getPages($event)"></app-prime-autocomplete>
       </div>
 
       <div class="form-col">
         <label class="text-middle mb-2">
-          {{ "PAGES.SHARE_FORM.SECTOR" | translate }}
+          {{ 'PAGES.SHARE_FORM.SECTOR' | translate }}
         </label>
         <app-prime-autocomplete
           [field]="'id'"
@@ -93,7 +53,7 @@
 
       <div class="form-col">
         <label class="text-middle mb-2">
-          {{ "PAGES.SHARE_FORM.PROGRAM" | translate }}
+          {{ 'PAGES.SHARE_FORM.PROGRAM' | translate }}
         </label>
         <app-prime-autocomplete
           [field]="'id'"
@@ -108,7 +68,7 @@
 
       <div class="form-col">
         <label class="text-middle mb-2">
-          {{ "PAGES.SHARE_FORM.MANAGEMENT" | translate }}
+          {{ 'PAGES.SHARE_FORM.MANAGEMENT' | translate }}
         </label>
         <app-prime-autocomplete
           [field]="'id'"
@@ -123,7 +83,7 @@
 
       <div class="form-col">
         <label class="text-middle mb-2">
-          {{ "PAGES.SHARE_FORM.CENTER" | translate }}
+          {{ 'PAGES.SHARE_FORM.CENTER' | translate }}
         </label>
         <app-prime-autocomplete
           [field]="'id'"
@@ -138,7 +98,7 @@
 
       <div class="form-col">
         <label class="text-middle mb-2">
-          {{ "PAGES.SHARE_FORM.UNIT" | translate }}
+          {{ 'PAGES.SHARE_FORM.UNIT' | translate }}
         </label>
         <app-prime-autocomplete
           [field]="'id'"
@@ -155,10 +115,5 @@
 </p-card>
 
 @if (form) {
-  <app-submit-buttons
-    [isSubmitDisabled]="form.invalid"
-    [submitBtnLabel]="pageType === 'add' ? 'ACTIONS.SUBMIT' : 'ACTIONS.SAVE'"
-    (submit)="submit()"
-    (cancel)="redirect()"
-  />
+  <app-submit-buttons [isSubmitDisabled]="form.invalid" [submitBtnLabel]="pageType === 'add' ? 'ACTIONS.SUBMIT' : 'ACTIONS.SAVE'" (submit)="submit()" (cancel)="redirect()" />
 }

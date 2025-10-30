@@ -2,36 +2,19 @@ import { Component, inject, OnInit } from '@angular/core';
 import { BaseEditComponent } from '../../../../../base/components/base-edit-component';
 import { CardModule } from 'primeng/card';
 import { FormsModule, ReactiveFormsModule, Validators } from '@angular/forms';
-import {
-  MenuItemsService,
-  MenutypesService,
-  PrimeAutoCompleteComponent,
-  PrimeInputTextComponent,
-  SubmitButtonsComponent,
-} from '../../../../../shared';
+import { MenuItemsService, MenutypesService, PrimeAutoCompleteComponent, PrimeInputTextComponent, SubmitButtonsComponent } from '../../../../../shared';
 import { DialogService } from 'primeng/dynamicdialog';
 import { ActivatedRoute } from '@angular/router';
 import { TranslatePipe } from '@ngx-translate/core';
 
 @Component({
   selector: 'app-add-edit-menu-item',
-  imports: [
-    CardModule,
-    FormsModule,
-    ReactiveFormsModule,
-    SubmitButtonsComponent,
-    PrimeInputTextComponent,
-    PrimeAutoCompleteComponent,
-    TranslatePipe,
-  ],
+  imports: [CardModule, FormsModule, ReactiveFormsModule, SubmitButtonsComponent, PrimeInputTextComponent, PrimeAutoCompleteComponent, TranslatePipe],
   templateUrl: './add-edit-menu-item.component.html',
-  styleUrl: './add-edit-menu-item.component.css',
+  styleUrl: './add-edit-menu-item.component.css'
 })
 //
-export class AddEditMenuItemComponent
-  extends BaseEditComponent
-  implements OnInit
-{
+export class AddEditMenuItemComponent extends BaseEditComponent implements OnInit {
   selectedMenuType: any;
   selectedParentMenuItem: any;
   selectedMenuItems: any;
@@ -70,7 +53,7 @@ export class AddEditMenuItemComponent
       icon: [''],
       order: [0, Validators.required],
       menuTypeId: ['', Validators.required],
-      parentId: [''],
+      parentId: ['']
     });
   }
 
@@ -78,13 +61,11 @@ export class AddEditMenuItemComponent
     const query = event.query.toLowerCase();
     this.menutypesService.menuTypes.subscribe({
       next: (res: any) => {
-        this.filteredMenuTypes = res.filter((mType: any) =>
-          mType.type.includes(query),
-        );
+        this.filteredMenuTypes = res.filter((mType: any) => mType.type.includes(query));
       },
       error: (err) => {
         this.alert.error('خطأ فى جلب انواع القوائم');
-      },
+      }
     });
   }
 
@@ -95,12 +76,8 @@ export class AddEditMenuItemComponent
 
   fetchMenuTypeDetails(menuItem: any) {
     this.menutypesService.menuTypes.subscribe((response: any) => {
-      this.filteredMenuTypes = Array.isArray(response)
-        ? response
-        : response.data || [];
-      this.selectedMenuType = this.filteredMenuTypes.find(
-        (mType: any) => mType.id === menuItem.menuTypeId,
-      );
+      this.filteredMenuTypes = Array.isArray(response) ? response : response.data || [];
+      this.selectedMenuType = this.filteredMenuTypes.find((mType: any) => mType.id === menuItem.menuTypeId);
       this.form.get('menuTypeId')?.setValue(this.selectedMenuType.id);
     });
   }
@@ -109,13 +86,11 @@ export class AddEditMenuItemComponent
     const query = event.query.toLowerCase();
     this.menuItemsService.menuItems.subscribe({
       next: (res: any) => {
-        this.filteredMenuItems = res.filter((mItems: any) =>
-          mItems.title.includes(query),
-        );
+        this.filteredMenuItems = res.filter((mItems: any) => mItems.title.includes(query));
       },
       error: (err) => {
         this.alert.error('خطأ فى جلب عناصر القوائم الرئيسية');
-      },
+      }
     });
   }
 
@@ -126,12 +101,8 @@ export class AddEditMenuItemComponent
 
   fetchMenuItemDetails(menuItems: any) {
     this.menuItemsService.menuItems.subscribe((response: any) => {
-      this.filteredMenuItems = Array.isArray(response)
-        ? response
-        : response.data || [];
-      this.selectedMenuItems = this.filteredMenuItems.find(
-        (mItems: any) => mItems.id === menuItems.parentId,
-      );
+      this.filteredMenuItems = Array.isArray(response) ? response : response.data || [];
+      this.selectedMenuItems = this.filteredMenuItems.find((mItems: any) => mItems.id === menuItems.parentId);
       if (this.selectedMenuItems) {
         this.selectedParentMenuItem = this.selectedParentMenuItem;
         this.form.get('parentId')?.setValue(this.selectedParentMenuItem.id);
@@ -140,14 +111,12 @@ export class AddEditMenuItemComponent
   }
 
   getEditMenuItem = () => {
-    this.menuItemsService
-      .getEditMenuItem(this.id())
-      .subscribe((menuItems: any) => {
-        this.initFormGroup();
-        this.form.patchValue(menuItems);
-        this.fetchMenuTypeDetails(menuItems);
-        this.fetchMenuItemDetails(menuItems);
-      });
+    this.menuItemsService.getEditMenuItem(this.id()).subscribe((menuItems: any) => {
+      this.initFormGroup();
+      this.form.patchValue(menuItems);
+      this.fetchMenuTypeDetails(menuItems);
+      this.fetchMenuItemDetails(menuItems);
+    });
   };
 
   submit() {
@@ -156,11 +125,9 @@ export class AddEditMenuItemComponent
         this.closeDialog();
       });
     if (this.pageType === 'edit')
-      this.menuItemsService
-        .update({ id: this.id(), ...this.form.value })
-        .subscribe(() => {
-          this.closeDialog();
-        });
+      this.menuItemsService.update({ id: this.id(), ...this.form.value }).subscribe(() => {
+        this.closeDialog();
+      });
   }
 
   closeDialog() {

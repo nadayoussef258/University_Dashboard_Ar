@@ -1,10 +1,5 @@
 import { Directive, Input } from '@angular/core';
-import {
-  NG_VALIDATORS,
-  Validator,
-  ValidationErrors,
-  FormGroup,
-} from '@angular/forms';
+import { NG_VALIDATORS, Validator, ValidationErrors, FormGroup } from '@angular/forms';
 import { CustomValidationService } from '../../shared/';
 
 @Directive({
@@ -14,9 +9,9 @@ import { CustomValidationService } from '../../shared/';
     {
       provide: NG_VALIDATORS,
       useExisting: MatchPasswordDirective,
-      multi: true,
-    },
-  ],
+      multi: true
+    }
+  ]
 })
 export class MatchPasswordDirective implements Validator {
   @Input('appMatchPassword') MatchPassword: string[] = [];

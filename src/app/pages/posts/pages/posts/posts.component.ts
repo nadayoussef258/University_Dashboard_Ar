@@ -1,11 +1,7 @@
 import { Component, inject, Input } from '@angular/core';
 import { ActivatedRoute, RouterModule } from '@angular/router';
 import { CardModule } from 'primeng/card';
-import {
-  PrimeDataTableComponent,
-  PrimeTitleToolBarComponent,
-  PostsService,
-} from '../../../../shared';
+import { PrimeDataTableComponent, PrimeTitleToolBarComponent, PostsService } from '../../../../shared';
 import { TableOptions } from '../../../../shared/interfaces';
 import { BaseListComponent } from '../../../../base/components/base-list-component';
 import { AddEditPostComponent } from '../../components/add-edit-post/add-edit-post.component';
@@ -14,15 +10,9 @@ import { TranslatePipe } from '@ngx-translate/core';
 @Component({
   selector: 'app-posts',
 
-  imports: [
-    RouterModule,
-    CardModule,
-    PrimeDataTableComponent,
-    PrimeTitleToolBarComponent,
-    TranslatePipe,
-  ],
+  imports: [RouterModule, CardModule, PrimeDataTableComponent, PrimeTitleToolBarComponent, TranslatePipe],
   templateUrl: './posts.component.html',
-  styleUrl: './posts.component.css',
+  styleUrl: './posts.component.css'
 })
 export class PagesComponent extends BaseListComponent {
   tableOptions!: TableOptions;
@@ -42,19 +32,19 @@ export class PagesComponent extends BaseListComponent {
       inputUrl: {
         getAll: 'v2/posts/getPaged',
         getAllMethod: 'POST',
-        delete: 'v2/posts/deletesoft',
+        delete: 'v2/posts/deletesoft'
       },
       inputCols: this.initializeTableColumns(),
       inputActions: this.initializeTableActions(),
       permissions: {
         componentName: 'POSTS',
         allowAll: true,
-        listOfPermissions: [],
+        listOfPermissions: []
       },
       bodyOptions: {
-        filter: {},
+        filter: {}
       },
-      responsiveDisplayedProperties: ['title', 'content', 'status'],
+      responsiveDisplayedProperties: ['title', 'content', 'status']
     };
   }
 
@@ -64,20 +54,20 @@ export class PagesComponent extends BaseListComponent {
         field: 'title',
         header: 'عنوان المنشور',
         filter: true,
-        filterMode: 'text',
+        filterMode: 'text'
       },
       {
         field: 'content',
         header: 'المحتوي',
         filter: true,
-        filterMode: 'text',
+        filterMode: 'text'
       },
       {
         field: 'status',
         header: 'حالة المنشور',
         filter: true,
-        filterMode: 'text',
-      },
+        filterMode: 'text'
+      }
     ];
   }
 
@@ -91,28 +81,28 @@ export class PagesComponent extends BaseListComponent {
         call: (row) => {
           this.openEdit(row);
         },
-        allowAll: true,
+        allowAll: true
       },
       {
         name: 'DELETE',
         icon: 'pi pi-trash',
         color: 'text-error',
         allowAll: true,
-        isDelete: true,
-      },
+        isDelete: true
+      }
     ];
   }
 
   openAdd() {
     this.openDialog(AddEditPostComponent, 'اضافة منشور', {
-      pageType: 'add',
+      pageType: 'add'
     });
   }
 
   openEdit(rowData: any) {
     this.openDialog(AddEditPostComponent, 'تعديل منشور', {
       pageType: 'edit',
-      row: { rowData },
+      row: { rowData }
     });
   }
 }

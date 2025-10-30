@@ -2,12 +2,7 @@ import { Component, inject, OnInit } from '@angular/core';
 import { BaseEditComponent } from '../../../../base/components/base-edit-component';
 import { CardModule } from 'primeng/card';
 import { FormsModule, ReactiveFormsModule, Validators } from '@angular/forms';
-import {
-  PrimeAutoCompleteComponent,
-  SectorMembersService,
-  SectorsService,
-  SubmitButtonsComponent,
-} from '../../../../shared';
+import { PrimeAutoCompleteComponent, SectorMembersService, SectorsService, SubmitButtonsComponent } from '../../../../shared';
 import { DialogService } from 'primeng/dynamicdialog';
 import { ActivatedRoute } from '@angular/router';
 import { ToggleSwitch } from 'primeng/toggleswitch';
@@ -17,25 +12,12 @@ import { TranslatePipe } from '@ngx-translate/core';
 
 @Component({
   selector: 'app-add-edit-sector-member',
-  imports: [
-    CardModule,
-    FormsModule,
-    ReactiveFormsModule,
-    SubmitButtonsComponent,
-    PrimeAutoCompleteComponent,
-    ToggleSwitch,
-    NgClass,
-    ToggleSwitch,
-    TranslatePipe,
-  ],
+  imports: [CardModule, FormsModule, ReactiveFormsModule, SubmitButtonsComponent, PrimeAutoCompleteComponent, ToggleSwitch, NgClass, ToggleSwitch, TranslatePipe],
   templateUrl: './add-edit-sector-member.component.html',
-  styleUrl: './add-edit-sector-member.component.css',
+  styleUrl: './add-edit-sector-member.component.css'
 })
 //
-export class AddEditSectorMemberComponent
-  extends BaseEditComponent
-  implements OnInit
-{
+export class AddEditSectorMemberComponent extends BaseEditComponent implements OnInit {
   sectorId: string = '';
   selectedSector: any;
   filteredSectors: any[] = [];
@@ -69,7 +51,7 @@ export class AddEditSectorMemberComponent
   initFormGroup() {
     this.form = this.fb.group({
       isLeader: [false],
-      sectorId: [this.sectorId, Validators.required],
+      sectorId: [this.sectorId, Validators.required]
     });
   }
 
@@ -77,13 +59,11 @@ export class AddEditSectorMemberComponent
     const query = event.query.toLowerCase();
     this.sectorsService.sectors.subscribe({
       next: (res: any) => {
-        this.filteredSectors = res.filter((sector: any) =>
-          sector.name.includes(query),
-        );
+        this.filteredSectors = res.filter((sector: any) => sector.name.includes(query));
       },
       error: (err) => {
         this.alert.error('خطأ فى جلب القطاعات');
-      },
+      }
     });
   }
 
@@ -94,24 +74,18 @@ export class AddEditSectorMemberComponent
 
   fetchSectorDetails(sectorMember: any) {
     this.sectorsService.sectors.subscribe((response: any) => {
-      this.filteredSectors = Array.isArray(response)
-        ? response
-        : response.data || [];
-      this.selectedSector = this.filteredSectors.find(
-        (sector: any) => sector.id === sectorMember.sectorId,
-      );
+      this.filteredSectors = Array.isArray(response) ? response : response.data || [];
+      this.selectedSector = this.filteredSectors.find((sector: any) => sector.id === sectorMember.sectorId);
       this.form.get('sectorId')?.setValue(this.selectedSector.id);
     });
   }
 
   getEditSectorsMember = () => {
-    this.sectorMembersService
-      .getEditSectorMember(this.id())
-      .subscribe((sectorMember: any) => {
-        this.initFormGroup();
-        this.form.patchValue(sectorMember);
-        this.fetchSectorDetails(sectorMember);
-      });
+    this.sectorMembersService.getEditSectorMember(this.id()).subscribe((sectorMember: any) => {
+      this.initFormGroup();
+      this.form.patchValue(sectorMember);
+      this.fetchSectorDetails(sectorMember);
+    });
   };
 
   submit() {
@@ -120,11 +94,9 @@ export class AddEditSectorMemberComponent
         this.closeDialog();
       });
     if (this.pageType === 'edit')
-      this.sectorMembersService
-        .update({ id: this.id(), ...this.form.value })
-        .subscribe(() => {
-          this.closeDialog();
-        });
+      this.sectorMembersService.update({ id: this.id(), ...this.form.value }).subscribe(() => {
+        this.closeDialog();
+      });
   }
 
   closeDialog() {

@@ -2,12 +2,7 @@ import { Component, inject, OnInit } from '@angular/core';
 import { BaseEditComponent } from '../../../../base/components/base-edit-component';
 import { CardModule } from 'primeng/card';
 import { FormsModule, ReactiveFormsModule, Validators } from '@angular/forms';
-import {
-  CenterMembersService,
-  CentersService,
-  PrimeAutoCompleteComponent,
-  SubmitButtonsComponent,
-} from '../../../../shared';
+import { CenterMembersService, CentersService, PrimeAutoCompleteComponent, SubmitButtonsComponent } from '../../../../shared';
 import { DialogService } from 'primeng/dynamicdialog';
 import { ActivatedRoute } from '@angular/router';
 import { ToggleSwitch } from 'primeng/toggleswitch';
@@ -17,24 +12,12 @@ import { TranslatePipe } from '@ngx-translate/core';
 
 @Component({
   selector: 'app-add-edit-center-member',
-  imports: [
-    CardModule,
-    FormsModule,
-    ReactiveFormsModule,
-    SubmitButtonsComponent,
-    PrimeAutoCompleteComponent,
-    ToggleSwitch,
-    NgClass,
-    TranslatePipe,
-  ],
+  imports: [CardModule, FormsModule, ReactiveFormsModule, SubmitButtonsComponent, PrimeAutoCompleteComponent, ToggleSwitch, NgClass, TranslatePipe],
   templateUrl: './add-edit-center-member.component.html',
-  styleUrl: './add-edit-center-member.component.css',
+  styleUrl: './add-edit-center-member.component.css'
 })
 //
-export class AddEditCenterMemberComponent
-  extends BaseEditComponent
-  implements OnInit
-{
+export class AddEditCenterMemberComponent extends BaseEditComponent implements OnInit {
   centerId: string = '';
   selectedCenter: any;
   filteredCenters: any[] = [];
@@ -70,7 +53,7 @@ export class AddEditCenterMemberComponent
   initFormGroup() {
     this.form = this.fb.group({
       isLeader: [false],
-      centerId: [this.centerId, Validators.required],
+      centerId: [this.centerId, Validators.required]
     });
   }
 
@@ -78,13 +61,11 @@ export class AddEditCenterMemberComponent
     const query = event.query.toLowerCase();
     this.centersService.centers.subscribe({
       next: (res: any) => {
-        this.filteredCenters = res.filter((center: any) =>
-          center.centerId.includes(query),
-        );
+        this.filteredCenters = res.filter((center: any) => center.centerId.includes(query));
       },
       error: (err) => {
         this.alert.error('خطأ فى جلب المراكز');
-      },
+      }
     });
   }
 
@@ -95,24 +76,18 @@ export class AddEditCenterMemberComponent
 
   fetchCenterDetails(centerDetail: any) {
     this.centersService.centers.subscribe((response: any) => {
-      this.filteredCenters = Array.isArray(response)
-        ? response
-        : response.data || [];
-      this.selectedCenter = this.filteredCenters.find(
-        (center: any) => center.id === centerDetail.id,
-      );
+      this.filteredCenters = Array.isArray(response) ? response : response.data || [];
+      this.selectedCenter = this.filteredCenters.find((center: any) => center.id === centerDetail.id);
       this.form.get('centerId')?.setValue(this.selectedCenter.id);
     });
   }
 
   getEditCenterMember = () => {
-    this.centerMembersService
-      .getEditCenterMember(this.id())
-      .subscribe((centerMember: any) => {
-        this.initFormGroup();
-        this.form.patchValue(centerMember);
-        this.fetchCenterDetails(centerMember);
-      });
+    this.centerMembersService.getEditCenterMember(this.id()).subscribe((centerMember: any) => {
+      this.initFormGroup();
+      this.form.patchValue(centerMember);
+      this.fetchCenterDetails(centerMember);
+    });
   };
 
   submit() {
@@ -121,11 +96,9 @@ export class AddEditCenterMemberComponent
         this.closeDialog();
       });
     if (this.pageType === 'edit')
-      this.centerMembersService
-        .update({ id: this.id(), ...this.form.value })
-        .subscribe(() => {
-          this.closeDialog();
-        });
+      this.centerMembersService.update({ id: this.id(), ...this.form.value }).subscribe(() => {
+        this.closeDialog();
+      });
   }
 
   closeDialog() {

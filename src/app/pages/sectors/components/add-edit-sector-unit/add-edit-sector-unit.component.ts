@@ -2,13 +2,7 @@ import { Component, inject, OnInit } from '@angular/core';
 import { BaseEditComponent } from '../../../../base/components/base-edit-component';
 import { CardModule } from 'primeng/card';
 import { FormsModule, ReactiveFormsModule, Validators } from '@angular/forms';
-import {
-  PrimeAutoCompleteComponent,
-  PrimeInputTextComponent,
-  SectorsService,
-  SectorUnitsService,
-  SubmitButtonsComponent,
-} from '../../../../shared';
+import { PrimeAutoCompleteComponent, PrimeInputTextComponent, SectorsService, SectorUnitsService, SubmitButtonsComponent } from '../../../../shared';
 import { DialogService } from 'primeng/dynamicdialog';
 import { ActivatedRoute } from '@angular/router';
 import { SectorIdService } from '../../sector-id.service';
@@ -16,23 +10,12 @@ import { TranslatePipe } from '@ngx-translate/core';
 
 @Component({
   selector: 'app-add-edit-sector-unit',
-  imports: [
-    CardModule,
-    FormsModule,
-    ReactiveFormsModule,
-    SubmitButtonsComponent,
-    PrimeInputTextComponent,
-    PrimeAutoCompleteComponent,
-    TranslatePipe,
-  ],
+  imports: [CardModule, FormsModule, ReactiveFormsModule, SubmitButtonsComponent, PrimeInputTextComponent, PrimeAutoCompleteComponent, TranslatePipe],
   templateUrl: './add-edit-sector-unit.component.html',
-  styleUrl: './add-edit-sector-unit.component.css',
+  styleUrl: './add-edit-sector-unit.component.css'
 })
 //
-export class AddEditSectorUnitComponent
-  extends BaseEditComponent
-  implements OnInit
-{
+export class AddEditSectorUnitComponent extends BaseEditComponent implements OnInit {
   sectorId: string = '';
   selectedSector: any;
   filteredSectors: any[] = [];
@@ -66,7 +49,7 @@ export class AddEditSectorUnitComponent
       email: ['', [Validators.required, Validators.email]],
       employeesCount: [0, [Validators.required, Validators.min(0)]],
       location: [''],
-      unitPhone: [''],
+      unitPhone: ['']
     });
   }
 
@@ -74,13 +57,11 @@ export class AddEditSectorUnitComponent
     const query = event.query.toLowerCase();
     this.sectorsService.sectors.subscribe({
       next: (res: any) => {
-        this.filteredSectors = res.filter((sector: any) =>
-          sector.name.includes(query),
-        );
+        this.filteredSectors = res.filter((sector: any) => sector.name.includes(query));
       },
       error: (err) => {
         this.alert.error('خطأ فى جلب بيانات القطاعات');
-      },
+      }
     });
   }
 
@@ -91,24 +72,18 @@ export class AddEditSectorUnitComponent
 
   fetchSectorUnitsDetails(sectorUnit: any) {
     this.sectorsService.sectors.subscribe((response: any) => {
-      this.filteredSectors = Array.isArray(response)
-        ? response
-        : response.data || [];
-      this.selectedSector = this.filteredSectors.find(
-        (sector: any) => sector.id === sectorUnit.sectorId,
-      );
+      this.filteredSectors = Array.isArray(response) ? response : response.data || [];
+      this.selectedSector = this.filteredSectors.find((sector: any) => sector.id === sectorUnit.sectorId);
       this.form.get('sectorId')?.setValue(this.selectedSector.id);
     });
   }
 
   getEditSectorUnit = () => {
-    this.sectorUnitsService
-      .getEditSectorUnit(this.id())
-      .subscribe((sectorUnit: any) => {
-        this.initFormGroup();
-        this.form.patchValue(sectorUnit);
-        this.fetchSectorUnitsDetails(sectorUnit);
-      });
+    this.sectorUnitsService.getEditSectorUnit(this.id()).subscribe((sectorUnit: any) => {
+      this.initFormGroup();
+      this.form.patchValue(sectorUnit);
+      this.fetchSectorUnitsDetails(sectorUnit);
+    });
   };
 
   submit() {
@@ -120,7 +95,7 @@ export class AddEditSectorUnitComponent
       this.sectorUnitsService
         .update({
           id: this.id(),
-          ...this.form.value,
+          ...this.form.value
         })
         .subscribe(() => {
           this.redirect();

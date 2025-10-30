@@ -7,7 +7,7 @@ import { TabsModule } from 'primeng/tabs';
   selector: 'app-members-tabs',
   imports: [TabsModule, RouterLink, RouterOutlet],
   templateUrl: './members-tabs.component.html',
-  styleUrls: ['./members-tabs.component.css'],
+  styleUrls: ['./members-tabs.component.css']
 })
 //
 export class MembersTabsComponent extends BaseEditComponent implements OnInit {

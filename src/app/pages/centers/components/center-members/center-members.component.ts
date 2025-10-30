@@ -1,11 +1,7 @@
 import { Component, inject, Input } from '@angular/core';
 import { ActivatedRoute, RouterModule } from '@angular/router';
 import { CardModule } from 'primeng/card';
-import {
-  CenterMembersService,
-  PrimeDataTableComponent,
-  PrimeTitleToolBarComponent,
-} from '../../../../shared';
+import { CenterMembersService, PrimeDataTableComponent, PrimeTitleToolBarComponent } from '../../../../shared';
 import { TableOptions } from '../../../../shared/interfaces';
 import { BaseListComponent } from '../../../../base/components/base-list-component';
 import { AddEditCenterMemberComponent } from '../../components/add-edit-center-member/add-edit-center-member.component';
@@ -15,15 +11,9 @@ import { TranslatePipe } from '@ngx-translate/core';
 @Component({
   selector: 'app-center',
 
-  imports: [
-    RouterModule,
-    CardModule,
-    PrimeDataTableComponent,
-    PrimeTitleToolBarComponent,
-    TranslatePipe,
-  ],
+  imports: [RouterModule, CardModule, PrimeDataTableComponent, PrimeTitleToolBarComponent, TranslatePipe],
   templateUrl: './center-members.component.html',
-  styleUrl: './center-members.component.css',
+  styleUrl: './center-members.component.css'
 })
 export class CenterMembersComponent extends BaseListComponent {
   centerId: string = '';
@@ -47,19 +37,19 @@ export class CenterMembersComponent extends BaseListComponent {
       inputUrl: {
         getAll: 'v2/centermember/getPaged',
         getAllMethod: 'POST',
-        delete: 'v2/centermember/deletesoft',
+        delete: 'v2/centermember/deletesoft'
       },
       inputCols: this.initializeTableColumns(),
       inputActions: this.initializeTableActions(),
       permissions: {
         componentName: 'CENTER-MEMBERS',
         allowAll: true,
-        listOfPermissions: [],
+        listOfPermissions: []
       },
       bodyOptions: {
-        filter: { centerId: this.centerId ?? '' },
+        filter: { centerId: this.centerId ?? '' }
       },
-      responsiveDisplayedProperties: ['isLeader', 'centerId'],
+      responsiveDisplayedProperties: ['isLeader', 'centerId']
     };
   }
 
@@ -71,14 +61,14 @@ export class CenterMembersComponent extends BaseListComponent {
         trueText: 'PAGES.SHARE_FORM.IS_LEADER.LEADER',
         falseText: 'PAGES.SHARE_FORM.IS_LEADER.PERSON',
         filter: true,
-        filterMode: 'boolean',
+        filterMode: 'boolean'
       },
       {
         field: 'centerId',
         header: 'PAGES.SHARE_FORM.CENTER',
         filter: true,
-        filterMode: 'text',
-      },
+        filterMode: 'text'
+      }
     ];
   }
 
@@ -92,31 +82,23 @@ export class CenterMembersComponent extends BaseListComponent {
         call: (row) => {
           this.openEdit(row);
         },
-        allowAll: true,
+        allowAll: true
       },
       {
         name: 'DELETE',
         icon: 'pi pi-trash',
         color: 'text-error',
         allowAll: true,
-        isDelete: true,
-      },
+        isDelete: true
+      }
     ];
   }
 
   openAdd() {
-    this.openDialog(
-      AddEditCenterMemberComponent,
-      this.localize.translate.instant('PAGES.CENTER_MEMBERS.ADD.PAGE_TITLE'),
-      { pageType: 'add', row: { centerId: this.centerId } },
-    );
+    this.openDialog(AddEditCenterMemberComponent, this.localize.translate.instant('PAGES.CENTER_MEMBERS.ADD.PAGE_TITLE'), { pageType: 'add', row: { centerId: this.centerId } });
   }
 
   openEdit(rowData: any) {
-    this.openDialog(
-      AddEditCenterMemberComponent,
-      this.localize.translate.instant('PAGES.CENTER_MEMBERS.ADD.PAGE_TITLE'),
-      { pageType: 'edit', row: { rowData } },
-    );
+    this.openDialog(AddEditCenterMemberComponent, this.localize.translate.instant('PAGES.CENTER_MEMBERS.ADD.PAGE_TITLE'), { pageType: 'edit', row: { rowData } });
   }
 }

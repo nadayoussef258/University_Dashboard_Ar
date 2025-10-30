@@ -1,10 +1,7 @@
 import { Component, inject } from '@angular/core';
 import { ActivatedRoute, RouterModule } from '@angular/router';
 import { CardModule } from 'primeng/card';
-import {
-  PrimeDataTableComponent,
-  PrimeTitleToolBarComponent,
-} from '../../../../shared';
+import { PrimeDataTableComponent, PrimeTitleToolBarComponent } from '../../../../shared';
 import { TableOptions } from '../../../../shared/interfaces';
 import { BaseListComponent } from '../../../../base/components/base-list-component';
 import { SectorsService } from '../../../../shared/services/pages/sectors/sectors/sectors.service';
@@ -13,15 +10,9 @@ import { TranslatePipe } from '@ngx-translate/core';
 @Component({
   selector: 'app-sectors',
 
-  imports: [
-    RouterModule,
-    CardModule,
-    PrimeDataTableComponent,
-    PrimeTitleToolBarComponent,
-    TranslatePipe,
-  ],
+  imports: [RouterModule, CardModule, PrimeDataTableComponent, PrimeTitleToolBarComponent, TranslatePipe],
   templateUrl: './sectors.component.html',
-  styleUrl: './sectors.component.css',
+  styleUrl: './sectors.component.css'
 })
 export class SectorsComponent extends BaseListComponent {
   tableOptions!: TableOptions;
@@ -41,24 +32,19 @@ export class SectorsComponent extends BaseListComponent {
       inputUrl: {
         getAll: 'v2/sectors/getPaged',
         getAllMethod: 'POST',
-        delete: 'v2/sectors/delete',
+        delete: 'v2/sectors/delete'
       },
       inputCols: this.initializeTableColumns(),
       inputActions: this.initializeTableActions(),
       permissions: {
         componentName: 'SECTORS',
         allowAll: true,
-        listOfPermissions: [],
+        listOfPermissions: []
       },
       bodyOptions: {
-        filter: {},
+        filter: {}
       },
-      responsiveDisplayedProperties: [
-        'name',
-        'subTitle',
-        'pageTitle',
-        'about.content',
-      ],
+      responsiveDisplayedProperties: ['name', 'subTitle', 'pageTitle', 'about.content']
     };
   }
 
@@ -68,26 +54,26 @@ export class SectorsComponent extends BaseListComponent {
         field: 'name',
         header: 'PAGES.SECTORS.FORM.NAME',
         filter: true,
-        filterMode: 'text',
+        filterMode: 'text'
       },
       {
         field: 'subTitle',
         header: 'PAGES.SECTORS.FORM.SUB_TITLE',
         filter: true,
-        filterMode: 'text',
+        filterMode: 'text'
       },
       {
         field: 'pageTitle',
         header: 'PAGES.SHARE_FORM.PAGE',
         filter: true,
-        filterMode: 'text',
+        filterMode: 'text'
       },
       {
         field: 'about.content',
         header: 'PAGES.SHARE_FORM.ABOUT',
         filter: true,
-        filterMode: 'text',
-      },
+        filterMode: 'text'
+      }
     ];
   }
 
@@ -99,15 +85,15 @@ export class SectorsComponent extends BaseListComponent {
         color: 'text-middle',
         isEdit: true,
         route: 'edit/',
-        allowAll: true,
+        allowAll: true
       },
       {
         name: 'DELETE',
         icon: 'pi pi-trash',
         color: 'text-error',
         allowAll: true,
-        isDelete: true,
-      },
+        isDelete: true
+      }
     ];
   }
 }

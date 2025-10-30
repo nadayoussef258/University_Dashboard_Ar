@@ -1,11 +1,7 @@
 import { Component, inject } from '@angular/core';
 import { ActivatedRoute, RouterModule } from '@angular/router';
 import { CardModule } from 'primeng/card';
-import {
-  PrimeDataTableComponent,
-  PrimeTitleToolBarComponent,
-  UnitsService,
-} from '../../../../shared';
+import { PrimeDataTableComponent, PrimeTitleToolBarComponent, UnitsService } from '../../../../shared';
 import { TableOptions } from '../../../../shared/interfaces';
 import { BaseListComponent } from '../../../../base/components/base-list-component';
 import { TranslatePipe } from '@ngx-translate/core';
@@ -13,15 +9,9 @@ import { TranslatePipe } from '@ngx-translate/core';
 @Component({
   selector: 'app-units',
 
-  imports: [
-    RouterModule,
-    CardModule,
-    PrimeDataTableComponent,
-    PrimeTitleToolBarComponent,
-    TranslatePipe,
-  ],
+  imports: [RouterModule, CardModule, PrimeDataTableComponent, PrimeTitleToolBarComponent, TranslatePipe],
   templateUrl: './units.component.html',
-  styleUrl: './units.component.css',
+  styleUrl: './units.component.css'
 })
 export class UnitsComponent extends BaseListComponent {
   tableOptions!: TableOptions;
@@ -41,19 +31,19 @@ export class UnitsComponent extends BaseListComponent {
       inputUrl: {
         getAll: 'v2/unit/getPaged',
         getAllMethod: 'POST',
-        delete: 'v2/unit/delete',
+        delete: 'v2/unit/delete'
       },
       inputCols: this.initializeTableColumns(),
       inputActions: this.initializeTableActions(),
       permissions: {
         componentName: 'UNITS',
         allowAll: true,
-        listOfPermissions: [],
+        listOfPermissions: []
       },
       bodyOptions: {
-        filter: {},
+        filter: {}
       },
-      responsiveDisplayedProperties: ['page.title', 'about.content'],
+      responsiveDisplayedProperties: ['page.title', 'about.content']
     };
   }
 
@@ -63,14 +53,14 @@ export class UnitsComponent extends BaseListComponent {
         field: 'page.title',
         header: 'PAGES.SHARE_FORM.PAGE',
         filter: true,
-        filterMode: 'text',
+        filterMode: 'text'
       },
       {
         field: 'about.content',
         header: 'PAGES.SHARE_FORM.ABOUT',
         filter: true,
-        filterMode: 'text',
-      },
+        filterMode: 'text'
+      }
     ];
   }
 
@@ -82,15 +72,15 @@ export class UnitsComponent extends BaseListComponent {
         color: 'text-middle',
         isEdit: true,
         route: 'edit/',
-        allowAll: true,
+        allowAll: true
       },
       {
         name: 'DELETE',
         icon: 'pi pi-trash',
         color: 'text-error',
         allowAll: true,
-        isDelete: true,
-      },
+        isDelete: true
+      }
     ];
   }
 }

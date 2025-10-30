@@ -1,22 +1,11 @@
 import { Language, Languages } from './../../core/enums/languages';
-import {
-  OnInit,
-  Directive,
-  inject,
-  DestroyRef,
-  effect,
-  signal,
-  WritableSignal,
-} from '@angular/core';
+import { OnInit, Directive, inject, DestroyRef, effect, signal, WritableSignal } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { FormBuilder, FormGroup } from '@angular/forms';
 import { BaseComponent } from './base-component';
 
 @Directive()
-export abstract class BaseEditComponent
-  extends BaseComponent
-  implements OnInit
-{
+export abstract class BaseEditComponent extends BaseComponent implements OnInit {
   /** بيانات الموديل */
   model = signal<any>({});
 
@@ -112,6 +101,6 @@ export abstract class BaseEditComponent
     leaderStyle: 'bg-blue-100 text-blue-700 border-blue-300',
     personStyle: 'bg-gray-100 text-gray-600 border-gray-300',
     leaderIcon: 'pi pi-star text-blue-500',
-    personIcon: 'pi pi-user text-gray-500',
+    personIcon: 'pi pi-user text-gray-500'
   };
 }

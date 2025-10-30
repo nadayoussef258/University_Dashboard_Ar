@@ -1,11 +1,7 @@
 import { Component, inject, Input } from '@angular/core';
 import { ActivatedRoute, RouterModule } from '@angular/router';
 import { CardModule } from 'primeng/card';
-import {
-  CenterAttachmentsService,
-  PrimeDataTableComponent,
-  PrimeTitleToolBarComponent,
-} from '../../../../../../shared';
+import { CenterAttachmentsService, PrimeDataTableComponent, PrimeTitleToolBarComponent } from '../../../../../../shared';
 import { TableOptions } from '../../../../../../shared/interfaces';
 import { BaseListComponent } from '../../../../../../base/components/base-list-component';
 
@@ -15,15 +11,9 @@ import { TranslatePipe } from '@ngx-translate/core';
 @Component({
   selector: 'app-center-attachments',
 
-  imports: [
-    RouterModule,
-    CardModule,
-    PrimeDataTableComponent,
-    PrimeTitleToolBarComponent,
-    TranslatePipe,
-  ],
+  imports: [RouterModule, CardModule, PrimeDataTableComponent, PrimeTitleToolBarComponent, TranslatePipe],
   templateUrl: './center-attachments.component.html',
-  styleUrl: './center-attachments.component.css',
+  styleUrl: './center-attachments.component.css'
 })
 export class CenterAttachmentsComponent extends BaseListComponent {
   @Input() employeeId: string = '';
@@ -44,19 +34,19 @@ export class CenterAttachmentsComponent extends BaseListComponent {
       inputUrl: {
         getAll: 'v2/centerattachment/getPaged',
         getAllMethod: 'POST',
-        delete: 'v2/centerattachment/deletesoft',
+        delete: 'v2/centerattachment/deletesoft'
       },
       inputCols: this.initializeTableColumns(),
       inputActions: this.initializeTableActions(),
       permissions: {
         componentName: 'CENTER-ATTACHMENTS',
         allowAll: true,
-        listOfPermissions: [],
+        listOfPermissions: []
       },
       bodyOptions: {
-        filter: {},
+        filter: {}
       },
-      responsiveDisplayedProperties: ['code', 'name'],
+      responsiveDisplayedProperties: ['code', 'name']
     };
   }
 
@@ -66,14 +56,14 @@ export class CenterAttachmentsComponent extends BaseListComponent {
         field: 'code',
         header: 'الكــود',
         filter: true,
-        filterMode: 'text',
+        filterMode: 'text'
       },
       {
         field: 'name',
         header: 'الاســم',
         filter: true,
-        filterMode: 'text',
-      },
+        filterMode: 'text'
+      }
     ];
   }
 
@@ -87,28 +77,28 @@ export class CenterAttachmentsComponent extends BaseListComponent {
         call: (row) => {
           this.openEdit(row);
         },
-        allowAll: true,
+        allowAll: true
       },
       {
         name: 'DELETE',
         icon: 'pi pi-trash',
         color: 'text-error',
         allowAll: true,
-        isDelete: true,
-      },
+        isDelete: true
+      }
     ];
   }
 
   openAdd() {
     this.openDialog(AddEditCenterAttachmentComponent, 'اضافة مرفق للمركز', {
-      pageType: 'add',
+      pageType: 'add'
     });
   }
 
   openEdit(rowData: any) {
     this.openDialog(AddEditCenterAttachmentComponent, 'تعديل مرفق المركز', {
       pageType: 'edit',
-      row: { rowData },
+      row: { rowData }
     });
   }
 }

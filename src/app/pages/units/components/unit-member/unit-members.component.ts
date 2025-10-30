@@ -1,11 +1,7 @@
 import { Component, inject, Input } from '@angular/core';
 import { ActivatedRoute, RouterModule } from '@angular/router';
 import { CardModule } from 'primeng/card';
-import {
-  PrimeDataTableComponent,
-  PrimeTitleToolBarComponent,
-  UnitMembersService,
-} from '../../../../shared';
+import { PrimeDataTableComponent, PrimeTitleToolBarComponent, UnitMembersService } from '../../../../shared';
 import { TableOptions } from '../../../../shared/interfaces';
 import { BaseListComponent } from '../../../../base/components/base-list-component';
 import { AddEditUnitMemberComponent } from '../add-edit-unit-member/add-edit-unit-member.component';
@@ -15,15 +11,9 @@ import { TranslatePipe } from '@ngx-translate/core';
 @Component({
   selector: 'app-unit-member',
 
-  imports: [
-    RouterModule,
-    CardModule,
-    PrimeDataTableComponent,
-    PrimeTitleToolBarComponent,
-    TranslatePipe,
-  ],
+  imports: [RouterModule, CardModule, PrimeDataTableComponent, PrimeTitleToolBarComponent, TranslatePipe],
   templateUrl: './unit-members.component.html',
-  styleUrl: './unit-members.component.css',
+  styleUrl: './unit-members.component.css'
 })
 export class UnitMembersComponent extends BaseListComponent {
   unitId: string = '';
@@ -47,19 +37,19 @@ export class UnitMembersComponent extends BaseListComponent {
       inputUrl: {
         getAll: 'v2/unitmember/getPaged',
         getAllMethod: 'POST',
-        delete: 'v2/unitmember/deletesoft',
+        delete: 'v2/unitmember/deletesoft'
       },
       inputCols: this.initializeTableColumns(),
       inputActions: this.initializeTableActions(),
       permissions: {
         componentName: 'UNIT-MEMBERS',
         allowAll: true,
-        listOfPermissions: [],
+        listOfPermissions: []
       },
       bodyOptions: {
-        filter: { unitId: this.unitId },
+        filter: { unitId: this.unitId }
       },
-      responsiveDisplayedProperties: ['isLeader', 'unitId'],
+      responsiveDisplayedProperties: ['isLeader', 'unitId']
     };
   }
 
@@ -71,14 +61,14 @@ export class UnitMembersComponent extends BaseListComponent {
         trueText: 'PAGES.SHARE_FORM.IS_LEADER.LEADER',
         falseText: 'PAGES.SHARE_FORM.IS_LEADER.PERSON',
         filter: true,
-        filterMode: 'boolean',
+        filterMode: 'boolean'
       },
       {
         field: 'unitId',
         header: 'PAGES.SHARE_FORM.UNIT',
         filter: true,
-        filterMode: 'text',
-      },
+        filterMode: 'text'
+      }
     ];
   }
 
@@ -92,37 +82,29 @@ export class UnitMembersComponent extends BaseListComponent {
         call: (row) => {
           this.openEdit(row);
         },
-        allowAll: true,
+        allowAll: true
       },
       {
         name: 'DELETE',
         icon: 'pi pi-trash',
         color: 'text-error',
         allowAll: true,
-        isDelete: true,
-      },
+        isDelete: true
+      }
     ];
   }
 
   openAdd() {
-    this.openDialog(
-      AddEditUnitMemberComponent,
-      this.localize.translate.instant('PAGES.UNIT_MEMBERS.ADD.PAGE_TITLE'),
-      {
-        pageType: 'add',
-        row: { unitId: this.unitId },
-      },
-    );
+    this.openDialog(AddEditUnitMemberComponent, this.localize.translate.instant('PAGES.UNIT_MEMBERS.ADD.PAGE_TITLE'), {
+      pageType: 'add',
+      row: { unitId: this.unitId }
+    });
   }
 
   openEdit(rowData: any) {
-    this.openDialog(
-      AddEditUnitMemberComponent,
-      this.localize.translate.instant('PAGES.UNIT_MEMBERS.EDIT.PAGE_TITLE'),
-      {
-        pageType: 'edit',
-        row: { rowData },
-      },
-    );
+    this.openDialog(AddEditUnitMemberComponent, this.localize.translate.instant('PAGES.UNIT_MEMBERS.EDIT.PAGE_TITLE'), {
+      pageType: 'edit',
+      row: { rowData }
+    });
   }
 }

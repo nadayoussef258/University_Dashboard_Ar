@@ -8,7 +8,7 @@ import { ToolbarModule } from 'primeng/toolbar';
   selector: 'app-prime-title-toolbar',
   imports: [ToolbarModule, RouterModule, CardModule, TranslatePipe],
   templateUrl: './p-title-toolbar.component.html',
-  styleUrls: ['./p-title-toolbar.component.scss'],
+  styleUrls: ['./p-title-toolbar.component.scss']
 })
 export class PrimeTitleToolBarComponent {
   @Input() pageTitle: string = '';

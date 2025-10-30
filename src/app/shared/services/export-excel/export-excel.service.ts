@@ -6,7 +6,7 @@ const CSV_TYPE = 'text/csv;charset=utf-8;';
 const CSV_EXTENSION = '.csv';
 
 @Injectable({
-  providedIn: 'root',
+  providedIn: 'root'
 })
 export class ExportExcelService {
   constructor(private _fileSaverService: FileSaverService) {}

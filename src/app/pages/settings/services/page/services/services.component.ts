@@ -1,11 +1,7 @@
 import { Component, inject, Input } from '@angular/core';
 import { ActivatedRoute, RouterModule } from '@angular/router';
 import { CardModule } from 'primeng/card';
-import {
-  PrimeDataTableComponent,
-  PrimeTitleToolBarComponent,
-  ServicesService,
-} from '../../../../../shared';
+import { PrimeDataTableComponent, PrimeTitleToolBarComponent, ServicesService } from '../../../../../shared';
 import { TableOptions } from '../../../../../shared/interfaces';
 import { BaseListComponent } from '../../../../../base/components/base-list-component';
 import { AddEditServiceComponent } from '../../components/add-edit-service/add-edit-service.component';
@@ -14,15 +10,9 @@ import { TranslatePipe } from '@ngx-translate/core';
 @Component({
   selector: 'app-services',
 
-  imports: [
-    RouterModule,
-    CardModule,
-    PrimeDataTableComponent,
-    PrimeTitleToolBarComponent,
-    TranslatePipe,
-  ],
+  imports: [RouterModule, CardModule, PrimeDataTableComponent, PrimeTitleToolBarComponent, TranslatePipe],
   templateUrl: './services.component.html',
-  styleUrl: './services.component.css',
+  styleUrl: './services.component.css'
 })
 export class ServicesComponent extends BaseListComponent {
   @Input() employeeId: string = '';
@@ -43,19 +33,19 @@ export class ServicesComponent extends BaseListComponent {
       inputUrl: {
         getAll: 'v2/services/getPaged',
         getAllMethod: 'POST',
-        delete: 'v2/services/deletesoft',
+        delete: 'v2/services/deletesoft'
       },
       inputCols: this.initializeTableColumns(),
       inputActions: this.initializeTableActions(),
       permissions: {
         componentName: 'SERVICES',
         allowAll: true,
-        listOfPermissions: [],
+        listOfPermissions: []
       },
       bodyOptions: {
-        filter: {},
+        filter: {}
       },
-      responsiveDisplayedProperties: ['title', 'description', 'iconPath'],
+      responsiveDisplayedProperties: ['title', 'description', 'iconPath']
     };
   }
 
@@ -65,19 +55,19 @@ export class ServicesComponent extends BaseListComponent {
         field: 'title',
         header: 'SETTINGS.SERVICES.FORM.TITLE',
         filter: true,
-        filterMode: 'text',
+        filterMode: 'text'
       },
       {
         field: 'description',
         header: 'SETTINGS.SERVICES.FORM.DESCRIPTION',
         filter: true,
-        filterMode: 'text',
+        filterMode: 'text'
       },
       {
         field: 'iconPath',
         header: 'SETTINGS.SERVICES.FORM.ICON_PATH',
         filter: true,
-        filterMode: 'text',
+        filterMode: 'text'
       },
       {
         field: 'isActive',
@@ -85,8 +75,8 @@ export class ServicesComponent extends BaseListComponent {
         filter: true,
         filterMode: 'boolean',
         trueText: 'SETTINGS.SERVICES.FORM.IS_ACTIVE.ACTIVE',
-        falseText: 'SETTINGS.SERVICES.FORM.IS_ACTIVE.IN_ACTIVE',
-      },
+        falseText: 'SETTINGS.SERVICES.FORM.IS_ACTIVE.IN_ACTIVE'
+      }
     ];
   }
 
@@ -100,31 +90,23 @@ export class ServicesComponent extends BaseListComponent {
         call: (row) => {
           this.openEdit(row);
         },
-        allowAll: true,
+        allowAll: true
       },
       {
         name: 'DELETE',
         icon: 'pi pi-trash',
         color: 'text-error',
         allowAll: true,
-        isDelete: true,
-      },
+        isDelete: true
+      }
     ];
   }
 
   openAdd() {
-    this.openDialog(
-      AddEditServiceComponent,
-      this.localize.translate.instant('SETTINGS.SERVICES.ADD.PAGE_TITLE'),
-      { pageType: 'add' },
-    );
+    this.openDialog(AddEditServiceComponent, this.localize.translate.instant('SETTINGS.SERVICES.ADD.PAGE_TITLE'), { pageType: 'add' });
   }
 
   openEdit(rowData: any) {
-    this.openDialog(
-      AddEditServiceComponent,
-      this.localize.translate.instant('SETTINGS.SERVICES.EDIT.PAGE_TITLE'),
-      { pageType: 'edit', row: { rowData } },
-    );
+    this.openDialog(AddEditServiceComponent, this.localize.translate.instant('SETTINGS.SERVICES.EDIT.PAGE_TITLE'), { pageType: 'edit', row: { rowData } });
   }
 }

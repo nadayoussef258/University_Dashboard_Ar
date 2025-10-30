@@ -13,7 +13,7 @@ import { TranslatePipe } from '@ngx-translate/core';
       </a>
       {{ currentYear }}
     </p>
-  </div>`,
+  </div>`
 })
 export class AppFooter {
   currentYear = new Date().getFullYear();

@@ -1,11 +1,7 @@
 import { Component, inject } from '@angular/core';
 import { ActivatedRoute, RouterModule } from '@angular/router';
 import { CardModule } from 'primeng/card';
-import {
-  PrimeDataTableComponent,
-  PrimeTitleToolBarComponent,
-  SectorUnitsService,
-} from '../../../../shared';
+import { PrimeDataTableComponent, PrimeTitleToolBarComponent, SectorUnitsService } from '../../../../shared';
 import { TableOptions } from '../../../../shared/interfaces';
 import { BaseListComponent } from '../../../../base/components/base-list-component';
 import { ToggleSwitchModule } from 'primeng/toggleswitch';
@@ -15,16 +11,9 @@ import { TranslatePipe } from '@ngx-translate/core';
 @Component({
   selector: 'app-sector-units',
 
-  imports: [
-    RouterModule,
-    CardModule,
-    PrimeDataTableComponent,
-    PrimeTitleToolBarComponent,
-    ToggleSwitchModule,
-    TranslatePipe,
-  ],
+  imports: [RouterModule, CardModule, PrimeDataTableComponent, PrimeTitleToolBarComponent, ToggleSwitchModule, TranslatePipe],
   templateUrl: './sector-units.component.html',
-  styleUrl: './sector-units.component.css',
+  styleUrl: './sector-units.component.css'
 })
 export class SectorUnitsComponent extends BaseListComponent {
   sectorId: string = '';
@@ -48,28 +37,19 @@ export class SectorUnitsComponent extends BaseListComponent {
       inputUrl: {
         getAll: 'v2/sectorunits/getPaged',
         getAllMethod: 'POST',
-        delete: 'v2/sectorunits/deletesoft',
+        delete: 'v2/sectorunits/deletesoft'
       },
       inputCols: this.initializeTableColumns(),
       inputActions: this.initializeTableActions(),
       permissions: {
         componentName: 'SECTOR-UNITS',
         allowAll: true,
-        listOfPermissions: [],
+        listOfPermissions: []
       },
       bodyOptions: {
-        filter: { sectorId: this.sectorId },
+        filter: { sectorId: this.sectorId }
       },
-      responsiveDisplayedProperties: [
-        'unitNameAr',
-        'unitDescriptionAr',
-        'manager',
-        'email',
-        'employeesCount',
-        'location',
-        'unitPhone',
-        'sectorId',
-      ],
+      responsiveDisplayedProperties: ['unitNameAr', 'unitDescriptionAr', 'manager', 'email', 'employeesCount', 'location', 'unitPhone', 'sectorId']
     };
   }
 
@@ -79,50 +59,50 @@ export class SectorUnitsComponent extends BaseListComponent {
         field: 'unitNameAr',
         header: 'PAGES.SECTOR_UNITS.FORM.UNIT_NAME',
         filter: true,
-        filterMode: 'text',
+        filterMode: 'text'
       },
       {
         field: 'unitDescriptionAr',
         header: 'PAGES.SECTOR_UNITS.FORM.UNIT_DESCRIPTION',
         filter: true,
-        filterMode: 'text',
+        filterMode: 'text'
       },
       {
         field: 'manager',
         header: 'PAGES.SECTOR_UNITS.FORM.MANAGER',
         filter: true,
-        filterMode: 'text',
+        filterMode: 'text'
       },
       {
         field: 'email',
         header: 'PAGES.SECTOR_UNITS.FORM.EMAIL',
         filter: true,
-        filterMode: 'text',
+        filterMode: 'text'
       },
       {
         field: 'employeesCount',
         header: 'PAGES.SECTOR_UNITS.FORM.EMPLOYEES_COUNT',
         filter: true,
-        filterMode: 'numeric',
+        filterMode: 'numeric'
       },
       {
         field: 'location',
         header: 'PAGES.SECTOR_UNITS.FORM.LOCATION',
         filter: true,
-        filterMode: 'text',
+        filterMode: 'text'
       },
       {
         field: 'unitPhone',
         header: 'PAGES.SECTOR_UNITS.FORM.UNIT_PHONE',
         filter: true,
-        filterMode: 'text',
+        filterMode: 'text'
       },
       {
         field: 'sectorId',
         header: 'PAGES.SHARE_FORM.SECTOR',
         filter: true,
-        filterMode: 'text',
-      },
+        filterMode: 'text'
+      }
     ];
   }
 
@@ -134,15 +114,15 @@ export class SectorUnitsComponent extends BaseListComponent {
         color: 'text-middle',
         isEdit: true,
         route: '/pages/sector-details/edit/',
-        allowAll: true,
+        allowAll: true
       },
       {
         name: 'DELETE',
         icon: 'pi pi-trash',
         color: 'text-error',
         allowAll: true,
-        isDelete: true,
-      },
+        isDelete: true
+      }
     ];
   }
 }

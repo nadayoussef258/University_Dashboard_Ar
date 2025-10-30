@@ -1,11 +1,7 @@
 import { Component, inject, Input } from '@angular/core';
 import { ActivatedRoute, RouterModule } from '@angular/router';
 import { CardModule } from 'primeng/card';
-import {
-  PrimeDataTableComponent,
-  PrimeTitleToolBarComponent,
-  ManagementAttachmentService,
-} from '../../../../../../shared';
+import { PrimeDataTableComponent, PrimeTitleToolBarComponent, ManagementAttachmentService } from '../../../../../../shared';
 import { TableOptions } from '../../../../../../shared/interfaces';
 import { BaseListComponent } from '../../../../../../base/components/base-list-component';
 import { AddEditManagementAttachmentComponent } from '../../components/add-edit-management-attachment/add-edit-management-attachment.component';
@@ -14,15 +10,9 @@ import { TranslatePipe } from '@ngx-translate/core';
 @Component({
   selector: 'app-management-attachments',
 
-  imports: [
-    RouterModule,
-    CardModule,
-    PrimeDataTableComponent,
-    PrimeTitleToolBarComponent,
-    TranslatePipe,
-  ],
+  imports: [RouterModule, CardModule, PrimeDataTableComponent, PrimeTitleToolBarComponent, TranslatePipe],
   templateUrl: './management-attachments.component.html',
-  styleUrl: './management-attachments.component.css',
+  styleUrl: './management-attachments.component.css'
 })
 export class ManagementAttachmentsComponent extends BaseListComponent {
   @Input() managementId: string = '';
@@ -43,19 +33,19 @@ export class ManagementAttachmentsComponent extends BaseListComponent {
       inputUrl: {
         getAll: 'v2/managementattachment/getPaged',
         getAllMethod: 'POST',
-        delete: 'v2/managementattachment/deletesoft',
+        delete: 'v2/managementattachment/deletesoft'
       },
       inputCols: this.initializeTableColumns(),
       inputActions: this.initializeTableActions(),
       permissions: {
         componentName: 'MANAGEMENT-ATTACHMENTS',
         allowAll: true,
-        listOfPermissions: [],
+        listOfPermissions: []
       },
       bodyOptions: {
-        filter: { managementId: this.managementId },
+        filter: { managementId: this.managementId }
       },
-      responsiveDisplayedProperties: ['code', 'name'],
+      responsiveDisplayedProperties: ['code', 'name']
     };
   }
 
@@ -65,14 +55,14 @@ export class ManagementAttachmentsComponent extends BaseListComponent {
         field: 'code',
         header: 'الكــود',
         filter: true,
-        filterMode: 'text',
+        filterMode: 'text'
       },
       {
         field: 'name',
         header: 'الاســم',
         filter: true,
-        filterMode: 'text',
-      },
+        filterMode: 'text'
+      }
     ];
   }
 
@@ -86,37 +76,29 @@ export class ManagementAttachmentsComponent extends BaseListComponent {
         call: (row) => {
           this.openEdit(row);
         },
-        allowAll: true,
+        allowAll: true
       },
       {
         name: 'DELETE',
         icon: 'pi pi-trash',
         color: 'text-error',
         allowAll: true,
-        isDelete: true,
-      },
+        isDelete: true
+      }
     ];
   }
 
   openAdd() {
-    this.openDialog(
-      AddEditManagementAttachmentComponent,
-      'اضافة مرفق الادارة',
-      {
-        pageType: 'add',
-        row: { managementId: this.managementId },
-      },
-    );
+    this.openDialog(AddEditManagementAttachmentComponent, 'اضافة مرفق الادارة', {
+      pageType: 'add',
+      row: { managementId: this.managementId }
+    });
   }
 
   openEdit(rowData: any) {
-    this.openDialog(
-      AddEditManagementAttachmentComponent,
-      'تعديل مرفق الادارة',
-      {
-        pageType: 'edit',
-        row: { rowData },
-      },
-    );
+    this.openDialog(AddEditManagementAttachmentComponent, 'تعديل مرفق الادارة', {
+      pageType: 'edit',
+      row: { rowData }
+    });
   }
 }

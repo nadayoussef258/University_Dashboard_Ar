@@ -2,55 +2,27 @@
   @if (form) {
     <form method="post" class="grid gap-4 grid-cols-12" [formGroup]="form">
       <div class="form-col">
-        <app-prime-input-text
-          [formGroup]="form"
-          controlName="title"
-          [label]="'SETTINGS.MENU_ITEMS.FORM.TITLE'"
-        >
-        </app-prime-input-text>
+        <app-prime-input-text [formGroup]="form" controlName="title" [label]="'SETTINGS.MENU_ITEMS.FORM.TITLE'"> </app-prime-input-text>
       </div>
 
       <div class="form-col">
-        <app-prime-input-text
-          [formGroup]="form"
-          controlName="target"
-          [label]="'SETTINGS.MENU_ITEMS.FORM.TARGET'"
-        >
-        </app-prime-input-text>
+        <app-prime-input-text [formGroup]="form" controlName="target" [label]="'SETTINGS.MENU_ITEMS.FORM.TARGET'"> </app-prime-input-text>
       </div>
 
       <div class="form-col">
-        <app-prime-input-text
-          [formGroup]="form"
-          controlName="fragment"
-          [label]="'SETTINGS.MENU_ITEMS.FORM.FRAGMENT'"
-        >
-        </app-prime-input-text>
+        <app-prime-input-text [formGroup]="form" controlName="fragment" [label]="'SETTINGS.MENU_ITEMS.FORM.FRAGMENT'"> </app-prime-input-text>
       </div>
 
       <div class="form-col">
-        <app-prime-input-text
-          [formGroup]="form"
-          controlName="icon"
-          [label]="'SETTINGS.MENU_ITEMS.FORM.ICON'"
-        >
-        </app-prime-input-text>
+        <app-prime-input-text [formGroup]="form" controlName="icon" [label]="'SETTINGS.MENU_ITEMS.FORM.ICON'"> </app-prime-input-text>
       </div>
 
       <div class="form-col">
-        <app-prime-input-text
-          [formGroup]="form"
-          controlName="order"
-          [label]="'SETTINGS.MENU_ITEMS.FORM.ORDER'"
-          contentType="number"
-        >
-        </app-prime-input-text>
+        <app-prime-input-text [formGroup]="form" controlName="order" [label]="'SETTINGS.MENU_ITEMS.FORM.ORDER'" contentType="number"> </app-prime-input-text>
       </div>
 
       <div class="form-col">
-        <label class="text-middle mb-2">{{
-          "SETTINGS.MENU_ITEMS.FORM.MENU_TYPE" | translate
-        }}</label>
+        <label class="text-middle mb-2">{{ 'SETTINGS.MENU_ITEMS.FORM.MENU_TYPE' | translate }}</label>
         <app-prime-autocomplete
           [field]="'type'"
           [selectedOption]="selectedMenuType"
@@ -63,9 +35,7 @@
       </div>
 
       <div class="form-col">
-        <label class="text-middle mb-2">{{
-          "SETTINGS.MENU_ITEMS.FORM.PARENT_MENU_ITEM" | translate
-        }}</label>
+        <label class="text-middle mb-2">{{ 'SETTINGS.MENU_ITEMS.FORM.PARENT_MENU_ITEM' | translate }}</label>
         <app-prime-autocomplete
           [field]="'title'"
           [selectedOption]="selectedParentMenuItem ?? selectedMenuItems"
@@ -81,10 +51,5 @@
 </p-card>
 
 @if (form) {
-  <app-submit-buttons
-    [isSubmitDisabled]="form.invalid"
-    [submitBtnLabel]="pageType === 'add' ? 'ACTIONS.SUBMIT' : 'ACTIONS.SAVE'"
-    (submit)="submit()"
-    (cancel)="closeDialog()"
-  />
+  <app-submit-buttons [isSubmitDisabled]="form.invalid" [submitBtnLabel]="pageType === 'add' ? 'ACTIONS.SUBMIT' : 'ACTIONS.SAVE'" (submit)="submit()" (cancel)="closeDialog()" />
 }

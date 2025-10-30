@@ -7,7 +7,7 @@ import { AppMenu } from './app.menu';
   imports: [AppMenu],
   template: ` <div class="layout-sidebar" dir="rtl">
     <app-menu></app-menu>
-  </div>`,
+  </div>`
 })
 export class AppSidebar {
   constructor(public el: ElementRef) {}

@@ -1,25 +1,20 @@
 <p-card class="m-0 p-2">
   @if (form) {
     <form method="post" class="grid gap-4 grid-cols-12" [formGroup]="form">
-      @if (pageType !== "add" && !centerId) {
+      @if (pageType !== 'add' && !centerId) {
         <div class="flex gap-2 col-span-12 items-center">
-          <p-toggleswitch
-            [(ngModel)]="allowEditValue"
-            [ngModelOptions]="{ standalone: true }"
-            (onChange)="toggleEditBtn('centerId')"
-          >
-          </p-toggleswitch>
+          <p-toggleswitch [(ngModel)]="allowEditValue" [ngModelOptions]="{ standalone: true }" (onChange)="toggleEditBtn('centerId')"> </p-toggleswitch>
           <label class="font-medium text-sm">
-            {{ "PAGES.CENTER_MEMBER.QUESTION_ALLOW_EDIT" | translate }}
+            {{ 'PAGES.CENTER_MEMBER.QUESTION_ALLOW_EDIT' | translate }}
           </label>
         </div>
       }
 
       <!--  -->
-      @if ((pageType !== "add" && centerId) || !centerId) {
+      @if ((pageType !== 'add' && centerId) || !centerId) {
         <div class="form-col">
           <label class="text-middle mb-2">
-            {{ "PAGES.SHARE_FORM.CENTER" | translate }}
+            {{ 'PAGES.SHARE_FORM.CENTER' | translate }}
           </label>
           <app-prime-autocomplete
             [disabled]="pageType === 'edit' && !allowEdit()"
@@ -35,31 +30,16 @@
       }
       <div class="col-span-12 lg:col-span-3">
         <label class="text-middle mb-3">
-          {{ "PAGES.SHARE_FORM.IS_LEADER.TITLE" | translate }}
+          {{ 'PAGES.SHARE_FORM.IS_LEADER.TITLE' | translate }}
         </label>
         <div class="flex gap-3 items-center">
           <p-toggleswitch formControlName="isLeader"></p-toggleswitch>
           <span
             class="border rounded-full font-semibold text-sm py-1 px-3 transition-all gap-2 duration-300 inline-flex items-center"
-            [ngClass]="
-              form.get('isLeader')?.value
-                ? 'bg-blue-100 text-blue-700 border-blue-300'
-                : 'bg-gray-100 text-gray-600 border-gray-300'
-            "
+            [ngClass]="form.get('isLeader')?.value ? 'bg-blue-100 text-blue-700 border-blue-300' : 'bg-gray-100 text-gray-600 border-gray-300'"
           >
-            <i
-              class="text-base"
-              [ngClass]="
-                form.get('isLeader')?.value
-                  ? 'pi pi-star text-blue-500'
-                  : 'pi pi-user text-gray-500'
-              "
-            ></i>
-            {{
-              form.get("isLeader")?.value
-                ? ("PAGES.SHARE_FORM.IS_LEADER.LEADER" | translate)
-                : ("PAGES.SHARE_FORM.IS_LEADER.PERSON" | translate)
-            }}
+            <i class="text-base" [ngClass]="form.get('isLeader')?.value ? 'pi pi-star text-blue-500' : 'pi pi-user text-gray-500'"></i>
+            {{ form.get('isLeader')?.value ? ('PAGES.SHARE_FORM.IS_LEADER.LEADER' | translate) : ('PAGES.SHARE_FORM.IS_LEADER.PERSON' | translate) }}
           </span>
         </div>
       </div>
@@ -68,10 +48,5 @@
 </p-card>
 
 @if (form) {
-  <app-submit-buttons
-    [isSubmitDisabled]="form.invalid"
-    [submitBtnLabel]="pageType === 'add' ? 'ACTIONS.SUBMIT' : 'ACTIONS.SAVE'"
-    (submit)="submit()"
-    (cancel)="closeDialog()"
-  />
+  <app-submit-buttons [isSubmitDisabled]="form.invalid" [submitBtnLabel]="pageType === 'add' ? 'ACTIONS.SUBMIT' : 'ACTIONS.SAVE'" (submit)="submit()" (cancel)="closeDialog()" />
 }

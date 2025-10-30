@@ -14,105 +14,105 @@ export const AR_PAGES_SETTINGS = {
       IS_LEADER: {
         TITLE: 'الدور',
         LEADER: 'المسؤول',
-        PERSON: 'المستخدم',
-      },
+        PERSON: 'المستخدم'
+      }
     },
 
     HOME: {
-      TITLE: 'الصفحة الرئيسية',
+      TITLE: 'الصفحة الرئيسية'
     },
     DASHBOARD: {
-      TITLE: 'لوحة التحكم',
+      TITLE: 'لوحة التحكم'
     },
     ACTIONS: {
       MAIN: {
-        PAGE_TITLE: 'الإجراءات',
+        PAGE_TITLE: 'الإجراءات'
       },
       ADD: {
-        PAGE_TITLE: 'إضافة إجراء',
+        PAGE_TITLE: 'إضافة إجراء'
       },
       EDIT: {
-        PAGE_TITLE: 'تعديل الإجراء',
+        PAGE_TITLE: 'تعديل الإجراء'
       },
       FORM: {
         CODE: 'الكود',
-        NAME: 'اسم الإجراء',
-      },
+        NAME: 'اسم الإجراء'
+      }
     },
     CATEGORIES: {
       MAIN: {
-        PAGE_TITLE: 'التصنيفات',
+        PAGE_TITLE: 'التصنيفات'
       },
       ADD: {
-        PAGE_TITLE: 'إضافة تصنيف',
+        PAGE_TITLE: 'إضافة تصنيف'
       },
       EDIT: {
-        PAGE_TITLE: 'تعديل تصنيف',
+        PAGE_TITLE: 'تعديل تصنيف'
       },
       FORM: {
         CODE: 'الكود',
-        NAME: 'اسم التصنيف',
-      },
+        NAME: 'اسم التصنيف'
+      }
     },
     ABOUT: {
       MAIN: {
-        PAGE_TITLE: 'نبذة عنا',
+        PAGE_TITLE: 'نبذة عنا'
       },
       ADD: {
-        PAGE_TITLE: 'إضافة نبذة عنا',
+        PAGE_TITLE: 'إضافة نبذة عنا'
       },
       EDIT: {
-        PAGE_TITLE: 'تعديل نبذة عنا',
+        PAGE_TITLE: 'تعديل نبذة عنا'
       },
       FORM: {
         CONTENT: 'المحتوى العام',
         MISSION: 'الرسالة',
         VISION: 'الرؤية',
         HISTORY: 'النبذة التاريخية',
-        PAGE: 'الصفحة',
-      },
+        PAGE: 'الصفحة'
+      }
     },
     PAGE: {
       MAIN: {
-        PAGE_TITLE: 'الصفحات',
+        PAGE_TITLE: 'الصفحات'
       },
       ADD: {
-        PAGE_TITLE: 'إضافة صفحة',
+        PAGE_TITLE: 'إضافة صفحة'
       },
       EDIT: {
-        PAGE_TITLE: 'تعديل الصفحة',
+        PAGE_TITLE: 'تعديل الصفحة'
       },
       FORM: {
         TITLE: 'عنوان الصفحة',
         CONTENT: 'المحتوى',
-        STATUS: 'حالة الصفحة',
-      },
+        STATUS: 'حالة الصفحة'
+      }
     },
     LEADERS: {
       MAIN: {
-        PAGE_TITLE: 'القيادات',
+        PAGE_TITLE: 'القيادات'
       },
       ADD: {
-        PAGE_TITLE: 'إضافة قائد',
+        PAGE_TITLE: 'إضافة قائد'
       },
       EDIT: {
-        PAGE_TITLE: 'تعديل بيانات القائد',
+        PAGE_TITLE: 'تعديل بيانات القائد'
       },
       FORM: {
         FULL_NAME: 'الاسم الكامل',
         POSITION: 'المنصب',
-        MEMBER: 'عضو هيئة تدريس',
-      },
+        MEMBER: 'عضو هيئة تدريس'
+      }
     },
     MEMBERS: {
       MAIN: {
-        PAGE_TITLE: 'أعضاء هيئة التدريس',
+        PAGE_TITLE: 'أعضاء هيئة التدريس'
       },
       ADD: {
-        PAGE_TITLE: 'إضافة عضو هيئة تدريس',
+        PAGE_TITLE: 'إضافة عضو هيئة تدريس'
       },
       EDIT: {
-        PAGE_TITLE: 'تعديل بيانات عضو هيئة التدريس',
+        PAGE_TITLE: 'تعديل بيانات عضو هيئة التدريس'
       },
       FORM: {
         FULL_NAME: 'الاسم الكامل',
@@ -122,256 +122,256 @@ export const AR_PAGES_SETTINGS = {
           QUESTION_ALLOW_EDIT: 'هل هو رئيس الجامعة؟',
           TITLE: 'الدور',
           PRESIDENT: 'رئيس الجامعة',
-          MEMBER: 'عضو هيئة تدريس',
-        },
-      },
+          MEMBER: 'عضو هيئة تدريس'
+        }
+      }
     },
     MANAGEMENTS: {
       MAIN: {
-        PAGE_TITLE: 'الإدارات',
+        PAGE_TITLE: 'الإدارات'
       },
       ADD: {
-        PAGE_TITLE: 'إضافة إدارة',
+        PAGE_TITLE: 'إضافة إدارة'
       },
       EDIT: {
-        PAGE_TITLE: 'تعديل الإدارة',
-      },
+        PAGE_TITLE: 'تعديل الإدارة'
+      }
     },
     MANAGEMENT_DETAILS: {
       MAIN: {
-        PAGE_TITLE: 'تفاصيل الإدارات',
+        PAGE_TITLE: 'تفاصيل الإدارات'
       },
       ADD: {
-        PAGE_TITLE: 'إضافة تفاصيل إدارة',
+        PAGE_TITLE: 'إضافة تفاصيل إدارة'
       },
       EDIT: {
-        PAGE_TITLE: 'تعديل تفاصيل الإدارة',
+        PAGE_TITLE: 'تعديل تفاصيل الإدارة'
       },
       FORM: {
         TITLE: 'عنوان التفاصيل',
         DESCRIPTION: 'الوصف المختصر',
-        CONTENT: 'المحتوى التفصيلي',
-      },
+        CONTENT: 'المحتوى التفصيلي'
+      }
     },
     MANAGEMENT_MEMBERS: {
       MAIN: {
-        PAGE_TITLE: 'أعضاء الإدارات',
+        PAGE_TITLE: 'أعضاء الإدارات'
       },
       ADD: {
-        PAGE_TITLE: 'إضافة عضو إدارة',
+        PAGE_TITLE: 'إضافة عضو إدارة'
       },
       EDIT: {
-        PAGE_TITLE: 'تعديل عضو الإدارة',
+        PAGE_TITLE: 'تعديل عضو الإدارة'
       },
       FORM: {
-        QUESTION_ALLOW_EDIT: 'هل ترغب في تعديل الإدارة؟',
-      },
+        QUESTION_ALLOW_EDIT: 'هل ترغب في تعديل الإدارة؟'
+      }
     },
     UNITS: {
       MAIN: {
-        PAGE_TITLE: 'الوحدات',
+        PAGE_TITLE: 'الوحدات'
       },
       ADD: {
-        PAGE_TITLE: 'إضافة وحدة',
+        PAGE_TITLE: 'إضافة وحدة'
       },
       EDIT: {
-        PAGE_TITLE: 'تعديل الوحدة',
-      },
+        PAGE_TITLE: 'تعديل الوحدة'
+      }
     },
     UNIT_DETAILS: {
       MAIN: {
-        PAGE_TITLE: 'تفاصيل الوحدات',
+        PAGE_TITLE: 'تفاصيل الوحدات'
       },
       ADD: {
-        PAGE_TITLE: 'إضافة تفاصيل وحدة',
+        PAGE_TITLE: 'إضافة تفاصيل وحدة'
       },
       EDIT: {
-        PAGE_TITLE: 'تعديل تفاصيل الوحدة',
+        PAGE_TITLE: 'تعديل تفاصيل الوحدة'
       },
       FORM: {
         TITLE: 'عنوان التفاصيل',
         DESCRIPTION: 'الوصف المختصر',
-        UNIT_PLACE: 'موقع الوحدة',
-      },
+        UNIT_PLACE: 'موقع الوحدة'
+      }
     },
     UNIT_MEMBERS: {
       MAIN: {
-        PAGE_TITLE: 'أعضاء الوحدات',
+        PAGE_TITLE: 'أعضاء الوحدات'
       },
       ADD: {
-        PAGE_TITLE: 'إضافة عضو وحدة',
+        PAGE_TITLE: 'إضافة عضو وحدة'
       },
       EDIT: {
-        PAGE_TITLE: 'تعديل عضو الوحدة',
+        PAGE_TITLE: 'تعديل عضو الوحدة'
       },
       FORM: {
-        QUESTION_ALLOW_EDIT: 'هل ترغب في تعديل الوحدة؟',
-      },
+        QUESTION_ALLOW_EDIT: 'هل ترغب في تعديل الوحدة؟'
+      }
     },
     PROGRAMS: {
       MAIN: {
-        PAGE_TITLE: 'البرامج',
+        PAGE_TITLE: 'البرامج'
       },
       ADD: {
-        PAGE_TITLE: 'إضافة برنامج',
+        PAGE_TITLE: 'إضافة برنامج'
       },
       EDIT: {
-        PAGE_TITLE: 'تعديل البرنامج',
-      },
+        PAGE_TITLE: 'تعديل البرنامج'
+      }
     },
     PROGRAM_DETAILS: {
       MAIN: {
-        PAGE_TITLE: 'تفاصيل البرامج',
+        PAGE_TITLE: 'تفاصيل البرامج'
       },
       ADD: {
-        PAGE_TITLE: 'إضافة تفاصيل برنامج',
+        PAGE_TITLE: 'إضافة تفاصيل برنامج'
       },
       EDIT: {
-        PAGE_TITLE: 'تعديل تفاصيل البرنامج',
+        PAGE_TITLE: 'تعديل تفاصيل البرنامج'
       },
       FORM: {
         TITLE: 'عنوان التفاصيل',
         PROGRAM_CATEGORY: 'تصنيف البرنامج',
         CONTENT: 'المحتوى التفصيلي',
-        FACULTY: 'الكلية',
-      },
+        FACULTY: 'الكلية'
+      }
     },
     PROGRAM_MEMBERS: {
       MAIN: {
-        PAGE_TITLE: 'أعضاء البرامج',
+        PAGE_TITLE: 'أعضاء البرامج'
       },
       ADD: {
-        PAGE_TITLE: 'إضافة عضو برنامج',
+        PAGE_TITLE: 'إضافة عضو برنامج'
       },
       EDIT: {
-        PAGE_TITLE: 'تعديل عضو البرنامج',
+        PAGE_TITLE: 'تعديل عضو البرنامج'
       },
       FORM: {
-        QUESTION_ALLOW_EDIT: 'هل ترغب في تعديل البرنامج؟',
-      },
+        QUESTION_ALLOW_EDIT: 'هل ترغب في تعديل البرنامج؟'
+      }
     },
     CENTERS: {
       MAIN: {
-        PAGE_TITLE: 'المراكز',
+        PAGE_TITLE: 'المراكز'
       },
       ADD: {
-        PAGE_TITLE: 'إضافة مركز',
+        PAGE_TITLE: 'إضافة مركز'
       },
       EDIT: {
-        PAGE_TITLE: 'تعديل مركز',
+        PAGE_TITLE: 'تعديل مركز'
       },
       FORM: {
         SUB_TITLE: 'العنوان الفرعي',
-        PLACE: 'المكان',
-      },
+        PLACE: 'المكان'
+      }
     },
     CENTER_DETAILS: {
       MAIN: {
-        PAGE_TITLE: 'تفاصيل المراكز',
+        PAGE_TITLE: 'تفاصيل المراكز'
       },
       ADD: {
-        PAGE_TITLE: 'إضافة تفاصيل للمركز',
+        PAGE_TITLE: 'إضافة تفاصيل للمركز'
       },
       EDIT: {
-        PAGE_TITLE: 'تعديل تفاصيل المركز',
+        PAGE_TITLE: 'تعديل تفاصيل المركز'
       },
       FORM: {
         TITLE: 'عنوان التفاصيل',
         DESCRIPTION: 'الوصف المختصر',
-        CONTENT: 'المحتوى التفصيلي',
-      },
+        CONTENT: 'المحتوى التفصيلي'
+      }
     },
     CENTER_MEMBERS: {
       MAIN: {
-        PAGE_TITLE: 'أعضاء المراكز',
+        PAGE_TITLE: 'أعضاء المراكز'
       },
       ADD: {
-        PAGE_TITLE: 'إضافة عضو للمركز',
+        PAGE_TITLE: 'إضافة عضو للمركز'
       },
       EDIT: {
-        PAGE_TITLE: 'تعديل عضو المركز',
+        PAGE_TITLE: 'تعديل عضو المركز'
       },
       FORM: {
-        QUESTION_ALLOW_EDIT: 'هل ترغب في تعديل المركز ؟',
-      },
+        QUESTION_ALLOW_EDIT: 'هل ترغب في تعديل المركز ؟'
+      }
     },
     SECTORS: {
       MAIN: {
-        PAGE_TITLE: 'القطاعات',
+        PAGE_TITLE: 'القطاعات'
       },
       ADD: {
-        PAGE_TITLE: 'إضافة قطاع',
+        PAGE_TITLE: 'إضافة قطاع'
       },
       EDIT: {
-        PAGE_TITLE: 'تعديل القطاع',
+        PAGE_TITLE: 'تعديل القطاع'
       },
       FORM: {
         NAME: 'اسم القطاع',
-        SUB_TITLE: 'عنوان فرعي للقطاع',
+        SUB_TITLE: 'عنوان فرعي للقطاع'
       },
-      QUESTION_ALLOW_EDIT: 'هل ترغب في تعديل القطاع ؟',
+      QUESTION_ALLOW_EDIT: 'هل ترغب في تعديل القطاع ؟'
     },
     SECTOR_DETAILS: {
       MAIN: {
-        PAGE_TITLE: 'تفاصيل القطاعات',
+        PAGE_TITLE: 'تفاصيل القطاعات'
       },
       ADD: {
-        PAGE_TITLE: 'إضافة تفاصيل للقطاع',
+        PAGE_TITLE: 'إضافة تفاصيل للقطاع'
       },
       EDIT: {
-        PAGE_TITLE: 'تعديل تفاصيل القطاع',
+        PAGE_TITLE: 'تعديل تفاصيل القطاع'
       },
       FORM: {
         TITLE: 'عنوان التفاصيل',
         DESCRIPTION: 'الوصف المختصر',
-        CONTENT: 'المحتوى التفصيلي',
-      },
+        CONTENT: 'المحتوى التفصيلي'
+      }
     },
     SECTOR_MEMBERS: {
       MAIN: {
-        PAGE_TITLE: 'أعضاء القطاعات',
+        PAGE_TITLE: 'أعضاء القطاعات'
       },
       ADD: {
-        PAGE_TITLE: 'إضافة عضو للقطاع',
+        PAGE_TITLE: 'إضافة عضو للقطاع'
       },
       EDIT: {
-        PAGE_TITLE: 'تعديل عضو القطاع',
-      },
+        PAGE_TITLE: 'تعديل عضو القطاع'
+      }
     },
     SECTOR_PROGRAMS: {
       MAIN: {
-        PAGE_TITLE: 'برامج القطاعات',
+        PAGE_TITLE: 'برامج القطاعات'
       },
       ADD: {
-        PAGE_TITLE: 'إضافة برنامج للقطاع',
+        PAGE_TITLE: 'إضافة برنامج للقطاع'
       },
       EDIT: {
-        PAGE_TITLE: 'تعديل برنامج القطاع',
+        PAGE_TITLE: 'تعديل برنامج القطاع'
       },
       FORM: {
-        NAME: 'اسم البرنامج',
-      },
+        NAME: 'اسم البرنامج'
+      }
     },
     SECTOR_POSTS: {
       MAIN: {
-        PAGE_TITLE: 'منشورات القطاعات',
+        PAGE_TITLE: 'منشورات القطاعات'
       },
       ADD: {
-        PAGE_TITLE: 'إضافة منشور للقطاع',
+        PAGE_TITLE: 'إضافة منشور للقطاع'
       },
       EDIT: {
-        PAGE_TITLE: 'تعديل منشور القطاع',
-      },
+        PAGE_TITLE: 'تعديل منشور القطاع'
+      }
     },
     SECTOR_SERVICES: {
       MAIN: {
-        PAGE_TITLE: 'خدمات القطاعات',
+        PAGE_TITLE: 'خدمات القطاعات'
       },
       ADD: {
-        PAGE_TITLE: 'إضافة خدمة للقطاع',
+        PAGE_TITLE: 'إضافة خدمة للقطاع'
       },
       EDIT: {
-        PAGE_TITLE: 'تعديل خدمة القطاع',
+        PAGE_TITLE: 'تعديل خدمة القطاع'
       },
       FORM: {
         NAME: 'اسم الخدمة',
@@ -386,19 +386,19 @@ export const AR_PAGES_SETTINGS = {
         IS_ONLINE: {
           TITLE: 'الخدمة متاحة اون لاين',
           ONLINE: 'متاحة اون لاين',
-          OFFLINE: 'غير متاحة اون لاين',
-        },
-      },
+          OFFLINE: 'غير متاحة اون لاين'
+        }
+      }
     },
     SECTOR_UNITS: {
       MAIN: {
-        PAGE_TITLE: 'وحدات القطاعات',
+        PAGE_TITLE: 'وحدات القطاعات'
       },
       ADD: {
-        PAGE_TITLE: 'إضافة وحدة للقطاع',
+        PAGE_TITLE: 'إضافة وحدة للقطاع'
       },
       EDIT: {
-        PAGE_TITLE: 'تعديل وحدة القطاع',
+        PAGE_TITLE: 'تعديل وحدة القطاع'
       },
       FORM: {
         UNIT_NAME: 'اسم الوحدة',
@@ -407,21 +407,21 @@ export const AR_PAGES_SETTINGS = {
         EMAIL: 'البريد الإلكتروني',
         EMPLOYEES_COUNT: 'عدد الموظفين',
         LOCATION: 'موقع الوحدة',
-        UNIT_PHONE: 'رقم هاتف الوحدة',
-      },
-    },
+        UNIT_PHONE: 'رقم هاتف الوحدة'
+      }
+    }
   },
 
   SETTINGS: {
     CONTACTS: {
       MAIN: {
-        PAGE_TITLE: 'معلومات الاتصال',
+        PAGE_TITLE: 'معلومات الاتصال'
       },
       ADD: {
-        PAGE_TITLE: 'إضافة معلومات الاتصال',
+        PAGE_TITLE: 'إضافة معلومات الاتصال'
       },
       EDIT: {
-        PAGE_TITLE: 'تعديل معلومات الاتصال',
+        PAGE_TITLE: 'تعديل معلومات الاتصال'
       },
       FORM: {
         ADDRESS: 'العنوان',
@@ -433,18 +433,18 @@ export const AR_PAGES_SETTINGS = {
         LINKEDIN: 'لينكد إن',
         YOUTUBE: 'يوتيوب',
         WHATSAPP: 'واتساب',
-        MAPLOCATION: 'موقع الجامعة',
-      },
+        MAPLOCATION: 'موقع الجامعة'
+      }
     },
     MENU_ITEMS: {
       MAIN: {
-        PAGE_TITLE: 'عناصر القوائم',
+        PAGE_TITLE: 'عناصر القوائم'
       },
       ADD: {
-        PAGE_TITLE: 'إضافة عنصر قائمة',
+        PAGE_TITLE: 'إضافة عنصر قائمة'
       },
       EDIT: {
-        PAGE_TITLE: 'تعديل عنصر قائمة',
+        PAGE_TITLE: 'تعديل عنصر قائمة'
       },
       FORM: {
         TITLE: 'عنوان العنصر',
@@ -453,32 +453,32 @@ export const AR_PAGES_SETTINGS = {
         ICON: 'الأيقونة',
         ORDER: 'الترتيب',
         MENU_TYPE: 'نوع القائمة',
-        PARENT_MENU_ITEM: 'القائمة الرئيسية',
-      },
+        PARENT_MENU_ITEM: 'القائمة الرئيسية'
+      }
     },
     MENU_TYPES: {
       MAIN: {
-        PAGE_TITLE: 'أنواع القوائم',
+        PAGE_TITLE: 'أنواع القوائم'
       },
       ADD: {
-        PAGE_TITLE: 'إضافة نوع قائمة',
+        PAGE_TITLE: 'إضافة نوع قائمة'
       },
       EDIT: {
-        PAGE_TITLE: 'تعديل نوع القائمة',
+        PAGE_TITLE: 'تعديل نوع القائمة'
       },
       FORM: {
-        TYPE: 'نوع القائمة',
-      },
+        TYPE: 'نوع القائمة'
+      }
     },
     SERVICES: {
       MAIN: {
-        PAGE_TITLE: 'الخدمات',
+        PAGE_TITLE: 'الخدمات'
       },
       ADD: {
-        PAGE_TITLE: 'إضافة خدمة',
+        PAGE_TITLE: 'إضافة خدمة'
       },
       EDIT: {
-        PAGE_TITLE: 'تعديل الخدمة',
+        PAGE_TITLE: 'تعديل الخدمة'
       },
       FORM: {
         TITLE: 'العنوان',
@@ -487,19 +487,19 @@ export const AR_PAGES_SETTINGS = {
         IS_ACTIVE: {
           TITLE: 'الحالة',
           ACTIVE: 'نشط',
-          IN_ACTIVE: 'غير نشط',
-        },
-      },
+          IN_ACTIVE: 'غير نشط'
+        }
+      }
     },
     STATISTICS: {
       MAIN: {
-        PAGE_TITLE: 'الإحصائيات',
+        PAGE_TITLE: 'الإحصائيات'
       },
       ADD: {
-        PAGE_TITLE: 'إضافة إحصائية',
+        PAGE_TITLE: 'إضافة إحصائية'
       },
       EDIT: {
-        PAGE_TITLE: 'تعديل إحصائية',
+        PAGE_TITLE: 'تعديل إحصائية'
       },
       FORM: {
         TITLE: 'العنوان',
@@ -508,9 +508,9 @@ export const AR_PAGES_SETTINGS = {
         IS_ACTIVE: {
           TITLE: 'الحالة',
           ACTIVE: 'نشط',
-          IN_ACTIVE: 'غير نشط',
-        },
-      },
-    },
-  },
+          IN_ACTIVE: 'غير نشط'
+        }
+      }
+    }
+  }
 };

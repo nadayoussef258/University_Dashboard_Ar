@@ -2,12 +2,7 @@ import { Component, inject, OnInit } from '@angular/core';
 import { BaseEditComponent } from '../../../../base/components/base-edit-component';
 import { CardModule } from 'primeng/card';
 import { FormsModule, ReactiveFormsModule, Validators } from '@angular/forms';
-import {
-  PrimeAutoCompleteComponent,
-  ProgramMembersService,
-  ProgramsService,
-  SubmitButtonsComponent,
-} from '../../../../shared';
+import { PrimeAutoCompleteComponent, ProgramMembersService, ProgramsService, SubmitButtonsComponent } from '../../../../shared';
 import { DialogService } from 'primeng/dynamicdialog';
 import { ActivatedRoute } from '@angular/router';
 import { ToggleSwitch } from 'primeng/toggleswitch';
@@ -17,24 +12,12 @@ import { TranslatePipe } from '@ngx-translate/core';
 
 @Component({
   selector: 'app-add-edit-program-member',
-  imports: [
-    CardModule,
-    FormsModule,
-    ReactiveFormsModule,
-    SubmitButtonsComponent,
-    PrimeAutoCompleteComponent,
-    ToggleSwitch,
-    NgClass,
-    TranslatePipe,
-  ],
+  imports: [CardModule, FormsModule, ReactiveFormsModule, SubmitButtonsComponent, PrimeAutoCompleteComponent, ToggleSwitch, NgClass, TranslatePipe],
   templateUrl: './add-edit-program-member.component.html',
-  styleUrl: './add-edit-program-member.component.css',
+  styleUrl: './add-edit-program-member.component.css'
 })
 //
-export class AddEditProgramMemberComponent
-  extends BaseEditComponent
-  implements OnInit
-{
+export class AddEditProgramMemberComponent extends BaseEditComponent implements OnInit {
   programId: string = '';
   selectedProgram: any;
   filteredPrograms: any[] = [];
@@ -70,7 +53,7 @@ export class AddEditProgramMemberComponent
   initFormGroup() {
     this.form = this.fb.group({
       isLeader: [false],
-      centerId: [this.programId, Validators.required],
+      centerId: [this.programId, Validators.required]
     });
   }
 
@@ -78,13 +61,11 @@ export class AddEditProgramMemberComponent
     const query = event.query.toLowerCase();
     this.programsService.programs.subscribe({
       next: (res: any) => {
-        this.filteredPrograms = res.filter((program: any) =>
-          program.pageId.includes(query),
-        );
+        this.filteredPrograms = res.filter((program: any) => program.pageId.includes(query));
       },
       error: (err) => {
         this.alert.error('خطأ فى جلب البرامج');
-      },
+      }
     });
   }
 
@@ -95,24 +76,18 @@ export class AddEditProgramMemberComponent
 
   fetchProgramDetails(programMember: any) {
     this.programsService.programs.subscribe((response: any) => {
-      this.programsService = Array.isArray(response)
-        ? response
-        : response.data || [];
-      this.selectedProgram = this.filteredPrograms.find(
-        (program: any) => program.id === programMember.id,
-      );
+      this.programsService = Array.isArray(response) ? response : response.data || [];
+      this.selectedProgram = this.filteredPrograms.find((program: any) => program.id === programMember.id);
       this.form.get('programId')?.setValue(this.selectedProgram.id);
     });
   }
 
   getEditProgramMember = () => {
-    this.programMembersService
-      .getEditProgramMember(this.id())
-      .subscribe((programMember: any) => {
-        this.initFormGroup();
-        this.form.patchValue(programMember);
-        this.fetchProgramDetails(programMember);
-      });
+    this.programMembersService.getEditProgramMember(this.id()).subscribe((programMember: any) => {
+      this.initFormGroup();
+      this.form.patchValue(programMember);
+      this.fetchProgramDetails(programMember);
+    });
   };
 
   submit() {
@@ -121,11 +96,9 @@ export class AddEditProgramMemberComponent
         this.closeDialog();
       });
     if (this.pageType === 'edit')
-      this.programMembersService
-        .update({ id: this.id(), ...this.form.value })
-        .subscribe(() => {
-          this.closeDialog();
-        });
+      this.programMembersService.update({ id: this.id(), ...this.form.value }).subscribe(() => {
+        this.closeDialog();
+      });
   }
 
   closeDialog() {

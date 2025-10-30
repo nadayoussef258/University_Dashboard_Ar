@@ -1,11 +1,7 @@
 import { Component, inject, Input } from '@angular/core';
 import { ActivatedRoute, RouterModule } from '@angular/router';
 import { CardModule } from 'primeng/card';
-import {
-  PrimeDataTableComponent,
-  PrimeTitleToolBarComponent,
-  CenterDetailsService,
-} from '../../../../shared';
+import { PrimeDataTableComponent, PrimeTitleToolBarComponent, CenterDetailsService } from '../../../../shared';
 import { TableOptions } from '../../../../shared/interfaces';
 import { BaseListComponent } from '../../../../base/components/base-list-component';
 import { CenterIdService } from '../../center-id.service';
@@ -14,15 +10,9 @@ import { TranslatePipe } from '@ngx-translate/core';
 @Component({
   selector: 'app-center-details',
 
-  imports: [
-    RouterModule,
-    CardModule,
-    PrimeDataTableComponent,
-    PrimeTitleToolBarComponent,
-    TranslatePipe,
-  ],
+  imports: [RouterModule, CardModule, PrimeDataTableComponent, PrimeTitleToolBarComponent, TranslatePipe],
   templateUrl: './center-details.component.html',
-  styleUrl: './center-details.component.css',
+  styleUrl: './center-details.component.css'
 })
 export class CenterDetailsComponent extends BaseListComponent {
   centerId: string = '';
@@ -46,24 +36,19 @@ export class CenterDetailsComponent extends BaseListComponent {
       inputUrl: {
         getAll: 'v2/centerdetail/getPaged',
         getAllMethod: 'POST',
-        delete: 'v2/centerdetail/deletesoft',
+        delete: 'v2/centerdetail/deletesoft'
       },
       inputCols: this.initializeTableColumns(),
       inputActions: this.initializeTableActions(),
       permissions: {
         componentName: 'CENTER-DETAILS',
         allowAll: true,
-        listOfPermissions: [],
+        listOfPermissions: []
       },
       bodyOptions: {
-        filter: { centerId: this.centerId },
+        filter: { centerId: this.centerId }
       },
-      responsiveDisplayedProperties: [
-        'title',
-        'description',
-        'content',
-        'centerId',
-      ],
+      responsiveDisplayedProperties: ['title', 'description', 'content', 'centerId']
     };
   }
 
@@ -73,26 +58,26 @@ export class CenterDetailsComponent extends BaseListComponent {
         field: 'title',
         header: 'PAGES.CENTER_DETAILS.FORM.TITLE',
         filter: true,
-        filterMode: 'text',
+        filterMode: 'text'
       },
       {
         field: 'description',
         header: 'PAGES.CENTER_DETAILS.FORM.DESCRIPTION',
         filter: true,
-        filterMode: 'text',
+        filterMode: 'text'
       },
       {
         field: 'content',
         header: 'PAGES.CENTER_DETAILS.FORM.CONTENT',
         filter: true,
-        filterMode: 'text',
+        filterMode: 'text'
       },
       {
         field: 'centerId',
         header: 'PAGES.SHARE_FORM.CENTER',
         filter: true,
-        filterMode: 'text',
-      },
+        filterMode: 'text'
+      }
     ];
   }
 
@@ -104,15 +89,15 @@ export class CenterDetailsComponent extends BaseListComponent {
         color: 'text-middle',
         isEdit: true,
         route: '/pages/center-details/edit/',
-        allowAll: true,
+        allowAll: true
       },
       {
         name: 'DELETE',
         icon: 'pi pi-trash',
         color: 'text-error',
         allowAll: true,
-        isDelete: true,
-      },
+        isDelete: true
+      }
     ];
   }
 }

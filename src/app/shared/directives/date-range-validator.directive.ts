@@ -1,10 +1,5 @@
 import { Directive, Input } from '@angular/core';
-import {
-  AbstractControl,
-  NG_VALIDATORS,
-  ValidationErrors,
-  Validator,
-} from '@angular/forms';
+import { AbstractControl, NG_VALIDATORS, ValidationErrors, Validator } from '@angular/forms';
 
 @Directive({
   selector: '[dateRangeValidator]',
@@ -13,9 +8,9 @@ import {
     {
       provide: NG_VALIDATORS,
       useExisting: DateRangeValidatorDirective,
-      multi: true,
-    },
-  ],
+      multi: true
+    }
+  ]
 })
 export class DateRangeValidatorDirective implements Validator {
   @Input() referenceControlName = '';
@@ -32,9 +27,7 @@ export class DateRangeValidatorDirective implements Validator {
     }
 
     // Get current values
-    const fromDate = referenceControl.value
-      ? new Date(referenceControl.value)
-      : null;
+    const fromDate = referenceControl.value ? new Date(referenceControl.value) : null;
     const toDate = control.value ? new Date(control.value) : null;
 
     if (!fromDate || !toDate) {

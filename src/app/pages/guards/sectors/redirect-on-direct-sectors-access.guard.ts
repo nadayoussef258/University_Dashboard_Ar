@@ -7,14 +7,7 @@ export const redirectOnDirectSectorAccessGuard: CanActivateFn = (route) => {
   const tabPath = route.routeConfig?.path;
 
   // قائمة التابات التي نمنع الدخول المباشر لها
-  const protectedTabs = [
-    'sector-detail',
-    'sector-member',
-    'sector-post',
-    'sector-program',
-    'sector-service',
-    'sector-unit',
-  ];
+  const protectedTabs = ['sector-detail', 'sector-member', 'sector-post', 'sector-program', 'sector-service', 'sector-unit'];
 
   if (!router.navigated && id && protectedTabs.includes(tabPath || '')) {
     return router.createUrlTree([`/pages/sectors/edit/${id}`]);

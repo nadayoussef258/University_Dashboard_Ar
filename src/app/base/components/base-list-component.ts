@@ -556,15 +556,7 @@
 //   }
 // }
 
-import {
-  Directive,
-  Injectable,
-  OnInit,
-  signal,
-  effect,
-  computed,
-  inject,
-} from '@angular/core';
+import { Directive, Injectable, OnInit, signal, effect, computed, inject } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { LazyLoadEvent } from 'primeng/api';
 import { debounceTime, distinctUntilChanged } from 'rxjs';
@@ -577,12 +569,9 @@ import { DialogService, DynamicDialogRef } from 'primeng/dynamicdialog';
 
 @Directive()
 @Injectable({
-  providedIn: 'root',
+  providedIn: 'root'
 })
-export abstract class BaseListComponent
-  extends BaseComponent
-  implements OnInit
-{
+export abstract class BaseListComponent extends BaseComponent implements OnInit {
   // ✅ signals بدل المتغيرات العادية
   data = signal<any[]>([]);
   totalCount = signal<number>(0);
@@ -635,10 +624,7 @@ export abstract class BaseListComponent
       this.loadDataFromServer();
     }
     if (dataTableEvent.eventType == 'export') {
-      this.export(
-        dataTableEvent.data.columnNames,
-        dataTableEvent.data.reportName,
-      );
+      this.export(dataTableEvent.data.columnNames, dataTableEvent.data.reportName);
     }
   }
 
@@ -646,19 +632,15 @@ export abstract class BaseListComponent
    * تحميل البيانات من الخادم وتحديث signals
    */
   loadDataFromServer(): void {
-    this.dataTableService
-      .loadData(this.tableOptions.inputUrl.getAll)
-      .subscribe({
-        next: (res) => {
-          this.data.set(res.data); // ✅ تحديث الـ signal بدل متغير عادي
-          this.totalCount.set(res.totalCount ?? 0);
-        },
-        error: () => {
-          this.alert.error(
-            this.localize.translate.instant('VALIDATION.GET_ERROR'),
-          );
-        },
-      });
+    this.dataTableService.loadData(this.tableOptions.inputUrl.getAll).subscribe({
+      next: (res) => {
+        this.data.set(res.data); // ✅ تحديث الـ signal بدل متغير عادي
+        this.totalCount.set(res.totalCount ?? 0);
+      },
+      error: () => {
+        this.alert.error(this.localize.translate.instant('VALIDATION.GET_ERROR'));
+      }
+    });
   }
 
   /**
@@ -687,7 +669,7 @@ export abstract class BaseListComponent
     this.dataTableService.opt.orderByValue = [];
     this.dataTableService.opt.orderByValue.push({
       colId: event.sortField,
-      sort: event.sortOrder === 1 ? 'asc' : 'desc',
+      sort: event.sortOrder === 1 ? 'asc' : 'desc'
     });
   }
 
@@ -702,12 +684,7 @@ export abstract class BaseListComponent
   /**
    * تصفية البيانات
    */
-  filter(
-    value?: any,
-    column?: any,
-    filterColumnName?: string,
-    dataType?: string,
-  ): void {
+  filter(value?: any, column?: any, filterColumnName?: string, dataType?: string): void {
     this.resetOpt();
     value = this.checkDataType(value, dataType);
     if (filterColumnName) {
@@ -719,16 +696,11 @@ export abstract class BaseListComponent
     // 👇 هنا نحدث الإشارة (signal)
     this.dataTableService.searchNew$.set({
       keyword: value,
-      page: this.dataTableService.opt.pageNumber,
+      page: this.dataTableService.opt.pageNumber
     });
   }
 
-  openDialog(
-    component: any,
-    pageTitle: any,
-    data: any,
-    closable: boolean = true,
-  ): void {
+  openDialog(component: any, pageTitle: any, data: any, closable: boolean = true): void {
     // Add closable parameter with default value
     this.dialogRef = this.dialogService.open(component, {
       header: pageTitle,
@@ -742,19 +714,19 @@ export abstract class BaseListComponent
         '1400px': '70vw',
         '1199px': '75vw',
         '991px': '85vw',
-        '575px': '95vw',
+        '575px': '95vw'
       },
       styleClass: 'custom-dynamic-dialog',
       maskStyleClass: 'custom-dialog-mask dark-overlay',
 
       contentStyle: {
         padding: '1.5rem',
-        'font-size': '0.95rem',
+        'font-size': '0.95rem'
       },
       style: {
         'border-radius': '12px',
         'box-shadow': '0 8px 24px rgba(0, 0, 0, 0.15)',
-        overflow: 'hidden',
+        overflow: 'hidden'
       },
 
       // ⚙️ السلوكيات
@@ -772,7 +744,7 @@ export abstract class BaseListComponent
       keepInViewport: true,
       appendTo: 'body',
 
-      transitionOptions: '150ms cubic-bezier(0.4, 0, 0.2, 1)',
+      transitionOptions: '150ms cubic-bezier(0.4, 0, 0.2, 1)'
     });
     //
     this.dialogRef?.onDestroy.subscribe(() => {
@@ -794,38 +766,29 @@ export abstract class BaseListComponent
    * حذف عنصر واحد
    */
   deleteData(id: string) {
-    this.dataTableService
-      .delete(this.tableOptions.inputUrl.delete, id)
-      .subscribe({
-        next: () => {
-          (this.localize.translate.instant('VALIDATION.DELETE_SUCCESS'),
-            this.loadDataFromServer()); // ✅ إعادة التحميل
-        },
-        error: () => this.localize.translate.instant('VALIDATION.GET_ERROR'),
-      });
+    this.dataTableService.delete(this.tableOptions.inputUrl.delete, id).subscribe({
+      next: () => {
+        (this.localize.translate.instant('VALIDATION.DELETE_SUCCESS'), this.loadDataFromServer()); // ✅ إعادة التحميل
+      },
+      error: () => this.localize.translate.instant('VALIDATION.GET_ERROR')
+    });
   }
 
   /**
    * حذف مجموعة عناصر
    */
   deleteRange(ids: string[]) {
-    this.dataTableService
-      .deleteRange(this.tableOptions.inputUrl.delete, ids)
-      .subscribe({
-        next: (res) => {
-          // this.data.set(res.data)
-          // this.totalCount.set(res.totalCount)
-          this.alert.success(
-            this.localize.translate.instant('VALIDATION.DELETE_SUCCESS'),
-          );
-          this.loadDataFromServer();
-        },
-        error: () => {
-          this.alert.error(
-            this.localize.translate.instant('VALIDATION.GET_ERROR'),
-          );
-        },
-      });
+    this.dataTableService.deleteRange(this.tableOptions.inputUrl.delete, ids).subscribe({
+      next: (res) => {
+        // this.data.set(res.data)
+        // this.totalCount.set(res.totalCount)
+        this.alert.success(this.localize.translate.instant('VALIDATION.DELETE_SUCCESS'));
+        this.loadDataFromServer();
+      },
+      error: () => {
+        this.alert.error(this.localize.translate.instant('VALIDATION.GET_ERROR'));
+      }
+    });
   }
 
   /**
@@ -836,14 +799,12 @@ export abstract class BaseListComponent
       pageNumber: 1,
       pageSize: 5,
       orderByValue: [{ colId: 'id', sort: 'asc' }],
-      filter: {},
+      filter: {}
     };
 
-    this.dataTableService.opt.filter =
-      this.tableOptions.bodyOptions.filter ?? this.dataTableService.opt.filter;
+    this.dataTableService.opt.filter = this.tableOptions.bodyOptions.filter ?? this.dataTableService.opt.filter;
 
-    this.dataTableService.opt.filter.appId =
-      this.tableOptions.appId !== 0 ? this.tableOptions.appId : 0;
+    this.dataTableService.opt.filter.appId = this.tableOptions.appId !== 0 ? this.tableOptions.appId : 0;
   }
 
   /**
@@ -858,7 +819,7 @@ export abstract class BaseListComponent
         eachRow = {
           ...eachRow,
           '#': index + 1,
-          [sheetDetails[col]]: eachData[col],
+          [sheetDetails[col]]: eachData[col]
         };
       });
       return eachRow;

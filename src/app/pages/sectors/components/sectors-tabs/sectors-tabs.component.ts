@@ -8,7 +8,7 @@ import { TranslatePipe } from '@ngx-translate/core';
   selector: 'app-sectors-tabs',
   imports: [TabsModule, RouterLink, RouterOutlet, TranslatePipe],
   templateUrl: './sectors-tabs.component.html',
-  styleUrls: ['./sectors-tabs.component.css'],
+  styleUrls: ['./sectors-tabs.component.css']
 })
 //
 export class SectorsTabsComponent extends BaseEditComponent implements OnInit {
@@ -16,32 +16,32 @@ export class SectorsTabsComponent extends BaseEditComponent implements OnInit {
     {
       route: 'sector-detail',
       label: 'PAGES.SECTOR_DETAILS.MAIN.PAGE_TITLE',
-      icon: 'pi pi-info-circle',
+      icon: 'pi pi-info-circle'
     },
     {
       route: 'sector-member',
       label: 'PAGES.SECTOR_MEMBERS.MAIN.PAGE_TITLE',
-      icon: 'pi pi-users',
+      icon: 'pi pi-users'
     },
     {
       route: 'sector-post',
       label: 'PAGES.SECTOR_POSTS.MAIN.PAGE_TITLE',
-      icon: 'pi pi-send',
+      icon: 'pi pi-send'
     },
     {
       route: 'sector-program',
       label: 'PAGES.SECTOR_PROGRAMS.MAIN.PAGE_TITLE',
-      icon: 'pi pi-sliders-h',
+      icon: 'pi pi-sliders-h'
     },
     {
       route: 'sector-service',
       label: 'PAGES.SECTOR_SERVICES.MAIN.PAGE_TITLE',
-      icon: 'pi  pi-cog',
+      icon: 'pi  pi-cog'
     },
     {
       route: 'sector-unit',
       label: 'PAGES.SECTOR_UNITS.MAIN.PAGE_TITLE',
-      icon: 'pi pi-building',
-    },
+      icon: 'pi pi-building'
+    }
   ];
 }

@@ -2,13 +2,7 @@ import { Component, inject, OnInit } from '@angular/core';
 import { BaseEditComponent } from '../../../../base/components/base-edit-component';
 import { CardModule } from 'primeng/card';
 import { FormsModule, ReactiveFormsModule, Validators } from '@angular/forms';
-import {
-  AboutService,
-  PagesService,
-  PrimeAutoCompleteComponent,
-  PrimeInputTextComponent,
-  SubmitButtonsComponent,
-} from '../../../../shared';
+import { AboutService, PagesService, PrimeAutoCompleteComponent, PrimeInputTextComponent, SubmitButtonsComponent } from '../../../../shared';
 import { DialogService } from 'primeng/dynamicdialog';
 import { ActivatedRoute } from '@angular/router';
 import { ToggleSwitchModule } from 'primeng/toggleswitch';
@@ -16,18 +10,9 @@ import { TranslatePipe } from '@ngx-translate/core';
 
 @Component({
   selector: 'app-add-edit-about',
-  imports: [
-    CardModule,
-    FormsModule,
-    ReactiveFormsModule,
-    SubmitButtonsComponent,
-    PrimeInputTextComponent,
-    ToggleSwitchModule,
-    PrimeAutoCompleteComponent,
-    TranslatePipe,
-  ],
+  imports: [CardModule, FormsModule, ReactiveFormsModule, SubmitButtonsComponent, PrimeInputTextComponent, ToggleSwitchModule, PrimeAutoCompleteComponent, TranslatePipe],
   templateUrl: './add-edit-about.component.html',
-  styleUrl: './add-edit-about.component.css',
+  styleUrl: './add-edit-about.component.css'
 })
 //
 export class AddEditAboutComponent extends BaseEditComponent implements OnInit {
@@ -63,7 +48,7 @@ export class AddEditAboutComponent extends BaseEditComponent implements OnInit {
       mission: ['', Validators.required],
       vision: ['', Validators.required],
       history: ['', Validators.required],
-      pageId: [null, Validators.required],
+      pageId: [null, Validators.required]
     });
   }
 
@@ -71,13 +56,11 @@ export class AddEditAboutComponent extends BaseEditComponent implements OnInit {
     const query = event.query.toLowerCase();
     this.pagesService.pages.subscribe({
       next: (res: any) => {
-        this.filteredPages = res.filter((page: any) =>
-          page.title.toLowerCase().includes(query),
-        );
+        this.filteredPages = res.filter((page: any) => page.title.toLowerCase().includes(query));
       },
       error: (err) => {
         this.alert.error('خطأ فى جلب بيانات الفروع');
-      },
+      }
     });
   }
 
@@ -88,12 +71,8 @@ export class AddEditAboutComponent extends BaseEditComponent implements OnInit {
 
   fetchPagesDetails(about: any) {
     this.pagesService.pages.subscribe((response: any) => {
-      this.filteredPages = Array.isArray(response)
-        ? response
-        : response.data || [];
-      this.selectedPage = this.filteredPages.find(
-        (page: any) => page.id === about.pageId,
-      );
+      this.filteredPages = Array.isArray(response) ? response : response.data || [];
+      this.selectedPage = this.filteredPages.find((page: any) => page.id === about.pageId);
       this.form.get('pageId')?.setValue(this.selectedPage.id);
     });
   }
@@ -112,11 +91,9 @@ export class AddEditAboutComponent extends BaseEditComponent implements OnInit {
         this.closeDialog();
       });
     if (this.pageType === 'edit')
-      this.aboutService
-        .update({ id: this.id(), ...this.form.value })
-        .subscribe(() => {
-          this.closeDialog();
-        });
+      this.aboutService.update({ id: this.id(), ...this.form.value }).subscribe(() => {
+        this.closeDialog();
+      });
   }
 
   closeDialog() {

@@ -9,9 +9,9 @@ import { CustomValidationService } from '../../shared/';
     {
       provide: NG_VALIDATORS,
       useExisting: PasswordPatternDirective,
-      multi: true,
-    },
-  ],
+      multi: true
+    }
+  ]
 })
 export class PasswordPatternDirective implements Validator {
   constructor(private customValidator: CustomValidationService) {}

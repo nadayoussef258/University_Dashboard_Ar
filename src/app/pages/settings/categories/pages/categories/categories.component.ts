@@ -1,11 +1,7 @@
 import { Component, inject, Input } from '@angular/core';
 import { ActivatedRoute, RouterModule } from '@angular/router';
 import { CardModule } from 'primeng/card';
-import {
-  PrimeDataTableComponent,
-  PrimeTitleToolBarComponent,
-  CategoriesService,
-} from '../../../../../shared';
+import { PrimeDataTableComponent, PrimeTitleToolBarComponent, CategoriesService } from '../../../../../shared';
 import { TableOptions } from '../../../../../shared/interfaces';
 import { BaseListComponent } from '../../../../../base/components/base-list-component';
 import { AddEditCategoryComponent } from '../../components/add-edit-category/add-edit-category.component';
@@ -14,15 +10,9 @@ import { TranslatePipe } from '@ngx-translate/core';
 @Component({
   selector: 'app-categories',
 
-  imports: [
-    RouterModule,
-    CardModule,
-    PrimeDataTableComponent,
-    PrimeTitleToolBarComponent,
-    TranslatePipe,
-  ],
+  imports: [RouterModule, CardModule, PrimeDataTableComponent, PrimeTitleToolBarComponent, TranslatePipe],
   templateUrl: './categories.component.html',
-  styleUrl: './categories.component.css',
+  styleUrl: './categories.component.css'
 })
 export class CategoriesComponent extends BaseListComponent {
   @Input() employeeId: string = '';
@@ -44,19 +34,19 @@ export class CategoriesComponent extends BaseListComponent {
       inputUrl: {
         getAll: 'v1/categories/getPaged',
         getAllMethod: 'POST',
-        delete: 'v2/categories/deletesoft',
+        delete: 'v2/categories/deletesoft'
       },
       inputCols: this.initializeTableColumns(),
       inputActions: this.initializeTableActions(),
       permissions: {
         componentName: 'ADVISOR-SYSTEM-EXPERIENCES',
         allowAll: true,
-        listOfPermissions: [],
+        listOfPermissions: []
       },
       bodyOptions: {
-        filter: {},
+        filter: {}
       },
-      responsiveDisplayedProperties: ['code', 'name'],
+      responsiveDisplayedProperties: ['code', 'name']
     };
   }
 
@@ -66,14 +56,14 @@ export class CategoriesComponent extends BaseListComponent {
         field: 'code',
         header: 'PAGES.CATEGORIES.FORM.CODE',
         filter: true,
-        filterMode: 'text',
+        filterMode: 'text'
       },
       {
         field: 'name',
         header: 'PAGES.CATEGORIES.FORM.NAME',
         filter: true,
-        filterMode: 'text',
-      },
+        filterMode: 'text'
+      }
     ];
   }
 
@@ -87,36 +77,28 @@ export class CategoriesComponent extends BaseListComponent {
         call: (row) => {
           this.openEdit(row);
         },
-        allowAll: true,
+        allowAll: true
       },
       {
         name: 'DELETE',
         icon: 'pi pi-trash',
         color: 'text-error',
         allowAll: true,
-        isDelete: true,
-      },
+        isDelete: true
+      }
     ];
   }
 
   openAdd() {
-    this.openDialog(
-      AddEditCategoryComponent,
-      this.localize.translate.instant('PAGES.CATEGORIES.ADD.PAGE_TITLE'),
-      {
-        pageType: 'add',
-      },
-    );
+    this.openDialog(AddEditCategoryComponent, this.localize.translate.instant('PAGES.CATEGORIES.ADD.PAGE_TITLE'), {
+      pageType: 'add'
+    });
   }
 
   openEdit(rowData: any) {
-    this.openDialog(
-      AddEditCategoryComponent,
-      this.localize.translate.instant('PAGES.CATEGORIES.EDIT.PAGE_TITLE'),
-      {
-        pageType: 'edit',
-        row: { rowData },
-      },
-    );
+    this.openDialog(AddEditCategoryComponent, this.localize.translate.instant('PAGES.CATEGORIES.EDIT.PAGE_TITLE'), {
+      pageType: 'edit',
+      row: { rowData }
+    });
   }
 }

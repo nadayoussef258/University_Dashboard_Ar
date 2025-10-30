@@ -1,11 +1,7 @@
 import { Component, inject } from '@angular/core';
 import { ActivatedRoute, RouterModule } from '@angular/router';
 import { CardModule } from 'primeng/card';
-import {
-  PrimeDataTableComponent,
-  PrimeTitleToolBarComponent,
-  SectorServicesService,
-} from '../../../../shared';
+import { PrimeDataTableComponent, PrimeTitleToolBarComponent, SectorServicesService } from '../../../../shared';
 import { TableOptions } from '../../../../shared/interfaces';
 import { BaseListComponent } from '../../../../base/components/base-list-component';
 import { ToggleSwitchModule } from 'primeng/toggleswitch';
@@ -15,16 +11,9 @@ import { TranslatePipe } from '@ngx-translate/core';
 @Component({
   selector: 'app-sector-services',
 
-  imports: [
-    RouterModule,
-    CardModule,
-    PrimeDataTableComponent,
-    PrimeTitleToolBarComponent,
-    ToggleSwitchModule,
-    TranslatePipe,
-  ],
+  imports: [RouterModule, CardModule, PrimeDataTableComponent, PrimeTitleToolBarComponent, ToggleSwitchModule, TranslatePipe],
   templateUrl: './sector-services.component.html',
-  styleUrl: './sector-services.component.css',
+  styleUrl: './sector-services.component.css'
 })
 export class SectorServicesComponent extends BaseListComponent {
   sectorId: string = '';
@@ -48,30 +37,19 @@ export class SectorServicesComponent extends BaseListComponent {
       inputUrl: {
         getAll: 'v2/sectorservices/getPaged',
         getAllMethod: 'POST',
-        delete: 'v2/sectorservices/deletesoft',
+        delete: 'v2/sectorservices/deletesoft'
       },
       inputCols: this.initializeTableColumns(),
       inputActions: this.initializeTableActions(),
       permissions: {
         componentName: 'SECTOR-SERVICES',
         allowAll: true,
-        listOfPermissions: [],
+        listOfPermissions: []
       },
       bodyOptions: {
-        filter: { sectorId: this.sectorId },
+        filter: { sectorId: this.sectorId }
       },
-      responsiveDisplayedProperties: [
-        'name',
-        'details',
-        'duration',
-        'applicationUrl',
-        'downloadUrl',
-        'category',
-        'fees',
-        'contactPerson',
-        'isOnline',
-        'sectorId',
-      ],
+      responsiveDisplayedProperties: ['name', 'details', 'duration', 'applicationUrl', 'downloadUrl', 'category', 'fees', 'contactPerson', 'isOnline', 'sectorId']
     };
   }
 
@@ -81,56 +59,56 @@ export class SectorServicesComponent extends BaseListComponent {
         field: 'name',
         header: 'PAGES.SECTOR_SERVICES.FORM.NAME',
         filter: true,
-        filterMode: 'text',
+        filterMode: 'text'
       },
       {
         field: 'details',
         header: 'PAGES.SECTOR_SERVICES.FORM.DETAILS',
         filter: true,
-        filterMode: 'text',
+        filterMode: 'text'
       },
       {
         field: 'duration',
         header: 'PAGES.SECTOR_SERVICES.FORM.DURATION',
         filter: true,
-        filterMode: 'text',
+        filterMode: 'text'
       },
       {
         field: 'applicationUrl',
         header: 'PAGES.SECTOR_SERVICES.FORM.APPLICATION_URL',
         filter: true,
-        filterMode: 'text',
+        filterMode: 'text'
       },
       {
         field: 'downloadUrl',
         header: 'PAGES.SECTOR_SERVICES.FORM.DOWNLOAD_URL',
         filter: true,
-        filterMode: 'text',
+        filterMode: 'text'
       },
 
       {
         field: 'category',
         header: 'PAGES.SECTOR_SERVICES.FORM.CATEGORY',
         filter: true,
-        filterMode: 'text',
+        filterMode: 'text'
       },
       {
         field: 'fees',
         header: 'PAGES.SECTOR_SERVICES.FORM.FEES',
         filter: true,
-        filterMode: 'text',
+        filterMode: 'text'
       },
       {
         field: 'contactPerson',
         header: 'PAGES.SECTOR_SERVICES.FORM.CONTACT_PERSON',
         filter: true,
-        filterMode: 'text',
+        filterMode: 'text'
       },
       {
         field: 'contactPhone',
         header: 'PAGES.SECTOR_SERVICES.FORM.CONTACT_PHONE',
         filter: true,
-        filterMode: 'text',
+        filterMode: 'text'
       },
       {
         field: 'isOnline',
@@ -138,14 +116,14 @@ export class SectorServicesComponent extends BaseListComponent {
         filter: true,
         trueText: 'PAGES.SECTOR_SERVICES.FORM.IS_ONLINE.ONLINE',
         falseText: 'PAGES.SECTOR_SERVICES.FORM.IS_ONLINE.OFFLINE',
-        filterMode: 'boolean',
+        filterMode: 'boolean'
       },
       {
         field: 'sectorId',
         header: 'PAGES.SHARE_FORM.SECTOR',
         filter: true,
-        filterMode: 'text',
-      },
+        filterMode: 'text'
+      }
     ];
   }
 
@@ -157,15 +135,15 @@ export class SectorServicesComponent extends BaseListComponent {
         color: 'text-middle',
         isEdit: true,
         route: '/pages/sector-services/edit/',
-        allowAll: true,
+        allowAll: true
       },
       {
         name: 'DELETE',
         icon: 'pi pi-trash',
         color: 'text-error',
         allowAll: true,
-        isDelete: true,
-      },
+        isDelete: true
+      }
     ];
   }
 }

@@ -8,7 +8,7 @@ export const AR_TRANSLATIONS = {
   ...AR_MENU_LABELS,
   TITLE: {
     PART_ONE: 'جامعة الأقصر',
-    PART_TWO: 'نظام إدارة المعلومات',
+    PART_TWO: 'نظام إدارة المعلومات'
   },
 
   COMMON: {
@@ -22,7 +22,7 @@ export const AR_TRANSLATIONS = {
     DETAILS: 'التفاصيل',
     CODE: 'الرمز',
     RESULT: 'النتائج',
-    NOTES: 'ملاحظات',
+    NOTES: 'ملاحظات'
   },
   ENUM: {},
   ACTIONS: {
@@ -58,27 +58,25 @@ export const AR_TRANSLATIONS = {
     SEND_EMAIL: 'ارسال للبريد الالكتروني',
     CHOOSE_IMAGE: 'اختر صورة',
     REMOVE_IMAGE: 'إزالة الصورة',
-    ADD_POSITION: 'إضافة وظيفة',
+    ADD_POSITION: 'إضافة وظيفة'
   },
   ERRORS: {
     '404': 'الصفحة غير موجودة',
     '401': 'غير مصرح لك بالدخول',
-    'NameAr already exists in the database.': 'هذاالاسم موجود من قبل',
+    'NameAr already exists in the database.': 'هذاالاسم موجود من قبل'
   },
   EMPTY: {
     NO_ITEMS: 'لا يوجد خيارات',
     NO_DEFAULT_VALUES: 'لا يوجد قيم افتراضية حتي الان',
-    NO_DATA_TO_DISPLAY_TABLE: 'لا توجد بيانات لعرضها',
+    NO_DATA_TO_DISPLAY_TABLE: 'لا توجد بيانات لعرضها'
   },
   VALIDATION: {
     REQUIRED: 'حقل مطلوب',
     ARABIC_WORD: 'أدخل حروف بالعربية فقط',
     ENGLISH_WORD: 'أدخل حروف بالإنجليزية فقط',
     LOGIN_SUCCESS: 'تم تسجيل الدخول بنجاح',
-    INVALID_ENGLISH_NAME:
-      'يجب ان تكون الاحرف انجليزية فقط واكثر من 3 واقل من 100',
-    INVALID_ARABIC_NAME:
-      'يجب ان تكون الاحرف العربية فقط واكثر من 3 واقل من 100',
+    INVALID_ENGLISH_NAME: 'يجب ان تكون الاحرف انجليزية فقط واكثر من 3 واقل من 100',
+    INVALID_ARABIC_NAME: 'يجب ان تكون الاحرف العربية فقط واكثر من 3 واقل من 100',
     USERNAME_TAKEN: 'اسم المستخدم هذا مستخدم بالفعل',
     EMAIL_TAKEN: 'البريد الالكترونى مستخدم بالفعل',
     DELETE_CONFIRMATION: 'تأكيد الحذف',
@@ -96,8 +94,7 @@ export const AR_TRANSLATIONS = {
     GET_ERROR: 'خطأ فى جلب البيانات من الخادم',
     GETBYID_ERROR: 'خطأ فى جلب البيانات المحددة',
     INTERNAL_SERVER_ERROR: 'خطأ ف الخادم',
-    PASSWORD_STRENGTH:
-      'يجب ان تتكون كلمة المرور من 8 رموز على الاقل وتشتمل على رقم وحرف كبير وحرف صغير ',
+    PASSWORD_STRENGTH: 'يجب ان تتكون كلمة المرور من 8 رموز على الاقل وتشتمل على رقم وحرف كبير وحرف صغير ',
     PASSWORD_MISMATCH: 'كلمة السر الجديدة غير متطابقة',
     PASSWORD_CHANGED_SUCCESS: 'تم تغيير كلمة المرور بنجاح',
     SERVER_ERROR: 'خطأ في الخادم',
@@ -112,7 +109,7 @@ export const AR_TRANSLATIONS = {
     SEARCH_RESULTS_NOT_FOUND: 'لا توجد نتائج بحث',
     EMPLOYEE_IS_ALREADY_IN_THIS_SENT: 'هذا الموظف موجود بالفعل في هذا الصادر',
     EMAIL: 'صيغة البريد الإلكتروني غير صحيحة',
-    PATTERN: 'رقم الموبايل غير صحيح ',
+    PATTERN: 'رقم الموبايل غير صحيح '
   },
   FIELDS: {
     NAME: 'الاسم',
@@ -124,7 +121,7 @@ export const AR_TRANSLATIONS = {
     EN: ' (بالإنجليزية)',
     AR: ' (بالعربية)',
     COMMENTS: 'ملاحظات',
-    NOTES: 'ملاحظات',
+    NOTES: 'ملاحظات'
   },
   ATTACHMENT: {
     ATTACHMENT: 'المرفق',
@@ -143,16 +140,16 @@ export const AR_TRANSLATIONS = {
       REQUIRED: 'مطلوب ارفاق هذا الملف',
       ALLOWED_TYPES: 'الأنواع المسموح بها هي ',
       ALLOWED_TYPE: 'الأنواع المسموح بها هي',
-      MB: 'ميجا بايت',
+      MB: 'ميجا بايت'
     },
     FAILED: 'فشل تحميل المرفق',
     MSG: 'اسحب ملفك هنا، أو',
     SUB_MSG: 'يدعم::',
-    MAX_FILES_MSG: 'العدد الأقصى للملفات المسموح برفعها: ',
+    MAX_FILES_MSG: 'العدد الأقصى للملفات المسموح برفعها: '
   },
   PAGINATION: 'اظهار {first} إلى {last} من {totalRecords} مدخلات',
   FOOTER: {
     COPYRIGHT: 'جميع الحقوق محفوظة © ',
-    NAME: 'جامعة الأقصر',
-  },
+    NAME: 'جامعة الأقصر'
+  }
 };

@@ -1,32 +1,14 @@
-import {
-  ApplicationConfig,
-  inject,
-  provideAppInitializer,
-  provideBrowserGlobalErrorListeners,
-  provideZoneChangeDetection,
-} from '@angular/core';
+import { ApplicationConfig, inject, provideAppInitializer, provideBrowserGlobalErrorListeners, provideZoneChangeDetection } from '@angular/core';
 import { provideRouter, withViewTransitions } from '@angular/router';
 import { routes } from './app.routes';
 import { providePrimeNG } from 'primeng/config';
 import Aura from '@primeuix/themes/aura';
-import {
-  ConfigService,
-  errorInterceptor,
-  loadingInterceptor,
-  LoadingNgxSpinnerInterceptor,
-} from './core';
-import {
-  DialogService,
-  DynamicDialogConfig,
-  DynamicDialogRef,
-} from 'primeng/dynamicdialog';
+import { ConfigService, errorInterceptor, loadingInterceptor, LoadingNgxSpinnerInterceptor } from './core';
+import { DialogService, DynamicDialogConfig, DynamicDialogRef } from 'primeng/dynamicdialog';
 import { provideHttpClient, withInterceptors } from '@angular/common/http';
 import { provideAnimationsAsync } from '@angular/platform-browser/animations/async';
 import { provideToastr } from 'ngx-toastr';
-import {
-  provideTranslateService,
-  provideTranslateLoader,
-} from '@ngx-translate/core';
+import { provideTranslateService, provideTranslateLoader } from '@ngx-translate/core';
 import { provideTranslateHttpLoader } from '@ngx-translate/http-loader';
 import { environment } from '../environments/environment';
 import { CustomTranslateLoader } from './shared/services/translation/custom-translate-loader.service';
@@ -45,13 +27,7 @@ export const appConfig: ApplicationConfig = {
     DynamicDialogRef,
     DynamicDialogConfig,
     provideAnimationsAsync(),
-    provideHttpClient(
-      withInterceptors([
-        loadingInterceptor,
-        errorInterceptor,
-        LoadingNgxSpinnerInterceptor,
-      ]),
-    ),
+    provideHttpClient(withInterceptors([loadingInterceptor, errorInterceptor, LoadingNgxSpinnerInterceptor])),
     provideRouter(routes),
     providePrimeNG({
       theme: {
@@ -61,20 +37,20 @@ export const appConfig: ApplicationConfig = {
 
           cssLayer: {
             name: 'primeng',
-            order: 'base, theme, primeng',
-          },
-        },
-      },
+            order: 'base, theme, primeng'
+          }
+        }
+      }
     }),
     provideToastr({
       timeOut: 3000,
       positionClass: 'toast-bottom-right',
-      preventDuplicates: true,
+      preventDuplicates: true
     }),
     provideTranslateService({
       loader: provideTranslateLoader(CustomTranslateLoader),
       fallbackLang: environment.defaultLanguage,
-      lang: environment.defaultLanguage,
-    }),
-  ],
+      lang: environment.defaultLanguage
+    })
+  ]
 };

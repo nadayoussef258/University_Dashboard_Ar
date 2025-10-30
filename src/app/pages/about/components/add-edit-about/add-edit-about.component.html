@@ -2,68 +2,29 @@
   @if (form) {
     <form method="post" class="grid gap-4 grid-cols-12" [formGroup]="form">
       <div class="col-span-12">
-        <app-prime-input-text
-          [formGroup]="form"
-          controlName="content"
-          [label]="'PAGES.ABOUT.FORM.CONTENT'"
-          [inputType]="'textarea'"
-        >
-        </app-prime-input-text>
+        <app-prime-input-text [formGroup]="form" controlName="content" [label]="'PAGES.ABOUT.FORM.CONTENT'" [inputType]="'textarea'"> </app-prime-input-text>
       </div>
 
       <div class="col-span-12 md:col-span-6">
-        <app-prime-input-text
-          [formGroup]="form"
-          controlName="mission"
-          [label]="'PAGES.ABOUT.FORM.MISSION'"
-          [inputType]="'textarea'"
-        >
-        </app-prime-input-text>
+        <app-prime-input-text [formGroup]="form" controlName="mission" [label]="'PAGES.ABOUT.FORM.MISSION'" [inputType]="'textarea'"> </app-prime-input-text>
       </div>
 
       <div class="col-span-12 md:col-span-6">
-        <app-prime-input-text
-          [formGroup]="form"
-          controlName="vision"
-          [label]="'PAGES.ABOUT.FORM.VISION'"
-          [inputType]="'textarea'"
-        >
-        </app-prime-input-text>
+        <app-prime-input-text [formGroup]="form" controlName="vision" [label]="'PAGES.ABOUT.FORM.VISION'" [inputType]="'textarea'"> </app-prime-input-text>
       </div>
 
       <div class="col-span-12">
-        <app-prime-input-text
-          [formGroup]="form"
-          controlName="history"
-          [label]="'PAGES.ABOUT.FORM.HISTORY'"
-          [inputType]="'textarea'"
-        >
-        </app-prime-input-text>
+        <app-prime-input-text [formGroup]="form" controlName="history" [label]="'PAGES.ABOUT.FORM.HISTORY'" [inputType]="'textarea'"> </app-prime-input-text>
       </div>
 
       <div class="form-col">
-        <label class="text-middle mb-2">{{
-          "PAGES.ABOUT.FORM.PAGE" | translate
-        }}</label>
-        <app-prime-autocomplete
-          [field]="'title'"
-          [selectedOption]="selectedPage"
-          [suggestions]="filteredPages"
-          [formGroup]="form"
-          (onSelect)="onPageSelect($event)"
-          [lazy]="false"
-          (handleMethod)="getPages($event)"
-        ></app-prime-autocomplete>
+        <label class="text-middle mb-2">{{ 'PAGES.ABOUT.FORM.PAGE' | translate }}</label>
+        <app-prime-autocomplete [field]="'title'" [selectedOption]="selectedPage" [suggestions]="filteredPages" [formGroup]="form" (onSelect)="onPageSelect($event)" [lazy]="false" (handleMethod)="getPages($event)"></app-prime-autocomplete>
       </div>
     </form>
   }
 </p-card>
 
 @if (form) {
-  <app-submit-buttons
-    [isSubmitDisabled]="form.invalid"
-    [submitBtnLabel]="pageType === 'add' ? 'ACTIONS.SUBMIT' : 'ACTIONS.SAVE'"
-    (submit)="submit()"
-    (cancel)="closeDialog()"
-  />
+  <app-submit-buttons [isSubmitDisabled]="form.invalid" [submitBtnLabel]="pageType === 'add' ? 'ACTIONS.SUBMIT' : 'ACTIONS.SAVE'" (submit)="submit()" (cancel)="closeDialog()" />
 }

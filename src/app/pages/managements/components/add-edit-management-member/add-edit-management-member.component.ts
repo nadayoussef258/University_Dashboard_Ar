@@ -2,12 +2,7 @@ import { Component, inject, OnInit } from '@angular/core';
 import { BaseEditComponent } from '../../../../base/components/base-edit-component';
 import { CardModule } from 'primeng/card';
 import { FormsModule, ReactiveFormsModule, Validators } from '@angular/forms';
-import {
-  ManagementMembersService,
-  ManagementsService,
-  PrimeAutoCompleteComponent,
-  SubmitButtonsComponent,
-} from '../../../../shared';
+import { ManagementMembersService, ManagementsService, PrimeAutoCompleteComponent, SubmitButtonsComponent } from '../../../../shared';
 import { DialogService } from 'primeng/dynamicdialog';
 import { ActivatedRoute } from '@angular/router';
 import { ToggleSwitch } from 'primeng/toggleswitch';
@@ -17,32 +12,17 @@ import { TranslatePipe } from '@ngx-translate/core';
 
 @Component({
   selector: 'app-add-edit-management-member',
-  imports: [
-    CardModule,
-    FormsModule,
-    ReactiveFormsModule,
-    SubmitButtonsComponent,
-    PrimeAutoCompleteComponent,
-    ToggleSwitch,
-    NgClass,
-    ToggleSwitch,
-    TranslatePipe,
-  ],
+  imports: [CardModule, FormsModule, ReactiveFormsModule, SubmitButtonsComponent, PrimeAutoCompleteComponent, ToggleSwitch, NgClass, ToggleSwitch, TranslatePipe],
   templateUrl: './add-edit-management-member.component.html',
-  styleUrl: './add-edit-management-member.component.css',
+  styleUrl: './add-edit-management-member.component.css'
 })
 //
-export class AddEditManagementMemberComponent
-  extends BaseEditComponent
-  implements OnInit
-{
+export class AddEditManagementMemberComponent extends BaseEditComponent implements OnInit {
   managementId: string = '';
   selectedManagement: any;
   filteredManagements: any[] = [];
 
-  managementMembersService: ManagementMembersService = inject(
-    ManagementMembersService,
-  );
+  managementMembersService: ManagementMembersService = inject(ManagementMembersService);
   managementsService: ManagementsService = inject(ManagementsService);
   managementIdService: ManagementIdService = inject(ManagementIdService);
   dialogService: DialogService = inject(DialogService);
@@ -74,7 +54,7 @@ export class AddEditManagementMemberComponent
   initFormGroup() {
     this.form = this.fb.group({
       isLeader: [false],
-      managementId: [this.managementId, Validators.required],
+      managementId: [this.managementId, Validators.required]
     });
   }
 
@@ -82,13 +62,11 @@ export class AddEditManagementMemberComponent
     const query = event.query.toLowerCase();
     this.managementsService.managements.subscribe({
       next: (res: any) => {
-        this.filteredManagements = res.filter((management: any) =>
-          management.pageId.includes(query),
-        );
+        this.filteredManagements = res.filter((management: any) => management.pageId.includes(query));
       },
       error: (err) => {
         this.alert.error('خطأ فى جلب الادارات');
-      },
+      }
     });
   }
 
@@ -99,24 +77,18 @@ export class AddEditManagementMemberComponent
 
   fetchManagementDetails(managementMember: any) {
     this.managementsService.managements.subscribe((response: any) => {
-      this.filteredManagements = Array.isArray(response)
-        ? response
-        : response.data || [];
-      this.selectedManagement = this.filteredManagements.find(
-        (management: any) => management.id === managementMember.managementId,
-      );
+      this.filteredManagements = Array.isArray(response) ? response : response.data || [];
+      this.selectedManagement = this.filteredManagements.find((management: any) => management.id === managementMember.managementId);
       this.form.get('managementId')?.setValue(this.selectedManagement.id);
     });
   }
 
   getEditManagementMember = () => {
-    this.managementMembersService
-      .getManagementMember(this.id())
-      .subscribe((managementMember: any) => {
-        this.initFormGroup();
-        this.form.patchValue(managementMember);
-        this.fetchManagementDetails(managementMember);
-      });
+    this.managementMembersService.getManagementMember(this.id()).subscribe((managementMember: any) => {
+      this.initFormGroup();
+      this.form.patchValue(managementMember);
+      this.fetchManagementDetails(managementMember);
+    });
   };
 
   submit() {
@@ -125,11 +97,9 @@ export class AddEditManagementMemberComponent
         this.closeDialog();
       });
     if (this.pageType === 'edit')
-      this.managementMembersService
-        .update({ id: this.id(), ...this.form.value })
-        .subscribe(() => {
-          this.closeDialog();
-        });
+      this.managementMembersService.update({ id: this.id(), ...this.form.value }).subscribe(() => {
+        this.closeDialog();
+      });
   }
 
   closeDialog() {

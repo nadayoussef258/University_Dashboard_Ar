@@ -2,36 +2,18 @@
   @if (form) {
     <form method="post" class="grid gap-4 grid-cols-12" [formGroup]="form">
       <div class="col-span-12">
-        <app-prime-input-text
-          [formGroup]="form"
-          controlName="fullName"
-          [label]="'PAGES.LEADERS.FORM.FULL_NAME'"
-        >
-        </app-prime-input-text>
+        <app-prime-input-text [formGroup]="form" controlName="fullName" [label]="'PAGES.LEADERS.FORM.FULL_NAME'"> </app-prime-input-text>
       </div>
 
       <div class="col-span-12 md:col-span-6">
-        <app-prime-input-text
-          [formGroup]="form"
-          controlName="position"
-          [label]="'PAGES.LEADERS.FORM.POSITION'"
-        >
-        </app-prime-input-text>
+        <app-prime-input-text [formGroup]="form" controlName="position" [label]="'PAGES.LEADERS.FORM.POSITION'"> </app-prime-input-text>
       </div>
 
       <div class="form-col">
         <label class="text-middle mb-2">
-          {{ "PAGES.LEADERS.FORM.MEMBER" | translate }}
+          {{ 'PAGES.LEADERS.FORM.MEMBER' | translate }}
         </label>
-        <app-prime-autocomplete
-          [field]="'title'"
-          [selectedOption]="selectedMember"
-          [suggestions]="filteredMembers"
-          [formGroup]="form"
-          (onSelect)="onMemberSelect($event)"
-          [lazy]="false"
-          (handleMethod)="getMembers($event)"
-        ></app-prime-autocomplete>
+        <app-prime-autocomplete [field]="'title'" [selectedOption]="selectedMember" [suggestions]="filteredMembers" [formGroup]="form" (onSelect)="onMemberSelect($event)" [lazy]="false" (handleMethod)="getMembers($event)"></app-prime-autocomplete>
       </div>
 
       <!-- Attachment here -->
@@ -40,10 +22,5 @@
 </p-card>
 
 @if (form) {
-  <app-submit-buttons
-    [isSubmitDisabled]="form.invalid"
-    [submitBtnLabel]="pageType === 'add' ? 'ACTIONS.SUBMIT' : 'ACTIONS.SAVE'"
-    (submit)="submit()"
-    (cancel)="closeDialog()"
-  />
+  <app-submit-buttons [isSubmitDisabled]="form.invalid" [submitBtnLabel]="pageType === 'add' ? 'ACTIONS.SUBMIT' : 'ACTIONS.SAVE'" (submit)="submit()" (cancel)="closeDialog()" />
 }

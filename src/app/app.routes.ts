@@ -12,21 +12,20 @@ export const routes: Routes = [
       { path: '', component: Dashboard },
       {
         path: 'pages',
-        loadChildren: () =>
-          import('../app/pages/pages.routes').then((m) => m.pagesRoutes),
-      },
-    ],
+        loadChildren: () => import('../app/pages/pages.routes').then((m) => m.pagesRoutes)
+      }
+    ]
   },
   { path: 'landing', component: Landing },
   { path: 'auth', loadChildren: () => import('../app/pages/auth/auth.routes') },
   {
     path: 'notfound-404',
-    component: Notfound,
+    component: Notfound
   },
 
   {
     path: '**',
     redirectTo: '/notfound-404',
-    pathMatch: 'full',
-  },
+    pathMatch: 'full'
+  }
 ];

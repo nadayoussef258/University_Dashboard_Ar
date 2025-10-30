@@ -7,12 +7,7 @@ import { PasswordModule } from 'primeng/password';
 import { RippleModule } from 'primeng/ripple';
 import { Router, RouterModule } from '@angular/router';
 // import { PagesEnums } from 'src/app/api/enums/pages.enum';
-import {
-  FormBuilder,
-  FormControl,
-  FormGroup,
-  Validators,
-} from '@angular/forms';
+import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 
 import { AlertService } from '../../pages/core/service/alert/alert.service';
 // import { Shell } from 'src/app/demo/pages/base/components/shell';
@@ -23,64 +18,23 @@ import { AppFloatingConfigurator } from '../../layout/component/app.floatingconf
 @Component({
   selector: 'app-login',
 
-  imports: [
-    ButtonModule,
-    CheckboxModule,
-    InputTextModule,
-    PasswordModule,
-    FormsModule,
-    RouterModule,
-    RippleModule,
-  ],
+  imports: [ButtonModule, CheckboxModule, InputTextModule, PasswordModule, FormsModule, RouterModule, RippleModule],
   template: `
     <!-- <app-floating-configurator /> -->
-    <div
-      class="flex  min-h-screen bg-surface-50 min-w-[50vw] items-center justify-center overflow-hidden"
-    >
+    <div class="flex  min-h-screen bg-surface-50 min-w-[50vw] items-center justify-center overflow-hidden">
       <div class="flex flex-col items-center justify-center">
         <div style="background-color:#259BAA;border-radius: 20px">
-          <div
-            class="bg-surface-0 w-full dark:bg-surface-900 "
-            style=" background-color:#D9D9D9 ;border-radius: 20px"
-          >
+          <div class="bg-surface-0 w-full dark:bg-surface-900 " style=" background-color:#D9D9D9 ;border-radius: 20px">
             <div class="text-center mb-8">
-              <div
-                class="font-medium   mb-4 py-3 text-surface-900 text-3xl "
-                style="background-color:#0D0A52; color:#EEEE; border-top-left-radius: 10px;border-top-right-radius: 20px"
-              >
-                تسجيل الدخول
-              </div>
+              <div class="font-medium   mb-4 py-3 text-surface-900 text-3xl " style="background-color:#0D0A52; color:#EEEE; border-top-left-radius: 10px;border-top-right-radius: 20px">تسجيل الدخول</div>
             </div>
 
             <div dir="rtl" class="p-6 ">
-              <label
-                for="email1"
-                class="font-medium text-xl mb-2 text-surface-900 block dark:text-surface-0  "
-                >البريد الالكترونى</label
-              >
-              <input
-                pInputText
-                id="email1"
-                type="text"
-                placeholder="Email address"
-                class="mb-8 w-75 md:w-[30rem]!"
-                [(ngModel)]="email"
-              />
+              <label for="email1" class="font-medium text-xl mb-2 text-surface-900 block dark:text-surface-0  ">البريد الالكترونى</label>
+              <input pInputText id="email1" type="text" placeholder="Email address" class="mb-8 w-75 md:w-[30rem]!" [(ngModel)]="email" />
 
-              <label
-                for="password1"
-                class="font-medium text-xl mb-2 text-surface-900 block dark:text-surface-0"
-                >الرقم السرى</label
-              >
-              <p-password
-                id="password1"
-                [(ngModel)]="password"
-                placeholder="Password"
-                [toggleMask]="true"
-                class="mb-4"
-                [fluid]="true"
-                [feedback]="false"
-              ></p-password>
+              <label for="password1" class="font-medium text-xl mb-2 text-surface-900 block dark:text-surface-0">الرقم السرى</label>
+              <p-password id="password1" [(ngModel)]="password" placeholder="Password" [toggleMask]="true" class="mb-4" [fluid]="true" [feedback]="false"></p-password>
 
               <div class="flex mt-2 mb-8 gap-8 items-center justify-between">
                 <!-- <div class="flex items-center">
@@ -90,18 +44,14 @@ import { AppFloatingConfigurator } from '../../layout/component/app.floatingconf
                 <!-- <span class="cursor-pointer font-medium text-right text-primary ml-2 no-underline">هل نسيت كلمة السر ؟</span> -->
               </div>
               <div class="flex items-center justify-center">
-                <p-button
-                  label="دخول"
-                  styleClass="p-login-button"
-                  routerLink="/"
-                ></p-button>
+                <p-button label="دخول" styleClass="p-login-button" routerLink="/"></p-button>
               </div>
             </div>
           </div>
         </div>
       </div>
     </div>
-  `,
+  `
 })
 export class Login implements OnInit {
   email: string = '';
@@ -115,13 +65,13 @@ export class Login implements OnInit {
 
   constructor(
     private router: Router,
-    private formBuilder: FormBuilder,
+    private formBuilder: FormBuilder
   ) {}
 
   ngOnInit() {
     this.loginForm = this.formBuilder.group({
       Email: new FormControl('', [Validators.required, Validators.email]), // Validators.pattern()
-      Password: new FormControl('', [Validators.required]),
+      Password: new FormControl('', [Validators.required])
     });
   }
 

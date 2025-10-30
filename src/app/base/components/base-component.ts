@@ -1,10 +1,4 @@
-import {
-  OnInit,
-  Directive,
-  OnDestroy,
-  inject,
-  DestroyRef,
-} from '@angular/core';
+import { OnInit, Directive, OnDestroy, inject, DestroyRef } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { AlertService } from '../../core';
 import { ExportExcelService } from '../../shared/services/export-excel/export-excel.service';

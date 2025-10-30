@@ -2,42 +2,20 @@
   @if (form) {
     <form method="post" class="grid gap-4 grid-cols-12" [formGroup]="form">
       <div class="col-span-12">
-        <app-prime-input-text
-          [formGroup]="form"
-          controlName="title"
-          [label]="'PAGES.PAGE.FORM.TITLE'"
-        >
-        </app-prime-input-text>
+        <app-prime-input-text [formGroup]="form" controlName="title" [label]="'PAGES.PAGE.FORM.TITLE'"> </app-prime-input-text>
       </div>
 
       <div class="col-span-12">
-        <app-prime-input-text
-          [formGroup]="form"
-          controlName="content"
-          [label]="'PAGES.PAGE.FORM.CONTENT'"
-          [inputType]="'textarea'"
-        >
-        </app-prime-input-text>
+        <app-prime-input-text [formGroup]="form" controlName="content" [label]="'PAGES.PAGE.FORM.CONTENT'" [inputType]="'textarea'"> </app-prime-input-text>
       </div>
 
       <div class="col-span-12 lg:col-span-4">
         <label class="text-middle mb-2">
-          {{ "PAGES.PAGE.FORM.STATUS" | translate }}
+          {{ 'PAGES.PAGE.FORM.STATUS' | translate }}
         </label>
-        <div
-          class="col field d-flex justify-content-evenly"
-          style="flex-grow: 8"
-        >
+        <div class="col field d-flex justify-content-evenly" style="flex-grow: 8">
           @for (statusOption of statusOptions; track $index) {
-            <app-prime-radio-button
-              [formGroup]="form"
-              controlName="status"
-              [groupName]="'typeGroup'"
-              class="check"
-              [value]="statusOption.nameEn"
-              [label]="statusOption.nameAr"
-            >
-            </app-prime-radio-button>
+            <app-prime-radio-button [formGroup]="form" controlName="status" [groupName]="'typeGroup'" class="check" [value]="statusOption.nameEn" [label]="statusOption.nameAr"> </app-prime-radio-button>
           }
         </div>
       </div>
@@ -46,10 +24,5 @@
 </p-card>
 
 @if (form) {
-  <app-submit-buttons
-    [isSubmitDisabled]="form.invalid"
-    [submitBtnLabel]="pageType === 'add' ? 'ACTIONS.SUBMIT' : 'ACTIONS.SAVE'"
-    (submit)="submit()"
-    (cancel)="closeDialog()"
-  />
+  <app-submit-buttons [isSubmitDisabled]="form.invalid" [submitBtnLabel]="pageType === 'add' ? 'ACTIONS.SUBMIT' : 'ACTIONS.SAVE'" (submit)="submit()" (cancel)="closeDialog()" />
 }

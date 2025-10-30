@@ -2,11 +2,7 @@ import { Component, inject, OnInit } from '@angular/core';
 import { BaseEditComponent } from '../../../../../base/components/base-edit-component';
 import { CardModule } from 'primeng/card';
 import { FormsModule, ReactiveFormsModule, Validators } from '@angular/forms';
-import {
-  PrimeInputTextComponent,
-  StatisticsService,
-  SubmitButtonsComponent,
-} from '../../../../../shared';
+import { PrimeInputTextComponent, StatisticsService, SubmitButtonsComponent } from '../../../../../shared';
 import { DialogService } from 'primeng/dynamicdialog';
 import { ActivatedRoute } from '@angular/router';
 import { ToggleSwitchModule } from 'primeng/toggleswitch';
@@ -15,23 +11,11 @@ import { NgClass } from '@angular/common';
 
 @Component({
   selector: 'app-add-edit-statistic',
-  imports: [
-    CardModule,
-    FormsModule,
-    ReactiveFormsModule,
-    SubmitButtonsComponent,
-    PrimeInputTextComponent,
-    ToggleSwitchModule,
-    NgClass,
-    TranslatePipe,
-  ],
+  imports: [CardModule, FormsModule, ReactiveFormsModule, SubmitButtonsComponent, PrimeInputTextComponent, ToggleSwitchModule, NgClass, TranslatePipe],
   templateUrl: './add-edit-statistic.component.html',
-  styleUrl: './add-edit-statistic.component.css',
+  styleUrl: './add-edit-statistic.component.css'
 })
-export class AddEditStatisticComponent
-  extends BaseEditComponent
-  implements OnInit
-{
+export class AddEditStatisticComponent extends BaseEditComponent implements OnInit {
   statisticsService: StatisticsService = inject(StatisticsService);
   dialogService: DialogService = inject(DialogService);
 
@@ -60,17 +44,15 @@ export class AddEditStatisticComponent
       title: ['', Validators.required],
       value: ['', Validators.required],
       iconPath: ['', Validators.required],
-      isActive: [false],
+      isActive: [false]
     });
   }
 
   getEditStatistics = () => {
-    this.statisticsService
-      .getEditStatistic(this.id())
-      .subscribe((page: any) => {
-        this.initFormGroup();
-        this.form.patchValue(page);
-      });
+    this.statisticsService.getEditStatistic(this.id()).subscribe((page: any) => {
+      this.initFormGroup();
+      this.form.patchValue(page);
+    });
   };
 
   submit() {
@@ -81,11 +63,9 @@ export class AddEditStatisticComponent
     }
 
     if (this.pageType === 'edit') {
-      this.statisticsService
-        .update({ id: this.id(), ...this.form.value })
-        .subscribe(() => {
-          this.closeDialog();
-        });
+      this.statisticsService.update({ id: this.id(), ...this.form.value }).subscribe(() => {
+        this.closeDialog();
+      });
     }
   }
 

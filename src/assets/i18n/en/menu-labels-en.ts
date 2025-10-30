@@ -41,6 +41,6 @@ export const EN_MENU_LABELS = {
     ABOUT_UNIVERSITY: 'About University',
     ACTIONS: 'Actions',
     CATEGORIES: 'Categories',
-    PAGES: 'Pages',
-  },
+    PAGES: 'Pages'
+  }
 };

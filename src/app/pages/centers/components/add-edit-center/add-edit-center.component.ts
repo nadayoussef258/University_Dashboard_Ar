@@ -2,16 +2,7 @@ import { Component, inject, OnInit } from '@angular/core';
 import { BaseEditComponent } from '../../../../base/components/base-edit-component';
 import { CardModule } from 'primeng/card';
 import { FormsModule, ReactiveFormsModule, Validators } from '@angular/forms';
-import {
-  AboutService,
-  ActionsService,
-  CentersService,
-  ManagementsService,
-  PagesService,
-  PrimeAutoCompleteComponent,
-  PrimeInputTextComponent,
-  SubmitButtonsComponent,
-} from '../../../../shared';
+import { AboutService, ActionsService, CentersService, ManagementsService, PagesService, PrimeAutoCompleteComponent, PrimeInputTextComponent, SubmitButtonsComponent } from '../../../../shared';
 import { DialogService } from 'primeng/dynamicdialog';
 import { ActivatedRoute } from '@angular/router';
 import { CenterIdService } from '../../center-id.service';
@@ -19,23 +10,12 @@ import { TranslatePipe } from '@ngx-translate/core';
 
 @Component({
   selector: 'app-add-edit-center',
-  imports: [
-    CardModule,
-    FormsModule,
-    ReactiveFormsModule,
-    SubmitButtonsComponent,
-    PrimeInputTextComponent,
-    PrimeAutoCompleteComponent,
-    TranslatePipe,
-  ],
+  imports: [CardModule, FormsModule, ReactiveFormsModule, SubmitButtonsComponent, PrimeInputTextComponent, PrimeAutoCompleteComponent, TranslatePipe],
   templateUrl: './add-edit-center.component.html',
-  styleUrl: './add-edit-center.component.css',
+  styleUrl: './add-edit-center.component.css'
 })
 //
-export class AddEditCenterComponent
-  extends BaseEditComponent
-  implements OnInit
-{
+export class AddEditCenterComponent extends BaseEditComponent implements OnInit {
   centerId: string = '';
 
   selectedPage: any;
@@ -72,7 +52,7 @@ export class AddEditCenterComponent
       subTitle: ['', Validators.required],
       place: ['', Validators.required],
       pageId: [null, Validators.required],
-      aboutId: [null, Validators.required],
+      aboutId: [null, Validators.required]
     });
   }
 
@@ -80,13 +60,11 @@ export class AddEditCenterComponent
     const query = event.query.toLowerCase();
     this.pagesService.pages.subscribe({
       next: (res: any) => {
-        this.filteredPages = res.filter((page: any) =>
-          page.title.toLowerCase().includes(query),
-        );
+        this.filteredPages = res.filter((page: any) => page.title.toLowerCase().includes(query));
       },
       error: (err) => {
         this.alert.error('خطأ فى جلب بيانات الصفحات');
-      },
+      }
     });
   }
 
@@ -97,12 +75,8 @@ export class AddEditCenterComponent
 
   fetchPagesDetails(management: any) {
     this.pagesService.pages.subscribe((response: any) => {
-      this.filteredPages = Array.isArray(response)
-        ? response
-        : response.data || [];
-      this.selectedPage = this.filteredPages.find(
-        (page: any) => page.id === management.pageId,
-      );
+      this.filteredPages = Array.isArray(response) ? response : response.data || [];
+      this.selectedPage = this.filteredPages.find((page: any) => page.id === management.pageId);
       this.form.get('pageId')?.setValue(this.selectedPage.id);
     });
   }
@@ -111,13 +85,11 @@ export class AddEditCenterComponent
     const query = event.query.toLowerCase();
     this.aboutService.abouts.subscribe({
       next: (res: any) => {
-        this.filteredAbout = res.filter((about: any) =>
-          about.content.toLowerCase().includes(query),
-        );
+        this.filteredAbout = res.filter((about: any) => about.content.toLowerCase().includes(query));
       },
       error: (err) => {
         this.alert.error('خطأ فى جلب بيانات عن الجامعة');
-      },
+      }
     });
   }
 
@@ -128,12 +100,8 @@ export class AddEditCenterComponent
 
   fetchAboutDetails(management: any) {
     this.aboutService.abouts.subscribe((response: any) => {
-      this.filteredAbout = Array.isArray(response)
-        ? response
-        : response.data || [];
-      this.selectedAbout = this.filteredAbout.find(
-        (about: any) => about.id === management.aboutId,
-      );
+      this.filteredAbout = Array.isArray(response) ? response : response.data || [];
+      this.selectedAbout = this.filteredAbout.find((about: any) => about.id === management.aboutId);
       this.form.get('aboutId')?.setValue(this.selectedAbout.id);
     });
   }
@@ -153,11 +121,9 @@ export class AddEditCenterComponent
         this.redirect();
       });
     if (this.pageType === 'edit')
-      this.centersService
-        .update({ id: this.id(), ...this.form.value })
-        .subscribe(() => {
-          this.redirect();
-        });
+      this.centersService.update({ id: this.id(), ...this.form.value }).subscribe(() => {
+        this.redirect();
+      });
   }
 
   override redirect = () => {

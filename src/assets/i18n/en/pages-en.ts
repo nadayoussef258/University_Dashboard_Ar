@@ -12,104 +12,104 @@ export const EN_PAGES_SETTINGS = {
       IS_LEADER: {
         TITLE: 'Role',
         LEADER: 'Administrator',
-        PERSON: 'User',
-      },
+        PERSON: 'User'
+      }
     },
     HOME: {
-      TITLE: 'Home',
+      TITLE: 'Home'
     },
     DASHBOARD: {
-      TITLE: 'Dashboard',
+      TITLE: 'Dashboard'
     },
     ACTION: {
       MAIN: {
-        PAGE_TITLE: 'Actions',
+        PAGE_TITLE: 'Actions'
       },
       ADD: {
-        PAGE_TITLE: 'Add Action',
+        PAGE_TITLE: 'Add Action'
       },
       EDIT: {
-        PAGE_TITLE: 'Edit Action',
+        PAGE_TITLE: 'Edit Action'
       },
       FORM: {
         CODE: 'Code',
-        NAME: 'Action Name',
-      },
+        NAME: 'Action Name'
+      }
     },
     CATEGORIES: {
       MAIN: {
-        PAGE_TITLE: 'Categories',
+        PAGE_TITLE: 'Categories'
       },
       ADD: {
-        PAGE_TITLE: 'Add Category',
+        PAGE_TITLE: 'Add Category'
       },
       EDIT: {
-        PAGE_TITLE: 'Edit Category',
+        PAGE_TITLE: 'Edit Category'
       },
       FORM: {
         CODE: 'Code',
-        NAME: 'Category Name',
-      },
+        NAME: 'Category Name'
+      }
     },
     ABOUT: {
       MAIN: {
-        PAGE_TITLE: 'About Us',
+        PAGE_TITLE: 'About Us'
       },
       ADD: {
-        PAGE_TITLE: 'Add About Us',
+        PAGE_TITLE: 'Add About Us'
       },
       EDIT: {
-        PAGE_TITLE: 'Edit About Us',
+        PAGE_TITLE: 'Edit About Us'
       },
       FORM: {
         CONTENT: 'Content',
         MISSION: 'Mission',
         VISION: 'Vision',
         HISTORY: 'History',
-        PAGE: 'Page',
-      },
+        PAGE: 'Page'
+      }
     },
     PAGE: {
       MAIN: {
-        PAGE_TITLE: 'Pages',
+        PAGE_TITLE: 'Pages'
       },
       ADD: {
-        PAGE_TITLE: 'Add Page',
+        PAGE_TITLE: 'Add Page'
       },
       EDIT: {
-        PAGE_TITLE: 'Edit Page',
+        PAGE_TITLE: 'Edit Page'
       },
       FORM: {
         TITLE: 'Title',
         CONTENT: 'Content',
-        STATUS: 'Status',
-      },
+        STATUS: 'Status'
+      }
     },
     LEADERS: {
       MAIN: {
-        PAGE_TITLE: 'Leaders',
+        PAGE_TITLE: 'Leaders'
       },
       ADD: {
-        PAGE_TITLE: 'Add Leader',
+        PAGE_TITLE: 'Add Leader'
       },
       EDIT: {
-        PAGE_TITLE: 'Edit Leader Information',
+        PAGE_TITLE: 'Edit Leader Information'
       },
       FORM: {
         FULL_NAME: 'Full Name',
         POSITION: 'Position',
-        MEMBER: 'Academic Staff Member',
-      },
+        MEMBER: 'Academic Staff Member'
+      }
     },
     MEMBERS: {
       MAIN: {
-        PAGE_TITLE: 'Academic Staff Members',
+        PAGE_TITLE: 'Academic Staff Members'
       },
       ADD: {
-        PAGE_TITLE: 'Add Academic Staff Member',
+        PAGE_TITLE: 'Add Academic Staff Member'
       },
       EDIT: {
-        PAGE_TITLE: 'Edit Academic Staff Member',
+        PAGE_TITLE: 'Edit Academic Staff Member'
       },
       FORM: {
         FULL_NAME: 'Full Name',
@@ -119,261 +119,261 @@ export const EN_PAGES_SETTINGS = {
           QUESTION_ALLOW_EDIT: 'Is he the university president ?',
           TITLE: 'Role',
           PRESIDENT: 'University President',
-          MEMBER: 'Academic Staff Member',
-        },
-      },
+          MEMBER: 'Academic Staff Member'
+        }
+      }
     },
     MANAGEMENTS: {
       MAIN: {
-        PAGE_TITLE: 'Managements',
+        PAGE_TITLE: 'Managements'
       },
       ADD: {
-        PAGE_TITLE: 'Add Management',
+        PAGE_TITLE: 'Add Management'
       },
       EDIT: {
-        PAGE_TITLE: 'Edit Management',
-      },
+        PAGE_TITLE: 'Edit Management'
+      }
     },
     MANAGEMENT_DETAILS: {
       MAIN: {
-        PAGE_TITLE: 'Management Details',
+        PAGE_TITLE: 'Management Details'
       },
       ADD: {
-        PAGE_TITLE: 'Add Management Detail',
+        PAGE_TITLE: 'Add Management Detail'
       },
       EDIT: {
-        PAGE_TITLE: 'Edit Management Detail',
+        PAGE_TITLE: 'Edit Management Detail'
       },
       FORM: {
         TITLE: 'Title',
         DESCRIPTION: 'Description',
-        CONTENT: 'Content',
-      },
+        CONTENT: 'Content'
+      }
     },
     MANAGEMENT_MEMBERS: {
       MAIN: {
-        PAGE_TITLE: 'Management Members',
+        PAGE_TITLE: 'Management Members'
       },
       ADD: {
-        PAGE_TITLE: 'Add Management Member',
+        PAGE_TITLE: 'Add Management Member'
       },
       EDIT: {
-        PAGE_TITLE: 'Edit Management Member',
+        PAGE_TITLE: 'Edit Management Member'
       },
       FORM: {
-        QUESTION_ALLOW_EDIT: 'Do you want to modify the management ?',
-      },
+        QUESTION_ALLOW_EDIT: 'Do you want to modify the management ?'
+      }
     },
     UNITS: {
       MAIN: {
-        PAGE_TITLE: 'Units',
+        PAGE_TITLE: 'Units'
       },
       ADD: {
-        PAGE_TITLE: 'Add Unit',
+        PAGE_TITLE: 'Add Unit'
       },
       EDIT: {
-        PAGE_TITLE: 'Edit Unit',
-      },
+        PAGE_TITLE: 'Edit Unit'
+      }
     },
     UNIT_DETAILS: {
       MAIN: {
-        PAGE_TITLE: 'Unit Details',
+        PAGE_TITLE: 'Unit Details'
       },
       ADD: {
-        PAGE_TITLE: 'Add Unit Detail',
+        PAGE_TITLE: 'Add Unit Detail'
       },
       EDIT: {
-        PAGE_TITLE: 'Edit Unit Detail',
+        PAGE_TITLE: 'Edit Unit Detail'
       },
       FORM: {
         TITLE: 'Title',
         DESCRIPTION: 'Description',
-        UNIT_PLACE: 'Unit Location',
-      },
+        UNIT_PLACE: 'Unit Location'
+      }
     },
     UNIT_MEMBERS: {
       MAIN: {
-        PAGE_TITLE: 'Unit Members',
+        PAGE_TITLE: 'Unit Members'
       },
       ADD: {
-        PAGE_TITLE: 'Add Unit Member',
+        PAGE_TITLE: 'Add Unit Member'
       },
       EDIT: {
-        PAGE_TITLE: 'Edit Unit Member',
+        PAGE_TITLE: 'Edit Unit Member'
       },
       FORM: {
-        QUESTION_ALLOW_EDIT: 'Do you want to modify the unit ?',
-      },
+        QUESTION_ALLOW_EDIT: 'Do you want to modify the unit ?'
+      }
     },
     PROGRAMS: {
       MAIN: {
-        PAGE_TITLE: 'Programs',
+        PAGE_TITLE: 'Programs'
       },
       ADD: {
-        PAGE_TITLE: 'Add Program',
+        PAGE_TITLE: 'Add Program'
       },
       EDIT: {
-        PAGE_TITLE: 'Edit Program',
-      },
+        PAGE_TITLE: 'Edit Program'
+      }
     },
     PROGRAM_DETAILS: {
       MAIN: {
-        PAGE_TITLE: 'Program Details',
+        PAGE_TITLE: 'Program Details'
       },
       ADD: {
-        PAGE_TITLE: 'Add Program Detail',
+        PAGE_TITLE: 'Add Program Detail'
       },
       EDIT: {
-        PAGE_TITLE: 'Edit Program Detail',
+        PAGE_TITLE: 'Edit Program Detail'
       },
       FORM: {
         TITLE: 'Title',
         PROGRAM_CATEGORY: 'Program Category',
         CONTENT: 'Content',
-        FACULTY: 'Faculty',
-      },
+        FACULTY: 'Faculty'
+      }
     },
     PROGRAM_MEMBERS: {
       MAIN: {
-        PAGE_TITLE: 'Program Members',
+        PAGE_TITLE: 'Program Members'
       },
       ADD: {
-        PAGE_TITLE: 'Add Program Member',
+        PAGE_TITLE: 'Add Program Member'
       },
       EDIT: {
-        PAGE_TITLE: 'Edit Program Member',
+        PAGE_TITLE: 'Edit Program Member'
       },
       FORM: {
-        QUESTION_ALLOW_EDIT: 'Do you want to modify the program ?',
-      },
+        QUESTION_ALLOW_EDIT: 'Do you want to modify the program ?'
+      }
     },
     CENTERS: {
       MAIN: {
-        PAGE_TITLE: 'Centers',
+        PAGE_TITLE: 'Centers'
       },
       ADD: {
-        PAGE_TITLE: 'Add Center',
+        PAGE_TITLE: 'Add Center'
       },
       EDIT: {
-        PAGE_TITLE: 'Edit Center',
+        PAGE_TITLE: 'Edit Center'
       },
       FORM: {
         SUB_TITLE: 'SubTitle',
-        PLACE: 'Place',
-      },
+        PLACE: 'Place'
+      }
     },
     CENTER_DETAILS: {
       MAIN: {
-        PAGE_TITLE: 'Centers Details',
+        PAGE_TITLE: 'Centers Details'
       },
       ADD: {
-        PAGE_TITLE: 'Add Center Detail',
+        PAGE_TITLE: 'Add Center Detail'
       },
       EDIT: {
-        PAGE_TITLE: 'Edit Center Detail',
+        PAGE_TITLE: 'Edit Center Detail'
       },
       FORM: {
         TITLE: 'Title',
         DESCRIPTION: 'Description',
-        CONTENT: 'Content',
-      },
+        CONTENT: 'Content'
+      }
     },
     CENTER_MEMBERS: {
       MAIN: {
-        PAGE_TITLE: 'Centers Members',
+        PAGE_TITLE: 'Centers Members'
       },
       ADD: {
-        PAGE_TITLE: 'Add Center Member',
+        PAGE_TITLE: 'Add Center Member'
       },
       EDIT: {
-        PAGE_TITLE: 'Edit Center Member',
+        PAGE_TITLE: 'Edit Center Member'
       },
       FORM: {
-        QUESTION_ALLOW_EDIT: 'Do you want to modify the Center ?',
-      },
+        QUESTION_ALLOW_EDIT: 'Do you want to modify the Center ?'
+      }
     },
     SECTORS: {
       MAIN: {
-        PAGE_TITLE: 'Sectors',
+        PAGE_TITLE: 'Sectors'
       },
       ADD: {
-        PAGE_TITLE: 'Add Sector',
+        PAGE_TITLE: 'Add Sector'
       },
       EDIT: {
-        PAGE_TITLE: 'Edit Sector',
+        PAGE_TITLE: 'Edit Sector'
       },
       FORM: {
         NAME: 'Sector Name',
-        SUB_TITLE: 'Sector Subtitle',
+        SUB_TITLE: 'Sector Subtitle'
       },
-      QUESTION_ALLOW_EDIT: 'Do you want to modify the sector ?',
+      QUESTION_ALLOW_EDIT: 'Do you want to modify the sector ?'
     },
 
     SECTOR_DETAILS: {
       MAIN: {
-        PAGE_TITLE: 'Sector Details',
+        PAGE_TITLE: 'Sector Details'
       },
       ADD: {
-        PAGE_TITLE: 'Add Sector Detail',
+        PAGE_TITLE: 'Add Sector Detail'
       },
       EDIT: {
-        PAGE_TITLE: 'Edit Sector Detail',
+        PAGE_TITLE: 'Edit Sector Detail'
       },
       FORM: {
         TITLE: 'Detail Title',
         DESCRIPTION: 'Short Description',
-        CONTENT: 'Detailed Content',
-      },
+        CONTENT: 'Detailed Content'
+      }
     },
 
     SECTOR_MEMBERS: {
       MAIN: {
-        PAGE_TITLE: 'Sector Members',
+        PAGE_TITLE: 'Sector Members'
       },
       ADD: {
-        PAGE_TITLE: 'Add Sector Member',
+        PAGE_TITLE: 'Add Sector Member'
       },
       EDIT: {
-        PAGE_TITLE: 'Edit Sector Member',
-      },
+        PAGE_TITLE: 'Edit Sector Member'
+      }
     },
 
     SECTOR_PROGRAMS: {
       MAIN: {
-        PAGE_TITLE: 'Sector Programs',
+        PAGE_TITLE: 'Sector Programs'
       },
       ADD: {
-        PAGE_TITLE: 'Add Sector Program',
+        PAGE_TITLE: 'Add Sector Program'
       },
       EDIT: {
-        PAGE_TITLE: 'Edit Sector Program',
+        PAGE_TITLE: 'Edit Sector Program'
       },
       FORM: {
-        NAME: 'Program Name',
-      },
+        NAME: 'Program Name'
+      }
     },
 
     SECTOR_POSTS: {
       MAIN: {
-        PAGE_TITLE: 'Sector Posts',
+        PAGE_TITLE: 'Sector Posts'
       },
       ADD: {
-        PAGE_TITLE: 'Add Sector Post',
+        PAGE_TITLE: 'Add Sector Post'
       },
       EDIT: {
-        PAGE_TITLE: 'Edit Sector Post',
-      },
+        PAGE_TITLE: 'Edit Sector Post'
+      }
     },
 
     SECTOR_SERVICES: {
       MAIN: {
-        PAGE_TITLE: 'Sector Services',
+        PAGE_TITLE: 'Sector Services'
       },
       ADD: {
-        PAGE_TITLE: 'Add Sector Service',
+        PAGE_TITLE: 'Add Sector Service'
       },
       EDIT: {
-        PAGE_TITLE: 'Edit Sector Service',
+        PAGE_TITLE: 'Edit Sector Service'
       },
       FORM: {
         NAME: 'Service Name',
@@ -384,17 +384,17 @@ export const EN_PAGES_SETTINGS = {
         APPLICATION_URL: 'Online Application Link',
         DOWNLOAD_URL: 'Download Link',
         CONTACT_NAME: 'Contact Person Name',
-        CONTACT_PHONE: 'Contact Phone Number',
+        CONTACT_PHONE: 'Contact Phone Number'
       },
       SECTOR_UNITS: {
         MAIN: {
-          PAGE_TITLE: 'Sector Units',
+          PAGE_TITLE: 'Sector Units'
         },
         ADD: {
-          PAGE_TITLE: 'Add Sector Unit',
+          PAGE_TITLE: 'Add Sector Unit'
         },
         EDIT: {
-          PAGE_TITLE: 'Edit Sector Unit',
+          PAGE_TITLE: 'Edit Sector Unit'
         },
         FORM: {
           UNIT_NAME: 'Unit Name',
@@ -407,23 +407,23 @@ export const EN_PAGES_SETTINGS = {
           IS_ONLINE: {
             TITLE: 'Service Availability Online',
             ONLINE: 'Available Online',
-            OFFLINE: 'Not Available Online',
-          },
-        },
-      },
-    },
+            OFFLINE: 'Not Available Online'
+          }
+        }
+      }
+    }
   },
 
   SETTINGS: {
     CONTACTS: {
       MAIN: {
-        PAGE_TITLE: 'Contacts',
+        PAGE_TITLE: 'Contacts'
       },
       ADD: {
-        PAGE_TITLE: 'Add Contact',
+        PAGE_TITLE: 'Add Contact'
       },
       EDIT: {
-        PAGE_TITLE: 'Edit Contact',
+        PAGE_TITLE: 'Edit Contact'
       },
       FORM: {
         ADDRESS: 'Address',
@@ -435,18 +435,18 @@ export const EN_PAGES_SETTINGS = {
         LINKEDIN: 'LinkedIn',
         YOUTUBE: 'Youtube',
         WHATSAPP: 'WhatsApp',
-        MAPLOCATION: 'Map Location',
-      },
+        MAPLOCATION: 'Map Location'
+      }
     },
     MENU_ITEMS: {
       MAIN: {
-        PAGE_TITLE: 'Menu Items',
+        PAGE_TITLE: 'Menu Items'
       },
       ADD: {
-        PAGE_TITLE: 'Add Menu Item',
+        PAGE_TITLE: 'Add Menu Item'
       },
       EDIT: {
-        PAGE_TITLE: 'Edit Menu Item',
+        PAGE_TITLE: 'Edit Menu Item'
       },
       FORM: {
         TITLE: 'Title',
@@ -455,32 +455,32 @@ export const EN_PAGES_SETTINGS = {
         ICON: 'Icon',
         ORDER: 'Order',
         MENU_TYPE: 'Menu Type',
-        PARENT_MENU_ITEM: 'Main Menu',
-      },
+        PARENT_MENU_ITEM: 'Main Menu'
+      }
     },
     MENU_TYPES: {
       MAIN: {
-        PAGE_TITLE: 'Menu Types',
+        PAGE_TITLE: 'Menu Types'
       },
       ADD: {
-        PAGE_TITLE: 'Add Menu Type',
+        PAGE_TITLE: 'Add Menu Type'
       },
       EDIT: {
-        PAGE_TITLE: 'Edit Menu Type',
+        PAGE_TITLE: 'Edit Menu Type'
       },
       FORM: {
-        TYPE: 'Menu Type',
-      },
+        TYPE: 'Menu Type'
+      }
     },
     SERVICES: {
       MAIN: {
-        PAGE_TITLE: 'Services',
+        PAGE_TITLE: 'Services'
       },
       ADD: {
-        PAGE_TITLE: 'Add Service',
+        PAGE_TITLE: 'Add Service'
       },
       EDIT: {
-        PAGE_TITLE: 'Edit Service',
+        PAGE_TITLE: 'Edit Service'
       },
       FORM: {
         TITLE: 'Title',
@@ -489,19 +489,19 @@ export const EN_PAGES_SETTINGS = {
         IS_ACTIVE: {
           TITLE: 'Status',
           ACTIVE: 'Active',
-          IN_ACTIVE: 'Inactive',
-        },
-      },
+          IN_ACTIVE: 'Inactive'
+        }
+      }
     },
     STATISTICS: {
       MAIN: {
-        PAGE_TITLE: 'Statistics',
+        PAGE_TITLE: 'Statistics'
       },
       ADD: {
-        PAGE_TITLE: 'Add Statistic',
+        PAGE_TITLE: 'Add Statistic'
       },
       EDIT: {
-        PAGE_TITLE: 'Edit Statistic',
+        PAGE_TITLE: 'Edit Statistic'
       },
       FORM: {
         TITLE: 'Title',
@@ -510,9 +510,9 @@ export const EN_PAGES_SETTINGS = {
         IS_ACTIVE: {
           TITLE: 'Status',
           ACTIVE: 'Active',
-          IN_ACTIVE: 'Inactive',
-        },
-      },
-    },
-  },
+          IN_ACTIVE: 'Inactive'
+        }
+      }
+    }
+  }
 };

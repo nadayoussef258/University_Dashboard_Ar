@@ -2,16 +2,7 @@ import { Component, inject, OnInit } from '@angular/core';
 import { BaseEditComponent } from '../../../../base/components/base-edit-component';
 import { CardModule } from 'primeng/card';
 import { FormsModule, ReactiveFormsModule, Validators } from '@angular/forms';
-import {
-  AboutService,
-  MembersService,
-  PagesService,
-  PrimeAutoCompleteComponent,
-  PrimeDropDownComponent,
-  PrimeInputTextComponent,
-  PrimeRadioButtonComponent,
-  SubmitButtonsComponent,
-} from '../../../../shared';
+import { AboutService, MembersService, PagesService, PrimeAutoCompleteComponent, PrimeDropDownComponent, PrimeInputTextComponent, PrimeRadioButtonComponent, SubmitButtonsComponent } from '../../../../shared';
 import { DialogService } from 'primeng/dynamicdialog';
 import { ActivatedRoute } from '@angular/router';
 import { ToggleSwitchModule } from 'primeng/toggleswitch';
@@ -20,24 +11,12 @@ import { TranslatePipe } from '@ngx-translate/core';
 
 @Component({
   selector: 'app-add-edit-leader',
-  imports: [
-    CardModule,
-    FormsModule,
-    ReactiveFormsModule,
-    SubmitButtonsComponent,
-    PrimeInputTextComponent,
-    ToggleSwitchModule,
-    PrimeAutoCompleteComponent,
-    TranslatePipe,
-  ],
+  imports: [CardModule, FormsModule, ReactiveFormsModule, SubmitButtonsComponent, PrimeInputTextComponent, ToggleSwitchModule, PrimeAutoCompleteComponent, TranslatePipe],
   templateUrl: './add-edit-leader.component.html',
-  styleUrl: './add-edit-leader.component.css',
+  styleUrl: './add-edit-leader.component.css'
 })
 //
-export class AddEditLeaderComponent
-  extends BaseEditComponent
-  implements OnInit
-{
+export class AddEditLeaderComponent extends BaseEditComponent implements OnInit {
   selectedMember: any;
   filteredMembers: any[] = [];
 
@@ -69,7 +48,7 @@ export class AddEditLeaderComponent
       fullName: ['', Validators.required],
       position: ['', Validators.required],
       memberId: ['', Validators.required],
-      leaderAttachments: [''],
+      leaderAttachments: ['']
     });
   }
 
@@ -77,13 +56,11 @@ export class AddEditLeaderComponent
     const query = event.query.toLowerCase();
     this.leadersService.leaders.subscribe({
       next: (res: any) => {
-        this.filteredMembers = res.filter((member: any) =>
-          member.fullName.toLowerCase().includes(query),
-        );
+        this.filteredMembers = res.filter((member: any) => member.fullName.toLowerCase().includes(query));
       },
       error: (err) => {
         this.alert.error('خطأ فى جلب بيانات الأعضاء');
-      },
+      }
     });
   }
 
@@ -94,12 +71,8 @@ export class AddEditLeaderComponent
 
   fetchMembersDetails(leader: any) {
     this.membersService.members.subscribe((response: any) => {
-      this.filteredMembers = Array.isArray(response)
-        ? response
-        : response.data || [];
-      this.selectedMember = this.filteredMembers.find(
-        (member: any) => member.id === leader.memberId,
-      );
+      this.filteredMembers = Array.isArray(response) ? response : response.data || [];
+      this.selectedMember = this.filteredMembers.find((member: any) => member.id === leader.memberId);
       this.form.get('memberId')?.setValue(this.selectedMember.id);
     });
   }
@@ -118,11 +91,9 @@ export class AddEditLeaderComponent
         this.closeDialog();
       });
     if (this.pageType === 'edit')
-      this.leadersService
-        .update({ id: this.id(), ...this.form.value })
-        .subscribe(() => {
-          this.closeDialog();
-        });
+      this.leadersService.update({ id: this.id(), ...this.form.value }).subscribe(() => {
+        this.closeDialog();
+      });
   }
 
   closeDialog() {

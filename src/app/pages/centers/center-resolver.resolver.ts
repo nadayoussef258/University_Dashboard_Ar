@@ -5,10 +5,13 @@ import { catchError, map } from 'rxjs/operators';
 import { CentersService } from '../../shared';
 
 @Injectable({
-  providedIn: 'root',
+  providedIn: 'root'
 })
 export class CenterResolver implements Resolve<any> {
-  constructor(private centersService: CentersService, private router: Router) {}
+  constructor(
+    private centersService: CentersService,
+    private router: Router
+  ) {}
 
   resolve(route: ActivatedRouteSnapshot): Observable<any> {
     const id = route.paramMap.get('id');

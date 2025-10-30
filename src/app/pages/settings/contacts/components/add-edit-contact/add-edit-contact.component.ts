@@ -2,31 +2,18 @@ import { Component, inject, OnInit } from '@angular/core';
 import { BaseEditComponent } from '../../../../../base/components/base-edit-component';
 import { CardModule } from 'primeng/card';
 import { FormsModule, ReactiveFormsModule, Validators } from '@angular/forms';
-import {
-  ContactsService,
-  PrimeInputTextComponent,
-  SubmitButtonsComponent,
-} from '../../../../../shared';
+import { ContactsService, PrimeInputTextComponent, SubmitButtonsComponent } from '../../../../../shared';
 import { DialogService } from 'primeng/dynamicdialog';
 import { ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-add-edit-action',
-  imports: [
-    CardModule,
-    FormsModule,
-    ReactiveFormsModule,
-    SubmitButtonsComponent,
-    PrimeInputTextComponent,
-  ],
+  imports: [CardModule, FormsModule, ReactiveFormsModule, SubmitButtonsComponent, PrimeInputTextComponent],
   templateUrl: './add-edit-contact.component.html',
-  styleUrl: './add-edit-contact.component.css',
+  styleUrl: './add-edit-contact.component.css'
 })
 //
-export class AddEditContactComponent
-  extends BaseEditComponent
-  implements OnInit
-{
+export class AddEditContactComponent extends BaseEditComponent implements OnInit {
   contactsService: ContactsService = inject(ContactsService);
   dialogService: DialogService = inject(DialogService);
 
@@ -60,7 +47,7 @@ export class AddEditContactComponent
       linkedIn: ['', Validators.required],
       youTube: ['', Validators.required],
       whatsApp: ['', Validators.required],
-      mapLocation: ['', Validators.required],
+      mapLocation: ['', Validators.required]
     });
   }
 
@@ -77,11 +64,9 @@ export class AddEditContactComponent
         this.closeDialog();
       });
     if (this.pageType === 'edit')
-      this.contactsService
-        .update({ id: this.id(), ...this.form.value })
-        .subscribe(() => {
-          this.closeDialog();
-        });
+      this.contactsService.update({ id: this.id(), ...this.form.value }).subscribe(() => {
+        this.closeDialog();
+      });
   }
 
   closeDialog() {

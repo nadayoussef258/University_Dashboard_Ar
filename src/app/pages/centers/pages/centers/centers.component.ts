@@ -1,11 +1,7 @@
 import { Component, inject, Input } from '@angular/core';
 import { ActivatedRoute, RouterModule } from '@angular/router';
 import { CardModule } from 'primeng/card';
-import {
-  PrimeDataTableComponent,
-  PrimeTitleToolBarComponent,
-  CentersService,
-} from '../../../../shared';
+import { PrimeDataTableComponent, PrimeTitleToolBarComponent, CentersService } from '../../../../shared';
 import { TableOptions } from '../../../../shared/interfaces';
 import { BaseListComponent } from '../../../../base/components/base-list-component';
 import { TranslatePipe } from '@ngx-translate/core';
@@ -13,15 +9,9 @@ import { TranslatePipe } from '@ngx-translate/core';
 @Component({
   selector: 'app-centers',
 
-  imports: [
-    RouterModule,
-    CardModule,
-    PrimeDataTableComponent,
-    PrimeTitleToolBarComponent,
-    TranslatePipe,
-  ],
+  imports: [RouterModule, CardModule, PrimeDataTableComponent, PrimeTitleToolBarComponent, TranslatePipe],
   templateUrl: './centers.component.html',
-  styleUrl: './centers.component.css',
+  styleUrl: './centers.component.css'
 })
 export class CentersComponent extends BaseListComponent {
   tableOptions!: TableOptions;
@@ -41,19 +31,19 @@ export class CentersComponent extends BaseListComponent {
       inputUrl: {
         getAll: 'v2/center/getPaged',
         getAllMethod: 'POST',
-        delete: 'v2/center/deletesoft',
+        delete: 'v2/center/deletesoft'
       },
       inputCols: this.initializeTableColumns(),
       inputActions: this.initializeTableActions(),
       permissions: {
         componentName: 'CENTERS',
         allowAll: true,
-        listOfPermissions: [],
+        listOfPermissions: []
       },
       bodyOptions: {
-        filter: {},
+        filter: {}
       },
-      responsiveDisplayedProperties: ['subTitle', 'place', 'pageId', 'aboutId'],
+      responsiveDisplayedProperties: ['subTitle', 'place', 'pageId', 'aboutId']
     };
   }
 
@@ -63,26 +53,26 @@ export class CentersComponent extends BaseListComponent {
         field: 'subTitle',
         header: 'PAGES.CENTERS.FORM.SUB_TITLE',
         filter: true,
-        filterMode: 'text',
+        filterMode: 'text'
       },
       {
         field: 'place',
         header: 'PAGES.CENTERS.FORM.PLACE',
         filter: true,
-        filterMode: 'text',
+        filterMode: 'text'
       },
       {
         field: 'pageId',
         header: 'PAGES.SHARE_FORM.PAGE',
         filter: true,
-        filterMode: 'text',
+        filterMode: 'text'
       },
       {
         field: 'aboutId',
         header: 'PAGES.SHARE_FORM.ABOUT',
         filter: true,
-        filterMode: 'text',
-      },
+        filterMode: 'text'
+      }
     ];
   }
 
@@ -94,15 +84,15 @@ export class CentersComponent extends BaseListComponent {
         color: 'text-middle',
         isEdit: true,
         route: 'edit/',
-        allowAll: true,
+        allowAll: true
       },
       {
         name: 'DELETE',
         icon: 'pi pi-trash',
         color: 'text-error',
         allowAll: true,
-        isDelete: true,
-      },
+        isDelete: true
+      }
     ];
   }
 }

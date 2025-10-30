@@ -1,19 +1,10 @@
-import {
-  Injectable,
-  Renderer2,
-  RendererFactory2,
-  signal,
-  computed,
-  effect,
-  WritableSignal,
-  inject,
-} from '@angular/core';
+import { Injectable, Renderer2, RendererFactory2, signal, computed, effect, WritableSignal, inject } from '@angular/core';
 import { TranslateService } from '@ngx-translate/core';
 import { Language, Languages } from '../../../core/enums/languages';
 import { StorageService } from '../../../core';
 
 @Injectable({
-  providedIn: 'root',
+  providedIn: 'root'
 })
 export class TranslationService {
   private defaultLang: Language = Languages.AR;
@@ -27,7 +18,7 @@ export class TranslationService {
 
   constructor(
     public translate: TranslateService,
-    private rendererFactory: RendererFactory2,
+    private rendererFactory: RendererFactory2
   ) {
     this.renderer = this.rendererFactory.createRenderer(null, null);
     this.initLanguage();
@@ -46,8 +37,7 @@ export class TranslationService {
   }
 
   changeLanguage(): void {
-    const newLang =
-      this._currentLanguage() === Languages.AR ? Languages.EN : Languages.AR;
+    const newLang = this._currentLanguage() === Languages.AR ? Languages.EN : Languages.AR;
     this._currentLanguage.set(newLang);
     this.storageService.setLocal('currentLang', newLang);
 

@@ -1,58 +1,27 @@
 @if (form) {
   <form method="post" class="grid py-4 gap-4 grid-cols-12" [formGroup]="form">
     <div class="form-col">
-      <app-prime-input-text
-        [formGroup]="form"
-        controlName="name"
-        [label]="'PAGES.SECTORS.FORM.NAME'"
-      >
-      </app-prime-input-text>
+      <app-prime-input-text [formGroup]="form" controlName="name" [label]="'PAGES.SECTORS.FORM.NAME'"> </app-prime-input-text>
     </div>
 
     <div class="form-col">
-      <app-prime-input-text
-        [formGroup]="form"
-        controlName="subTitle"
-        [label]="'PAGES.SECTORS.FORM.SUB_TITLE'"
-      >
-      </app-prime-input-text>
+      <app-prime-input-text [formGroup]="form" controlName="subTitle" [label]="'PAGES.SECTORS.FORM.SUB_TITLE'"> </app-prime-input-text>
     </div>
 
     <div class="form-col">
       <label class="text-middle mb-2 form-col">
-        {{ "PAGES.SHARE_FORM.PAGE" | translate }}
+        {{ 'PAGES.SHARE_FORM.PAGE' | translate }}
       </label>
-      <app-prime-autocomplete
-        [field]="'title'"
-        [selectedOption]="selectedPage"
-        [suggestions]="filteredPages"
-        [formGroup]="form"
-        (onSelect)="onPageSelect($event)"
-        [lazy]="false"
-        (handleMethod)="getPages($event)"
-      ></app-prime-autocomplete>
+      <app-prime-autocomplete [field]="'title'" [selectedOption]="selectedPage" [suggestions]="filteredPages" [formGroup]="form" (onSelect)="onPageSelect($event)" [lazy]="false" (handleMethod)="getPages($event)"></app-prime-autocomplete>
     </div>
     <div class="form-col">
       <label class="text-middle mb-2">
-        {{ "PAGES.SHARE_FORM.ABOUT" | translate }}
+        {{ 'PAGES.SHARE_FORM.ABOUT' | translate }}
       </label>
-      <app-prime-autocomplete
-        [field]="'content'"
-        [selectedOption]="selectedAbout"
-        [suggestions]="filteredAbout"
-        [formGroup]="form"
-        (onSelect)="onAboutSelect($event)"
-        [lazy]="false"
-        (handleMethod)="getAbouts($event)"
-      ></app-prime-autocomplete>
+      <app-prime-autocomplete [field]="'content'" [selectedOption]="selectedAbout" [suggestions]="filteredAbout" [formGroup]="form" (onSelect)="onAboutSelect($event)" [lazy]="false" (handleMethod)="getAbouts($event)"></app-prime-autocomplete>
     </div>
   </form>
 }
 @if (form) {
-  <app-submit-buttons
-    [isSubmitDisabled]="form.invalid"
-    [submitBtnLabel]="pageType === 'add' ? 'ACTIONS.SUBMIT' : 'ACTIONS.SAVE'"
-    (submit)="submit()"
-    (cancel)="redirect()"
-  />
+  <app-submit-buttons [isSubmitDisabled]="form.invalid" [submitBtnLabel]="pageType === 'add' ? 'ACTIONS.SUBMIT' : 'ACTIONS.SAVE'" (submit)="submit()" (cancel)="redirect()" />
 }

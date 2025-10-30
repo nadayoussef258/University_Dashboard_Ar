@@ -8,9 +8,9 @@ import { CustomValidationService } from '../../shared/';
     {
       provide: NG_VALIDATORS,
       useExisting: EnglishNamePatternDirective,
-      multi: true,
-    },
-  ],
+      multi: true
+    }
+  ]
 })
 export class EnglishNamePatternDirective implements Validator {
   constructor(private customValidator: CustomValidationService) {}

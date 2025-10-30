@@ -1,12 +1,5 @@
 import { Language } from './../../../core/enums/languages';
-import {
-  Component,
-  EventEmitter,
-  inject,
-  Input,
-  OnInit,
-  Output,
-} from '@angular/core';
+import { Component, EventEmitter, inject, Input, OnInit, Output } from '@angular/core';
 import { RouterModule } from '@angular/router';
 import { CardModule } from 'primeng/card';
 import { ToolbarModule } from 'primeng/toolbar';
@@ -16,15 +9,9 @@ import { TranslationService } from '../../services';
 
 @Component({
   selector: 'app-submit-buttons',
-  imports: [
-    ToolbarModule,
-    RouterModule,
-    CardModule,
-    ButtonModule,
-    TranslatePipe,
-  ],
+  imports: [ToolbarModule, RouterModule, CardModule, ButtonModule, TranslatePipe],
   templateUrl: './submit-buttons.component.html',
-  styleUrls: ['./submit-buttons.component.scss'],
+  styleUrls: ['./submit-buttons.component.scss']
 })
 export class SubmitButtonsComponent implements OnInit {
   translationService = inject(TranslationService);

@@ -1,11 +1,7 @@
 import { Component, inject } from '@angular/core';
 import { ActivatedRoute, RouterModule } from '@angular/router';
 import { CardModule } from 'primeng/card';
-import {
-  PrimeDataTableComponent,
-  PrimeTitleToolBarComponent,
-  SectorDetailsService,
-} from '../../../../shared';
+import { PrimeDataTableComponent, PrimeTitleToolBarComponent, SectorDetailsService } from '../../../../shared';
 import { TableOptions } from '../../../../shared/interfaces';
 import { BaseListComponent } from '../../../../base/components/base-list-component';
 import { ToggleSwitchModule } from 'primeng/toggleswitch';
@@ -15,16 +11,9 @@ import { TranslatePipe } from '@ngx-translate/core';
 @Component({
   selector: 'app-sector-details',
 
-  imports: [
-    RouterModule,
-    CardModule,
-    PrimeDataTableComponent,
-    PrimeTitleToolBarComponent,
-    ToggleSwitchModule,
-    TranslatePipe,
-  ],
+  imports: [RouterModule, CardModule, PrimeDataTableComponent, PrimeTitleToolBarComponent, ToggleSwitchModule, TranslatePipe],
   templateUrl: './sector-details.component.html',
-  styleUrl: './sector-details.component.css',
+  styleUrl: './sector-details.component.css'
 })
 export class SectorDetailsComponent extends BaseListComponent {
   sectorId: string = '';
@@ -48,24 +37,19 @@ export class SectorDetailsComponent extends BaseListComponent {
       inputUrl: {
         getAll: 'v2/sectordetails/getPaged',
         getAllMethod: 'POST',
-        delete: 'v2/sectordetails/deletesoft',
+        delete: 'v2/sectordetails/deletesoft'
       },
       inputCols: this.initializeTableColumns(),
       inputActions: this.initializeTableActions(),
       permissions: {
         componentName: 'SECTOR-DETAILS',
         allowAll: true,
-        listOfPermissions: [],
+        listOfPermissions: []
       },
       bodyOptions: {
-        filter: { sectorId: this.sectorId },
+        filter: { sectorId: this.sectorId }
       },
-      responsiveDisplayedProperties: [
-        'title',
-        'description',
-        'content',
-        'sectorId',
-      ],
+      responsiveDisplayedProperties: ['title', 'description', 'content', 'sectorId']
     };
   }
 
@@ -75,26 +59,26 @@ export class SectorDetailsComponent extends BaseListComponent {
         field: 'title',
         header: 'PAGES.SECTOR_DETAILS.FORM.TITLE',
         filter: true,
-        filterMode: 'text',
+        filterMode: 'text'
       },
       {
         field: 'description',
         header: 'PAGES.SECTOR_DETAILS.FORM.DESCRIPTION',
         filter: true,
-        filterMode: 'text',
+        filterMode: 'text'
       },
       {
         field: 'content',
         header: 'PAGES.SECTOR_DETAILS.FORM.CONTENT',
         filter: true,
-        filterMode: 'text',
+        filterMode: 'text'
       },
       {
         field: 'sectorId',
         header: 'PAGES.SHARE_FORM.SECTOR',
         filter: true,
-        filterMode: 'text',
-      },
+        filterMode: 'text'
+      }
     ];
   }
 
@@ -106,15 +90,15 @@ export class SectorDetailsComponent extends BaseListComponent {
         color: 'text-middle',
         isEdit: true,
         route: '/pages/sector-details/edit/',
-        allowAll: true,
+        allowAll: true
       },
       {
         name: 'DELETE',
         icon: 'pi pi-trash',
         color: 'text-error',
         allowAll: true,
-        isDelete: true,
-      },
+        isDelete: true
+      }
     ];
   }
 }

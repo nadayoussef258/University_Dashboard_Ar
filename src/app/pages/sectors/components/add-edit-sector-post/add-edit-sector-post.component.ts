@@ -2,13 +2,7 @@ import { Component, inject, OnInit } from '@angular/core';
 import { BaseEditComponent } from '../../../../base/components/base-edit-component';
 import { CardModule } from 'primeng/card';
 import { FormsModule, ReactiveFormsModule, Validators } from '@angular/forms';
-import {
-  PostsService,
-  PrimeAutoCompleteComponent,
-  SectorPostsService,
-  SectorsService,
-  SubmitButtonsComponent,
-} from '../../../../shared';
+import { PostsService, PrimeAutoCompleteComponent, SectorPostsService, SectorsService, SubmitButtonsComponent } from '../../../../shared';
 import { DialogService } from 'primeng/dynamicdialog';
 import { ActivatedRoute } from '@angular/router';
 import { ToggleSwitch } from 'primeng/toggleswitch';
@@ -17,24 +11,12 @@ import { TranslatePipe } from '@ngx-translate/core';
 
 @Component({
   selector: 'app-add-edit-sector-post',
-  imports: [
-    CardModule,
-    FormsModule,
-    ReactiveFormsModule,
-    SubmitButtonsComponent,
-    PrimeAutoCompleteComponent,
-    ToggleSwitch,
-    ToggleSwitch,
-    TranslatePipe,
-  ],
+  imports: [CardModule, FormsModule, ReactiveFormsModule, SubmitButtonsComponent, PrimeAutoCompleteComponent, ToggleSwitch, ToggleSwitch, TranslatePipe],
   templateUrl: './add-edit-sector-post.component.html',
-  styleUrl: './add-edit-sector-post.component.css',
+  styleUrl: './add-edit-sector-post.component.css'
 })
 //
-export class AddEditSectorPostComponent
-  extends BaseEditComponent
-  implements OnInit
-{
+export class AddEditSectorPostComponent extends BaseEditComponent implements OnInit {
   sectorId: string = '';
   selectedPost: any;
   filteredPosts: any[] = [];
@@ -71,7 +53,7 @@ export class AddEditSectorPostComponent
   initFormGroup() {
     this.form = this.fb.group({
       postId: ['', Validators.required],
-      sectorId: [this.sectorId, Validators.required],
+      sectorId: [this.sectorId, Validators.required]
     });
   }
 
@@ -79,13 +61,11 @@ export class AddEditSectorPostComponent
     const query = event.query.toLowerCase();
     this.sectorsService.sectors.subscribe({
       next: (res: any) => {
-        this.filteredSectors = res.filter((sector: any) =>
-          sector.name.includes(query),
-        );
+        this.filteredSectors = res.filter((sector: any) => sector.name.includes(query));
       },
       error: (err) => {
         this.alert.error('خطأ فى جلب بيانات القطاعات');
-      },
+      }
     });
   }
 
@@ -96,12 +76,8 @@ export class AddEditSectorPostComponent
 
   fetchSectorDetails(sectorPost: any) {
     this.sectorsService.sectors.subscribe((response: any) => {
-      this.filteredSectors = Array.isArray(response)
-        ? response
-        : response.data || [];
-      this.selectedSector = this.filteredSectors.find(
-        (sector: any) => sector.id === sectorPost.sectorId,
-      );
+      this.filteredSectors = Array.isArray(response) ? response : response.data || [];
+      this.selectedSector = this.filteredSectors.find((sector: any) => sector.id === sectorPost.sectorId);
       this.form.get('sectorId')?.setValue(this.selectedSector.id);
     });
   }
@@ -110,13 +86,11 @@ export class AddEditSectorPostComponent
     const query = event.query.toLowerCase();
     this.postsService.posts.subscribe({
       next: (res: any) => {
-        this.filteredPosts = res.filter((post: any) =>
-          post.title.includes(query),
-        );
+        this.filteredPosts = res.filter((post: any) => post.title.includes(query));
       },
       error: (err) => {
         this.alert.error('خطأ فى جلب المنشورات');
-      },
+      }
     });
   }
 
@@ -127,24 +101,18 @@ export class AddEditSectorPostComponent
 
   fetchPostDetails(sectorPost: any) {
     this.postsService.posts.subscribe((response: any) => {
-      this.filteredSectors = Array.isArray(response)
-        ? response
-        : response.data || [];
-      this.selectedPost = this.filteredPosts.find(
-        (post: any) => post.id === sectorPost.postId,
-      );
+      this.filteredSectors = Array.isArray(response) ? response : response.data || [];
+      this.selectedPost = this.filteredPosts.find((post: any) => post.id === sectorPost.postId);
       this.form.get('postId')?.setValue(this.selectedPost.id);
     });
   }
 
   getEditSectorsPost = () => {
-    this.sectorPostsService
-      .getEditSectorPost(this.id())
-      .subscribe((sectorPost: any) => {
-        this.initFormGroup();
-        this.form.patchValue(sectorPost);
-        this.fetchSectorDetails(sectorPost);
-      });
+    this.sectorPostsService.getEditSectorPost(this.id()).subscribe((sectorPost: any) => {
+      this.initFormGroup();
+      this.form.patchValue(sectorPost);
+      this.fetchSectorDetails(sectorPost);
+    });
   };
 
   submit() {
@@ -153,11 +121,9 @@ export class AddEditSectorPostComponent
         this.closeDialog();
       });
     if (this.pageType === 'edit')
-      this.sectorPostsService
-        .update({ id: this.id(), ...this.form.value })
-        .subscribe(() => {
-          this.closeDialog();
-        });
+      this.sectorPostsService.update({ id: this.id(), ...this.form.value }).subscribe(() => {
+        this.closeDialog();
+      });
   }
 
   closeDialog() {

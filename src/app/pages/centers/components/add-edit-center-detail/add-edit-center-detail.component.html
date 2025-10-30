@@ -2,37 +2,21 @@
   @if (form) {
     <form method="post" class="grid gap-4 grid-cols-12" [formGroup]="form">
       <div class="form-col">
-        <app-prime-input-text
-          [formGroup]="form"
-          controlName="title"
-          [label]="'PAGES.CENTER_DETAILS.FORM.TITLE'"
-        >
-        </app-prime-input-text>
+        <app-prime-input-text [formGroup]="form" controlName="title" [label]="'PAGES.CENTER_DETAILS.FORM.TITLE'"> </app-prime-input-text>
       </div>
 
       <div class="form-col">
-        <app-prime-input-text
-          [formGroup]="form"
-          controlName="description"
-          [label]="'PAGES.CENTER_DETAILS.FORM.DESCRIPTION'"
-        >
-        </app-prime-input-text>
+        <app-prime-input-text [formGroup]="form" controlName="description" [label]="'PAGES.CENTER_DETAILS.FORM.DESCRIPTION'"> </app-prime-input-text>
       </div>
 
       <div class="col-span-12">
-        <app-prime-input-text
-          [formGroup]="form"
-          controlName="content"
-          [label]="'PAGES.CENTER_DETAILS.FORM.CONTENT'"
-          [inputType]="'textarea'"
-        >
-        </app-prime-input-text>
+        <app-prime-input-text [formGroup]="form" controlName="content" [label]="'PAGES.CENTER_DETAILS.FORM.CONTENT'" [inputType]="'textarea'"> </app-prime-input-text>
       </div>
 
-      @if ((pageType !== "add" && centerId) || !centerId) {
+      @if ((pageType !== 'add' && centerId) || !centerId) {
         <div class="form-col">
           <label class="text-middle mb-2">
-            {{ "PAGES.SHARE_FORM.CENTER" | translate }}
+            {{ 'PAGES.SHARE_FORM.CENTER' | translate }}
           </label>
           <app-prime-autocomplete
             [disabled]="!!centerId"
@@ -51,10 +35,5 @@
 </p-card>
 
 @if (form) {
-  <app-submit-buttons
-    [isSubmitDisabled]="form.invalid"
-    [submitBtnLabel]="pageType === 'add' ? 'ACTIONS.SUBMIT' : 'ACTIONS.SAVE'"
-    (submit)="submit()"
-    (cancel)="redirect()"
-  />
+  <app-submit-buttons [isSubmitDisabled]="form.invalid" [submitBtnLabel]="pageType === 'add' ? 'ACTIONS.SUBMIT' : 'ACTIONS.SAVE'" (submit)="submit()" (cancel)="redirect()" />
 }

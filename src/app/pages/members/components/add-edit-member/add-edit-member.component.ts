@@ -12,7 +12,7 @@ import {
   ProgramMembersService,
   SectorMembersService,
   SubmitButtonsComponent,
-  UnitMembersService,
+  UnitMembersService
 } from '../../../../shared';
 import { ActivatedRoute } from '@angular/router';
 import { ToggleSwitch } from 'primeng/toggleswitch';
@@ -21,25 +21,12 @@ import { MemberIdService } from '../../member-id.service';
 import { TranslatePipe } from '@ngx-translate/core';
 @Component({
   selector: 'app-add-edit-member',
-  imports: [
-    CardModule,
-    FormsModule,
-    ReactiveFormsModule,
-    SubmitButtonsComponent,
-    PrimeInputTextComponent,
-    ToggleSwitch,
-    PrimeAutoCompleteComponent,
-    NgClass,
-    TranslatePipe,
-  ],
+  imports: [CardModule, FormsModule, ReactiveFormsModule, SubmitButtonsComponent, PrimeInputTextComponent, ToggleSwitch, PrimeAutoCompleteComponent, NgClass, TranslatePipe],
   templateUrl: './add-edit-member.component.html',
-  styleUrl: './add-edit-member.component.css',
+  styleUrl: './add-edit-member.component.css'
 })
 //
-export class AddEditMemberComponent
-  extends BaseEditComponent
-  implements OnInit
-{
+export class AddEditMemberComponent extends BaseEditComponent implements OnInit {
   memberId: string = '';
 
   selectedPage: any;
@@ -93,7 +80,7 @@ export class AddEditMemberComponent
       managementMemberId: ['', Validators.required],
       centerMemberId: ['', Validators.required],
       unitMemberId: ['', Validators.required],
-      memberAttachments: [null],
+      memberAttachments: [null]
     });
   }
 
@@ -102,13 +89,11 @@ export class AddEditMemberComponent
     const query = event.query.toLowerCase();
     this.pagesService.pages.subscribe({
       next: (res: any) => {
-        this.filteredPages = res.filter((page: any) =>
-          page.title.toLowerCase().includes(query),
-        );
+        this.filteredPages = res.filter((page: any) => page.title.toLowerCase().includes(query));
       },
       error: (err) => {
         this.alert.error('خطأ فى جلب بيانات الصفحات');
-      },
+      }
     });
   }
 
@@ -119,12 +104,8 @@ export class AddEditMemberComponent
 
   fetchPagesDetails(member: any) {
     this.pagesService.pages.subscribe((response: any) => {
-      this.filteredPages = Array.isArray(response)
-        ? response
-        : response.data || [];
-      this.selectedPage = this.filteredPages.find(
-        (page: any) => page.id === member.pageId,
-      );
+      this.filteredPages = Array.isArray(response) ? response : response.data || [];
+      this.selectedPage = this.filteredPages.find((page: any) => page.id === member.pageId);
       this.form.get('pageId')?.setValue(this.selectedPage.id);
     });
   }
@@ -136,13 +117,11 @@ export class AddEditMemberComponent
       next: (res: any) => {
         console.log('sectors ::: ', res);
 
-        this.filteredSectorMembers = res.filter((sectorMember: any) =>
-          sectorMember.id.toLowerCase().includes(query),
-        );
+        this.filteredSectorMembers = res.filter((sectorMember: any) => sectorMember.id.toLowerCase().includes(query));
       },
       error: (err) => {
         this.alert.error('خطأ فى جلب بيانات القطاعات');
-      },
+      }
     });
   }
 
@@ -153,12 +132,8 @@ export class AddEditMemberComponent
 
   fetchSectorMemberDetails(member: any) {
     this.sectorMembersService.sectorMembers.subscribe((response: any) => {
-      this.filteredSectorMembers = Array.isArray(response)
-        ? response
-        : response.data || [];
-      this.selectedSectorMember = this.filteredSectorMembers.find(
-        (sectorMember: any) => sectorMember.id === member.sectorMemberId,
-      );
+      this.filteredSectorMembers = Array.isArray(response) ? response : response.data || [];
+      this.selectedSectorMember = this.filteredSectorMembers.find((sectorMember: any) => sectorMember.id === member.sectorMemberId);
       this.form.get('sectorMemberId')?.setValue(this.selectedSectorMember.id);
     });
   }
@@ -168,13 +143,11 @@ export class AddEditMemberComponent
     const query = event.query.toLowerCase();
     this.programMembersService.programMembers.subscribe({
       next: (res: any) => {
-        this.filteredProgramMembers = res.filter((programMember: any) =>
-          programMember.id.toLowerCase().includes(query),
-        );
+        this.filteredProgramMembers = res.filter((programMember: any) => programMember.id.toLowerCase().includes(query));
       },
       error: (err) => {
         this.alert.error('خطأ فى جلب بيانات البرامج');
-      },
+      }
     });
   }
 
@@ -185,12 +158,8 @@ export class AddEditMemberComponent
 
   fetchProgramMemberDetails(member: any) {
     this.programMembersService.programMembers.subscribe((response: any) => {
-      this.filteredProgramMembers = Array.isArray(response)
-        ? response
-        : response.data || [];
-      this.selectedProgramMember = this.filteredProgramMembers.find(
-        (programMember: any) => programMember.id === member.progamMemberId,
-      );
+      this.filteredProgramMembers = Array.isArray(response) ? response : response.data || [];
+      this.selectedProgramMember = this.filteredProgramMembers.find((programMember: any) => programMember.id === member.progamMemberId);
       this.form.get('progamMemberId')?.setValue(this.selectedProgramMember.id);
     });
   }
@@ -200,38 +169,25 @@ export class AddEditMemberComponent
     const query = event.query.toLowerCase();
     this.managementMembersService.managementMembers.subscribe({
       next: (res: any) => {
-        this.filteredManagementMembers = res.filter((managementMember: any) =>
-          managementMember.id.toLowerCase().includes(query),
-        );
+        this.filteredManagementMembers = res.filter((managementMember: any) => managementMember.id.toLowerCase().includes(query));
       },
       error: (err) => {
         this.alert.error('خطأ فى جلب بيانات الإدارات');
-      },
+      }
     });
   }
 
   onManagementMemberSelect(event: any) {
     this.selectedManagementMember = event.value;
-    this.form
-      .get('managementMemberId')
-      ?.setValue(this.selectedManagementMember.id);
+    this.form.get('managementMemberId')?.setValue(this.selectedManagementMember.id);
   }
 
   fetchManagementMemberDetails(member: any) {
-    this.managementMembersService.managementMembers.subscribe(
-      (response: any) => {
-        this.filteredManagementMembers = Array.isArray(response)
-          ? response
-          : response.data || [];
-        this.selectedManagementMember = this.filteredManagementMembers.find(
-          (managementMember: any) =>
-            managementMember.id === member.managementMemberId,
-        );
-        this.form
-          .get('managementMemberId')
-          ?.setValue(this.selectedManagementMember.id);
-      },
-    );
+    this.managementMembersService.managementMembers.subscribe((response: any) => {
+      this.filteredManagementMembers = Array.isArray(response) ? response : response.data || [];
+      this.selectedManagementMember = this.filteredManagementMembers.find((managementMember: any) => managementMember.id === member.managementMemberId);
+      this.form.get('managementMemberId')?.setValue(this.selectedManagementMember.id);
+    });
   }
 
   // CenterMembers autocomplete
@@ -239,13 +195,11 @@ export class AddEditMemberComponent
     const query = event.query.toLowerCase();
     this.centerMembersService.centerMembers.subscribe({
       next: (res: any) => {
-        this.filteredCenterMembers = res.filter((centerMember: any) =>
-          centerMember.id.toLowerCase().includes(query),
-        );
+        this.filteredCenterMembers = res.filter((centerMember: any) => centerMember.id.toLowerCase().includes(query));
       },
       error: (err) => {
         this.alert.error('خطأ فى جلب بيانات المراكز');
-      },
+      }
     });
   }
 
@@ -256,12 +210,8 @@ export class AddEditMemberComponent
 
   fetchCenterMemberDetails(member: any) {
     this.centerMembersService.centerMembers.subscribe((response: any) => {
-      this.filteredCenterMembers = Array.isArray(response)
-        ? response
-        : response.data || [];
-      this.selectedCenterMember = this.filteredCenterMembers.find(
-        (centerMember: any) => centerMember.id === member.centerMemberId,
-      );
+      this.filteredCenterMembers = Array.isArray(response) ? response : response.data || [];
+      this.selectedCenterMember = this.filteredCenterMembers.find((centerMember: any) => centerMember.id === member.centerMemberId);
       this.form.get('centerMemberId')?.setValue(this.selectedCenterMember.id);
     });
   }
@@ -271,13 +221,11 @@ export class AddEditMemberComponent
     const query = event.query.toLowerCase();
     this.unitMembersService.unitMembers.subscribe({
       next: (res: any) => {
-        this.filteredUnitMembers = res.filter((unitMember: any) =>
-          unitMember.id.toLowerCase().includes(query),
-        );
+        this.filteredUnitMembers = res.filter((unitMember: any) => unitMember.id.toLowerCase().includes(query));
       },
       error: (err) => {
         this.alert.error('خطأ فى جلب بيانات الوحدات');
-      },
+      }
     });
   }
 
@@ -288,12 +236,8 @@ export class AddEditMemberComponent
 
   fetchUnitMemberDetails(member: any) {
     this.unitMembersService.unitMembers.subscribe((response: any) => {
-      this.filteredUnitMembers = Array.isArray(response)
-        ? response
-        : response.data || [];
-      this.selectedUnitMember = this.filteredUnitMembers.find(
-        (unitMember: any) => unitMember.id === member.unitMemberId,
-      );
+      this.filteredUnitMembers = Array.isArray(response) ? response : response.data || [];
+      this.selectedUnitMember = this.filteredUnitMembers.find((unitMember: any) => unitMember.id === member.unitMemberId);
       this.form.get('unitMemberId')?.setValue(this.selectedUnitMember.id);
     });
   }
@@ -317,11 +261,9 @@ export class AddEditMemberComponent
         this.redirect();
       });
     if (this.pageType === 'edit')
-      this.membersService
-        .update({ id: this.id(), ...this.form.value })
-        .subscribe(() => {
-          this.redirect();
-        });
+      this.membersService.update({ id: this.id(), ...this.form.value }).subscribe(() => {
+        this.redirect();
+      });
   }
 
   override redirect = () => {

@@ -2,32 +2,18 @@ import { Component, inject, OnInit } from '@angular/core';
 import { BaseEditComponent } from '../../../../../base/components/base-edit-component';
 import { CardModule } from 'primeng/card';
 import { FormsModule, ReactiveFormsModule, Validators } from '@angular/forms';
-import {
-  ActionsService,
-  MenutypesService,
-  PrimeInputTextComponent,
-  SubmitButtonsComponent,
-} from '../../../../../shared';
+import { ActionsService, MenutypesService, PrimeInputTextComponent, SubmitButtonsComponent } from '../../../../../shared';
 import { DialogService } from 'primeng/dynamicdialog';
 import { ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-add-edit-menu-type',
-  imports: [
-    CardModule,
-    FormsModule,
-    ReactiveFormsModule,
-    SubmitButtonsComponent,
-    PrimeInputTextComponent,
-  ],
+  imports: [CardModule, FormsModule, ReactiveFormsModule, SubmitButtonsComponent, PrimeInputTextComponent],
   templateUrl: './add-edit-menu-type.component.html',
-  styleUrl: './add-edit-menu-type.component.css',
+  styleUrl: './add-edit-menu-type.component.css'
 })
 //
-export class AddEditMenuTypeComponent
-  extends BaseEditComponent
-  implements OnInit
-{
+export class AddEditMenuTypeComponent extends BaseEditComponent implements OnInit {
   menutypesService: MenutypesService = inject(MenutypesService);
   dialogService: DialogService = inject(DialogService);
 
@@ -52,7 +38,7 @@ export class AddEditMenuTypeComponent
 
   initFormGroup() {
     this.form = this.fb.group({
-      type: ['', Validators.required],
+      type: ['', Validators.required]
     });
   }
 
@@ -70,11 +56,9 @@ export class AddEditMenuTypeComponent
         this.closeDialog();
       });
     if (this.pageType === 'edit')
-      this.menutypesService
-        .update({ id: this.id(), ...this.form.value })
-        .subscribe(() => {
-          this.closeDialog();
-        });
+      this.menutypesService.update({ id: this.id(), ...this.form.value }).subscribe(() => {
+        this.closeDialog();
+      });
   }
 
   closeDialog() {
