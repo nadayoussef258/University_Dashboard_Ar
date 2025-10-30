@@ -107,4 +107,11 @@ export abstract class BaseEditComponent
   preventDefault(event: Event) {
     event.preventDefault();
   }
+
+  isLeader = {
+    leaderStyle: 'bg-blue-100 text-blue-700 border-blue-300',
+    personStyle: 'bg-gray-100 text-gray-600 border-gray-300',
+    leaderIcon: 'pi pi-star text-blue-500',
+    personIcon: 'pi pi-user text-gray-500',
+  };
 }

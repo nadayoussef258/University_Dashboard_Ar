@@ -6,9 +6,11 @@ import {
   computed,
   effect,
   WritableSignal,
+  inject,
 } from '@angular/core';
 import { TranslateService } from '@ngx-translate/core';
 import { Language, Languages } from '../../../core/enums/languages';
+import { StorageService } from '../../../core';
 
 @Injectable({
   providedIn: 'root',
@@ -17,8 +19,9 @@ export class TranslationService {
   private defaultLang: Language = Languages.AR;
 
   private _currentLanguage: WritableSignal<Language> = signal(this.defaultLang);
-
   readonly currentLanguage = computed(() => this._currentLanguage());
+
+  private storageService = inject(StorageService);
 
   private renderer: Renderer2;
 
@@ -28,12 +31,11 @@ export class TranslationService {
   ) {
     this.renderer = this.rendererFactory.createRenderer(null, null);
     this.initLanguage();
-
-    localStorage.setItem('currentLang', this._currentLanguage());
+    this.storageService.setLocal('currentLang', this._currentLanguage());
   }
 
   private getStoredLanguage(): Language | null {
-    return localStorage.getItem('currentLang') as Language | null;
+    return this.storageService.getLocal('currentLang') as Language | null;
   }
 
   private initLanguage(): void {
@@ -47,7 +49,7 @@ export class TranslationService {
     const newLang =
       this._currentLanguage() === Languages.AR ? Languages.EN : Languages.AR;
     this._currentLanguage.set(newLang);
-    localStorage.setItem('currentLang', newLang);
+    this.storageService.setLocal('currentLang', newLang);
 
     this.translate.use(newLang);
     this.handleBasicLogic(newLang);
