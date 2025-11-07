@@ -6,6 +6,7 @@ import { TableOptions } from '../../../../shared/interfaces';
 import { BaseListComponent } from '../../../../base/components/base-list-component';
 import { AddEditAboutComponent } from '../../components/add-edit-about/add-edit-about.component';
 import { TranslatePipe } from '@ngx-translate/core';
+import { ConfigService } from '../../../../core';
 
 @Component({
   selector: 'app-about',
@@ -18,9 +19,14 @@ import { TranslatePipe } from '@ngx-translate/core';
 export class AboutComponent extends BaseListComponent {
   tableOptions!: TableOptions;
   service = inject(AboutService);
+  configService = inject(ConfigService);
 
   constructor(activatedRoute: ActivatedRoute) {
     super(activatedRoute);
+
+    console.log('configService:', this.configService.getServerUrl());
+    console.log('configService:', this.configService.getAppUrl('HOST_API'));
+    console.log('configService:', this.configService.getConfigFileName());
   }
 
   override ngOnInit(): void {

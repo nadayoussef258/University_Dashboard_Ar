@@ -19,6 +19,13 @@ export class AddEditStatisticComponent extends BaseEditComponent implements OnIn
   statisticsService: StatisticsService = inject(StatisticsService);
   dialogService: DialogService = inject(DialogService);
 
+  isActive = {
+    activeStyle: 'bg-green-100 text-green-700 border-green-300',
+    offlineStyle: 'bg-red-100 text-red-700 border-red-300',
+    activeIcon: 'pi pi-check-circle text-green-500',
+    offlineIcon: 'pi pi-times-circle text-red-500'
+  };
+
   constructor(override activatedRoute: ActivatedRoute) {
     super(activatedRoute);
   }

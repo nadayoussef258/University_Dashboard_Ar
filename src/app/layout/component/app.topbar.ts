@@ -24,7 +24,7 @@ import { TranslatePipe } from '@ngx-translate/core';
           >
             <i class="pi pi-bars menu-icon"></i>
           </button>
-          <a class="brand-logo" routerLink="/">
+          <a class="" routerLink="/">
             <div class="logo-container">
               <img
                 src="./assets/img/universitylogo.jpg"

@@ -21,7 +21,7 @@ export const EN_PAGES_SETTINGS = {
     DASHBOARD: {
       TITLE: 'Dashboard'
     },
-    ACTION: {
+    ACTIONS: {
       MAIN: {
         PAGE_TITLE: 'Actions'
       },
@@ -385,30 +385,31 @@ export const EN_PAGES_SETTINGS = {
         DOWNLOAD_URL: 'Download Link',
         CONTACT_NAME: 'Contact Person Name',
         CONTACT_PHONE: 'Contact Phone Number'
+      }
+    },
+
+    SECTOR_UNITS: {
+      MAIN: {
+        PAGE_TITLE: 'Sector Units'
       },
-      SECTOR_UNITS: {
-        MAIN: {
-          PAGE_TITLE: 'Sector Units'
-        },
-        ADD: {
-          PAGE_TITLE: 'Add Sector Unit'
-        },
-        EDIT: {
-          PAGE_TITLE: 'Edit Sector Unit'
-        },
-        FORM: {
-          UNIT_NAME: 'Unit Name',
-          UNIT_DESCRIPTION: 'Unit Description',
-          MANAGER: 'Unit Manager Name',
-          EMAIL: 'Email Address',
-          EMPLOYEES_COUNT: 'Number of Employees',
-          LOCATION: 'Unit Location',
-          UNIT_PHONE: 'Unit Phone Number',
-          IS_ONLINE: {
-            TITLE: 'Service Availability Online',
-            ONLINE: 'Available Online',
-            OFFLINE: 'Not Available Online'
-          }
+      ADD: {
+        PAGE_TITLE: 'Add Sector Unit'
+      },
+      EDIT: {
+        PAGE_TITLE: 'Edit Sector Unit'
+      },
+      FORM: {
+        UNIT_NAME: 'Unit Name',
+        UNIT_DESCRIPTION: 'Unit Description',
+        MANAGER: 'Unit Manager Name',
+        EMAIL: 'Email Address',
+        EMPLOYEES_COUNT: 'Number of Employees',
+        LOCATION: 'Unit Location',
+        UNIT_PHONE: 'Unit Phone Number',
+        IS_ONLINE: {
+          TITLE: 'Service Availability Online',
+          ONLINE: 'Available Online',
+          OFFLINE: 'Not Available Online'
         }
       }
     }

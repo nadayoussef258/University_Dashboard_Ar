@@ -1,14 +1,13 @@
 <div class="flex-column h-100 page-wrapper d-flex card">
   <app-prime-title-toolbar [pageTitle]="pageTitle || 'PAGES.ABOUT.MAIN.PAGE_TITLE'"></app-prime-title-toolbar>
+
   <div class="dataBox">
-    <a class="addLink">
-      <button class="border-radius-2 mt-2 text-sm py-3 px-4 main-btn align-self-center main me-3 sm:mt-0" (click)="openAdd()" type="button" pButton pRipple>
-        <div class="d-flex align-items-center">
-          <i class="font-18 m-inline-end-1 bx bx-plus"></i>
-          <span class="p-inline-end-1">{{ 'ACTIONS.ADD' | translate }}</span>
-        </div>
+    <div class="addLink">
+      <button class="border-radius-2 mt-2 text-sm py-3 px-2 main-btn align-self-center main me-3 sm:mt-0" type="button" pButton pRipple (click)="openAdd()" [attr.aria-label]="'ACTIONS.ADD' | translate" [title]="'ACTIONS.ADD' | translate">
+        <i class="m-inline-end-2 text-sm pi pi-plus" pButtonIcon aria-hidden="true"></i>
+        <span class="p-inline-end-1" pButtonLabel>{{ 'ACTIONS.ADD' | translate }}</span>
       </button>
-    </a>
+    </div>
 
     @if (tableOptions) {
       <div class="mt-4">

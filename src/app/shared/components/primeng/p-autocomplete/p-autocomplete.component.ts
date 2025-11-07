@@ -3,9 +3,10 @@ import { FormGroup, FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { AutoCompleteModule } from 'primeng/autocomplete';
 import { debounceTime, distinctUntilChanged, Observable, Subject } from 'rxjs';
 import { ValidationHandlerPipe } from '../../../pipes/validation-handler.pipe';
+import { TranslatePipe } from '@ngx-translate/core';
 @Component({
   selector: 'app-prime-autocomplete',
-  imports: [AutoCompleteModule, FormsModule, ReactiveFormsModule, ValidationHandlerPipe],
+  imports: [AutoCompleteModule, FormsModule, ReactiveFormsModule, ValidationHandlerPipe, TranslatePipe],
   templateUrl: './p-autocomplete.component.html',
   styleUrl: './p-autocomplete.component.scss'
 })

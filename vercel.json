@@ -1,0 +1,15 @@
+{
+  "version": 1,
+  "builds": [
+    {
+      "src": "angular.json",
+      "use": "@vercel/cli"
+    }
+  ],
+  "routes": [
+    {
+      "src": "/(.*)",
+      "dest": "/dist/university_dashboard_ar/index.html"
+    }
+  ]
+}

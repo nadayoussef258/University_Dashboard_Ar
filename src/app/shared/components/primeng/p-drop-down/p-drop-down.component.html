@@ -1,4 +1,4 @@
-<div [formGroup]="formGroup" class="form-group d-flex flex-column m-0">
+<div [formGroup]="formGroup" class="flex-column m-0 form-group d-flex">
   <p-select
     [options]="options"
     [optionLabel]="getBindLabel"
@@ -15,7 +15,7 @@
     [virtualScrollItemSize]="6"
     (onLazyLoad)="loadMoreData($event)"
     (onClear)="onClear()"
-    [placeholder]="'اختر'"
+    placeholder="{{ 'ACTIONS.SELECT' | translate }}"
     emptyFilterMessage="لا توجد نتائج بحث"
     appendTo="body"
   >

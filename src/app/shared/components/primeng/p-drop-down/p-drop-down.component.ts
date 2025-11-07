@@ -1,5 +1,6 @@
 import { Component, EventEmitter, Input, OnInit, Output, forwardRef } from '@angular/core';
 import { ControlValueAccessor, FormGroup, NG_VALUE_ACCESSOR, FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { TranslatePipe } from '@ngx-translate/core';
 import { Select } from 'primeng/select';
 import { catchError, Observable, of, Subject, tap } from 'rxjs';
 import { debounceTime, switchMap } from 'rxjs/operators';
@@ -7,7 +8,7 @@ import { debounceTime, switchMap } from 'rxjs/operators';
 type Label = 'nameEn' | 'nameAr';
 @Component({
   selector: 'app-prime-drop-down',
-  imports: [Select, FormsModule, ReactiveFormsModule],
+  imports: [Select, FormsModule, ReactiveFormsModule, TranslatePipe],
   templateUrl: './p-drop-down.component.html',
   styleUrl: './p-drop-down.component.scss',
   providers: [

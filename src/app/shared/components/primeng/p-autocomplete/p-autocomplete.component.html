@@ -3,7 +3,7 @@
     [(ngModel)]="selectedOption"
     [ngModelOptions]="{ standalone: true }"
     [optionLabel]="field"
-    placeholder="اختر"
+    placeholder="{{ 'ACTIONS.SELECT' | translate }}"
     [suggestions]="suggestions"
     [dropdown]="dropdown"
     [forceSelection]="forceSelection"
