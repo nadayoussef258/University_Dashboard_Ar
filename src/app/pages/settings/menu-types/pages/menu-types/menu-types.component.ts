@@ -1,4 +1,4 @@
-import { Component, inject, Input, OnChanges } from '@angular/core';
+import { Component, inject, Input, OnChanges, signal, WritableSignal } from '@angular/core';
 import { ActivatedRoute, RouterModule } from '@angular/router';
 import { CardModule } from 'primeng/card';
 import { PrimeDataTableComponent, PrimeTitleToolBarComponent, MenutypesService } from '../../../../../shared';
@@ -16,7 +16,7 @@ import { TranslatePipe } from '@ngx-translate/core';
 })
 export class MenuTypesComponent extends BaseListComponent {
   isEnglish = false;
-  tableOptions!: TableOptions;
+  tableOptions: WritableSignal<TableOptions> = signal<TableOptions>({} as TableOptions);
   service = inject(MenutypesService);
 
   constructor(activatedRoute: ActivatedRoute) {
@@ -29,7 +29,7 @@ export class MenuTypesComponent extends BaseListComponent {
   }
 
   initializeTableOptions() {
-    this.tableOptions = {
+    this.tableOptions.set({
       inputUrl: {
         getAll: 'v2/menutype/getPaged',
         getAllMethod: 'POST',
@@ -46,7 +46,7 @@ export class MenuTypesComponent extends BaseListComponent {
         filter: {}
       },
       responsiveDisplayedProperties: ['type']
-    };
+    });
   }
 
   initializeTableColumns(): TableOptions['inputCols'] {

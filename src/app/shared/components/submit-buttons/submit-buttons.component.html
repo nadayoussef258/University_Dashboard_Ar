@@ -1,6 +1,6 @@
 <div class="my-3 w-100 gap-3 d-flex justify-content-center">
   <p-button [disabled]="isSubmitDisabled" (click)="onSubmit()" [label]="submitBtnLabel | translate" severity="success" icon="pi pi-check" [iconPos]="currentLang === 'ar' ? 'left' : 'right'" [raised]="true" styleClass="rounded-md!"> </p-button>
   @if (viewCancelBtn) {
-    <p-button [disabled]="isSubmitDisabled" [label]="'ACTIONS.CANCEL' | translate" (click)="onCancel()" severity="danger" icon="pi pi-times" [iconPos]="currentLang === 'ar' ? 'left' : 'right'" [raised]="true" styleClass="rounded-md!" />
+    <p-button  [label]="'ACTIONS.CANCEL' | translate" (click)="onCancel()" severity="danger" icon="pi pi-times" [iconPos]="currentLang === 'ar' ? 'left' : 'right'" [raised]="true" styleClass="rounded-md!" />
   }
 </div>

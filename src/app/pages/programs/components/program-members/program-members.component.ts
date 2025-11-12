@@ -1,4 +1,4 @@
-import { Component, inject, Input } from '@angular/core';
+import { Component, inject, Input, signal, WritableSignal } from '@angular/core';
 import { ActivatedRoute, RouterModule } from '@angular/router';
 import { CardModule } from 'primeng/card';
 import { PrimeDataTableComponent, PrimeTitleToolBarComponent, ProgramMembersService } from '../../../../shared';
@@ -17,7 +17,7 @@ import { TranslatePipe } from '@ngx-translate/core';
 })
 export class ProgramMembersComponent extends BaseListComponent {
   programId: string = '';
-  tableOptions!: TableOptions;
+  tableOptions: WritableSignal<TableOptions> = signal<TableOptions>({} as TableOptions);
 
   service = inject(ProgramMembersService);
   programIdService = inject(ProgramIdService);
@@ -33,7 +33,7 @@ export class ProgramMembersComponent extends BaseListComponent {
   }
 
   initializeTableOptions() {
-    this.tableOptions = {
+    this.tableOptions.set({
       inputUrl: {
         getAll: 'v2/programmember/getPaged',
         getAllMethod: 'POST',
@@ -50,7 +50,7 @@ export class ProgramMembersComponent extends BaseListComponent {
         filter: { programId: this.programId ?? '' }
       },
       responsiveDisplayedProperties: ['isLeader', 'programId']
-    };
+    });
   }
 
   initializeTableColumns(): TableOptions['inputCols'] {

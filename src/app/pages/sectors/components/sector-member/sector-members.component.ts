@@ -1,4 +1,4 @@
-import { Component, inject } from '@angular/core';
+import { Component, inject, signal, WritableSignal } from '@angular/core';
 import { ActivatedRoute, RouterModule } from '@angular/router';
 import { CardModule } from 'primeng/card';
 import { PrimeDataTableComponent, PrimeTitleToolBarComponent, SectorsService } from '../../../../shared';
@@ -18,7 +18,7 @@ import { TranslatePipe } from '@ngx-translate/core';
 export class SectorMembersComponent extends BaseListComponent {
   sectorId: string = '';
   isEnglish = false;
-  tableOptions!: TableOptions;
+  tableOptions: WritableSignal<TableOptions> = signal<TableOptions>({} as TableOptions);
   service = inject(SectorsService);
   sectorIdService = inject(SectorIdService);
 
@@ -33,7 +33,7 @@ export class SectorMembersComponent extends BaseListComponent {
   }
 
   initializeTableOptions() {
-    this.tableOptions = {
+    this.tableOptions.set({
       inputUrl: {
         getAll: 'v2/sectormember/getPaged',
         getAllMethod: 'POST',
@@ -50,7 +50,7 @@ export class SectorMembersComponent extends BaseListComponent {
         filter: { sectorId: this.sectorId }
       },
       responsiveDisplayedProperties: ['isLeader', 'sectorId']
-    };
+    });
   }
 
   initializeTableColumns(): TableOptions['inputCols'] {

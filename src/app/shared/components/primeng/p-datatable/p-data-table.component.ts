@@ -1,9 +1,8 @@
-import { Component, Input, Output, EventEmitter, inject, signal, WritableSignal, effect, OnDestroy } from '@angular/core';
+import { Component, Input, Output, EventEmitter, inject, signal, WritableSignal, effect, OnDestroy, computed, model } from '@angular/core';
 import { Router, RouterModule } from '@angular/router';
 import { Subject, debounceTime, takeUntil } from 'rxjs';
 import { ExportExcelService } from '../../../services/export-excel/export-excel.service';
 import { TableOptions } from '../../../interfaces';
-
 // PrimeNG imports
 import { TableModule } from 'primeng/table';
 import { DatePipe, NgClass } from '@angular/common';
@@ -20,24 +19,28 @@ import { TranslatePipe } from '@ngx-translate/core';
 })
 export class PrimeDataTableComponent implements OnDestroy {
   // 🧩 Inputs
-  @Input({ required: true }) tableOptions!: TableOptions;
-  totalCountSignal = signal(0);
-  pageSizeSignal = signal(0);
+  @Input({ required: true }) tableOptions!: WritableSignal<TableOptions>;
+  totalCount = model(0);
+  pageSize = model(0);
+  inputColsLenght = computed(() => (this.tableOptions().inputCols?.length ?? 0) + 1);
+
   @Input() checkbox = false;
 
   // 🧩 Inputs مع setters
-  @Input() set totalCount(value: number) {
-    this.totalCountSignal.set(value ?? 0);
-  }
+  // @Input() set totalCount(value: number) {
+  //   this.totalCountSignal.set(value ?? 0);
+  // }
 
-  @Input() set pageSize(value: number) {
-    this.pageSizeSignal.set(value ?? 0);
-  }
+  // @Input() set pageSize(value: number) {
+  //   this.pageSizeSignal.set(value ?? 0);
+  // }
 
-  totalEffect = effect(() => {
-    console.log('📊 totalCount changed to:', this.totalCountSignal());
-    console.log('📏 pageSize changed to:', this.pageSizeSignal());
-  });
+
+
+  // totalEffect = effect(() => {
+  //   console.log('📊 totalCount changed to:', this.totalCountSignal());
+  //   console.log('📏 pageSize changed to:', this.pageSizeSignal());
+  // });
   // 🧠 Reactive data using signals
   private _data: WritableSignal<any[]> = signal([]);
   finalData: WritableSignal<any[]> = signal([]);
@@ -90,8 +93,8 @@ export class PrimeDataTableComponent implements OnDestroy {
   // ⚡️ Effect: Watch for permissions changes
   permissionsEffect = effect(() => {
     const opts = this.tableOptions;
-    if (opts?.permissions) {
-      this.permissions.set(opts.permissions);
+    if (opts()?.permissions) {
+      this.permissions.set(opts().permissions);
       // console.log('🔐 Permissions updated:', this.permissions());
     }
   });

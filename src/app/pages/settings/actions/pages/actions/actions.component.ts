@@ -1,4 +1,4 @@
-import { Component, effect, inject, Input, OnChanges } from '@angular/core';
+import { Component, effect, inject, Input, OnChanges, signal, WritableSignal } from '@angular/core';
 import { ActivatedRoute, RouterModule } from '@angular/router';
 import { CardModule } from 'primeng/card';
 import { PrimeDataTableComponent, PrimeTitleToolBarComponent, ActionsService } from '../../../../../shared';
@@ -14,7 +14,7 @@ import { TranslatePipe } from '@ngx-translate/core';
   styleUrl: './actions.component.css'
 })
 export class ActionsComponent extends BaseListComponent {
-  tableOptions!: TableOptions;
+  tableOptions: WritableSignal<TableOptions> = signal<TableOptions>({} as TableOptions);
   service = inject(ActionsService);
 
   constructor(activatedRoute: ActivatedRoute) {
@@ -34,7 +34,7 @@ export class ActionsComponent extends BaseListComponent {
   }
 
   initializeTableOptions() {
-    this.tableOptions = {
+    this.tableOptions.set({
       inputUrl: {
         getAll: 'v2/actions/getPaged',
         getAllMethod: 'POST',
@@ -51,7 +51,7 @@ export class ActionsComponent extends BaseListComponent {
         filter: {}
       },
       responsiveDisplayedProperties: ['code', 'name']
-    };
+    });
   }
 
   initializeTableColumns(): TableOptions['inputCols'] {

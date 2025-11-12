@@ -1,4 +1,4 @@
-import { Directive, Injectable, OnInit, signal, effect, computed, inject } from '@angular/core';
+import { Directive, Injectable, OnInit, signal, effect, computed, inject, WritableSignal } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { LazyLoadEvent } from 'primeng/api';
 import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
@@ -21,7 +21,7 @@ export abstract class BaseListComponent extends BaseComponent implements OnInit 
   dialogRef: DynamicDialogRef | null = null;
 
   private firstInit = false;
-  abstract tableOptions: TableOptions;
+  abstract tableOptions: WritableSignal<TableOptions>;
   abstract get service(): HttpService;
 
   dataTableService = inject(DataTableService);
@@ -74,7 +74,7 @@ export abstract class BaseListComponent extends BaseComponent implements OnInit 
    * تحميل البيانات من الخادم وتحديث signals
    */
   loadDataFromServer(): void {
-    this.dataTableService.loadData(this.tableOptions.inputUrl.getAll).subscribe({
+    this.dataTableService.loadData(this.tableOptions().inputUrl.getAll).subscribe({
       next: (res) => {
         this.data.set(res.data); // ✅ تحديث الـ signal بدل متغير عادي
         this.totalCount.set(res.totalCount ?? 0);
@@ -207,7 +207,7 @@ export abstract class BaseListComponent extends BaseComponent implements OnInit 
    * حذف عنصر واحد
    */
   deleteData(id: string) {
-    this.dataTableService.delete(this.tableOptions.inputUrl.delete, id).subscribe({
+    this.dataTableService.delete(this.tableOptions().inputUrl.delete, id).subscribe({
       next: () => {
         (this.localize.translate.instant('VALIDATION.DELETE_SUCCESS'), this.loadDataFromServer()); // ✅ إعادة التحميل
       },
@@ -219,7 +219,7 @@ export abstract class BaseListComponent extends BaseComponent implements OnInit 
    * حذف مجموعة عناصر
    */
   deleteRange(ids: string[]) {
-    this.dataTableService.deleteRange(this.tableOptions.inputUrl.delete, ids).subscribe({
+    this.dataTableService.deleteRange(this.tableOptions().inputUrl.delete, ids).subscribe({
       next: (res) => {
         // this.data.set(res.data)
         // this.totalCount.set(res.totalCount)
@@ -243,9 +243,9 @@ export abstract class BaseListComponent extends BaseComponent implements OnInit 
       filter: {}
     };
 
-    this.dataTableService.opt.filter = this.tableOptions.bodyOptions.filter ?? this.dataTableService.opt.filter;
+    this.dataTableService.opt.filter = this.tableOptions().bodyOptions.filter ?? this.dataTableService.opt.filter;
 
-    this.dataTableService.opt.filter.appId = this.tableOptions.appId !== 0 ? this.tableOptions.appId : 0;
+    this.dataTableService.opt.filter.appId = this.tableOptions().appId !== 0 ? this.tableOptions().appId : 0;
   }
 
   /**

@@ -1,4 +1,4 @@
-import { Component, inject } from '@angular/core';
+import { Component, inject, signal, WritableSignal } from '@angular/core';
 import { ActivatedRoute, RouterModule } from '@angular/router';
 import { CardModule } from 'primeng/card';
 import { PrimeDataTableComponent, PrimeTitleToolBarComponent, ManagementDetailsService } from '../../../../shared';
@@ -17,7 +17,7 @@ import { TranslatePipe } from '@ngx-translate/core';
 export class ManagementDetailsComponent extends BaseListComponent {
   managementId: string = '';
   tableData: any[] = [];
-  tableOptions!: TableOptions;
+  tableOptions: WritableSignal<TableOptions> = signal<TableOptions>({} as TableOptions);
 
   service = inject(ManagementDetailsService);
   managementIdService = inject(ManagementIdService);
@@ -34,7 +34,7 @@ export class ManagementDetailsComponent extends BaseListComponent {
   }
 
   initializeTableOptions() {
-    this.tableOptions = {
+    this.tableOptions.set({
       inputUrl: {
         getAll: 'v2/managementdetail/getPaged',
         getAllMethod: 'POST',
@@ -51,7 +51,7 @@ export class ManagementDetailsComponent extends BaseListComponent {
         filter: { managementId: this.managementId }
       },
       responsiveDisplayedProperties: ['title', 'description', 'content']
-    };
+    });
   }
 
   initializeTableColumns(): TableOptions['inputCols'] {

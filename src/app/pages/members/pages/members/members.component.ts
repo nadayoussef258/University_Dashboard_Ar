@@ -1,4 +1,4 @@
-import { Component, inject, Input } from '@angular/core';
+import { Component, inject, Input, signal, WritableSignal } from '@angular/core';
 import { ActivatedRoute, RouterModule } from '@angular/router';
 import { CardModule } from 'primeng/card';
 import { PrimeDataTableComponent, PrimeTitleToolBarComponent, AboutService } from '../../../../shared';
@@ -15,7 +15,7 @@ import { TranslatePipe } from '@ngx-translate/core';
   styleUrl: './members.component.css'
 })
 export class MembersComponent extends BaseListComponent {
-  tableOptions!: TableOptions;
+  tableOptions: WritableSignal<TableOptions> = signal<TableOptions>({} as TableOptions);
   service = inject(AboutService);
 
   constructor(activatedRoute: ActivatedRoute) {
@@ -27,7 +27,7 @@ export class MembersComponent extends BaseListComponent {
   }
 
   initializeTableOptions() {
-    this.tableOptions = {
+    this.tableOptions.set({
       inputUrl: {
         getAll: 'v2/member/getPaged',
         getAllMethod: 'POST',
@@ -44,7 +44,7 @@ export class MembersComponent extends BaseListComponent {
         filter: {}
       },
       responsiveDisplayedProperties: ['isPresident', 'fullName', 'position', 'specialization', 'pageId', 'sectorMemberId', 'programMemberId', 'managementMemberId', 'centerMemberId', 'unitMemberId', 'memberAttachments']
-    };
+    });
   }
 
   initializeTableColumns(): TableOptions['inputCols'] {

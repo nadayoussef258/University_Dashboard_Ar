@@ -9,7 +9,7 @@
 
 <p-table
   #table
-  [columns]="tableOptions.inputCols"
+  [columns]="tableOptions().inputCols"
   [value]="data"
   [sortField]="'id'"
   [sortOrder]="1"
@@ -19,8 +19,8 @@
   [currentPageReportTemplate]="'PAGINATION' | translate"
   [paginator]="true"
   [rowsPerPageOptions]="[5, 10, 15, 20]"
-  [rows]="pageSizeSignal()"
-  [totalRecords]="totalCountSignal()"
+  [rows]="pageSize()"
+  [totalRecords]="totalCount()"
   (onLazyLoad)="loadLazyLoadedData($event)"
   [(selection)]="selected"
 >
@@ -40,7 +40,7 @@
         </th>
       }
 
-      @if ((tableOptions.inputActions && permissions().listOfPermissions.indexOf('Permission.' + permissions().componentName + '.View') > -1) || permissions().allowAll) {
+      @if ((tableOptions().inputActions && permissions().listOfPermissions.indexOf('Permission.' + permissions().componentName + '.View') > -1) || permissions().allowAll) {
         <th style="width: 10em">
           {{ 'ACTIONS.TITLE' | translate }}
         </th>
@@ -79,7 +79,7 @@
         }
       }
 
-      @if ((tableOptions.inputActions && permissions().listOfPermissions.indexOf('Permission.' + permissions().componentName + '.View') > -1) || permissions().allowAll) {
+      @if ((tableOptions().inputActions && permissions().listOfPermissions.indexOf('Permission.' + permissions().componentName + '.View') > -1) || permissions().allowAll) {
         <th></th>
       }
     </tr>
@@ -155,9 +155,9 @@
       }
 
       <!-- ================= ACTIONS ================= -->
-      @if ((tableOptions.inputActions && permissions().listOfPermissions.indexOf('Permission.' + permissions().componentName + '.View') > -1) || permissions().allowAll) {
+      @if ((tableOptions().inputActions && permissions().listOfPermissions.indexOf('Permission.' + permissions().componentName + '.View') > -1) || permissions().allowAll) {
         <td class="actions">
-          @for (action of tableOptions.inputActions; track $index) {
+          @for (action of tableOptions().inputActions; track $index) {
             <span>
               @if (action.isEdit && (permissions().listOfPermissions.indexOf('Permission.' + permissions().componentName + '.Edit') > -1 || action.allowAll)) {
                 <a [routerLink]="action.route + row.id" class="icon-btn">
@@ -192,7 +192,7 @@
   <!-- ================= EMPTY MESSAGE ================= -->
   <ng-template pTemplate="emptymessage">
     <tr>
-      <td [attr.colspan]="(tableOptions.inputCols?.length || 0) + 1" class="p-4">
+      <td [attr.colspan]="inputColsLenght()" class="p-4">
         <div class="flex text-center w-full min-h-[100px] justify-center items-center wrap-break-word overflow-hidden">
           <div class="max-w-full px-4">
             <i class="mb-3 text-4xl text-gray-600 pi pi-inbox block"></i>

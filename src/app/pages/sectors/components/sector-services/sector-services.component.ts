@@ -1,4 +1,4 @@
-import { Component, inject } from '@angular/core';
+import { Component, inject, signal, WritableSignal } from '@angular/core';
 import { ActivatedRoute, RouterModule } from '@angular/router';
 import { CardModule } from 'primeng/card';
 import { PrimeDataTableComponent, PrimeTitleToolBarComponent, SectorServicesService } from '../../../../shared';
@@ -18,7 +18,7 @@ import { TranslatePipe } from '@ngx-translate/core';
 export class SectorServicesComponent extends BaseListComponent {
   sectorId: string = '';
   tableData: any[] = [];
-  tableOptions!: TableOptions;
+  tableOptions: WritableSignal<TableOptions> = signal<TableOptions>({} as TableOptions);
   service = inject(SectorServicesService);
   sectorIdService = inject(SectorIdService);
 
@@ -33,7 +33,7 @@ export class SectorServicesComponent extends BaseListComponent {
   }
 
   initializeTableOptions() {
-    this.tableOptions = {
+    this.tableOptions.set({
       inputUrl: {
         getAll: 'v2/sectorservices/getPaged',
         getAllMethod: 'POST',
@@ -50,7 +50,7 @@ export class SectorServicesComponent extends BaseListComponent {
         filter: { sectorId: this.sectorId }
       },
       responsiveDisplayedProperties: ['name', 'details', 'duration', 'applicationUrl', 'downloadUrl', 'category', 'fees', 'contactPerson', 'isOnline', 'sectorId']
-    };
+    });
   }
 
   initializeTableColumns(): TableOptions['inputCols'] {

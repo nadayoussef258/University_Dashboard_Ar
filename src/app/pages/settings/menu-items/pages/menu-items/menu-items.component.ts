@@ -1,4 +1,4 @@
-import { Component, inject, Input, OnChanges } from '@angular/core';
+import { Component, inject, Input, OnChanges, signal, WritableSignal } from '@angular/core';
 import { ActivatedRoute, RouterModule } from '@angular/router';
 import { CardModule } from 'primeng/card';
 import { PrimeDataTableComponent, PrimeTitleToolBarComponent, MenuItemsService } from '../../../../../shared';
@@ -15,7 +15,7 @@ import { TranslatePipe } from '@ngx-translate/core';
   styleUrl: './menu-items.component.css'
 })
 export class MenuItemsComponent extends BaseListComponent {
-  tableOptions!: TableOptions;
+  tableOptions: WritableSignal<TableOptions> = signal<TableOptions>({} as TableOptions);
   service = inject(MenuItemsService);
 
   constructor(activatedRoute: ActivatedRoute) {
@@ -28,7 +28,7 @@ export class MenuItemsComponent extends BaseListComponent {
   }
 
   initializeTableOptions() {
-    this.tableOptions = {
+    this.tableOptions.set({
       inputUrl: {
         getAll: 'v2/menuitems/getPaged',
         getAllMethod: 'POST',
@@ -45,7 +45,7 @@ export class MenuItemsComponent extends BaseListComponent {
         filter: {}
       },
       responsiveDisplayedProperties: ['title', 'target', 'fragment', 'icon', 'order', 'menuType', 'parentMenuItem']
-    };
+    });
   }
 
   initializeTableColumns(): TableOptions['inputCols'] {

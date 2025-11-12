@@ -1,4 +1,4 @@
-import { Component, inject, Input } from '@angular/core';
+import { Component, inject, Input, signal, WritableSignal } from '@angular/core';
 import { ActivatedRoute, RouterModule } from '@angular/router';
 import { CardModule } from 'primeng/card';
 import { PrimeDataTableComponent, PrimeTitleToolBarComponent, HeroSectionsService } from '../../../../../shared';
@@ -17,7 +17,7 @@ import { TranslatePipe } from '@ngx-translate/core';
 export class HeroSectionsComponent extends BaseListComponent {
   @Input() employeeId: string = '';
   isEnglish = false;
-  tableOptions!: TableOptions;
+  tableOptions: WritableSignal<TableOptions> = signal<TableOptions>({} as TableOptions);
   service = inject(HeroSectionsService);
 
   constructor(activatedRoute: ActivatedRoute) {
@@ -29,7 +29,7 @@ export class HeroSectionsComponent extends BaseListComponent {
   }
 
   initializeTableOptions() {
-    this.tableOptions = {
+    this.tableOptions.set({
       inputUrl: {
         getAll: 'v2/herosections/getPaged',
         getAllMethod: 'POST',
@@ -46,7 +46,7 @@ export class HeroSectionsComponent extends BaseListComponent {
         filter: {}
       },
       responsiveDisplayedProperties: ['title', 'subTitle', 'description']
-    };
+    });
   }
 
   initializeTableColumns(): TableOptions['inputCols'] {

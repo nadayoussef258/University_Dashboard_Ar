@@ -1,4 +1,4 @@
-import { Component, inject, Input } from '@angular/core';
+import { Component, inject, Input, signal, WritableSignal } from '@angular/core';
 import { ActivatedRoute, RouterModule } from '@angular/router';
 import { CardModule } from 'primeng/card';
 import { PrimeDataTableComponent, PrimeTitleToolBarComponent, CenterDetailsService } from '../../../../shared';
@@ -16,7 +16,7 @@ import { TranslatePipe } from '@ngx-translate/core';
 })
 export class CenterDetailsComponent extends BaseListComponent {
   centerId: string = '';
-  tableOptions!: TableOptions;
+  tableOptions: WritableSignal<TableOptions> = signal<TableOptions>({} as TableOptions);
 
   service = inject(CenterDetailsService);
   centerIdService = inject(CenterIdService);
@@ -32,7 +32,7 @@ export class CenterDetailsComponent extends BaseListComponent {
   }
 
   initializeTableOptions() {
-    this.tableOptions = {
+    this.tableOptions.set({
       inputUrl: {
         getAll: 'v2/centerdetail/getPaged',
         getAllMethod: 'POST',
@@ -49,7 +49,7 @@ export class CenterDetailsComponent extends BaseListComponent {
         filter: { centerId: this.centerId }
       },
       responsiveDisplayedProperties: ['title', 'description', 'content', 'centerId']
-    };
+    });
   }
 
   initializeTableColumns(): TableOptions['inputCols'] {

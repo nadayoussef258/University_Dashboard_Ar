@@ -1,4 +1,4 @@
-import { Component, inject, Input } from '@angular/core';
+import { Component, inject, Input, signal, WritableSignal } from '@angular/core';
 import { ActivatedRoute, RouterModule } from '@angular/router';
 import { CardModule } from 'primeng/card';
 import { PrimeDataTableComponent, PrimeTitleToolBarComponent, AboutService } from '../../../../shared';
@@ -16,7 +16,7 @@ import { TranslatePipe } from '@ngx-translate/core';
   styleUrl: './leaders.component.css'
 })
 export class LeaderComponent extends BaseListComponent {
-  tableOptions!: TableOptions;
+  tableOptions: WritableSignal<TableOptions> = signal<TableOptions>({} as TableOptions);
   service = inject(LeadersService);
 
   constructor(activatedRoute: ActivatedRoute) {
@@ -28,7 +28,7 @@ export class LeaderComponent extends BaseListComponent {
   }
 
   initializeTableOptions() {
-    this.tableOptions = {
+    this.tableOptions.set({
       inputUrl: {
         getAll: 'v2/leaders/getPaged',
         getAllMethod: 'POST',
@@ -45,7 +45,7 @@ export class LeaderComponent extends BaseListComponent {
         filter: {}
       },
       responsiveDisplayedProperties: ['fullName', 'position', 'mamberName']
-    };
+    });
   }
 
   initializeTableColumns(): TableOptions['inputCols'] {

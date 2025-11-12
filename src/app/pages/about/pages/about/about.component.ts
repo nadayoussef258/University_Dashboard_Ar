@@ -1,4 +1,4 @@
-import { Component, inject, Input } from '@angular/core';
+import { Component, inject, Input, signal, WritableSignal } from '@angular/core';
 import { ActivatedRoute, RouterModule } from '@angular/router';
 import { CardModule } from 'primeng/card';
 import { PrimeDataTableComponent, PrimeTitleToolBarComponent, AboutService } from '../../../../shared';
@@ -8,26 +8,25 @@ import { AddEditAboutComponent } from '../../components/add-edit-about/add-edit-
 import { TranslatePipe } from '@ngx-translate/core';
 import { ConfigService } from '../../../../core';
 
+
 @Component({
   selector: 'app-about',
-
   imports: [RouterModule, CardModule, PrimeDataTableComponent, PrimeTitleToolBarComponent, TranslatePipe],
   providers: [],
   templateUrl: './about.component.html',
-  styleUrl: './about.component.css'
+  styleUrls: ['./about.component.css']
 })
 export class AboutComponent extends BaseListComponent {
-  tableOptions!: TableOptions;
+  tableOptions: WritableSignal<TableOptions> = signal<TableOptions>({} as TableOptions);
   service = inject(AboutService);
   configService = inject(ConfigService);
+
 
   constructor(activatedRoute: ActivatedRoute) {
     super(activatedRoute);
 
-    console.log('configService:', this.configService.getServerUrl());
-    console.log('configService:', this.configService.getAppUrl('HOST_API'));
-    console.log('configService:', this.configService.getConfigFileName());
   }
+
 
   override ngOnInit(): void {
     super.ngOnInit();
@@ -35,7 +34,7 @@ export class AboutComponent extends BaseListComponent {
   }
 
   initializeTableOptions() {
-    this.tableOptions = {
+    this.tableOptions.set({
       inputUrl: {
         getAll: 'v2/about/getPaged',
         getAllMethod: 'POST',
@@ -52,7 +51,7 @@ export class AboutComponent extends BaseListComponent {
         filter: {}
       },
       responsiveDisplayedProperties: ['pageTitle', 'content', 'mission', 'vision', 'history']
-    };
+    });
   }
 
   initializeTableColumns(): TableOptions['inputCols'] {
